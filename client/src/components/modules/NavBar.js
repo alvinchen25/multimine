@@ -57,6 +57,10 @@ class NavBar extends Component {
           <Link to="/game/" className="NavBar-link">
             Gameplay
           </Link>
+          {/* THIS PROFILE is gonna have :userid later */}
+          <Link to="/profile/" className="NavBar-link">
+              Profile
+          </Link>
           {this.state.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
