@@ -1,5 +1,5 @@
 import React from "react";
-import MineBoard from "../modules/MineBoard";
+import Board from "../modules/Board";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -7,8 +7,7 @@ import "./Skeleton.css";
 const Gameplay = () => {
     return (
       <>
-        <h1>Multimine</h1>
-        
+        <Board height={16} width={30} mines={99} />
       </>
     );
   };
