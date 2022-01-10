@@ -1,4 +1,4 @@
-body {
+/* body {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -26,22 +26,22 @@ body {
 .hidden {
   background-color: gray;
   border: 0;
-}
+} */
 
-.flagged {
+/* .flagged {
   background-color: green;
-  /* eventually it'll just add a flag */
+  eventually it'll just add a flag
   border: 0;
-}
+} */
 
-.mined {
+/* .mined {
   background-color: red;
   border: 0;
-  /* eventually it'll just add a mine  */
-}
+  eventually it'll just add a mine
+} */
 
-.opened {
+/* .opened {
   background-color: blue;
   border: 0;
-  /* will definitely change later */
-}
+  will definitely change later
+} */

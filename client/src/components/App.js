@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Gameplay from "./pages/Gameplay.js";
+import NavBar from "./modules/NavBar.js";
 
 import "../utilities.css";
 
@@ -41,7 +42,9 @@ const App = () => {
 
   return (
     <>
-      <Router>
+      <NavBar/>
+      {/* Maybe have some sort of CSS for the Router */}
+      <Router> 
         <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
         <Gameplay path="game"/>
         <NotFound default />
