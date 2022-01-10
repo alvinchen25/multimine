@@ -54,17 +54,17 @@ const NewPostInput = (props) => {
  * @param {string} defaultText is the placeholder text
  * @param {string} storyId to add comment to
  */
-const NewComment = (props) => {
-  const addComment = (value) => {
-    const body = { parent: props.storyId, content: value };
-    post("/api/comment", body).then((comment) => {
-      // display this comment on the screen
-      props.addNewComment(comment);
-    });
-  };
+// const NewComment = (props) => {
+//   const addComment = (value) => {
+//     const body = { parent: props.storyId, content: value };
+//     post("/api/comment", body).then((comment) => {
+//       // display this comment on the screen
+//       props.addNewComment(comment);
+//     });
+//   };
 
-  return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
-};
+//   return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
+// };
 
 /**
  * New Story is a New Post component for comments
@@ -72,17 +72,17 @@ const NewComment = (props) => {
  * Proptypes
  * @param {string} defaultText is the placeholder text
  */
-const NewStory = (props) => {
-  const addStory = (value) => {
-    const body = { content: value };
-    post("/api/story", body).then((story) => {
-      // display this story on the screen
-      props.addNewStory(story);
-    });
-  };
+// const NewStory = (props) => {
+//   const addStory = (value) => {
+//     const body = { content: value };
+//     post("/api/story", body).then((story) => {
+//       // display this story on the screen
+//       props.addNewStory(story);
+//     });
+//   };
 
-  return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
-};
+//   return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
+// };
 
 /**
  * New Message is a New Message component for messages
@@ -99,4 +99,4 @@ const NewMessage = (props) => {
   return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
 }
 
-export { NewComment, NewStory, NewMessage };
+export { NewMessage };

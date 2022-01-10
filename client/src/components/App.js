@@ -28,17 +28,18 @@ const App = () => {
     });
   }, []);
 
-  const handleLogin = (res) => {
-    console.log(`Logged in as ${res.profileObj.name}`);
+  const handleLogin = (res) => { //changed from original
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
+      // the server knows we're logged in now
       setUserId(user._id);
-      post("/api/initsocket", { socketid: socket.id });
+      console.log(user);
     });
   };
 
-  const handleLogout = () => {
-    setUserId(undefined);
+  const handleLogout = () => { //changed from original
+    console.log("Logged out successfully!");
+    setUserId(null);
     post("/api/logout");
   };
 
@@ -51,7 +52,8 @@ const App = () => {
         />
       {/* Maybe have some sort of CSS for the Router */}
       <Router> 
-        <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+        <Skeleton path="/" />
+        {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <Gameplay path="/game"/>
         <Profile path="/profile"/>
         {/* ^^ is gonna be /useriD */}

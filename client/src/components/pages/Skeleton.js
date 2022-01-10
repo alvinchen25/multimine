@@ -7,24 +7,9 @@ import "./Skeleton.css";
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID --> DONE
 // const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.googleusercontent.com";
 
-const Skeleton = ({ userId, handleLogin, handleLogout }) => {
+const Skeleton = () => {
   return (
     <>
-      {/* {userId ? (
-        <GoogleLogout
-          clientId={GOOGLE_CLIENT_ID}
-          buttonText="Logout"
-          onLogoutSuccess={handleLogout}
-          onFailure={(err) => console.log(err)}
-        />
-      ) : (
-        <GoogleLogin
-          clientId={GOOGLE_CLIENT_ID}
-          buttonText="Login"
-          onSuccess={handleLogin}
-          onFailure={(err) => console.log(err)}
-        />
-      )} */}
       <h1>Good luck on your project :)</h1>
       <h2> What you need to change in this skeleton</h2>
       <ul>
