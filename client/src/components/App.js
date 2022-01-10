@@ -5,6 +5,7 @@ import Skeleton from "./pages/Skeleton.js";
 import Gameplay from "./pages/Gameplay.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
+import Chatbook from "./pages/Chatbook.js";
 
 import "../utilities.css";
 
@@ -54,6 +55,7 @@ const App = () => {
         <Gameplay path="/game"/>
         <Profile path="/profile"/>
         {/* ^^ is gonna be /useriD */}
+        <Chatbook path="/chat/" userId={userId} />
         <NotFound default />
       </Router>
     </>

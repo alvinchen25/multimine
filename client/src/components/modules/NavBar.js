@@ -61,6 +61,9 @@ class NavBar extends Component {
           <Link to="/profile/" className="NavBar-link">
               Profile
           </Link>
+          <Link to="/chat/" className="NavBar-link">
+              Chat
+          </Link>
           {this.state.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
