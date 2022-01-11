@@ -5,7 +5,6 @@ import Cell from "./Cell";
 
 const Board = (props) => {
 
-    
     let data = Array(30*16).fill(0);
 
     const bounds = (x,y) => {
@@ -77,7 +76,6 @@ const Board = (props) => {
 
                 if(mines !== 0){
                     uCellState[i][j].status = 'num-' + mines.toString(); 
-                    console.log(uCellState[i][j].status);
                 }else{
                     uCellState[i][j].status = 'empty';
                     for(let x=-1;x<=1;++x){
