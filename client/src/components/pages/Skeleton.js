@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import CreateRoom from "../modules/CreateRoom.js";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -13,6 +14,9 @@ const Skeleton = (props) => {
   return (
     <>
       <h1>Good luck on your project :)</h1>
+      <div>
+        <CreateRoom/>
+      </div>
       <div>
         {props.roomLinks}
       </div>
