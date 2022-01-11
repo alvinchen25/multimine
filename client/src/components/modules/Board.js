@@ -136,7 +136,7 @@ const Board = (props) => {
     return (
         <>
             {data.map((x, i) => (
-                <div  oncontextmenu="return false;" key = {i} className = 'cell' className = {cellState[Math.floor(i/30)][i%30].status} onClick = {() => revealCell(Math.floor(i/30), i%30)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/30), i%30)}}>
+                <div key = {i} className = 'cell' className = {cellState[Math.floor(i/30)][i%30].status} onClick = {() => revealCell(Math.floor(i/30), i%30)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/30), i%30)}}>
                     <Cell />
                 </div>
                     
