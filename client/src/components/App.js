@@ -6,6 +6,8 @@ import Gameplay from "./pages/Gameplay.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
+import Roomlist from "./pages/Roomlist.js";
+import Room from "./pages/Room.js";
 
 import "../utilities.css";
 
@@ -43,6 +45,30 @@ const App = () => {
     post("/api/logout");
   };
 
+  const [roomIDlist, setroomIDlist] = useState([]);
+
+//   useEffect(() => {
+//     document.title = "Profile Page";
+//     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
+//   }, []);
+  useEffect(() => {
+      const dumbarray = ["one", "two", "three"];
+      const newarray = dumbarray.map((elephent) => (
+          {
+              _id: elephent
+          }
+      ));
+      setroomIDlist(newarray);
+  }, [] );
+  // somehow well have room id list
+  const roomsList = roomIDlist.map((roomObj) => (
+    // <Room _id={roomObj._id} /> 
+    <Room path={"/room/" + roomObj._id} _id={roomObj._id} key="{roomObj._id}"/>
+    // routes to a page with ending = _id     "/room/:roomObj._id"
+
+  ));
+  //console.log(roomsList);
+
   return (
     <>
       <NavBar
@@ -57,8 +83,12 @@ const App = () => {
         <Gameplay path="/game"/>
         <Profile path="/profile/:userId"/>
         {/* ^^ is gonna be /useriD */}
+        {/* <Room path="/room/:roomID"/> */}
+        {/* <Roomlist path = "/room"/> */}
+        {roomsList}
         <Chatbook path="/chat/" userId={userId} />
         <NotFound default />
+
       </Router>
     </>
   );
