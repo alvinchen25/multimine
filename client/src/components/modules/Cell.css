@@ -1,0 +1,52 @@
+.cell {
+    height: 100%;     
+}
+
+.block {
+    background-image: url("../../public/images/block.png");
+    background-size: 100%;
+}
+.empty {
+    background-image: url("../../public/images/empty.png");
+    background-size: 100%;
+}
+.mine {
+    background-image: url("../../public/images/mine.png");
+    background-size: 100%;
+}
+.flag {
+    background-image: url("../../public/images/flagged.png");
+    background-size: 100%;
+}
+.num-1 {
+    background-image: url("../../public/images/one.png");
+    background-size: 100%;
+}
+.num-2 {
+    background-image: url("../../public/images/two.png");
+    background-size: 100%;
+}
+.num-3 {
+    background-image: url("../../public/images/three.png");
+    background-size: 100%;
+}
+.num-4 {
+    background-image: url("../../public/images/four.png");
+    background-size: 100%;
+}
+.num-5 {
+    background-image: url("../../public/images/five.png");
+    background-size: 100%;
+}
+.num-6 {
+    background-image: url("../../public/images/six.png");
+    background-size: 100%;
+}
+.num-7 {
+    background-image: url("../../public/images/seven.png");
+    background-size: 100%;
+}
+.num-8 {
+    background-image: url("../../public/images/eight.png");
+    background-size: 100%;
+}
