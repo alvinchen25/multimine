@@ -93,10 +93,10 @@ const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.goo
 const NavBar = (props) => {
     return (
       <nav className="NavBar-container">
-        <div className="NavBar-title u-inlineBlock">Catbook</div>
+        <div className="NavBar-title u-inlineBlock">Multimine</div>
         <div className="NavBar-linkContainer u-inlineBlock">
           <Link to="/" className="NavBar-link">
-            Home
+            Lobby
           </Link>
           {props.userId && (
             <Link to={`/profile/${props.userId}`} className="NavBar-link">

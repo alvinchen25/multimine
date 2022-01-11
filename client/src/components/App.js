@@ -55,7 +55,7 @@ const App = () => {
         <Skeleton path="/" />
         {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <Gameplay path="/game"/>
-        <Profile path="/profile"/>
+        <Profile path="/profile/:userId"/>
         {/* ^^ is gonna be /useriD */}
         <Chatbook path="/chat/" userId={userId} />
         <NotFound default />
