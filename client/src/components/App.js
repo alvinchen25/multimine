@@ -8,6 +8,7 @@ import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
 import Roomlist from "./pages/Roomlist.js";
 import Room from "./pages/Room.js";
+import { Link } from "@reach/router";
 
 import "../utilities.css";
 
@@ -67,6 +68,13 @@ const App = () => {
     // routes to a page with ending = _id     "/room/:roomObj._id"
 
   ));
+  const roomLinks = roomIDlist.map((roomObj) => (
+    <div>
+    <Link to={"/room/"+roomObj._id} className="u-link">
+      Enter Room: {roomObj._id}
+    </Link>
+    </div>
+  ));
   //console.log(roomsList);
 
   return (
@@ -78,7 +86,7 @@ const App = () => {
         />
       {/* Maybe have some sort of CSS for the Router */}
       <Router> 
-        <Skeleton path="/" />
+        <Skeleton path="/" roomLinks={roomLinks}/>
         {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <Game path="/game"/>
         <Profile path="/profile/:userId"/>

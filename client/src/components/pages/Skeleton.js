@@ -7,10 +7,15 @@ import "./Skeleton.css";
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID --> DONE
 // const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.googleusercontent.com";
 
-const Skeleton = () => {
+// prop: roomLinks
+
+const Skeleton = (props) => {
   return (
     <>
       <h1>Good luck on your project :)</h1>
+      <div>
+        {props.roomLinks}
+      </div>
       <h2> What you need to change in this skeleton</h2>
       <ul>
         <li>
