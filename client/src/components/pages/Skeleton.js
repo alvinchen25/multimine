@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import CreateRoom from "../modules/CreateRoom.js";
+import { NewRoom } from "../modules/NewPageInput";
+
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -18,6 +20,10 @@ const Skeleton = (props) => {
         <CreateRoom/>
       </div>
       <div>
+        <NewRoom addNewRoom = {props.addNewRoom} />
+      </div>
+      <div>
+        Number of rooms open: {props.roomLinks.length}
         {props.roomLinks}
       </div>
       <h2> What you need to change in this skeleton</h2>

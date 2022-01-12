@@ -8,12 +8,12 @@ import "./Profile.css";
 import "./Game.css"
 // prop: _id of the room
 
-const Room = (props) => {
+const PlayRoom = (props) => {
   
   return (
     <>
       <div>
-        <h1 className="Profile-name u-textCenter">{props._id}</h1>
+        <h1 className="Profile-name u-textCenter">Room ID: {props._id}</h1>
         <div className="game-board">
           <Board height={16} width={30} mines={99} />
         </div>
@@ -22,4 +22,4 @@ const Room = (props) => {
   );
 };
 
-export default Room;
+export default PlayRoom;

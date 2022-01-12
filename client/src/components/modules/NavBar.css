@@ -5,7 +5,7 @@
 
 .NavBar-title,
 .NavBar-title:visited {
-  color: var(--white);
+  color: var(--black);
   font-size: 20px;
 }
 
@@ -15,7 +15,7 @@
 
 .NavBar-link,
 .NavBar-link:visited {
-  color: var(--white);
+  color: var(--black);
   opacity: 0.6;
   text-decoration: none;
 }

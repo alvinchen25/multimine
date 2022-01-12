@@ -14,7 +14,7 @@ const express = require("express");
 // const Comment = require("./models/comment");
 const User = require("./models/user");
 const Message = require("./models/message");
-
+const Room = require("./models/room");
 // import authentication library
 const auth = require("./auth");
 
@@ -23,37 +23,44 @@ const router = express.Router();
 
 const socketManager = require("./server-socket");
 
-router.get("/stories", (req, res) => {
+router.get("/room", (req, res) => {
   // empty selector means get all documents
-  Story.find({}).then((stories) => res.send(stories));
-});
+  Room.find({}).then((rooms) => res.send(rooms));
+}); //access room list
 
-router.post("/story", auth.ensureLoggedIn, (req, res) => {
-  const newStory = new Story({
-    creator_id: req.user._id,
-    creator_name: req.user.name,
-    content: req.body.content,
+router.post("/room", (req, res) => {
+  const newRoom = new Room({
+    roomId: req.body.roomIDval,
   });
-
-  newStory.save().then((story) => res.send(story));
+  newRoom.save().then((room) => res.send(room));
 });
 
-router.get("/comment", (req, res) => {
-  Comment.find({ parent: req.query.parent }).then((comments) => {
-    res.send(comments);
-  });
-});
+// router.post("/story", auth.ensureLoggedIn, (req, res) => {
+//   const newStory = new Story({
+//     creator_id: req.user._id,
+//     creator_name: req.user.name,
+//     content: req.body.content,
+//   });
 
-router.post("/comment", auth.ensureLoggedIn, (req, res) => {
-  const newComment = new Comment({
-    creator_id: req.user._id,
-    creator_name: req.user.name,
-    parent: req.body.parent,
-    content: req.body.content,
-  });
+//   newStory.save().then((story) => res.send(story));
+// });
 
-  newComment.save().then((comment) => res.send(comment));
-});
+// router.get("/comment", (req, res) => {
+//   Comment.find({ parent: req.query.parent }).then((comments) => {
+//     res.send(comments);
+//   });
+// });
+
+// router.post("/comment", auth.ensureLoggedIn, (req, res) => {
+//   const newComment = new Comment({
+//     creator_id: req.user._id,
+//     creator_name: req.user.name,
+//     parent: req.body.parent,
+//     content: req.body.content,
+//   });
+
+//   newComment.save().then((comment) => res.send(comment));
+// });
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -74,6 +81,7 @@ router.get("/user", (req, res) => {
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
+  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
   res.send({});
 });
 
@@ -97,6 +105,8 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   message.save();
   socketManager.getIo().emit("message", message);
 });
+
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

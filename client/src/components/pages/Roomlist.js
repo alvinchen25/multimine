@@ -1,7 +1,8 @@
-
+// THIS IS A USELESS FILE I'M JUST KEEPING IT HERE FOR KICKS
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities"
-import Room from "./Room.js"
+import Room from "./PlayRoom.js"
+import { NewRoom } from "../modules/NewPageInput";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -13,15 +14,26 @@ const Roomlist = () => {
 //     document.title = "Profile Page";
 //     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
 //   }, []);
-useEffect(() => {
-    const dumbarray = ["one", "two", "three"];
-    const newarray = dumbarray.map((elephent) => (
-        {
-            _id: {elephent}
-        }
-    ));
-    setroomIDlist(newarray);
-}, [] );
+  useEffect(() => {
+    get("/api/room").then((roomObjs) => {
+      // let reversedStoryObjs = storyObjs.reverse();
+      setroomIDlist(roomObjs);
+    });
+  }, []);
+
+  const addNewRoom = (roomObj) => {
+    setroomIDlist([roomObj].concat(roomIDlist));
+  };
+
+  useEffect(() => {
+      const dumbarray = ["one", "two", "three"];
+      const newarray = dumbarray.map((elephent) => (
+          {
+              _id: {elephent}
+          }
+      ));
+      setroomIDlist(newarray);
+  }, [] );
 // somehow well have room id list
   const roomsList = roomIDlist.map((roomObj) => (
     // <Room _id={roomObj._id} /> 
@@ -30,6 +42,7 @@ useEffect(() => {
   ));
   return (
     <>
+      <NewRoom addNewRoom = {addNewRoom} />
       {roomsList}
     </>
   );

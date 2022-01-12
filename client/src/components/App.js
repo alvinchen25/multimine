@@ -6,8 +6,8 @@ import Game from "./pages/Game.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
-import Roomlist from "./pages/Roomlist.js";
-import Room from "./pages/Room.js";
+// import Roomlist from "./pages/Roomlist.js";
+import PlayRoom from "./pages/PlayRoom.js";
 import { Link } from "@reach/router";
 
 import "../utilities.css";
@@ -46,36 +46,37 @@ const App = () => {
     post("/api/logout");
   };
 
-  const [roomIDlist, setroomIDlist] = useState([]);
+  const [roomIDlist, setroomIDlist] = useState([]); // initializes a list of room ID's
+
+  useEffect(() => { // gets the Room ID's from the API
+    get("/api/room").then((roomObjs) => {
+      let reversedRoomObjs = roomObjs.reverse();
+      setroomIDlist(reversedRoomObjs);
+    });
+  }, []);
+
+  const addNewRoom = (roomObj) => { // function for adding a room, this gets passed all the way down though
+    setroomIDlist([roomObj].concat(roomIDlist));
+  };
 
 //   useEffect(() => {
 //     document.title = "Profile Page";
 //     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
 //   }, []);
-  useEffect(() => {
-      const dumbarray = ["one", "two", "three"];
-      const newarray = dumbarray.map((elephent) => (
-          {
-              _id: elephent
-          }
-      ));
-      setroomIDlist(newarray);
-  }, [] );
   // somehow well have room id list
-  const roomsList = roomIDlist.map((roomObj) => (
+  const roomsList = roomIDlist.map((roomObj) => ( // Creates the list of rooms that we can put into our router
     // <Room _id={roomObj._id} /> 
-    <Room path={"/room/" + roomObj._id} _id={roomObj._id} key="{roomObj._id}"/>
+    <PlayRoom path={"/room/" + roomObj._id} _id={roomObj.roomId} key="{roomObj._id}"/>
     // routes to a page with ending = _id     "/room/:roomObj._id"
 
   ));
-  const roomLinks = roomIDlist.map((roomObj) => (
+  const roomLinks = roomIDlist.map((roomObj) => ( // maps the ID liist into links with the ids
     <div>
-    <Link to={"/room/"+roomObj._id} className="u-link">
-      Enter Room: {roomObj._id}
+    <Link to={"/room/"+roomObj._id} className="u-link"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+      Enter Room: {roomObj.roomId}
     </Link>
     </div>
   ));
-  //console.log(roomsList);
 
   return (
     <>
@@ -86,7 +87,7 @@ const App = () => {
         />
       {/* Maybe have some sort of CSS for the Router */}
       <Router> 
-        <Skeleton path="/" roomLinks={roomLinks}/>
+        <Skeleton path="/" roomLinks={roomLinks} addNewRoom={addNewRoom} />
         {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <Game path="/game"/>
         <Profile path="/profile/:userId"/>
