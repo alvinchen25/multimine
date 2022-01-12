@@ -18,7 +18,7 @@ const Profile = (props) => {
   return (
     <>
       <div>
-      <h1 className="Profile-name u-textCenter">{user.name}</h1>
+        <h1 className="Profile-name u-textCenter">{user.name}</h1>
       </div>
     </>
   );

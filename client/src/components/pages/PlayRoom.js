@@ -6,7 +6,10 @@ import Board from "../modules/Board.js";
 import "../../utilities.css";
 import "./Profile.css";
 import "./Game.css"
-// prop: _id of the room
+/* PropTypes
+* String _id, gives the id of the room
+*
+*/
 
 const PlayRoom = (props) => {
   

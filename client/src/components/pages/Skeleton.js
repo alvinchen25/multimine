@@ -10,12 +10,15 @@ import "./Skeleton.css";
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID --> DONE
 // const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.googleusercontent.com";
 
-// prop: roomLinks
+/* propTypes
+* @param [String] roomLinks
+* @param addNewRoom
+*/
 
 const Skeleton = (props) => {
   return (
     <>
-      <h1>Good luck on your project :)</h1>
+      <h1>Helloooo :O</h1>
       <div>
         <CreateRoom/>
       </div>

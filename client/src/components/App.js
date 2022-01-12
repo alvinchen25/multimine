@@ -59,16 +59,13 @@ const App = () => {
     setroomIDlist([roomObj].concat(roomIDlist));
   };
 
-//   useEffect(() => {
-//     document.title = "Profile Page";
-//     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
-//   }, []);
   // somehow well have room id list
   const roomsList = roomIDlist.map((roomObj) => ( // Creates the list of rooms that we can put into our router
     // <Room _id={roomObj._id} /> 
     <PlayRoom path={"/room/" + roomObj._id} _id={roomObj.roomId} key="{roomObj._id}"/>
-    // routes to a page with ending = _id     "/room/:roomObj._id"
-
+    // routes to a page with ending = _id     "/room/:roomObj.roomId"
+    // eventually the room should have some data passed into it
+    // do we need an await here so that the page is loaded before you can go?
   ));
   const roomLinks = roomIDlist.map((roomObj) => ( // maps the ID liist into links with the ids
     <div>
@@ -88,12 +85,9 @@ const App = () => {
       {/* Maybe have some sort of CSS for the Router */}
       <Router> 
         <Skeleton path="/" roomLinks={roomLinks} addNewRoom={addNewRoom} />
-        {/* <Skeleton path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} /> */}
         <Game path="/game"/>
         <Profile path="/profile/:userId"/>
         {/* ^^ is gonna be /useriD */}
-        {/* <Room path="/room/:roomID"/> */}
-        {/* <Roomlist path = "/room"/> */}
         {roomsList}
         <Chatbook path="/chat/" userId={userId} />
         <NotFound default />

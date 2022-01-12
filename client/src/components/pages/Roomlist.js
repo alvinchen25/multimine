@@ -8,12 +8,8 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Roomlist = () => {
-    const [roomIDlist, setroomIDlist] = useState([]);
+  const [roomIDlist, setroomIDlist] = useState([]);
 
-//   useEffect(() => {
-//     document.title = "Profile Page";
-//     get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
-//   }, []);
   useEffect(() => {
     get("/api/room").then((roomObjs) => {
       // let reversedStoryObjs = storyObjs.reverse();

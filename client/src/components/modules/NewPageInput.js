@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import "./NewPostInput.css";
+import "./NewPostInput.css"; // Maybe change this css at some point
 import { post } from "../../utilities";
 
 /**
- * New Post is a parent component for all input components
+ * New Page is a parent component for all page components
  *
  * Proptypes
  * @param {string} defaultText is the placeholder text
@@ -50,48 +50,10 @@ const NewPageInput = (props) => {
 };
 
 /**
- * New Comment is a New Post component for comments
+ * New Room creates a new room
  *
  * Proptypes
- * @param {string} defaultText is the placeholder text
- * @param {string} storyId to add comment to
- */
-// const NewComment = (props) => {
-//   const addComment = (value) => {
-//     const body = { parent: props.storyId, content: value };
-//     post("/api/comment", body).then((comment) => {
-//       // display this comment on the screen
-//       props.addNewComment(comment);
-//     });
-//   };
-
-//   return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
-// };
-
-/**
- * New Story is a New Post component for comments
- *
- * Proptypes
- * @param {string} defaultText is the placeholder text
- */
-// const NewStory = (props) => {
-//   const addStory = (value) => {
-//     const body = { content: value };
-//     post("/api/story", body).then((story) => {
-//       // display this story on the screen
-//       props.addNewStory(story);
-//     });
-//   };
-
-//   return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
-// };
-
-/**
- * New Message is a New Message component for messages
- *
- * Proptypes
- * @param {UserObject} recipient is the intended recipient
- * addNewRoom is a prop
+ * @param {function} addNewRoom
  */
 const NewRoom = (props) => {
   const AddRoom = (value) => {
