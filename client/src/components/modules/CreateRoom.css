@@ -1,0 +1,28 @@
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+
+.newRoomMaker {
+    background-color: var(--purple1); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15px;
+    font-size: 16px;
+    opacity: .8;
+  }
+
+
+.newRoomMaker:hover {
+    opacity: 1;
+}
+
+.newRoomMaker:active {
+    opacity: .5;
+  }

@@ -16,10 +16,26 @@
 
 /* TODO: REPLACE WITH YOUR OWN FONT! */
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300;500&display=swap');
+
+
+/*
+Potential scheme
+85FF9E
+A6F4DC
+AF90A9
+A05C7B
+944654
+b7b7b7ff
+
+*/
+
 
 :root {
-  --primary: #48fc66;
-  --primary--dim: #6987db;
+  --primary: #A6F4DC;
+  --primary--dim: #6abea5;
+  --progress-green: #85FF9E;
+  --purple1: #AF90A9;
   --darkgrey: #d4d4d4;
   --medgrey: #e0e0e0;
   --grey: #f7f7f7;
@@ -34,7 +50,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
 

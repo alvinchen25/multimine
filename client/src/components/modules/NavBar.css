@@ -1,6 +1,8 @@
 .NavBar-container {
   padding: var(--s) var(--m);
   background-color: var(--primary);
+  box-shadow: 0 0 12px 12px var(--primary);
+
 }
 
 .NavBar-title,

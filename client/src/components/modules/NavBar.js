@@ -93,11 +93,21 @@ const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.goo
 const NavBar = (props) => {
     return (
       <nav className="NavBar-container">
-        <div className="NavBar-title u-inlineBlock">Multimine</div>
+        <div className="NavBar-title u-inlineBlock">
+        <Link to="/" className="NavBar-link">
+            Multimine
+          </Link>
+          </div>
         <div className="NavBar-linkContainer u-inlineBlock">
-          <Link to="/" className="NavBar-link">
+        
+            {/* 
+            <Link to="/" className="NavBar-link">
+            
             Lobby
           </Link>
+            
+            might want to keep multimine as the lobby link */}
+
           {props.userId && (
             <Link to={`/profile/${props.userId}`} className="NavBar-link">
               Profile
@@ -107,7 +117,7 @@ const NavBar = (props) => {
             Chat
           </Link>
           <Link to="/game/" className="NavBar-link">
-            Gameplay
+            Single-Player Game
           </Link>
           {props.userId ? (
             <GoogleLogout
