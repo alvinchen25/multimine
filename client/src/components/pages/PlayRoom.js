@@ -64,14 +64,14 @@ const PlayRoom = (props) => {
           <Board height={16} width={30} mines={99} />
         </div>
         <div>
-          {/* <ProgressBars progressValues={progressValues}/> */}
+          <ProgressBars progressValues={progressValues} userList={userList}/>
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
         </div>
-        <div>
+        {/* <div>
           This is the user list:
           {userList}
-        </div>
+        </div> */}
         <div>
           {/* <Chat/> */}
         </div>
