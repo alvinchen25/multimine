@@ -15,7 +15,8 @@ import "./Game.css"
 
 const PlayRoom = (props) => {
   useEffect(() => {
-    post("/api/joinroom", {roomId: props._id, socketid: socket.id});
+    const body = {roomId: props._id, socketid: socket.id};
+    post("/api/joinroom", body);
   }, []);
 
   const [progressValues, setprogressValues] = useState([]);
