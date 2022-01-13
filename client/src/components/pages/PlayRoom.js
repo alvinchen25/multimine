@@ -4,9 +4,10 @@ import Board from "../modules/Board.js";
 import { socket } from "../../client-socket.js";
 import { post } from "../../utilities";
 import ProgressBars from "../modules/ProgressBars.js"
+import { Link } from "@reach/router";
 
 import "../../utilities.css";
-// import "./PlayRoom.css";
+import "./PlayRoom.css";
 import "./Game.css"
 /* PropTypes
 * String _id, gives the id of the room
@@ -31,7 +32,17 @@ const PlayRoom = (props) => {
   return (
     <>
       <div>
+        <div> {/* for more styling eventually*/}
         <h1 className="Profile-name u-textCenter">Room ID: {props._id}</h1>
+        <Link to="/">
+          <button type="button" className="leaveRoomButton">
+          Leave Room
+          </button>
+          </Link>
+        
+        </div>
+      
+        
         <div className="game-board">
           <Board height={16} width={30} mines={99} />
         </div>

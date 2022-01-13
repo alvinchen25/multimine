@@ -35,7 +35,8 @@ const Skeleton = (props) => {
         <NewRoom addNewRoom = {props.addNewRoom} />
       </div>
       <div className="roomCount">
-        Number of rooms open: {props.roomLinks.length}
+        <h2>Number of rooms open: {props.roomLinks.length}</h2>
+        <h3>Click below to enter a room!</h3>
         <div className="minesweeperButtonContainer">
         {props.roomLinks}
         </div>

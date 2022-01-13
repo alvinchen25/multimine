@@ -28,19 +28,33 @@
     align-items: center;
     justify-content: center;
     margin: 10px;
+
   }
 
+
 .minesweeperButtonContainer div a {
-    height: 100px;
-    width: 74px; /* hard coded rn to only have one box */
+    height: 9vw;
+    width: 9vw;
     margin: none;
     justify-content: center;
+    font-size: 1.3vw;
+
+    margin: auto;
+    border: 10px;
+    padding: 10px;
+
+
+    display:flex;
+    justify-content: center;
+    align-items: center
 }
 
 .minesweeperButton {
     background-image: url("../../public/images/blocktemp.png");
+    background-repeat: no-repeat;
+
     background-size: contain;
-    background-color: var(--darkgrey);
+
     border: none;
     color: white;
     padding: 20px 34px;
@@ -48,7 +62,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    margin: 4px 2px;
+    margin: 10px 2px;
     cursor: pointer;
   }
 
