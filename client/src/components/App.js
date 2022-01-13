@@ -65,7 +65,8 @@ const App = () => {
     <PlayRoom
       path={"/room/" + roomObj._id}
       _id={roomObj._id}
-      key="{roomObj._id}"/>
+      key="{roomObj._id}"
+      userId={userId}/>
     // routes to a page with ending = _id     "/room/:roomObj.roomId"
     // eventually the room should have some data passed into it
     // do we need an await here so that the page is loaded before you can go?

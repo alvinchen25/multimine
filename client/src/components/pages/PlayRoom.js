@@ -15,6 +15,11 @@ import "./Game.css"
 * PlayRoom should take in a HOST
 */
 
+const ALL_CHAT = {
+  _id: "ALL_CHAT",
+  name: "ALL CHAT",
+};
+
 const PlayRoom = (props) => {
   useEffect(() => {
     console.log(props._id);
@@ -34,7 +39,45 @@ const PlayRoom = (props) => {
 
   const [userList, setUserList] = useState([]);
   
-  
+  const [activeChat, setActiveChat] = useState({
+    recipient: ALL_CHAT,
+    messages: [],
+  });
+
+  const loadMessageHistory = (recipient) => {
+    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+      setActiveChat({
+        recipient: recipient,
+        messages: messages,
+      });
+    });
+  };
+
+  const addMessages = (data) => {
+    setActiveChat(prevActiveChat => ({
+      recipient: prevActiveChat.recipient,
+      messages: prevActiveChat.messages.concat(data),
+    }));
+  };
+
+  useEffect(() => {
+    document.title = "Chatbook";
+  }, []);
+
+  useEffect(() => {
+    loadMessageHistory(ALL_CHAT);
+  }, []);
+
+  useEffect(() => {
+    socket.on("message", addMessages);
+    return () => {
+      socket.off("message", addMessages);
+    };
+  }, []);
+
+  if (!props.userId) {
+    return <div>Log in before using Chatbook</div>;
+  }
 
   useEffect(() => {
     const addUserToRoomList = (userList) => {
@@ -73,7 +116,7 @@ const PlayRoom = (props) => {
           {userList}
         </div> */}
         <div>
-          {/* <Chat/> */}
+          <Chat data={activeChat}/>
         </div>
       </div>
     </>
