@@ -10,6 +10,9 @@
   margin: auto;
 }
 
+.block {
+}
+
 .leaveRoomButton {
   border: none;
   background-color: var(--purple1);

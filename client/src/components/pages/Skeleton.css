@@ -40,13 +40,15 @@
     font-size: 1.3vw;
 
     margin: auto;
-    border: 10px;
-    padding: 10px;
+    border: 15px;
+    padding: 25px;
 
 
     display:flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+
+    word-break: break-all;
 }
 
 .minesweeperButton {
