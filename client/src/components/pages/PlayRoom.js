@@ -22,12 +22,18 @@ const PlayRoom = (props) => {
   }, []);
 
   const [progressValues, setprogressValues] = useState(null);
-  
+  // const dummyProgress = [{username: "vishaal", progress: 98}];
   useEffect(() => {
     // const dummyProgress = [{username: "vishaal", progress: 28}, {username: "boomer", progress: 98}];
+  
     const dummyProgress = [2,3,4];
+    // setprogressValues([...dummyProgress]);
     setprogressValues(dummyProgress);
   }, []);
+
+  // useEffect(() => {
+
+  // }, []);
   
   return (
     <>
@@ -47,9 +53,12 @@ const PlayRoom = (props) => {
           <Board height={16} width={30} mines={99} />
         </div>
         <div>
-          <ProgressBars progressValues={progressValues}/>
+          {/* <ProgressBars progressValues={progressValues}/> */}
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
+        </div>
+        <div>
+          <Chat/>
         </div>
       </div>
     </>
