@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Chat from "../modules/Chat.js";
 import { socket } from "../../client-socket.js";
 import { get } from "../../utilities";
+import NavBar from "../modules/NavBar.js"
+
 
 import "./Chatbook.css";
 
@@ -71,6 +73,11 @@ const Chatbook = (props) => {
 
   return (
     <>
+      <NavBar
+        handleLogin={props.handleLogin}
+        handleLogout={props.handleLogout}
+        userId={props.userId}
+        />
       <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-chatContainer u-relative">
           <Chat data={activeChat} />
