@@ -6,7 +6,7 @@ import { post } from "../../utilities";
 import ProgressBars from "../modules/ProgressBars.js"
 
 import "../../utilities.css";
-import "./Profile.css";
+import "./PlayRoom.css";
 import "./Game.css"
 /* PropTypes
 * String _id, gives the id of the room
@@ -31,6 +31,7 @@ const PlayRoom = (props) => {
         <div>
           <ProgressBars/> 
           {/* Will pass in info from sockets to get progress from other players */}
+          {/* should actually be to the right of the board */}
         </div>
       </div>
     </>

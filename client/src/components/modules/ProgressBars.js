@@ -9,11 +9,9 @@ import "./ProgressBars.css";
 
 const ProgressBars = (props) => {
     return (
-        <>
-            <div> 
-                Progress bars will be here 
-            </div>
-        </>
+        <div> 
+            Progress bars will be here 
+        </div>
     );
 }
 
