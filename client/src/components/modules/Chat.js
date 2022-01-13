@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SingleMessage from "./SingleMessage.js";
 import { NewMessage } from "./NewPostInput.js";
+import NavBar from "../modules/NavBar.js"
 
 import "./Chat.css";
 
@@ -29,17 +30,24 @@ import "./Chat.css";
  */
 const Chat = (props) => {
   return (
-    <div className="u-flexColumn Chat-container">
-      <h3>Chatting with {props.data.recipient.name}</h3>
-      <div className="Chat-historyContainer">
-        {props.data.messages.map((m, i) => (
-          <SingleMessage message={m} key={i} />
-        ))}
+    <>
+      <NavBar
+        handleLogin={props.handleLogin}
+        handleLogout={props.handleLogout}
+        userId={props.userId}
+        />
+      <div className="u-flexColumn Chat-container">
+        <h3>Chatting with {props.data.recipient.name}</h3>
+        <div className="Chat-historyContainer">
+          {props.data.messages.map((m, i) => (
+            <SingleMessage message={m} key={i} />
+          ))}
+        </div>
+        <div className="Chat-newContainer">
+          <NewMessage recipient={props.data.recipient} />
+        </div>
       </div>
-      <div className="Chat-newContainer">
-        <NewMessage recipient={props.data.recipient} />
-      </div>
-    </div>
+    </>
   );
 }
 

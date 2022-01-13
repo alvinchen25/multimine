@@ -61,7 +61,10 @@ const App = () => {
   // somehow well have room id list
   const roomsList = roomIDlist.map((roomObj) => ( // Creates the list of rooms that we can put into our router
     // <Room _id={roomObj._id} /> 
-    <PlayRoom path={"/room/" + roomObj._id} _id={roomObj.roomId} key="{roomObj._id}"/>
+    <PlayRoom
+      path={"/room/" + roomObj._id}
+      _id={roomObj.roomId}
+      key="{roomObj._id}"/>
     // routes to a page with ending = _id     "/room/:roomObj.roomId"
     // eventually the room should have some data passed into it
     // do we need an await here so that the page is loaded before you can go?
@@ -76,21 +79,41 @@ const App = () => {
 
   return (
     <>
-      <NavBar
+      {/* <NavBar
         handleLogin={handleLogin}
         handleLogout={handleLogout}
         userId={userId}
-        />
-      {/* Maybe have some sort of CSS for the Router */}
+        /> */}
       <Router> 
-        <Skeleton path="/" roomLinks={roomLinks} addNewRoom={addNewRoom} />
-        <Game path="/game"/>
-        <Profile path="/profile/:userId"/>
+        <Skeleton 
+          path="/"
+          roomLinks={roomLinks}
+          addNewRoom={addNewRoom}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId} />
+        <Game 
+          path="/game"
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}
+          />
+        <Profile
+          path="/profile/:userId"
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}/>
         {/* ^^ is gonna be /useriD */}
+        
+        <Chatbook path="/chat/" userId={userId}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}/>
+        <NotFound default
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}/>
         {roomsList}
-        <Chatbook path="/chat/" userId={userId} />
-        <NotFound default />
-
       </Router>
     </>
   );

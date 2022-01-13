@@ -6,7 +6,7 @@ import { post } from "../../utilities";
 import ProgressBars from "../modules/ProgressBars.js"
 
 import "../../utilities.css";
-import "./PlayRoom.css";
+// import "./PlayRoom.css";
 import "./Game.css"
 /* PropTypes
 * String _id, gives the id of the room
@@ -19,7 +19,13 @@ const PlayRoom = (props) => {
     post("/api/joinroom", body);
   }, []);
 
-  const [progressValues, setprogressValues] = useState([]);
+  const [progressValues, setprogressValues] = useState(null);
+  
+  useEffect(() => {
+    // const dummyProgress = [{username: "vishaal", progress: 28}, {username: "boomer", progress: 98}];
+    const dummyProgress = [2,3,4];
+    setprogressValues(dummyProgress);
+  }, []);
   
   return (
     <>
@@ -29,7 +35,7 @@ const PlayRoom = (props) => {
           <Board height={16} width={30} mines={99} />
         </div>
         <div>
-          <ProgressBars/> 
+          <ProgressBars progressValues={progressValues}/>
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
         </div>

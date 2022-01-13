@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import CreateRoom from "../modules/CreateRoom.js";
 import { NewRoom } from "../modules/NewPageInput";
+import NavBar from "../modules/NavBar.js"
 
 
 import "../../utilities.css";
@@ -18,8 +19,15 @@ import "./Skeleton.css";
 const Skeleton = (props) => {
   return (
     <>
+    <NavBar
+        handleLogin={props.handleLogin}
+        handleLogout={props.handleLogout}
+        userId={props.userId}
+        />
     <div className="lobbyBox">
     <h1>Welcome to the Multimine Lobby!</h1>
+      
+      <h1>Helloooo :O</h1>
       <div>
         <CreateRoom/>
       </div>
