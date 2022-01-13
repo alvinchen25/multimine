@@ -1,1 +1,58 @@
 /* Fill me in :) */
+
+
+
+/* enclosing container */
+
+.lobbyBox {
+    background-color: var(--grey); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin-left: var(--mper);
+    margin-right: var(--mper); /* would be better as auto */
+    font-size: 16px;
+    border-radius: 50px;
+    margin-top: var(--sper);
+}
+
+
+/*making lobby boxes */
+.minesweeperButtonContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+  }
+
+.minesweeperButtonContainer div a {
+    height: 100px;
+    width: 74px; /* hard coded rn to only have one box */
+    margin: none;
+    justify-content: center;
+}
+
+.minesweeperButton {
+    background-image: url("../../public/images/blocktemp.png");
+    background-size: contain;
+    background-color: var(--darkgrey);
+    border: none;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .roomCount {
+      margin-top: 10px;
+      margin-bottom: 30px;
+  }

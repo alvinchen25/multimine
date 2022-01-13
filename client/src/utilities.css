@@ -28,6 +28,7 @@ A05C7B
 944654
 b7b7b7ff
 
+Added colors
 */
 
 
@@ -36,15 +37,20 @@ b7b7b7ff
   --primary--dim: #6abea5;
   --progress-green: #85FF9E;
   --purple1: #AF90A9;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
+  --purple2: #A05C7B;
+  --darkgrey: #575757;
+  --medgrey: #acacac;
+  --grey: #929292;
   --white: #fff;
 
   --xs: 4px;
   --s: 8px;
   --m: 16px;
   --l: 24px;
+
+  --sper: 5%;
+  --mper: 15%;
+  --lper: 25%;
 }
 
 body {

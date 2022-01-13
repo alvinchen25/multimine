@@ -18,17 +18,22 @@ import "./Skeleton.css";
 const Skeleton = (props) => {
   return (
     <>
-      <h1>Helloooo :O</h1>
+    <div className="lobbyBox">
+    <h1>Welcome to the Multimine Lobby!</h1>
       <div>
         <CreateRoom/>
       </div>
       <div>
         <NewRoom addNewRoom = {props.addNewRoom} />
       </div>
-      <div>
+      <div className="roomCount">
         Number of rooms open: {props.roomLinks.length}
+        <div className="minesweeperButtonContainer">
         {props.roomLinks}
+        </div>
       </div>
+
+    </div>
       <h2> What you need to change in this skeleton</h2>
       <ul>
         <li>

@@ -68,7 +68,7 @@ const App = () => {
   ));
   const roomLinks = roomIDlist.map((roomObj) => ( // maps the ID liist into links with the ids
     <div>
-    <Link to={"/room/"+roomObj._id} className="u-link"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+    <Link to={"/room/"+roomObj._id} className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
       Enter Room: {roomObj.roomId}
     </Link>
     </div>
