@@ -5,6 +5,7 @@ import { socket } from "../../client-socket.js";
 import { post } from "../../utilities";
 import ProgressBars from "../modules/ProgressBars.js"
 import { Link } from "@reach/router";
+import Chat from "../modules/Chat.js";
 
 import "../../utilities.css";
 import "./PlayRoom.css";
@@ -31,9 +32,15 @@ const PlayRoom = (props) => {
     setprogressValues(dummyProgress);
   }, []);
 
-  // useEffect(() => {
+  const [userList, setUserList] = useState([]);
+  
+  const addUserToRoomList = (userList) => {
+    setUserList(userList);
+  };
 
-  // }, []);
+  useEffect(() => {
+    socket.on("roomupdate", addUserToRoomList);
+  }, []);
   
   return (
     <>
@@ -58,7 +65,11 @@ const PlayRoom = (props) => {
           {/* should actually be to the right of the board */}
         </div>
         <div>
-          <Chat/>
+          This is the user list:
+          {userList}
+        </div>
+        <div>
+          {/* <Chat/> */}
         </div>
       </div>
     </>
