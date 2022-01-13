@@ -40,6 +40,9 @@ router.post("/joinroom", (req, res) => {
   // req.body.roomId
   if(req.user){
     socketManager.addRoom(req.user, req.body.roomId); 
+
+    socketManager.getIo().to(req.body.roomId).emit("roomupdate", getAllConnectedInRoom(req.body.roomId));
+    
   }
   
 });

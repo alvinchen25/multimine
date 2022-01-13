@@ -11,6 +11,7 @@ const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 const getRoomFromUser = (userid) => userToRoom[userid];
 const getUserFromRoom = (room) => roomToUser[room];
+const getAllConnectedInRoom = (room) => roomToUser[room];
 
 const addUser = (user, socketid) => {
   const oldSocket = userToSocketMap[user._id];
@@ -78,5 +79,6 @@ module.exports = {
   getAllConnectedUsers: getAllConnectedUsers,
   getRoomFromUser: getRoomFromUser, 
   getUserFromRoom: getUserFromRoom,
+  getAllConnectedInRoom: getAllConnectedInRoom,
   getIo: () => io,
 };
