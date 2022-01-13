@@ -12,6 +12,14 @@ const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 const getRoomFromUser = (userid) => userToRoom[userid];
 const getUserFromRoom = (room) => roomToUser[room];
 
+const getNamesFromRoom = (room) => {
+  let names = [];
+  getUserFromRoom(room).map((user) => {
+    names.push(user.name);
+  });
+  return names;
+}
+
 const addUser = (user, socketid) => {
   const oldSocket = userToSocketMap[user._id];
   if (oldSocket && oldSocket != socketid) {
@@ -36,7 +44,7 @@ const addRoom = (user, room) => {
   if(oldRoom){
     getSocketFromUserID(user._id).leave(room);
 
-    roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing != user._id);
+    roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing._id != user._id);
     console.log(`${user.name} has left ${oldRoom}`);
   }
   
@@ -47,9 +55,9 @@ const addRoom = (user, room) => {
   
   userToRoom[user._id] = room;
   if(roomToUser[room]){
-    roomToUser[room].push(user._id);
+    roomToUser[room].push(user);
   }else{
-    roomToUser[room] = [user._id];
+    roomToUser[room] = [user];
   }
   
   
@@ -78,5 +86,6 @@ module.exports = {
   getAllConnectedUsers: getAllConnectedUsers,
   getRoomFromUser: getRoomFromUser, 
   getUserFromRoom: getUserFromRoom,
+  getNamesFromRoom: getNamesFromRoom,
   getIo: () => io,
 };

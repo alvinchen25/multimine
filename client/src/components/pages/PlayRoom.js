@@ -34,12 +34,16 @@ const PlayRoom = (props) => {
 
   const [userList, setUserList] = useState([]);
   
-  const addUserToRoomList = (userList) => {
-    setUserList(userList);
-  };
+  
 
   useEffect(() => {
+    const addUserToRoomList = (userList) => {
+      setUserList(userList);
+    };
     socket.on("roomupdate", addUserToRoomList);
+    return () => {
+      socket.off("roomupdate", addUserToRoomList);
+    };
   }, []);
   
   return (

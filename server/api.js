@@ -41,8 +41,8 @@ router.post("/joinroom", (req, res) => {
   if(req.user){
     socketManager.addRoom(req.user, req.body.roomId); 
 
-    console.log(`People in the room: ${socketManager.getUserFromRoom(req.body.roomId)}`);
-    socketManager.getIo().to(req.body.roomId).emit("roomupdate", socketManager.getUserFromRoom(req.body.roomId));
+    console.log(`People in the room: ${socketManager.getNamesFromRoom(req.body.roomId)}`);
+    socketManager.getIo().to(req.body.roomId).emit("roomupdate", socketManager.getNamesFromRoom(req.body.roomId));
     
   }
   
