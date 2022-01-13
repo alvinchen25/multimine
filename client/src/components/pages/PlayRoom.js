@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { get } from "../../utilities";
 import Board from "../modules/Board.js";
+import { socket } from "../../client-socket.js";
+import { post } from "../../utilities";
 
 import "../../utilities.css";
 import "./Profile.css";
@@ -12,6 +13,10 @@ import "./Game.css"
 */
 
 const PlayRoom = (props) => {
+  useEffect(() => {
+    post("/api/joinroom", {roomId: props._id, socketid: socket.id});
+  }, []);
+
   
   return (
     <>

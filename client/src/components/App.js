@@ -35,8 +35,7 @@ const App = () => {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
-      setUserId(user._id);
-      console.log(user);
+      setUserId(user._id)
     });
   };
 
