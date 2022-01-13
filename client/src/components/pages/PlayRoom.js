@@ -15,6 +15,7 @@ import "./Game.css"
 
 const PlayRoom = (props) => {
   useEffect(() => {
+    console.log(props._id);
     const body = {roomId: props._id, socketid: socket.id};
     post("/api/joinroom", body);
   }, []);

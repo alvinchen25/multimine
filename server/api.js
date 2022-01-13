@@ -39,8 +39,7 @@ router.post("/room", (req, res) => {
 router.post("/joinroom", (req, res) => {
   // req.body.roomId
   if(req.user){
-    socketManager.getSocketFromUserID(req.user._id).join("room"+req.body.roomId);
-    console.log(`${req.user.name} joined room ${req.body.roomId}`);
+    socketManager.addRoom(req.user, req.body.roomId); 
   }
   
 });

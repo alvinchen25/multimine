@@ -35,7 +35,8 @@ const App = () => {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
-      setUserId(user._id)
+      setUserId(user._id);
+      post("/api/initsocket", { socketid: socket.id });
     });
   };
 
@@ -63,7 +64,7 @@ const App = () => {
     // <Room _id={roomObj._id} /> 
     <PlayRoom
       path={"/room/" + roomObj._id}
-      _id={roomObj.roomId}
+      _id={roomObj._id}
       key="{roomObj._id}"/>
     // routes to a page with ending = _id     "/room/:roomObj.roomId"
     // eventually the room should have some data passed into it
