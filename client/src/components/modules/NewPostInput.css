@@ -1,6 +1,6 @@
 .NewPostInput-input,
 .NewPostInput-button {
-  font-family: "Open Sans";
+  font-family: "Comic Sans";
   font-size: 14px;
   padding: var(--s) var(--m);
 }
@@ -21,7 +21,6 @@
 .NewPostInput-input:focus-within {
   border-color: var(--primary--dim);
   box-shadow: 0 0 0 var(--xs) var(--purple2);
-  
 }
 
 .NewPostInput-button {
