@@ -2,6 +2,12 @@
   height: calc(100vh - 120px);
 }
 
+.Chatbook-container h2 {
+  text-align: center;
+  margin-top: var(--sper);
+}
+
+
 .Chatbook-userList {
   width: 260px;
   margin-right: var(--l);
@@ -9,4 +15,6 @@
 
 .Chatbook-chatContainer {
   flex-grow: 1;
+  margin-left: 30%;
+  margin-right: 30%;
 }

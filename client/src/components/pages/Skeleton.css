@@ -13,7 +13,7 @@
     text-decoration: none;
     display: block;
     margin-left: var(--mper);
-    margin-right: var(--mper); /* would be better as auto */
+    margin-right: var(--mper); /* would be better as auto? */
     font-size: 16px;
     border-radius: 50px;
     margin-top: var(--sper);
@@ -66,9 +66,31 @@
     font-size: 20px;
     margin: 10px 2px;
     cursor: pointer;
+    opacity: .8;
+  }
+
+  .minesweeperButton:hover {
+    opacity: 1;
+  }
+
+  .minesweeperButton:active {
+    opacity: .5;
   }
 
   .roomCount {
       margin-top: 10px;
       margin-bottom: 30px;
   }
+
+  .rulesBox { /* edit!! */
+      margin:auto;
+      background-color: var(--grey);
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      margin-left: var(--mper);
+      margin-right: var(--mper);
+      margin-top: var(--sper);
+      border-radius: 50px;
+      }

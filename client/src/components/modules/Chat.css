@@ -4,7 +4,9 @@
 
 .Chat-newContainer {
   width: 100%;
+  margin-left: none;
 }
+
 
 .Chat-historyContainer {
   flex-grow: 1;

@@ -14,7 +14,16 @@ const Profile = (props) => {
   }, []);
 
   if (!user) {
-    return (<div> Loading! </div>);
+    return (
+    <>
+      <NavBar
+        handleLogin={props.handleLogin}
+        handleLogout={props.handleLogout}
+        userId={props.userId}
+        />
+    <div> <h3 className="loadingPage"> Loading . . . </h3> </div>
+    </>
+    );
   }
   return (
     <>

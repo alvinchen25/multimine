@@ -1,12 +1,12 @@
 .NewPostInput-input,
 .NewPostInput-button {
-  font-family: "Comic Sans";
-  font-size: 14px;
+  /* font-family: "Comic Sans"; */
+  font-size: 18px;
   padding: var(--s) var(--m);
 }
 
 :root {
-  --commonMargin: 30%; /* common variable */
+  --commonMargin: 10%; /* common variable */
 }
 
 .NewPostInput-input {
@@ -16,6 +16,9 @@
   transition: box-shadow 0.1s;
   margin-left: var(--commonMargin);
   margin-right: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px
 }
 
 .NewPostInput-input:focus-within {
@@ -24,15 +27,20 @@
 }
 
 .NewPostInput-button {
-  color: var(--primary);
-  border: var(--primary) 1px solid;
+  color: white;
+  border: var(--purple2) 1px solid;
+  opacity: .8;
   border-radius: 0 var(--xs) var(--xs) 0;
-  background: none;
+  background: var(--purple2);
   transition: color 0.1s, background 0.1s;
   margin-right: var(--commonMargin);
+  margin-top: 10px
 }
 
 .NewPostInput-button:hover {
-  color: var(--white);
-  background-color: var(--primary);
+  opacity: 1;
+}
+
+.NewPostInput-button:active {
+  opacity: .5;
 }

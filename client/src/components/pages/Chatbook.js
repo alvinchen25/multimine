@@ -53,7 +53,7 @@ const Chatbook = (props) => {
   };
 
   useEffect(() => {
-    document.title = "Chatbook";
+    document.title = "Multimine";
   }, []);
 
   useEffect(() => {
@@ -68,7 +68,17 @@ const Chatbook = (props) => {
   }, []);
 
   if (!props.userId) {
-    return <div>Log in before using Chatbook</div>;
+    return (
+    <>
+    <NavBar
+      handleLogin={props.handleLogin}
+      handleLogout={props.handleLogout}
+      userId={props.userId}
+    />
+    <div> <h3>Please log in before using Multimine</h3></div>
+
+    </>
+    )
   }
 
   return (

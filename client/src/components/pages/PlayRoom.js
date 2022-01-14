@@ -6,10 +6,12 @@ import { post } from "../../utilities";
 import ProgressBars from "../modules/ProgressBars.js"
 import { Link } from "@reach/router";
 import Chat from "../modules/Chat.js";
+import NavBar from "../modules/NavBar.js"
 
 import "../../utilities.css";
 import "./PlayRoom.css";
 import "./Game.css"
+
 /* PropTypes
 * String _id, gives the id of the room
 * PlayRoom should take in a HOST
@@ -61,7 +63,7 @@ const PlayRoom = (props) => {
   };
 
   useEffect(() => {
-    document.title = "Chatbook";
+    document.title = "Multimine";
   }, []);
 
   useEffect(() => {
@@ -76,7 +78,17 @@ const PlayRoom = (props) => {
   }, []);
 
   if (!props.userId) {
-    return <div>Log in before using Chatbook</div>;
+    return (
+    <>
+    <NavBar
+      handleLogin={props.handleLogin}
+      handleLogout={props.handleLogout}
+      userId={props.userId}
+    />
+    <h3>Please log in before using Multimine</h3>
+
+    </>
+    );
   }
 
   useEffect(() => {
@@ -92,7 +104,7 @@ const PlayRoom = (props) => {
   return (
     <>
       <div>
-        <div> {/* for more styling eventually*/}
+      <div className="u-flex u-flex-justifyCenter"> {/* for more styling eventually*/}
         <h1 className="Profile-name u-textCenter">Room ID: {props._id}</h1>
         <Link to="/">
           <button type="button" className="leaveRoomButton">
@@ -102,11 +114,11 @@ const PlayRoom = (props) => {
         
         </div>
       
-        
+        <div className ="u-flex">
         <div className="game-board">
           <Board height={16} width={30} mines={99} />
         </div>
-        <div>
+        <div className="progressBars"> {/* for more styling eventually*/}
           <ProgressBars progressValues={progressValues} userList={userList}/>
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
@@ -115,6 +127,8 @@ const PlayRoom = (props) => {
           This is the user list:
           {userList}
         </div> */}
+
+        </div>
         <div>
           <Chat data={activeChat}/>
         </div>

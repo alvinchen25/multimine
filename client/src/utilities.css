@@ -33,14 +33,14 @@ Added colors
 
 
 :root {
-  --primary: #A6F4DC;
-  --primary--dim: #6abea5;
+  --primary: #B9E6FF;
+  --primary--dim: #3dbbff;
   --progress-green: #85FF9E;
   --purple1: #AF90A9;
-  --purple2: #A05C7B;
+  --purple2: #eb9ec0;
   --darkgrey: #575757;
   --medgrey: #acacac;
-  --grey: #929292;
+  --grey: #bfc1bd;
   --white: #fff;
 
   --xs: 4px;

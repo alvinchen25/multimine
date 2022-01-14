@@ -64,7 +64,7 @@ const NewRoom = (props) => {
     });
   };
 
-  return <NewPageInput defaultText="this is supposed to create a room" onSubmit={AddRoom}/>;
+  return <NewPageInput defaultText="Create Room" onSubmit={AddRoom}/>;
   //What will the props be?
 }
 

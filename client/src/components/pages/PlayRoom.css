@@ -15,7 +15,7 @@
 
 .leaveRoomButton {
   border: none;
-  background-color: var(--purple1);
+  background-color: var(--purple2);
   justify-content: end;
   color: white;
 
@@ -31,7 +31,8 @@
   border-radius: 20px;
 
   float: right;
-  margin-right: 3%;
+  margin-top: 20px;
+  margin-left: 20px
 
 }
 
@@ -41,4 +42,9 @@
 
 .leaveRoomButton:active {
   opacity: .5;
+}
+
+
+.progressBars {
+  padding: 20px;
 }
