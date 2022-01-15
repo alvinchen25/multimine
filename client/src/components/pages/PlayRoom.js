@@ -3,7 +3,8 @@ import { get } from "../../utilities";
 import Board from "../modules/Board.js";
 import { socket } from "../../client-socket.js";
 import { post } from "../../utilities";
-import ProgressBars from "../modules/ProgressBars.js"
+import ProgressBars from "../modules/ProgressBars.js";
+import Stopwatch from "../modules/Stopwatch.js";
 import { Link } from "@reach/router";
 import Chat from "../modules/Chat.js";
 import NavBar from "../modules/NavBar.js"
@@ -31,6 +32,7 @@ const PlayRoom = (props) => {
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false); 
   const [mineList, setMineList] = useState([]);
+  // const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
     const callback = (userList) => {
@@ -164,6 +166,7 @@ const PlayRoom = (props) => {
   const handleStart = (event) => {
     event.preventDefault();
     socket.emit('startGame', props._id);
+
   }
 
   return (
@@ -201,12 +204,14 @@ const PlayRoom = (props) => {
           {/* set ongoing as a prop later on*/}
         
         <div className="progressBars"> {/* for more styling eventually*/}
-          <ProgressBars progressValues={progressValues} userList={userList}/>
+          {/* <ProgressBars progressValues={progressValues} userList={userList}/> */}
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
+          <Stopwatch gameStarted={ongoing}/>
           
           This is our current progress: {progress}
             {YeetProgressList}
+
         </div>
         {/* <div>
           This is the user list:
