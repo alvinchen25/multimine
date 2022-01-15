@@ -38,6 +38,9 @@ const NavBar = (props) => {
           <Link to="/chat/" className="NavBar-link">
             Chat
           </Link>
+          <Link to="/leaderboard/" className="NavBar-link">
+            Leaderboard
+          </Link>
           <Link to="/game/" className="NavBar-link">
             Single-Player Game
           </Link>
