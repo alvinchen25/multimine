@@ -6,6 +6,7 @@ import Game from "./pages/Game.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
+import Leaderboard from "./pages/Leaderboard.js";
 // import Roomlist from "./pages/Roomlist.js";
 import PlayRoom from "./pages/PlayRoom.js";
 import { Link } from "@reach/router";
@@ -109,6 +110,10 @@ const App = () => {
         {/* ^^ is gonna be /useriD */}
         
         <Chatbook path="/chat/" userId={userId}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}/>
+        <Leaderboard path="/leaderboard/"
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           userId={userId}/>
