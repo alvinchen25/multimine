@@ -121,6 +121,9 @@ const Board = (props) => {
 
         setCellState(uCellState);
         socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
+        if (currentProgress+props.progress > 10) {
+            props.setGameState("ur mom");
+        }
         props.setProgress(currentProgress+props.progress);
     }
 

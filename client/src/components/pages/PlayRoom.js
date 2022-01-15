@@ -29,7 +29,8 @@ const PlayRoom = (props) => {
   const [userList, setUserList] = useState([]);
   const [progressList, setProgressList] = useState({});
   const [progress, setProgress] = useState(0);
-  const [ongoing, setOngoing] = useState(false); 
+  const [ongoing, setOngoing] = useState(false);
+  const [gameState, setGameState] = useState("preGame");
   const [mineList, setMineList] = useState([]);
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const PlayRoom = (props) => {
 
   useEffect(() => {
     const callback = () => {
-      setOngoing(true);
+      setGameState("inGame");
     };
     socket.on("showgame", callback);
     return () => {
@@ -181,13 +182,7 @@ const PlayRoom = (props) => {
       
         <div className ="u-flex">
 
-        
-           { (ongoing) ? (
-             <div className="game-board">
-                <Board height={16} width={30} mines={99} room = {props._id} setProgress={setProgress} progress={progress} mineList = {mineList}/>
-              </div>
-            ) : (
-              <>
+           { (gameState === "preGame") ? (<>
               <div className="game-board displayBlock">
                <h1>Settings</h1>
                <h3>
@@ -196,9 +191,22 @@ const PlayRoom = (props) => {
                <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
                </div>
                </>
+              ) : (
+                <>
+             <div className="game-board">
+                <Board
+                  height={16}
+                  width={30}
+                  mines={99}
+                  room = {props._id}
+                  setProgress={setProgress}
+                  progress={progress}
+                  mineList = {mineList}
+                  setGameState = {setGameState}/>
+              </div>
+              </>
               )
-            }
-          {/* set ongoing as a prop later on*/}
+              }
         
         <div className="progressBars"> {/* for more styling eventually*/}
           <ProgressBars progressValues={progressValues} userList={userList}/>
@@ -214,6 +222,8 @@ const PlayRoom = (props) => {
         </div> */}
 
         </div>
+        <div> {(gameState==="ur mom") ? ( <h1>You're done.</h1>) : (<></>) } </div>
+
         <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-chatContainer u-relative">
           <Chat data={activeChat} userId={props.userId} userName={props.userName}/>
