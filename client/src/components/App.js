@@ -32,6 +32,7 @@ const App = () => {
   }, []);
 
   const handleLogin = (res) => { //changed from original
+    console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now

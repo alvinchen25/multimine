@@ -20,58 +20,108 @@ const getNamesFromRoom = (room) => {
   return names;
 }
 
-const addUser = (user, socketid) => {
+const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
-  if (oldSocket && oldSocket != socketid) {
+  if (oldSocket && oldSocket.id != socket.id) {
     // there was an old tab open for this user, force it to disconnect
     io.to(oldSocket).emit("forceDisconnect");
-    delete socketToUserMap[oldSocket];
+    delete socketToUserMap[oldSocket.id];
   }
 
-  userToSocketMap[user._id] = socketid;
-  socketToUserMap[socketid] = user;
+  userToSocketMap[user._id] = socket;
+  socketToUserMap[socket.id] = user;
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
+  
+ // console.log("1234");
+ // console.log(socketid);
+ // console.log(user);
 };
 
-const removeUser = (user, socketid) => {
-  if (user) delete userToSocketMap[user.id];
-  delete socketToUserMap[socketid];
+const removeUser = (user, socket) => {
+  if (user) delete userToSocketMap[user._id];
+  delete socketToUserMap[socket.id];
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
 };
 
 const addRoom = (user, room) => {
   let oldRoom = getRoomFromUser(user._id);
   if(oldRoom){
-    getSocketFromUserID(user._id).leave(room);
+    getSocketFromUserID(user._id).leave(oldRoom);
 
     roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing._id != user._id);
-    console.log(`${user.name} has left ${oldRoom}`);
   }
   
- 
-
+  console.log(`${user.name} has joined room ${room}`);
   getSocketFromUserID(user._id).join(room);
-  console.log(`${user.name} has joined ${room}`);
   
   userToRoom[user._id] = room;
   if(roomToUser[room]){
     roomToUser[room].push(user);
   }else{
     roomToUser[room] = [user];
-  }
-  
-  
+  } 
 }
 
+const leaveRoom = (user, room) => {
+  if(userToRoom[user._id]){
+    getSocketFromUserID(user._id).leave(room);
+
+    console.log(`${user.name} has left room ${room}`);
+
+    roomToUser[room] = roomToUser[room].filter((thing) => thing._id != user._id);
+    delete userToRoom[user._id];
+  
+  }
+}
+
+
 module.exports = {
+
   init: (http) => {
     io = require("socket.io")(http);
 
     io.on("connection", (socket) => {
       console.log(`socket has connected ${socket.id}`);
+      
       socket.on("disconnect", (reason) => {
         const user = getUserFromSocketID(socket.id);
-        removeUser(user, socket.id);
+        
+        if(user){
+          if(userToRoom[user._id]){
+            room = userToRoom[user._id];
+            leaveRoom(user, room);
+            io.to(room).emit("roomupdate", getNamesFromRoom(room));
+          }
+
+          removeUser(user, socket.id);
+          console.log(`goodbye ${user.name}`);
+        }
+        
+      });
+
+
+      socket.on("joinroomSock", (room) => {
+        
+        const user = getUserFromSocketID(socket.id);
+        
+  //      console.log(socketToUserMap);
+        if(user){
+          
+          addRoom(user,room);
+          
+       //   console.log(getNamesFromRoom(room));
+          io.to(room).emit("roomupdate", getNamesFromRoom(room));
+        }
+      });
+
+      socket.on("leaveroomSock", (room) => {
+        const user = getUserFromSocketID(socket.id);
+        if(user){
+          leaveRoom(user,room);
+          
+
+          io.to(room).emit("roomupdate", getNamesFromRoom(room));
+        }
       });
     });
   },
@@ -79,6 +129,7 @@ module.exports = {
   addUser: addUser,
   removeUser: removeUser,
   addRoom: addRoom, 
+  leaveRoom: leaveRoom, 
 
   getSocketFromUserID: getSocketFromUserID,
   getUserFromSocketID: getUserFromSocketID,

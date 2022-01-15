@@ -35,19 +35,6 @@ router.post("/room", (req, res) => {
   newRoom.save().then((room) => res.send(room));
 });
 
-
-router.post("/joinroom", (req, res) => {
-  // req.body.roomId
-  if(req.user){
-    socketManager.addRoom(req.user, req.body.roomId); 
-
-    console.log(`People in the room: ${socketManager.getNamesFromRoom(req.body.roomId)}`);
-    socketManager.getIo().to(req.body.roomId).emit("roomupdate", socketManager.getNamesFromRoom(req.body.roomId));
-    
-  }
-  
-});
-
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {

@@ -7,6 +7,7 @@ import ProgressBars from "../modules/ProgressBars.js"
 import { Link } from "@reach/router";
 import Chat from "../modules/Chat.js";
 import NavBar from "../modules/NavBar.js"
+import { useNavigate } from "@reach/router"
 
 import "../../utilities.css";
 import "./PlayRoom.css";
@@ -23,11 +24,32 @@ const ALL_CHAT = {
 };
 
 const PlayRoom = (props) => {
+  const [userList, setUserList] = useState([]);
+  
   useEffect(() => {
-    console.log(props._id);
-    const body = {roomId: props._id, socketid: socket.id};
-    post("/api/joinroom", body);
+    const callback = (userList) => {
+      console.log("helloooo");
+      console.log(userList);
+      setUserList(userList);
+    }
+    // const addUserToRoomList = ;
+     socket.on("roomupdate", callback);
+     return () => {
+       socket.off("roomupdate", callback);
+     };
+   }, []);
+
+  useEffect(() => {
+   // console.log(props._id);
+    const body = {roomId: props._id};
+    //post("/api/joinroom", body);
+    socket.emit("joinroomSock", props._id);
+    return () => {
+      socket.emit("leaveroomSock", props._id);
+    }
   }, []);
+
+  
 
   const [progressValues, setprogressValues] = useState(null);
   // const dummyProgress = [{username: "vishaal", progress: 98}];
@@ -39,7 +61,7 @@ const PlayRoom = (props) => {
     setprogressValues(dummyProgress);
   }, []);
 
-  const [userList, setUserList] = useState([]);
+  
   
   const [activeChat, setActiveChat] = useState({
     recipient: ALL_CHAT,
@@ -91,26 +113,27 @@ const PlayRoom = (props) => {
     );
   }
 
-  useEffect(() => {
-    const addUserToRoomList = (userList) => {
-      setUserList(userList);
-    };
-    socket.on("roomupdate", addUserToRoomList);
-    return () => {
-      socket.off("roomupdate", addUserToRoomList);
-    };
-  }, []);
   
+  
+  const navigate = useNavigate()
+
+  const handleLeave = (event) => {
+    event.preventDefault();
+    const body = {roomId: props._id};
+   // post("/api/leaveroom", body);
+    navigate("/");
+  }
+
   return (
     <>
       <div>
       <div className="u-flex u-flex-justifyCenter"> {/* for more styling eventually*/}
         <h1 className="Profile-name u-textCenter">Room ID: {props._id}</h1>
         <Link to="/">
-          <button type="button" className="leaveRoomButton">
+        <button type="button" className="leaveRoomButton" onClick={handleLeave}>
           Leave Room
-          </button>
-          </Link>
+        </button>
+        </Link>
         
         </div>
       
