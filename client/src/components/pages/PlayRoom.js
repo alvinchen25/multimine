@@ -32,7 +32,6 @@ const PlayRoom = (props) => {
   const [ongoing, setOngoing] = useState(false); 
   const [mineList, setMineList] = useState([]);
 
-
   useEffect(() => {
     const callback = (userList) => {
       console.log("helloooo");
@@ -116,38 +115,42 @@ const PlayRoom = (props) => {
   
   
   const [activeChat, setActiveChat] = useState({
-    recipient: ALL_CHAT,
+    recipient: {
+      _id: props._id,
+      name: `Room: ${props._id}`,
+    },
     messages: [],
   });
 
-  const loadMessageHistory = (recipient) => {
-    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
-      setActiveChat({
-        recipient: recipient,
-        messages: messages,
-      });
-    });
-  };
+  // const loadMessageHistory = (recipient) => {
+  //   get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+  //     setActiveChat({
+  //       recipient: recipient,
+  //       messages: messages,
+  //     });
+  //   });
+  // };
 
   const addMessages = (data) => {
     setActiveChat(prevActiveChat => ({
       recipient: prevActiveChat.recipient,
       messages: prevActiveChat.messages.concat(data),
     }));
+    console.log(`data in addMessages: ${data}`);
   };
 
   useEffect(() => {
     document.title = "Multimine";
   }, []);
 
-  useEffect(() => {
-    loadMessageHistory(ALL_CHAT);
-  }, []);
+  // useEffect(() => {
+  //   loadMessageHistory(ALL_CHAT);
+  // }, []);
 
   useEffect(() => {
-    socket.on("message", addMessages);
+    socket.on("newRoomMessage", addMessages); //just replace message
     return () => {
-      socket.off("message", addMessages);
+      socket.off("newRoomMessage", addMessages);
     };
   }, []);
 
@@ -234,7 +237,7 @@ const PlayRoom = (props) => {
         </div>
         <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-chatContainer u-relative">
-          <Chat data={activeChat} />
+          <Chat data={activeChat} userId={props.userId} userName={props.userName}/>
         </div>
       </div>
 

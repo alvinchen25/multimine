@@ -123,11 +123,16 @@ module.exports = {
         io.to(room).emit("initmines", mineList);
         io.to(room).emit("showgame");
 
-      })
+      });
 
       socket.on("progressUpdate", ({progress, room}) => {
         io.to(room).emit("newProgressUpdate", {user: getUserFromSocketID(socket.id), progress: progress});
-      })
+      });
+
+      socket.on("roomMessage", ({message, room}) => {
+        console.log(`The message ${message.content} reached the server socket at the room: ${room}`);
+        io.to(room).emit("newRoomMessage", message);
+      });
     });
   },
 

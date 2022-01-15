@@ -22,12 +22,14 @@ import { get, post } from "../utilities";
  */
 const App = () => {
   const [userId, setUserId] = useState(undefined);
+  const [userName, setUserName] = useState(undefined);
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
         setUserId(user._id);
+        setUserName(user.name);
       }
     });
   }, []);
@@ -38,6 +40,7 @@ const App = () => {
     post("/api/login", { token: userToken }).then((user) => {
       // the server knows we're logged in now
       setUserId(user._id);
+      setUserName(user.name);
       post("/api/initsocket", { socketid: socket.id });
     });
   };
@@ -45,6 +48,7 @@ const App = () => {
   const handleLogout = () => { //changed from original
     console.log("Logged out successfully!");
     setUserId(null);
+    setUserName(null);
     post("/api/logout");
   };
 
@@ -67,8 +71,10 @@ const App = () => {
     <PlayRoom
       path={"/room/" + roomObj._id}
       _id={roomObj._id}
+      name={roomObj.roomId}
       key="{roomObj._id}"
-      userId={userId}/>
+      userId={userId}
+      userName={userName}/>
     // routes to a page with ending = _id     "/room/:roomObj.roomId"
     // eventually the room should have some data passed into it
     // do we need an await here so that the page is loaded before you can go?
@@ -95,32 +101,38 @@ const App = () => {
           addNewRoom={addNewRoom}
           handleLogin={handleLogin}
           handleLogout={handleLogout}
-          userId={userId} />
+          userId={userId}
+          userName={userName}/>
         <Game 
           path="/game"
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           userId={userId}
+          userName={userName}
           />
         <Profile
           path="/profile/:userId"
           handleLogin={handleLogin}
           handleLogout={handleLogout}
-          userId={userId}/>
+          userId={userId}
+          userName={userName}/>
         {/* ^^ is gonna be /useriD */}
         
         <Chatbook path="/chat/" userId={userId}
           handleLogin={handleLogin}
           handleLogout={handleLogout}
-          userId={userId}/>
+          userId={userId}
+          userName={userName}/>
         <Leaderboard path="/leaderboard/"
           handleLogin={handleLogin}
           handleLogout={handleLogout}
-          userId={userId}/>
+          userId={userId}
+          userName={userName}/>
         <NotFound default
           handleLogin={handleLogin}
           handleLogout={handleLogout}
-          userId={userId}/>
+          userId={userId}
+          userName={userName}/>
         {roomsList}
       </Router>
     </>

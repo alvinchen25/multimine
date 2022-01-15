@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import "./NewPostInput.css";
 import { post } from "../../utilities";
+import { socket } from "../../client-socket.js";
+
 
 /**
  * New Post is a parent component for all input components
@@ -62,4 +64,20 @@ const NewMessage = (props) => {
   return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
 }
 
-export { NewMessage };
+const NewRoomMessage = (props) => {
+  const sendMessage = (value) => {
+    const message = {
+      recipient: props.recipient,
+      sender: {
+        _id: props.userId,
+        name: props.userName,
+      },
+      content: value,
+    }
+    console.log(`The user with id ${props.userId} sent the message with content ${value} in the room with roomId ${props.recipient._id}`);
+    socket.emit("roomMessage", {message: message, room: props.recipient._id});
+  }
+  return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
+}
+
+export { NewMessage, NewRoomMessage };
