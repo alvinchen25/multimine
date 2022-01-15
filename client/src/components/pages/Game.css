@@ -1,7 +1,7 @@
 .game-board {
     background-color: none;
-    width: 150vmin;
-    height: 80vmin;
+    width: 120vmin;
+    height: 64vmin;
     display: grid;
     grid-template-rows: repeat(16, 1fr);
     grid-template-columns: repeat(30, 1fr);
@@ -10,3 +10,4 @@
 
     padding: 30px;
   }
+
