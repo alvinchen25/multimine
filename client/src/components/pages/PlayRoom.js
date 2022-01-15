@@ -25,7 +25,15 @@ const ALL_CHAT = {
 
 const PlayRoom = (props) => {
   const [userList, setUserList] = useState([]);
-  
+  const [progress, setProgress] = useState(0);
+
+  // const incrementProgress = () => {
+  //   setProgress()
+  // }
+  // async function updateProgress() {
+  //   await setProgress(progress+1);
+  // }
+
   useEffect(() => {
     const callback = (userList) => {
       console.log("helloooo");
@@ -124,7 +132,7 @@ const PlayRoom = (props) => {
     navigate("/");
   }
 
-const ongoing = (true); // remove later
+const ongoing = (false); // remove later
 
   return (
     <>
@@ -144,7 +152,7 @@ const ongoing = (true); // remove later
         
            { (ongoing) ? (
              <div className="game-board">
-              <Board height={16} width={30} mines={99} />
+                <Board height={16} width={30} mines={99} setProgress={setProgress} progress={progress}/>
               </div>
             ) : (
               <>
@@ -174,6 +182,9 @@ const ongoing = (true); // remove later
           <ProgressBars progressValues={progressValues} userList={userList}/>
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
+          
+          This is our current progress: {progress}
+        
         </div>
         {/* <div>
           This is the user list:

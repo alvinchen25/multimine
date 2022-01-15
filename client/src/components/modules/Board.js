@@ -3,7 +3,13 @@ import url from "socket.io-client/lib/url";
 import "./Board.css";
 import Cell from "./Cell";
 
+/*
+* PropTypes
+* setProgress sets the state of progress
+*/
+
 const Board = (props) => {
+    let currentProgress = 0;
 
     let data = Array(30*16).fill(0);
 
@@ -72,6 +78,13 @@ const Board = (props) => {
             if(cellState[i][j].mine){
                 uCellState[i][j].status = 'mine';
             }else{
+                // props.updateProgress();
+                // console.log("wowo");
+                currentProgress++;
+                // props.progress++;
+                // props.setProgress(props.progress);
+                
+
                 let mines = cellState[i][j].adjMines;
 
                 if(mines !== 0){
@@ -112,6 +125,7 @@ const Board = (props) => {
         }
 
         setCellState(uCellState);
+        props.setProgress(currentProgress+props.progress);
     }
 
     const flagCell = (i,j) => {
