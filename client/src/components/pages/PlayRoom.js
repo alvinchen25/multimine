@@ -170,7 +170,10 @@ const PlayRoom = (props) => {
   return (
     <>
       <div>
-      <div className="u-flex u-flex-justifyCenter"> {/* for more styling eventually*/}
+      <div className="u-flex u-flex-justifyCenter"> {/* for more styling eventually
+      also add an ID so that redirects will scroll here
+
+      */}
         <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
         <Link to="/">
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
@@ -186,7 +189,13 @@ const PlayRoom = (props) => {
               <div className="game-board displayBlock">
                <h1>Settings</h1>
                <h3>
-                 Add settings here!
+                 Dimensions: 30 x 16
+               </h3>
+               <h3>
+                 Number of Mines: 99
+               </h3>
+               <h3>
+                 Mine Penalty: 5 seconds
                </h3>
                <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
                </div>
