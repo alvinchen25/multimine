@@ -124,6 +124,8 @@ const PlayRoom = (props) => {
     navigate("/");
   }
 
+const ongoing = (true); // remove later
+
   return (
     <>
       <div>
@@ -138,9 +140,36 @@ const PlayRoom = (props) => {
         </div>
       
         <div className ="u-flex">
-        <div className="game-board">
-          <Board height={16} width={30} mines={99} />
-        </div>
+
+        
+           { (ongoing) ? (
+             <div className="game-board">
+              <Board height={16} width={30} mines={99} />
+              </div>
+            ) : (
+              <>
+              <div className="game-board displayBlock">
+               <h1>Settings</h1>
+               <h3>
+                 Add settings here!
+
+
+
+
+
+
+
+
+               </h3>
+               <h1><button type="button" className="leaveRoomButton">Start Game</button></h1>
+               </div>
+               </>
+              )
+            }
+          {/* set ongoing as a prop later on*/}
+
+        
+        
         <div className="progressBars"> {/* for more styling eventually*/}
           <ProgressBars progressValues={progressValues} userList={userList}/>
           {/* Will pass in info from sockets to get progress from other players */}

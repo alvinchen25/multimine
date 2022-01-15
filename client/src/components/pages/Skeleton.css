@@ -4,6 +4,11 @@
 
 /* enclosing container */
 
+
+body {
+    background-color: var(--primary3);
+  }
+
 .lobbyBox {
     background-color: var(--grey); /* Green */
     border: none;

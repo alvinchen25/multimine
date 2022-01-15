@@ -1,15 +1,18 @@
-/* #PlayRoom .NavBar-container {
-  display: none;
-  visibility: hidden;
-} */
-
-/* this is broken oops */
-
 
 .game-board {
   margin: auto;
+  width: 120vmin;
+  height: 64vmin;
+  background-color: var(--primary);
+  border-radius: 30px;
+
+
+  text-align: center;
 }
 
+.displayBlock {
+  display: block;
+}
 
 .leaveRoomButton {
   border: none;
@@ -29,8 +32,7 @@
   border-radius: 20px;
 
   float: right;
-  margin-top: 20px;
-  margin-left: 20px
+  margin: 20px;
 
 }
 
@@ -46,3 +48,5 @@
 .progressBars {
   padding: none;
 }
+
+
