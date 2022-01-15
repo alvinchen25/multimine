@@ -122,7 +122,11 @@ module.exports = {
         const mineList = initMines();
         io.to(room).emit("initmines", mineList);
         io.to(room).emit("showgame");
-        
+
+      })
+
+      socket.on("progressUpdate", ({progress, room}) => {
+        io.to(room).emit("newProgressUpdate", {user: getUserFromSocketID(socket.id), progress: progress});
       })
     });
   },

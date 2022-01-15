@@ -25,9 +25,11 @@ const ALL_CHAT = {
 
 const PlayRoom = (props) => {
   const [userList, setUserList] = useState([]);
+  const [progressList, setProgressList] = useState({});
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false); 
   const [mineList, setMineList] = useState([]);
+
 
   useEffect(() => {
     const callback = (userList) => {
@@ -51,17 +53,52 @@ const PlayRoom = (props) => {
   }, []);
 
   useEffect(() => {
-    socket.on("initmines", (newMineList) => {
+    const callback = (newMineList) => {
       setMineList(newMineList);
-    })
+    };
+    socket.on("initmines", callback);
+    return () => {
+      socket.off("initmines", callback);
+    }
   }, []);
 
   useEffect(() => {
-    socket.on("showgame", () => {
+    const callback = () => {
       setOngoing(true);
-    })
+    };
+    socket.on("showgame", callback);
+    return () => {
+      socket.off("showgame", callback);
+    }
   }, []);
+  const ProgressCallback = ({user, progress}) => {
+    let newProgressList = {...progressList};
+    console.log(`ProgressList: ${JSON.stringify(newProgressList)}`);
+    console.log(`initial list: ${JSON.stringify(progressList)}`);
+    newProgressList[user.name] = progress;
+    setProgressList(newProgressList);
+    // console.log(`updated ProgressList: ${JSON.stringify(rogressList)}`);
+  };
+  useEffect(() => {
+    socket.on("newProgressUpdate", ProgressCallback);
+    return () => {
+      socket.off("newProgressUpdate", ProgressCallback);
+    }
+  }, [progressList]);
 
+  const YeetProgressList = userList.map((user) => {
+    let pro = 0;
+    if(progressList[user]){
+      pro = progressList[user];
+    }
+    return (
+      <>
+        <div>
+          This user is {user} and they have progress of {pro}
+        </div>
+      </>
+    )
+  });
 
   const [progressValues, setprogressValues] = useState(null);
   // const dummyProgress = [{username: "vishaal", progress: 98}];
@@ -160,7 +197,7 @@ const PlayRoom = (props) => {
         
            { (ongoing) ? (
              <div className="game-board">
-                <Board height={16} width={30} mines={99} setProgress={setProgress} progress={progress} mineList = {mineList}/>
+                <Board height={16} width={30} mines={99} room = {props._id} setProgress={setProgress} progress={progress} mineList = {mineList}/>
               </div>
             ) : (
               <>
@@ -191,8 +228,9 @@ const PlayRoom = (props) => {
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
           
+          
           This is our current progress: {progress}
-        
+          {YeetProgressList}
         </div>
         {/* <div>
           This is the user list:

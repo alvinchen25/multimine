@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import url from "socket.io-client/lib/url";
 import "./Board.css";
 import Cell from "./Cell";
+import { socket } from "../../client-socket.js";
 
 /*
 * PropTypes
@@ -124,6 +125,7 @@ const Board = (props) => {
         }
 
         setCellState(uCellState);
+        socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
         props.setProgress(currentProgress+props.progress);
     }
 
