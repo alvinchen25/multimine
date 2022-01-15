@@ -26,7 +26,8 @@ const ALL_CHAT = {
 const PlayRoom = (props) => {
   const [userList, setUserList] = useState([]);
   const [progress, setProgress] = useState(0);
-
+  const [ongoing, setOngoing] = useState(false); 
+  
   // const incrementProgress = () => {
   //   setProgress()
   // }
@@ -132,7 +133,11 @@ const PlayRoom = (props) => {
     navigate("/");
   }
 
-const ongoing = (false); // remove later
+  const handleStart = (event) => {
+    event.preventDefault();
+    setOngoing(true);
+  }
+    
 
   return (
     <>
@@ -169,7 +174,7 @@ const ongoing = (false); // remove later
 
 
                </h3>
-               <h1><button type="button" className="leaveRoomButton">Start Game</button></h1>
+               <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
                </div>
                </>
               )
