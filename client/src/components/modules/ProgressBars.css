@@ -1,0 +1,33 @@
+
+.progressBars {
+    padding: none;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .progressHolder {
+    padding: 4px;
+    height: 40px;
+    border: 3px;
+    border-color: gray;
+    border-style: solid;
+    margin: 20px ;
+    width: 100%;
+
+    border-radius: 20px;
+
+  }
+  
+  .progressHolder div {
+    background-color: var(--progress-green);
+    height: 40px;
+    border-radius: 15px;
+    width: var(--progVal);
+  
+  }
+  
+  

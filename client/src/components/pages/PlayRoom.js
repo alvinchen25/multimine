@@ -12,6 +12,8 @@ import { useNavigate } from "@reach/router"
 import "../../utilities.css";
 import "./PlayRoom.css";
 import "./Game.css"
+import "../modules/ProgressBars.css";
+import "./Chatbook.css";
 
 /* PropTypes
 * String _id, gives the id of the room
@@ -140,7 +142,6 @@ const PlayRoom = (props) => {
     event.preventDefault();
     socket.emit('startGame', props._id);
   }
-    
 
   return (
     <>
@@ -168,14 +169,6 @@ const PlayRoom = (props) => {
                <h1>Settings</h1>
                <h3>
                  Add settings here!
-
-
-
-
-
-
-
-
                </h3>
                <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
                </div>
@@ -192,7 +185,9 @@ const PlayRoom = (props) => {
           {/* should actually be to the right of the board */}
           
           This is our current progress: {progress}
-        
+            <div className="progressHolder">
+            <div style={{width: `${progress*100/381}%`}}></div>
+            </div>
         </div>
         {/* <div>
           This is the user list:
@@ -200,9 +195,12 @@ const PlayRoom = (props) => {
         </div> */}
 
         </div>
-        <div>
-          <Chat data={activeChat}/>
+        <div className="u-flex u-relative Chatbook-container">
+        <div className="Chatbook-chatContainer u-relative">
+          <Chat data={activeChat} />
         </div>
+      </div>
+
       </div>
     </>
   );

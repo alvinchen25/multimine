@@ -17,13 +17,22 @@ const ProgressBars = (props) => {
     //         </div>
     //     );
     // )};
+    
     return (
         <>
             <div> 
                 Progress bars will be here 
             </div>
             <div>
-                {props.progressValues}
+                {/* {props.progressValues.map((item) => {
+                    return (
+                        <>
+                        <div className="progressHolder">
+                            <div style={{width: `${item*100/381}%`}}></div>
+                        </div>
+                        </>
+                    )
+                })} */}
             </div>
             <div>
                 This is the list of users in this room. We'll format it later.
