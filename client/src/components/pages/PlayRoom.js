@@ -27,13 +27,7 @@ const PlayRoom = (props) => {
   const [userList, setUserList] = useState([]);
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false); 
-  
-  // const incrementProgress = () => {
-  //   setProgress()
-  // }
-  // async function updateProgress() {
-  //   await setProgress(progress+1);
-  // }
+  const [mineList, setMineList] = useState([]);
 
   useEffect(() => {
     const callback = (userList) => {
@@ -41,7 +35,7 @@ const PlayRoom = (props) => {
       console.log(userList);
       setUserList(userList);
     }
-    // const addUserToRoomList = ;
+
      socket.on("roomupdate", callback);
      return () => {
        socket.off("roomupdate", callback);
@@ -49,16 +43,25 @@ const PlayRoom = (props) => {
    }, []);
 
   useEffect(() => {
-   // console.log(props._id);
     const body = {roomId: props._id};
-    //post("/api/joinroom", body);
     socket.emit("joinroomSock", props._id);
     return () => {
       socket.emit("leaveroomSock", props._id);
     }
   }, []);
 
-  
+  useEffect(() => {
+    socket.on("initmines", (newMineList) => {
+      setMineList(newMineList);
+    })
+  }, []);
+
+  useEffect(() => {
+    socket.on("showgame", () => {
+      setOngoing(true);
+    })
+  }, []);
+
 
   const [progressValues, setprogressValues] = useState(null);
   // const dummyProgress = [{username: "vishaal", progress: 98}];
@@ -135,7 +138,7 @@ const PlayRoom = (props) => {
 
   const handleStart = (event) => {
     event.preventDefault();
-    setOngoing(true);
+    socket.emit('startGame', props._id);
   }
     
 
@@ -157,7 +160,7 @@ const PlayRoom = (props) => {
         
            { (ongoing) ? (
              <div className="game-board">
-                <Board height={16} width={30} mines={99} setProgress={setProgress} progress={progress}/>
+                <Board height={16} width={30} mines={99} setProgress={setProgress} progress={progress} mineList = {mineList}/>
               </div>
             ) : (
               <>

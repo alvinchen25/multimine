@@ -35,16 +35,15 @@ const Board = (props) => {
             initState.push(row);
         }
 
-        let curMine = 0;
-        while(curMine < props.mines){
-            let x = Math.floor(16*Math.random());
-            let y = Math.floor(30*Math.random());
-
-            if(!initState[x][y].mine){
-                initState[x][y].mine = true;
-                ++curMine;
+        for(let i=0;i<16;++i){
+            for(let j=0;j<30;++j){
+                if(props.mineList[i][j] === 1){
+                    initState[i][j].mine = true;
+                }
             }
         }
+        
+        
         for(let i=0;i<16;++i){
             for(let j=0;j<30;++j){
                 let adjCount = 0;

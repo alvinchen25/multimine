@@ -1,5 +1,7 @@
 let io;
 
+const {initMines} = require("./game-utils.js");
+
 const userToSocketMap = {}; // maps user ID to socket ID
 const socketToUserMap = {}; // maps socket ID to userID
 const userToRoom = {} //  maps user to room
@@ -101,15 +103,9 @@ module.exports = {
 
 
       socket.on("joinroomSock", (room) => {
-        
         const user = getUserFromSocketID(socket.id);
-        
-  //      console.log(socketToUserMap);
         if(user){
-          
           addRoom(user,room);
-          
-       //   console.log(getNamesFromRoom(room));
           io.to(room).emit("roomupdate", getNamesFromRoom(room));
         }
       });
@@ -118,11 +114,16 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         if(user){
           leaveRoom(user,room);
-          
-
           io.to(room).emit("roomupdate", getNamesFromRoom(room));
         }
       });
+
+      socket.on("startGame", (room) => {
+        const mineList = initMines();
+        io.to(room).emit("initmines", mineList);
+        io.to(room).emit("showgame");
+        
+      })
     });
   },
 
