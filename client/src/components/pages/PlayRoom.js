@@ -15,15 +15,15 @@ import "./Game.css"
 import "../modules/ProgressBars.css";
 import "./Chatbook.css";
 
-/* PropTypes
-* String _id, gives the id of the room
+/** PropTypes
+* @param {String} _id, gives the id of the room
+* @param name, gives the room name
+* @param userId
+* @param userName
+* @param handleLogin
+* @param handleLogout
 * PlayRoom should take in a HOST
 */
-
-const ALL_CHAT = {
-  _id: "ALL_CHAT",
-  name: "ALL CHAT",
-};
 
 const PlayRoom = (props) => {
   const [userList, setUserList] = useState([]);
@@ -72,14 +72,13 @@ const PlayRoom = (props) => {
       socket.off("showgame", callback);
     }
   }, []);
+
   const ProgressCallback = ({user, progress}) => {
     let newProgressList = {...progressList};
-    console.log(`ProgressList: ${JSON.stringify(newProgressList)}`);
-    console.log(`initial list: ${JSON.stringify(progressList)}`);
     newProgressList[user.name] = progress;
     setProgressList(newProgressList);
-    // console.log(`updated ProgressList: ${JSON.stringify(rogressList)}`);
   };
+
   useEffect(() => {
     socket.on("newProgressUpdate", ProgressCallback);
     return () => {
@@ -112,24 +111,13 @@ const PlayRoom = (props) => {
     setprogressValues(dummyProgress);
   }, []);
 
-  
-  
-  const [activeChat, setActiveChat] = useState({
+  const [activeChat, setActiveChat] = useState({ //makes the current active chat the room location we're at
     recipient: {
       _id: props._id,
-      name: `Room: ${props._id}`,
+      name: `Room ${props.name}`,
     },
     messages: [],
   });
-
-  // const loadMessageHistory = (recipient) => {
-  //   get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
-  //     setActiveChat({
-  //       recipient: recipient,
-  //       messages: messages,
-  //     });
-  //   });
-  // };
 
   const addMessages = (data) => {
     setActiveChat(prevActiveChat => ({
@@ -142,10 +130,6 @@ const PlayRoom = (props) => {
   useEffect(() => {
     document.title = "Multimine";
   }, []);
-
-  // useEffect(() => {
-  //   loadMessageHistory(ALL_CHAT);
-  // }, []);
 
   useEffect(() => {
     socket.on("newRoomMessage", addMessages); //just replace message
@@ -167,8 +151,6 @@ const PlayRoom = (props) => {
     </>
     );
   }
-
-  
   
   const navigate = useNavigate()
 
@@ -188,7 +170,7 @@ const PlayRoom = (props) => {
     <>
       <div>
       <div className="u-flex u-flex-justifyCenter"> {/* for more styling eventually*/}
-        <h1 className="Profile-name u-textCenter">Room ID: {props._id}</h1>
+        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
         <Link to="/">
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
           Leave Room
@@ -217,14 +199,11 @@ const PlayRoom = (props) => {
               )
             }
           {/* set ongoing as a prop later on*/}
-
-        
         
         <div className="progressBars"> {/* for more styling eventually*/}
           <ProgressBars progressValues={progressValues} userList={userList}/>
           {/* Will pass in info from sockets to get progress from other players */}
           {/* should actually be to the right of the board */}
-          
           
           This is our current progress: {progress}
             {YeetProgressList}

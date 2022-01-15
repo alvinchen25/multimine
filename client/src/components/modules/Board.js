@@ -78,12 +78,7 @@ const Board = (props) => {
             if(cellState[i][j].mine){
                 uCellState[i][j].status = 'mine';
             }else{
-                // props.updateProgress();
-                // console.log("wowo");
                 currentProgress++;
-                // props.progress++;
-                // props.setProgress(props.progress);
-                
 
                 let mines = cellState[i][j].adjMines;
 
