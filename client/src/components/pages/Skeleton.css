@@ -1,98 +1,93 @@
 /* Fill me in :) */
 
-
-
 /* enclosing container */
 
-
 body {
-    background-color: var(--primary3);
-  }
-
-.lobbyBox {
-    background-color: var(--grey); /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    margin-left: var(--mper);
-    margin-right: var(--mper); /* would be better as auto? */
-    font-size: 16px;
-    border-radius: 50px;
-    margin-top: var(--sper);
+  background-color: var(--primary3);
 }
 
+.lobbyBox {
+  background-color: var(--grey); /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-left: var(--mper);
+  margin-right: var(--mper); /* would be better as auto? */
+  font-size: 16px;
+  border-radius: 50px;
+  margin-top: var(--sper);
+}
 
 /*making lobby boxes */
 .minesweeperButtonContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-
-  }
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
 
 .minesweeperButtonContainer div a {
-    height: 9vw;
-    width: 9vw;
-    margin: none;
-    justify-content: center;
-    font-size: 1.3vw;
+  height: 9vw;
+  width: 9vw;
+  margin: none;
+  justify-content: center;
+  font-size: 1.3vw;
 
-    margin: auto;
-    border: 15px;
-    padding: 25px;
+  margin: auto;
+  border: 15px;
+  padding: 25px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-    word-break: break-all;
+  word-break: break-all;
 }
 
 .minesweeperButton {
-    background-image: url("../../public/images/blocktemp.png");
-    background-repeat: no-repeat;
+  background-image: url("../../public/images/blocktemp.png");
+  background-repeat: no-repeat;
 
-    background-size: contain;
+  background-size: contain;
 
-    border: none;
-    color: white;
-    padding: 20px 34px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
-    margin: 10px 2px;
-    cursor: pointer;
-    opacity: .8;
-  }
+  border: none;
+  color: white;
+  padding: 20px 34px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 10px 2px;
+  cursor: pointer;
+  opacity: 0.8;
+  white-space: normal;
+}
 
-  .minesweeperButton:hover {
-    opacity: 1;
-  }
+.minesweeperButton:hover {
+  opacity: 1;
+}
 
-  .minesweeperButton:active {
-    opacity: .5;
-  }
+.minesweeperButton:active {
+  opacity: 0.5;
+}
 
-  .roomCount {
-      margin-top: 10px;
-      margin-bottom: 30px;
-  }
+.roomCount {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
 
-  .rulesBox { /* edit!! */
-      margin:var(--sper) var(--mper) var(--sper) var(--mper);
-      background-color: var(--grey);
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: block;
-      border-radius: 50px;
-      }
+.rulesBox {
+  /* edit!! */
+  margin: var(--sper) var(--mper) var(--sper) var(--mper);
+  background-color: var(--grey);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  border-radius: 50px;
+}

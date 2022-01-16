@@ -9,9 +9,9 @@
 }
 
 .SingleMessage-content {
-  padding: var(--s) var(--m);
-  background: var(--medgrey);
-  border-radius: var(--l);
+  /* padding: var(--s) var(--m); */
+  /* background: var(--black); */
+  border-radius: var(--s);
 }
 
 .SingleMessage-mine .SingleMessage-content {
