@@ -5,7 +5,7 @@ import "./CreateRoom.css";
 const CreateRoom = (props) => {
     return (
         <div className="center">
-            <button className="newRoomMaker">This is a button (that literally does nothing right now)</button>
+            <button className="newRoomMaker">Clicky Button</button>
         </div>
     );
 }
