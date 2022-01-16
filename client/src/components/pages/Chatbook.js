@@ -11,7 +11,7 @@ import "./Chatbook.css";
 
 const ALL_CHAT = {
   _id: "ALL_CHAT",
-  name: "ALL CHAT",
+  name: "Global Chat",
 };
 
 const Chatbook = (props) => {
