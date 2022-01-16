@@ -191,7 +191,7 @@ const PlayRoom = (props) => {
               <div className="game-board displayBlock">
                <h1>Settings</h1>
                <h3>
-                {/* Room link: https://multimine.herokuapp.com/{props._id} */}
+                Room link: https://multimine.herokuapp.com/{props._id}
                </h3>
                <h3>
                  Dimensions: 30 x 16
