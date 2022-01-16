@@ -5,6 +5,7 @@ import Skeleton from "./pages/Skeleton.js";
 import Game from "./pages/Game.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
+import ProfileNoExist from "./pages/ProfileNoExist.js";
 import Chatbook from "./pages/Chatbook.js";
 import Leaderboard from "./pages/Leaderboard.js";
 import PlayRoom from "./pages/PlayRoom.js";
@@ -115,7 +116,12 @@ const App = () => {
           handleLogout={handleLogout}
           userId={userId}
           userName={userName}/>
-        {/* ^^ is gonna be /useriD */}
+        <ProfileNoExist
+          path="/profile/"
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}
+          userName={userName}/>
         
         <Chatbook path="/chat/" userId={userId}
           handleLogin={handleLogin}
