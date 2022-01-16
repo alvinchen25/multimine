@@ -223,7 +223,7 @@ const PlayRoom = (props) => {
               }
         
         <div className="progressBars"> {/* for more styling eventually*/}
-          This is our current progress: {progress}
+          {/* This is our current progress: {progress} */}
             {YeetProgressList}
 
         </div>
