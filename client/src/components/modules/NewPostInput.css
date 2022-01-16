@@ -18,23 +18,23 @@
   margin-right: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 .NewPostInput-input:focus-within {
   border-color: var(--primary--dim);
-  box-shadow: 0 0 0 var(--xs) var(--purple2);
+  box-shadow: none;
 }
 
 .NewPostInput-button {
   color: white;
   border: var(--purple2) 1px solid;
-  opacity: .8;
+  opacity: 0.8;
   border-radius: 0 var(--xs) var(--xs) 0;
   background: var(--purple2);
   transition: color 0.1s, background 0.1s;
   margin-right: var(--commonMargin);
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 .NewPostInput-button:hover {
@@ -42,5 +42,5 @@
 }
 
 .NewPostInput-button:active {
-  opacity: .5;
+  opacity: 0.5;
 }
