@@ -1,14 +1,4 @@
 
-.game-board {
-  margin: auto;
-  width: 120vmin;
-  height: 64vmin;
-  background-color: var(--primary);
-  border-radius: 30px;
-
-
-  text-align: center;
-}
 
 .displayBlock {
   display: block;

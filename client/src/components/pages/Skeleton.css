@@ -88,14 +88,11 @@ body {
   }
 
   .rulesBox { /* edit!! */
-      margin:auto;
+      margin:var(--sper) var(--mper) var(--sper) var(--mper);
       background-color: var(--grey);
       padding: 15px 32px;
       text-align: center;
       text-decoration: none;
       display: block;
-      margin-left: var(--mper);
-      margin-right: var(--mper);
-      margin-top: var(--sper);
       border-radius: 50px;
       }
