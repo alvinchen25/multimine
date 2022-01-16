@@ -56,11 +56,14 @@ const NewPageInput = (props) => {
  * @param {function} addNewRoom
  */
 const NewRoom = (props) => {
+
+
   const AddRoom = (value) => {
-    const body = { roomIDval: value };
+
+    const body = { name: value };
     post("/api/room", body).then((room) => {
         // display this story on the screen
-        props.addNewRoom(room);
+        props.addNewRoomHost(room);
     });
   };
 

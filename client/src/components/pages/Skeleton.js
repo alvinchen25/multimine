@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import CreateRoom from "../modules/CreateRoom.js";
 import { NewRoom } from "../modules/NewPageInput";
 import NavBar from "../modules/NavBar.js"
-
+import { useNavigate } from "@reach/router";
+import CodePopup from "../modules/CodePopup.js";
+import { get } from "../../utilities"
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -17,6 +19,44 @@ import "./Skeleton.css";
 */
 
 const Skeleton = (props) => {
+  const [askCode, setAskCode] = useState({});
+
+  const navigate = useNavigate();
+
+  const togglePopup = (room) => {
+    const newAskCode = {...askCode};
+    if(askCode[room]){
+      newAskCode[room] = false;
+    }else{
+      newAskCode[room] = true;
+    }
+    setAskCode(newAskCode);
+  }
+
+  const checkCode = (code, room) => {
+    get("/api/roomcode", {room: room}).then((trueCode) => {
+      console.log(`True code is ${trueCode.code}`);
+      if(code === trueCode.code){
+        navigate("/room/"+room);
+      }
+    });
+  }
+
+  const addNewRoomHost = (room) => {
+    props.addNewRoom(room);
+    navigate("/room/"+room._id);
+  };
+
+  const roomLinks = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
+    <div>
+    <button onClick = {() => togglePopup(roomObj._id)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+      {roomObj.name}
+    </button>
+      {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
+    </div>
+    
+  ));
+
   return (
     <>
     <NavBar
@@ -32,13 +72,13 @@ const Skeleton = (props) => {
         <CreateRoom/>
       </div>
       <div>
-        <NewRoom addNewRoom = {props.addNewRoom} />
+        <NewRoom addNewRoomHost = {addNewRoomHost} />
       </div>
       <div className="roomCount">
-        <h2>Number of rooms open: {props.roomLinks.length}</h2>
+        <h2>Number of rooms open: {roomLinks.length}</h2>
         <h3>Click below to enter a room!</h3>
         <div className="minesweeperButtonContainer">
-        {props.roomLinks}
+        {roomLinks}
         </div>
       </div>
 
@@ -60,22 +100,6 @@ const Skeleton = (props) => {
 
     </div>
 
-
-      <h2> What you need to change in this skeleton</h2>
-      <ul>
-        <li>
-          Change the Frontend CLIENT_ID (Skeleton.js) to your team's CLIENT_ID (obtain this at
-          http://weblab.to/clientid)
-        </li>
-        <li>Change the Server CLIENT_ID to the same CLIENT_ID (auth.js)</li>
-        <li>
-          Change the Database SRV (mongoConnectionURL) for Atlas (server.js). You got this in the
-          MongoDB setup.
-        </li>
-        <li>Change the Database Name for MongoDB to whatever you put in the SRV (server.js)</li>
-      </ul>
-      <h2>How to go from this skeleton to our actual app</h2>
-      <a href="http://weblab.to/get-started">Check out this getting started guide</a>
     </>
   );
 };

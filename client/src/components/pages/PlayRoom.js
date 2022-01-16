@@ -31,22 +31,31 @@ const PlayRoom = (props) => {
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false); 
   const [mineList, setMineList] = useState([]);
+  const [roomCode, setRoomCode] = useState("");
 
   useEffect(() => {
-    const callback = (userList) => {
-      console.log("helloooo");
-      console.log(userList);
-      setUserList(userList);
-    }
+    window.scrollTo(0,0);
+  }, []);
 
-     socket.on("roomupdate", callback);
+  useEffect(() => {
+    get("/api/roomcode", {room: props._id}).then((thing) => {
+      setRoomCode(thing.code);
+    });
+  }, []);
+
+  const Userlistcallback = (userList) => {
+    console.log(userList);
+    setUserList(userList);
+  }
+
+  useEffect(() => {
+     socket.on("roomupdate", Userlistcallback);
      return () => {
-       socket.off("roomupdate", callback);
+       socket.off("roomupdate", Userlistcallback);
      };
-   }, []);
+   }, [userList]);
 
   useEffect(() => {
-    const body = {roomId: props._id};
     socket.emit("joinroomSock", props._id);
     return () => {
       socket.emit("leaveroomSock", props._id);
@@ -72,13 +81,13 @@ const PlayRoom = (props) => {
       socket.off("showgame", callback);
     }
   }, []);
+
   const ProgressCallback = ({user, progress}) => {
     let newProgressList = {...progressList};
     console.log(`ProgressList: ${JSON.stringify(newProgressList)}`);
     console.log(`initial list: ${JSON.stringify(progressList)}`);
     newProgressList[user.name] = progress;
     setProgressList(newProgressList);
-    // console.log(`updated ProgressList: ${JSON.stringify(rogressList)}`);
   };
   useEffect(() => {
     socket.on("newProgressUpdate", ProgressCallback);
@@ -101,17 +110,6 @@ const PlayRoom = (props) => {
       </>
     )
   });
-
-  const [progressValues, setprogressValues] = useState(null);
-  // const dummyProgress = [{username: "vishaal", progress: 98}];
-  useEffect(() => {
-    // const dummyProgress = [{username: "vishaal", progress: 28}, {username: "boomer", progress: 98}];
-  
-    const dummyProgress = [2,3,4];
-    // setprogressValues([...dummyProgress]);
-    setprogressValues(dummyProgress);
-  }, []);
-
   
   
   const [activeChat, setActiveChat] = useState({
@@ -143,10 +141,6 @@ const PlayRoom = (props) => {
     document.title = "Multimine";
   }, []);
 
-  // useEffect(() => {
-  //   loadMessageHistory(ALL_CHAT);
-  // }, []);
-
   useEffect(() => {
     socket.on("newRoomMessage", addMessages); //just replace message
     return () => {
@@ -170,7 +164,7 @@ const PlayRoom = (props) => {
 
   
   
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLeave = (event) => {
     event.preventDefault();
@@ -209,7 +203,7 @@ const PlayRoom = (props) => {
               <div className="game-board displayBlock">
                <h1>Settings</h1>
                <h3>
-                 Add settings here!
+                Room Code: {roomCode}
                </h3>
                <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
                </div>
@@ -221,11 +215,6 @@ const PlayRoom = (props) => {
         
         
         <div className="progressBars"> {/* for more styling eventually*/}
-          <ProgressBars progressValues={progressValues} userList={userList}/>
-          {/* Will pass in info from sockets to get progress from other players */}
-          {/* should actually be to the right of the board */}
-          
-          
           This is our current progress: {progress}
             {YeetProgressList}
         </div>

@@ -7,9 +7,9 @@ import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
 import Chatbook from "./pages/Chatbook.js";
 import Leaderboard from "./pages/Leaderboard.js";
-// import Roomlist from "./pages/Roomlist.js";
 import PlayRoom from "./pages/PlayRoom.js";
 import { Link } from "@reach/router";
+
 
 import "../utilities.css";
 
@@ -23,6 +23,8 @@ import { get, post } from "../utilities";
 const App = () => {
   const [userId, setUserId] = useState(undefined);
   const [userName, setUserName] = useState(undefined);
+  
+  const [roomList, setRoomList] = useState([]); // initializes a list of room ID's
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -52,26 +54,26 @@ const App = () => {
     post("/api/logout");
   };
 
-  const [roomIDlist, setroomIDlist] = useState([]); // initializes a list of room ID's
+  
 
   useEffect(() => { // gets the Room ID's from the API
     get("/api/room").then((roomObjs) => {
       let reversedRoomObjs = roomObjs.reverse();
-      setroomIDlist(reversedRoomObjs);
+      setRoomList(reversedRoomObjs);
     });
   }, []);
 
   const addNewRoom = (roomObj) => { // function for adding a room, this gets passed all the way down though
-    setroomIDlist([roomObj].concat(roomIDlist));
+    setRoomList([roomObj].concat(roomList));
   };
 
   // somehow well have room id list
-  const roomsList = roomIDlist.map((roomObj) => ( // Creates the list of rooms that we can put into our router
+  const roomsList = roomList.map((roomObj) => ( // Creates the list of rooms that we can put into our router
     // <Room _id={roomObj._id} /> 
     <PlayRoom
       path={"/room/" + roomObj._id}
       _id={roomObj._id}
-      name={roomObj.roomId}
+      name={roomObj.name}
       key="{roomObj._id}"
       userId={userId}
       userName={userName}/>
@@ -79,13 +81,9 @@ const App = () => {
     // eventually the room should have some data passed into it
     // do we need an await here so that the page is loaded before you can go?
   ));
-  const roomLinks = roomIDlist.map((roomObj) => ( // maps the ID liist into links with the ids
-    <div>
-    <Link to={"/room/"+roomObj._id} className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
-      {roomObj.roomId}
-    </Link>
-    </div>
-  ));
+
+  
+  
 
   return (
     <>
@@ -97,7 +95,8 @@ const App = () => {
       <Router> 
         <Skeleton 
           path="/"
-          roomLinks={roomLinks}
+    //      roomLinks={roomLinks}
+          roomList = {roomList}
           addNewRoom={addNewRoom}
           handleLogin={handleLogin}
           handleLogout={handleLogout}

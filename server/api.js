@@ -22,6 +22,7 @@ const auth = require("./auth");
 const router = express.Router();
 
 const socketManager = require("./server-socket");
+const gameUtils = require("./game-utils");
 
 router.get("/room", (req, res) => {
   // empty selector means get all documents
@@ -30,9 +31,22 @@ router.get("/room", (req, res) => {
 
 router.post("/room", (req, res) => {
   const newRoom = new Room({
-    roomId: req.body.roomIDval,
+    name: req.body.name,
+    code: gameUtils.genRoomCode(),
   });
-  newRoom.save().then((room) => res.send(room));
+
+  newRoom.save().then((room) => {
+    res.send(room);
+  });
+});
+
+router.get("/roomcode", (req, res) => {
+  const query = {_id: req.query.room};
+
+  Room.find(query).then((room) => {
+    res.send({code: room[0].code});
+  });
+  
 });
 
 router.post("/login", auth.login);
