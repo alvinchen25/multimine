@@ -96,10 +96,7 @@ const Skeleton = (props) => {
       <h3>Unlike the original minesweeper, clicking on a mine will not lead to your loss, but a preset time delay
         for each game.
       </h3>
-
-
     </div>
-
     </>
   );
 };

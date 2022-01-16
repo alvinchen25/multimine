@@ -78,12 +78,7 @@ const Board = (props) => {
             if(cellState[i][j].mine){
                 uCellState[i][j].status = 'mine';
             }else{
-                // props.updateProgress();
-                // console.log("wowo");
                 currentProgress++;
-                // props.progress++;
-                // props.setProgress(props.progress);
-                
 
                 let mines = cellState[i][j].adjMines;
 
@@ -126,6 +121,9 @@ const Board = (props) => {
 
         setCellState(uCellState);
         socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
+        if (currentProgress+props.progress === 381) {
+            props.setGameState("ur mom");
+        }
         props.setProgress(currentProgress+props.progress);
     }
 
@@ -149,7 +147,7 @@ const Board = (props) => {
     return (
         <>
             {data.map((x, i) => (
-                <div key = {i} className = 'cell' className = {cellState[Math.floor(i/30)][i%30].status} onClick = {() => revealCell(Math.floor(i/30), i%30)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/30), i%30)}}>
+                <div key = {i} className = { 'cell '+ cellState[Math.floor(i/30)][i%30].status} onClick = {() => revealCell(Math.floor(i/30), i%30)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/30), i%30)}}>
                     <Cell />
                 </div>
                     

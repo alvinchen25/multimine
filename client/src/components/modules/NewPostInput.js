@@ -64,7 +64,7 @@ const NewMessage = (props) => {
   return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;
 }
 
-const NewRoomMessage = (props) => {
+const NewRoomMessage = (props) => { // Sends a new message (object) to everybody in a room
   const sendMessage = (value) => {
     const message = {
       recipient: props.recipient,
@@ -74,7 +74,6 @@ const NewRoomMessage = (props) => {
       },
       content: value,
     }
-    console.log(`The user with id ${props.userId} sent the message with content ${value} in the room with roomId ${props.recipient._id}`);
     socket.emit("roomMessage", {message: message, room: props.recipient._id});
   }
   return <NewPostInput defaultText="New Message" onSubmit={sendMessage} />;

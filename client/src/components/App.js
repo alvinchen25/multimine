@@ -102,13 +102,13 @@ const App = () => {
           handleLogout={handleLogout}
           userId={userId}
           userName={userName}/>
-        <Game 
+        {/* <Game 
           path="/game"
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           userId={userId}
           userName={userName}
-          />
+          /> */}
         <Profile
           path="/profile/:userId"
           handleLogin={handleLogin}
