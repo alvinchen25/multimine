@@ -33,11 +33,7 @@ const PlayRoom = (props) => {
   const [ongoing, setOngoing] = useState(false);
   const [gameState, setGameState] = useState("preGame");
   const [mineList, setMineList] = useState([]);
-<<<<<<< HEAD
-  // const [gameStarted, setGameStarted] = useState(false);
-=======
   const [roomCode, setRoomCode] = useState("");
->>>>>>> 065d3625feef580367a32c5d2c09ff5fa0540745
 
   useEffect(() => {
     window.scrollTo(0,0);
@@ -227,14 +223,6 @@ const PlayRoom = (props) => {
               }
         
         <div className="progressBars"> {/* for more styling eventually*/}
-<<<<<<< HEAD
-          {/* <ProgressBars progressValues={progressValues} userList={userList}/> */}
-          {/* Will pass in info from sockets to get progress from other players */}
-          {/* should actually be to the right of the board */}
-          <Stopwatch gameStarted={ongoing}/>
-          
-=======
->>>>>>> 065d3625feef580367a32c5d2c09ff5fa0540745
           This is our current progress: {progress}
             {YeetProgressList}
 
