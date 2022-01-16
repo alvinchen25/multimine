@@ -65,7 +65,9 @@ body {
 
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 20px;
 
   margin: 0px;

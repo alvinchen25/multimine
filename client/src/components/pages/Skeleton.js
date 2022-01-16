@@ -52,7 +52,8 @@ const Skeleton = (props) => {
     (roomObj.isPrivate === true) ? (
       <div>
       <button onClick = {() => togglePopup(roomObj._id)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
-        {roomObj.name}
+        <h3>{roomObj.name}</h3>
+        <h3>Private</h3>
       </button>
         {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
       </div>
@@ -61,6 +62,7 @@ const Skeleton = (props) => {
       <Link to={"/room/"+roomObj._id}> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
         <button  className="u-link minesweeperButton">
           {roomObj.name}
+          <h3>Public</h3>
         </button>
       </Link>
       </div>
