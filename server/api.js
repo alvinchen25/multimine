@@ -33,6 +33,7 @@ router.post("/room", (req, res) => {
   const newRoom = new Room({
     name: req.body.name,
     code: gameUtils.genRoomCode(),
+    isPrivate: req.body.isPrivate, 
   });
 
   newRoom.save().then((room) => {

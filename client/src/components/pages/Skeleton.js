@@ -6,6 +6,7 @@ import NavBar from "../modules/NavBar.js"
 import { useNavigate } from "@reach/router";
 import CodePopup from "../modules/CodePopup.js";
 import { get } from "../../utilities"
+import { Link } from "@reach/router";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -48,13 +49,22 @@ const Skeleton = (props) => {
   };
 
   const roomLinks = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
-    <div>
-    <button onClick = {() => togglePopup(roomObj._id)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
-      {roomObj.name}
-    </button>
-      {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
-    </div>
-    
+    (roomObj.isPrivate === true) ? (
+      <div>
+      <button onClick = {() => togglePopup(roomObj._id)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+        {roomObj.name}
+      </button>
+        {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
+      </div>
+    ) : (
+      <div>
+      <Link to={"/room/"+roomObj._id}> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+        <button  className="u-link minesweeperButton">
+          {roomObj.name}
+        </button>
+      </Link>
+      </div>
+    )
   ));
 
   return (
