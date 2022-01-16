@@ -117,7 +117,7 @@ const App = () => {
           userId={userId}
           userName={userName}/>
         <ProfileNoExist
-          path="/profile/"
+          path="/profile"
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           userId={userId}

@@ -52,7 +52,7 @@ const Chat = (props) => {
     return (
       <>
         <div className="u-flexColumn Chat-container">
-          <h2>Chat with Room {props.data.recipient.name}</h2>
+          <h2>Chat with {props.data.recipient.name}</h2>
           <div className="Chat-historyContainer">
             {props.data.messages.map((m, i) => (
               <SingleMessage message={m} key={i} />

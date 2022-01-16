@@ -1,41 +1,35 @@
 /* Fill me in :) */
 
-
-
 /* enclosing container */
 
-
 body {
-    background-color: var(--primary3);
-  }
-
-.lobbyBox {
-    background-color: var(--grey); /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    margin-left: var(--mper);
-    margin-right: var(--mper); /* would be better as auto? */
-    font-size: 16px;
-    border-radius: 50px;
-    margin-top: var(--sper);
+  background-color: var(--primary3);
 }
 
+.lobbyBox {
+  background-color: var(--grey); /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-left: var(--mper);
+  margin-right: var(--mper); /* would be better as auto? */
+  font-size: 16px;
+  border-radius: 50px;
+  margin-top: var(--sper);
+}
 
 /*making lobby boxes */
 .minesweeperButtonContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-
-  }
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
 
 .minesweeperButtonContainer div button {
     margin: none;
@@ -44,12 +38,11 @@ body {
 
     border: 15px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-    word-break: break-all;
+  word-break: break-all;
 }
 
 .minesweeperButton {
