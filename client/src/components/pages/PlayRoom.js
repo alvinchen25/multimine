@@ -31,7 +31,7 @@ const PlayRoom = (props) => {
   const [progressList, setProgressList] = useState({});
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false);
-  const [gameState, setGameState] = useState("preGame");
+  const [gameState, setGameState] = useState("before");
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
 
@@ -74,13 +74,14 @@ const PlayRoom = (props) => {
     }
   }, []);
 
+  const showGamecallback = () => {
+    setGameState("during");
+  };
+  
   useEffect(() => {
-    const callback = () => {
-      setGameState("inGame");
-    };
-    socket.on("showgame", callback);
+    socket.on("showgame", showGamecallback);
     return () => {
-      socket.off("showgame", callback);
+      socket.off("showgame", showGamecallback);
     }
   }, []);
 
@@ -187,7 +188,7 @@ const PlayRoom = (props) => {
       
         <div className ="u-flex">
 
-           { (gameState === "preGame") ? (<>
+           { (gameState === "before") ? (<>
               <div className="game-board displayBlock">
                <h1>Settings</h1>
                <h3>
@@ -221,7 +222,9 @@ const PlayRoom = (props) => {
               </>
               )
               }
-        
+        <div>
+          {(gameState == "during") && <Stopwatch />}
+        </div>
         <div className="progressBars"> {/* for more styling eventually*/}
           This is our current progress: {progress}
             {YeetProgressList}
@@ -233,7 +236,7 @@ const PlayRoom = (props) => {
         </div> */}
 
         </div>
-        <div> {(gameState==="ur mom") ? ( <h1>You're done.</h1>) : (<></>) } </div>
+        <div> {(gameState==="after") ? ( <h1>You're done.</h1>) : (<></>) } </div>
 
         <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-chatContainer u-relative">
