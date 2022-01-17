@@ -148,7 +148,7 @@ const PlayRoom = (props) => {
       handleLogout={props.handleLogout}
       userId={props.userId}
     />
-    <h3>Please log in before using Multimine</h3>
+    <h3>Please navigate to the lobby and log in before using Multimine</h3>
 
     </>
     );
@@ -172,10 +172,7 @@ const PlayRoom = (props) => {
   return (
     <>
       <div>
-      <div className="u-flex u-flex-justifyCenter"> {/* for more styling eventually
-      also add an ID so that redirects will scroll here
-
-      */}
+      <div className="u-flex u-flex-justifyCenter">
         <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
         <Link to="/">
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
@@ -185,7 +182,7 @@ const PlayRoom = (props) => {
         
         </div>
       
-        <div className ="u-flex">
+        <div className ="gameRoom">
 
            { (gameState === "preGame") ? (<>
               <div className="game-board displayBlock">

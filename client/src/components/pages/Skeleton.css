@@ -31,18 +31,15 @@ body {
   margin: 10px;
 }
 
-.minesweeperButtonContainer div button {
+
+.minesweeperButton > * {
+  padding: none;
   margin: none;
-  justify-content: center;
-  font-size: 1.3vw;
+  font-weight: 300;
+}
 
-  border: 15px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  word-break: break-all;
+.minesweeperButton h3 {
+  font-size: 1.1em;
 }
 
 .minesweeperButtonContainer div a {
@@ -50,10 +47,12 @@ body {
 }
 
 .minesweeperButton {
+  /* change to table cells later! */
   background-image: url("../../public/images/blocktemp.png");
   background-repeat: no-repeat;
-
   background-size: contain;
+
+  margin: none;
 
   height: 20vmin;
   width: 20vmin;
@@ -63,14 +62,16 @@ body {
 
   padding: 2vmin 2vmin;
 
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 20px;
+  font-size: 1.2vw;
 
-  margin: 0px;
+  border: 15px;
+
+  text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; */
+
   cursor: pointer;
 
   opacity: 0.8;

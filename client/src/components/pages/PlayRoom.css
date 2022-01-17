@@ -33,3 +33,22 @@
 .leaveRoomButton:active {
   opacity: .5;
 }
+
+
+.gameRoom {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.gameRoom.game-board {
+  flex-grow: 1;
+}
+
+.gameRoom.progressBars {
+  flex-grow: 3;
+}
+
+/* .gameRoom h1 {
+  width: 105vmin;
+} */

@@ -7,6 +7,9 @@
     flex-direction: column;
     align-items: center;
     padding: 25px;
+    padding-right: 40px ;
+    padding-left: 2%;
+    width: 50vmin;
   }
 
   .progressBars h3 {
@@ -19,7 +22,7 @@
     border: 3px;
     border-color: gray;
     border-style: solid;
-    margin: 15px ;
+    margin-top: 15px ;
     width: 100%;
 
     border-radius: 20px;
