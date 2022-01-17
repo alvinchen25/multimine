@@ -24,8 +24,9 @@ import { get, post } from "../utilities";
 const App = () => {
   const [userId, setUserId] = useState(undefined);
   const [userName, setUserName] = useState(undefined);
+  const [roomList, setRoomList] = useState([]); // initializes a list of rooms
+
   
-  const [roomList, setRoomList] = useState([]); // initializes a list of room ID's
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -55,8 +56,6 @@ const App = () => {
     post("/api/logout");
   };
 
-  
-
   useEffect(() => { // gets the Room ID's from the API
     get("/api/room").then((roomObjs) => {
       let reversedRoomObjs = roomObjs.reverse();
@@ -64,11 +63,25 @@ const App = () => {
     });
   }, []);
 
+  
+  const activeRoomCallback = (data) => {
+    console.log("bruh");
+    console.log(roomList);
+    setRoomList([data].concat(roomList));
+    // setRoomList(roomList);
+    console.log(`here is roomList: ${JSON.stringify(roomList)} and here is the new data: ${JSON.stringify(data)} and here is the concat: ${JSON.stringify(roomList.concat([data]))}`);
+  };
+  useEffect(() => { // socket updates rooms when rooms are created
+    socket.on("activeRoom", activeRoomCallback);
+    return () => {
+      socket.off("activeRoom", activeRoomCallback);
+    };
+  }, [roomList]);
+
   const addNewRoom = (roomObj) => { // function for adding a room, this gets passed all the way down though
     setRoomList([roomObj].concat(roomList));
   };
 
-  // somehow well have room id list
   const roomsList = roomList.map((roomObj) => ( // Creates the list of rooms that we can put into our router
     // <Room _id={roomObj._id} /> 
     <PlayRoom
@@ -82,9 +95,6 @@ const App = () => {
     // eventually the room should have some data passed into it
     // do we need an await here so that the page is loaded before you can go?
   ));
-
-  
-  
 
   return (
     <>

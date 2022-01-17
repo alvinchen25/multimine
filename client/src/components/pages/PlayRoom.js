@@ -194,6 +194,9 @@ const PlayRoom = (props) => {
                 Room link: https://multimine.herokuapp.com/room/{props._id}
                </h3>
                <h3>
+                 Room Code: {roomCode}
+               </h3>
+               <h3>
                  Dimensions: 30 x 16
                </h3>
                <h3>

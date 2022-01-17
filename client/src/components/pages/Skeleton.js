@@ -44,7 +44,7 @@ const Skeleton = (props) => {
   }
 
   const addNewRoomHost = (room) => {
-    props.addNewRoom(room);
+   // props.addNewRoom(room);
     navigate("/room/"+room._id);
   };
 
@@ -79,13 +79,14 @@ const Skeleton = (props) => {
     <div className="lobbyBox">
     <h1>Welcome to the Multimine Lobby!</h1>
       
-      <h1>Helloooo :O</h1>
       <div>
         <CreateRoom/>
       </div>
-      <div>
+      {(props.userId) ? (<div>
         <NewRoom addNewRoomHost = {addNewRoomHost} />
-      </div>
+      </div>) : (<div>
+        Log in to create and join a room!
+      </div>)}
       <div className="roomCount">
         <h2>Number of rooms open: {roomLinks.length}</h2>
         <h3>Click below to enter a room!</h3>

@@ -61,7 +61,7 @@ const addRoom = (user, room) => {
     roomToUser[room].push(user);
   }else{
     roomToUser[room] = [user];
-  } 
+  }
 }
 
 const leaveRoom = (user, room) => {

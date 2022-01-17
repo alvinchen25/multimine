@@ -39,6 +39,7 @@ router.post("/room", (req, res) => {
   newRoom.save().then((room) => {
     res.send(room);
   });
+  socketManager.getIo().emit("activeRoom", newRoom);
 });
 
 router.get("/roomcode", (req, res) => {
@@ -47,7 +48,6 @@ router.get("/roomcode", (req, res) => {
   Room.find(query).then((room) => {
     res.send({code: room[0].code});
   });
-  
 });
 
 router.post("/login", auth.login);
