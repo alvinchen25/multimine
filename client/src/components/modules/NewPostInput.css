@@ -46,5 +46,6 @@
 }
 
 .checkbox {
+  width:inherit;
   /* add styling to box soon */
 }

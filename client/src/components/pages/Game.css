@@ -24,3 +24,6 @@
   word-break: break-all;
   }
 
+  .game-board h1 {
+    width: 105vmin;
+  }
