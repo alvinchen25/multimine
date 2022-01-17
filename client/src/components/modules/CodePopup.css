@@ -1,38 +1,43 @@
 .popup-box {
     position: fixed;
-    background: #00000050;
+    background: #00000070;
     width: 100%;
     height: 100vh;
     top: 0;
     left: 0;
+    z-index: 9999;
   }
    
   .box {
     position: relative;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     height: auto;
     max-height: 70vh;
     margin-top: calc(100vh - 85vh - 20px);
-    background: rgb(0, 204, 255);
-    border-radius: 4px;
+    background: var(--primary);
+    border-radius: 20px;
     padding: 20px;
-    border: 1px solid #999;
+    padding-bottom: 40px;
+    border: none;
     overflow: auto;
+
+    color: gray;
   }
+
    
   .close-icon {
     content: 'x';
     cursor: pointer;
     position: fixed;
-    right: calc(15% - 30px);
+    right: calc(20% - 30px);
     top: calc(100vh - 85vh - 33px);
-    background: #000000;
+    background: var(--purple2);
     width: 25px;
     height: 25px;
     border-radius: 50%;
     line-height: 20px;
     text-align: center;
-    border: 1px solid #999;
+    border: none;
     font-size: 20px;
   }

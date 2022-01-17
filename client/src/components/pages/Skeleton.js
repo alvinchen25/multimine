@@ -6,6 +6,7 @@ import NavBar from "../modules/NavBar.js"
 import { useNavigate } from "@reach/router";
 import CodePopup from "../modules/CodePopup.js";
 import { get } from "../../utilities"
+import { Link } from "@reach/router";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -42,18 +43,29 @@ const Skeleton = (props) => {
   }
 
   const addNewRoomHost = (room) => {
-    props.addNewRoom(room);
+   // props.addNewRoom(room);
     navigate("/room/"+room._id);
   };
 
   const roomLinks = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
-    <div>
-    <button onClick = {() => togglePopup(roomObj._id)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
-      {roomObj.name}
-    </button>
-      {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
-    </div>
-    
+    (roomObj.isPrivate === true) ? (
+      <div>
+      <button onClick = {() => togglePopup(roomObj._id)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+        <h3>{roomObj.name}</h3>
+        <h3>Private</h3>
+      </button>
+        {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
+      </div>
+    ) : (
+      <div>
+      <Link to={"/room/"+roomObj._id}> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+        <button  className="u-link minesweeperButton">
+          {roomObj.name}
+          <h3>Public</h3>
+        </button>
+      </Link>
+      </div>
+    )
   ));
 
   return (
@@ -66,13 +78,14 @@ const Skeleton = (props) => {
     <div className="lobbyBox">
     <h1>Welcome to the Multimine Lobby!</h1>
       
-      <h1>Helloooo :O</h1>
       <div>
         <CreateRoom/>
       </div>
-      <div>
+      {(props.userId) ? (<div>
         <NewRoom addNewRoomHost = {addNewRoomHost} />
-      </div>
+      </div>) : (<div>
+        Log in to create and join a room!
+      </div>)}
       <div className="roomCount">
         <h2>Number of rooms open: {roomLinks.length}</h2>
         <h3>Click below to enter a room!</h3>

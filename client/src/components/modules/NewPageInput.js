@@ -28,24 +28,35 @@ const NewPageInput = (props) => {
     setValue("");
   };
 
+  const handleCheck = (event) => {
+    // event.preventDefault();
+    props.setRoomPrivate(!props.roomPrivate);
+  };
+
   return (
-    <div className="u-flex">
-      <input
-        type="text"
-        placeholder={props.defaultText}
-        value={value}
-        onChange={handleChange}
-        className="NewPostInput-input"
-      />
-      <button
-        type="submit"
-        className="NewPostInput-button u-pointer"
-        value="Submit"
-        onClick={handleSubmit}
-      >
-        Submit
-      </button>
-    </div>
+    <>
+      <div>
+        Private?
+        <input type = "checkbox" onChange={handleCheck} checked={props.roomPrivate}/>
+      </div>
+      <div className="u-flex">
+        <input
+          type="text"
+          placeholder={props.defaultText}
+          value={value}
+          onChange={handleChange}
+          className="NewPostInput-input"
+        />
+        <button
+          type="submit"
+          className="NewPostInput-button u-pointer"
+          value="Submit"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+      </div>
+    </>
   );
 };
 
@@ -56,18 +67,22 @@ const NewPageInput = (props) => {
  * @param {function} addNewRoom
  */
 const NewRoom = (props) => {
-
+  const [roomPrivate, setRoomPrivate] = useState(false);
 
   const AddRoom = (value) => {
 
-    const body = { name: value };
+    const body = { name: value, isPrivate: roomPrivate };
     post("/api/room", body).then((room) => {
         // display this story on the screen
-        props.addNewRoomHost(room);
+      props.addNewRoomHost(room);
     });
   };
 
-  return <NewPageInput defaultText="Create Room" onSubmit={AddRoom}/>;
+  return (
+    <>
+      <NewPageInput defaultText="Create Room" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} roomPrivate={roomPrivate} />
+    </>
+  );
   //What will the props be?
 }
 

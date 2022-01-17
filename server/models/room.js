@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const RoomSchema = new mongoose.Schema({ // it still gets an _id in addition to this roomId thing
     name: String,
     code: String,
+    isPrivate: Boolean,
     // eventually will have a lot more info about the room carried in this schema
 });
 

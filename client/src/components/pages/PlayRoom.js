@@ -192,7 +192,10 @@ const PlayRoom = (props) => {
               <div className="game-board displayBlock">
                <h1>Settings</h1>
                <h3>
-                  Room Code: {roomCode}
+                Room link: https://multimine.herokuapp.com/room/{props._id}
+               </h3>
+               <h3>
+                 Room Code: {roomCode}
                </h3>
                <h3>
                  Dimensions: 30 x 16
@@ -226,7 +229,7 @@ const PlayRoom = (props) => {
           {(gameState == "during") && <Stopwatch />}
         </div>
         <div className="progressBars"> {/* for more styling eventually*/}
-          This is our current progress: {progress}
+          {/* This is our current progress: {progress} */}
             {YeetProgressList}
 
         </div>
