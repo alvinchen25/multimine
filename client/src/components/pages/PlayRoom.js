@@ -166,7 +166,6 @@ const PlayRoom = (props) => {
   const handleStart = (event) => {
     event.preventDefault();
     socket.emit('startGame', props._id);
-
   }
 
   return (
@@ -216,7 +215,8 @@ const PlayRoom = (props) => {
                   setProgress={setProgress}
                   progress={progress}
                   mineList = {mineList}
-                  setGameState = {setGameState}/>
+                  setGameState = {setGameState}
+                  userId={props.userId}/>
               </div>
               </>
               )

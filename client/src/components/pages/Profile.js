@@ -7,11 +7,40 @@ import "./Profile.css";
 
 const Profile = (props) => {
   const [user, setUser] = useState();
+  const [userScores, setUserScores] = useState();
+
+  // const userScores = undefined
 
   useEffect(() => {
     document.title = "Profile Page";
-    get(`/api/user`, { userid: props.userId }).then((userObj) => setUser(userObj));
+    get(`/api/user`, { userid: props.userId }).then((userObj) => {
+      setUser(userObj);
+      console.log(`user times: ${JSON.stringify(userObj.times)} and score ${JSON.stringify(userObj.times[0].score)}`);
+      const newUserScores = userObj.times.map((round) => (
+        <>
+         <div>
+           {round.score}
+         </div>
+         <div>
+          {round.gameTime}
+          </div>
+       </>
+      ));
+      setUserScores(newUserScores);
+      // setUserScores(userObj.times)
+
+    });
   }, []);
+
+  // console.log(`times listed here ${user.times}`);
+
+  // const userScores = user.times.map((round) => (
+  //   <>
+  //     <div>
+  //       {round.score}
+  //     </div>
+  //   </>
+  // ));
 
   if (!user) {
     return (
@@ -21,7 +50,7 @@ const Profile = (props) => {
         handleLogout={props.handleLogout}
         userId={props.userId}
         />
-    <div> <h3 className="loadingPage"> Loading . . . </h3> </div>
+      <div> <h3 className="loadingPage"> Loading . . . </h3> </div>
     </>
     );
   }
@@ -34,6 +63,9 @@ const Profile = (props) => {
         />
       <div>
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
+        <h2>User times: {user.times[3].score}</h2>
+        <h2>Alt times: {JSON.stringify(user.times)}</h2>
+        <h2>{userScores}</h2>
       </div>
     </>
   );

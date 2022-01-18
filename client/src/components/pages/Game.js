@@ -15,7 +15,7 @@ const Game = (props) => {
           userId={props.userId}
           />
         <div className="game-board"> 
-          <Board height={16} width={30} mines={99} />
+          <Board height={16} width={30} mines={99} userId={props.userId}/>
         </div>
       </>
     );
