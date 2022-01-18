@@ -1,8 +1,9 @@
 import React from "react";
 import NavBar from "../modules/NavBar.js"
 
+import "../../utilities.css";
 
-const NotFound = () => {
+const NotFound = (props) => {
   return (
     <>
       <NavBar
