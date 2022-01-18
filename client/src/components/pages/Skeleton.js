@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-import CreateRoom from "../modules/CreateRoom.js";
 import { NewRoom } from "../modules/NewPageInput";
 import NavBar from "../modules/NavBar.js"
 import { useNavigate } from "@reach/router";
@@ -79,9 +78,6 @@ const Skeleton = (props) => {
     <div className="lobbyBox">
     <h1>Welcome to the Multimine Lobby!</h1>
       
-      <div>
-        <CreateRoom/>
-      </div>
       {(props.userId) ? (<div>
         <NewRoom addNewRoomHost = {addNewRoomHost} />
       </div>) : (<div>
