@@ -39,6 +39,7 @@ router.post("/room", (req, res) => {
   newRoom.save().then((room) => {
     res.send(room);
   });
+  gameUtils.setGameStatus(newRoom._id, "before");
   socketManager.getIo().emit("activeRoom", newRoom);
 });
 
@@ -48,6 +49,11 @@ router.get("/roomcode", (req, res) => {
   Room.find(query).then((room) => {
     res.send({code: room[0].code});
   });
+});
+
+router.get("/roomstatus", (req, res) => {
+  const status = gameUtils.getGameStatus(req.query.room);
+  res.send({status: status});
 });
 
 router.post("/login", auth.login);
@@ -67,19 +73,12 @@ router.get("/user", (req, res) => {
   }).catch(err => res.send({user: undefined}));
 });
 
-router.post("/addHighScore", (req, res) => {
+router.post("/addHighScore", (req, res) => { // pushes the score to the data for a particular user
   const query = {_id: req.body.userId};
-  // console.log(`body id ${req.body.userId} and score ${req.body.score}`);
   User.findOne(query).then((user) => {
-    console.log(`user info here: ${user}`);
-    const newTime = [{ score: req.body.score }];
-    // const newTime = [req.body.score];
+    const newTime = [{ score: gameUtils.getGameTimer()[room]}];
     user.times = newTime.concat(user.times);
-    console.log(`user info here: ${user}`);
     user.save();
-    // user.save().then((user) => {
-    //   res.send(user);
-    // });
   });
 });
 

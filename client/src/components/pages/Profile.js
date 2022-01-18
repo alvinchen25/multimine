@@ -15,17 +15,27 @@ const Profile = (props) => {
     document.title = "Profile Page";
     get(`/api/user`, { userid: props.userId }).then((userObj) => {
       setUser(userObj);
-      console.log(`user times: ${JSON.stringify(userObj.times)} and score ${JSON.stringify(userObj.times[0].score)}`);
-      const newUserScores = userObj.times.map((round) => (
+      const newUserScores = (userObj.times.length>0) ? (userObj.times.map((round) => (
         <>
          <div>
-           {round.score}
+           {(round.score)/1000} seconds
          </div>
          <div>
           {round.gameTime}
           </div>
        </>
-      ));
+      ))) : (
+        <>
+          <div>Complete a game to see your scores!</div>
+        </>
+      );
+      // if (userObj.times.length === 0) {
+      //   newUserScores = (
+      //     <>
+      //       <div>Complete a game to see your scores!</div>
+      //     </>
+      //   );
+      // }
       setUserScores(newUserScores);
       // setUserScores(userObj.times)
 
@@ -33,14 +43,6 @@ const Profile = (props) => {
   }, []);
 
   // console.log(`times listed here ${user.times}`);
-
-  // const userScores = user.times.map((round) => (
-  //   <>
-  //     <div>
-  //       {round.score}
-  //     </div>
-  //   </>
-  // ));
 
   if (!user) {
     return (
@@ -65,9 +67,8 @@ const Profile = (props) => {
         />
       <div>
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
-        <h2>User times: {user.times[3].score}</h2>
-        <h2>Alt times: {JSON.stringify(user.times)}</h2>
-        <h2>{userScores}</h2>
+        <h2>Your Scores</h2>
+        <h3>{userScores}</h3>
       </div>
     </>
   );

@@ -27,16 +27,26 @@ import "./Chatbook.css";
 */
 
 const PlayRoom = (props) => {
+  const navigate = useNavigate();
   const [userList, setUserList] = useState([]);
   const [progressList, setProgressList] = useState({});
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false);
-  const [gameState, setGameState] = useState("preGame");
+  const [gameState, setGameState] = useState("before");
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
+  const [endStats, setEndStats] = useState({winner: {name: null}, winTime: 0});
 
   useEffect(() => {
     window.scrollTo(0,0);
+  }, []);
+
+  useEffect(() => {
+    get("/api/roomstatus", {room: props._id}).then((thing) => {
+      if(thing.status !== "before"){
+        navigate("/");
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -46,8 +56,10 @@ const PlayRoom = (props) => {
   }, []);
 
   const Userlistcallback = (userList) => {
-    console.log(userList);
-    setUserList(userList);
+    if(gameState === "before"){
+      setUserList(userList);
+    }
+    
   }
 
   useEffect(() => {
@@ -74,15 +86,30 @@ const PlayRoom = (props) => {
     }
   }, []);
 
+  const showGamecallback = () => {
+    setGameState("during");
+  };
+  
   useEffect(() => {
-    const callback = () => {
-      setGameState("inGame");
-    };
-    socket.on("showgame", callback);
+    socket.on("showgame", showGamecallback);
     return () => {
-      socket.off("showgame", callback);
+      socket.off("showgame", showGamecallback);
     }
   }, []);
+
+  const hideGamecallback = ({winner, winTime}) => {
+    console.log(winner.name);
+    console.log(`winTime: ${winTime}`);
+    setGameState("after");
+    setEndStats({winner: winner, winTime: winTime});
+  };
+  
+  useEffect(() => {
+    socket.on("hidegame", hideGamecallback);
+    return () => {
+      socket.off("hidegame", hideGamecallback);
+    }
+  }, [endStats]);
 
   const ProgressCallback = ({user, progress}) => {
     let newProgressList = {...progressList};
@@ -126,7 +153,6 @@ const PlayRoom = (props) => {
       recipient: prevActiveChat.recipient,
       messages: prevActiveChat.messages.concat(data),
     }));
-    console.log(`data in addMessages: ${data}`);
   };
 
   useEffect(() => {
@@ -154,12 +180,10 @@ const PlayRoom = (props) => {
     );
   }
   
-  const navigate = useNavigate();
+  
 
   const handleLeave = (event) => {
     event.preventDefault();
-    const body = {roomId: props._id};
-   // post("/api/leaveroom", body);
     navigate("/");
   }
 
@@ -183,12 +207,9 @@ const PlayRoom = (props) => {
       
         <div className ="gameRoom">
 
-           { (gameState === "preGame") ? (<>
+           { (gameState === "before") ? (<>
               <div className="game-board displayBlock">
                <h1>Settings</h1>
-               <h3>
-                Room link: https://multimine.herokuapp.com/room/{props._id}
-               </h3>
                <h3>
                  Room Code: {roomCode}
                </h3>
@@ -221,8 +242,11 @@ const PlayRoom = (props) => {
               </>
               )
               }
-        
+        {/* <div>
+          {(gameState == "during") && <Stopwatch />}
+        </div> */}
         <div className="progressBars"> {/* for more styling eventually*/}
+          {(gameState == "during") && <Stopwatch />}
           {/* This is our current progress: {progress} */}
             {YeetProgressList}
 
@@ -233,8 +257,15 @@ const PlayRoom = (props) => {
         </div> */}
 
         </div>
-        <div> {(gameState==="ur mom") ? ( <h1>You're done.</h1>) : (<></>) } </div>
+        <div> {(gameState==="after") ? (
+          <>
+           <h1>You're done.</h1>
 
+           <h1> Winner is {endStats.winner.name}</h1>
+           <h1>Final time is {(endStats.winTime)/1000}</h1>
+           </>
+           ) : (<></>) } </div>
+        
         <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-chatContainer u-relative">
           <Chat data={activeChat} userId={props.userId} userName={props.userName}/>

@@ -1,6 +1,7 @@
 let io;
 
-const {initMines} = require("./game-utils.js");
+const socket = require("socket.io-client/lib/socket");
+const gameUtils = require("./game-utils.js");
 
 const userToSocketMap = {}; // maps user ID to socket ID
 const socketToUserMap = {}; // maps socket ID to userID
@@ -78,9 +79,24 @@ const leaveRoom = (user, room) => {
 
 
 module.exports = {
-
   init: (http) => {
     io = require("socket.io")(http);
+
+    const updateTimes = () => {
+    //  console.log("asdf");
+      gameUtils.updateGameTimer();
+      const times = gameUtils.getGameTimer();
+      
+      for(room in times){
+        if(gameUtils.getGameStatus(room) === "during"){
+          io.to(room).emit("timeUpdate", times[room]);
+        }
+      }
+    };
+
+    setInterval(updateTimes, 10);
+
+
 
     io.on("connection", (socket) => {
       console.log(`socket has connected ${socket.id}`);
@@ -119,10 +135,18 @@ module.exports = {
       });
 
       socket.on("startGame", (room) => {
-        const mineList = initMines();
+        const mineList = gameUtils.initMines();
         io.to(room).emit("initmines", mineList);
         io.to(room).emit("showgame");
+        gameUtils.setGameStatus(room, "during");
+        gameUtils.setGameTimer(room, 0);
+      });
 
+      socket.on("endGame", ({room, socketid}) => {
+        const winner = getUserFromSocketID(socketid);
+        const winTime = gameUtils.getGameTimer()[room];
+        io.to(room).emit("hidegame", {winner: winner, winTime:winTime});
+        gameUtils.setGameStatus(room, "after");
       });
 
       socket.on("progressUpdate", ({progress, room}) => {

@@ -15,7 +15,6 @@ import "./Skeleton.css";
 // const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.googleusercontent.com";
 
 /* propTypes
-* @param [String] roomLinks
 * @param addNewRoom
 */
 

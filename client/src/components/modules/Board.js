@@ -121,10 +121,9 @@ const Board = (props) => {
         setCellState(uCellState);
         socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
         if (currentProgress+props.progress >= 381) {
-            props.setGameState("ur mom");
-            const body = {score: 10, userId: props.userId};
+            socket.emit("endGame", {room: props.room, socketid: socket.id});
+            const body = {userId: props.userId, room: props.room};
             post("/api/addHighScore", body);
-            console.log("mom");
         }
         props.setProgress(currentProgress+props.progress);
     }
