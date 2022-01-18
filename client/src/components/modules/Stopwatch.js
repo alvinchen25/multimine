@@ -24,7 +24,7 @@ const Stopwatch = (props) => {
     return (
         <>
             <div>
-                Time: {time/1000}
+                Time: {Math.floor(time/1000)}
             </div>
         </>
     );

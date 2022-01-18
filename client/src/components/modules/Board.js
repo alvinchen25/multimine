@@ -3,6 +3,7 @@ import url from "socket.io-client/lib/url";
 import "./Board.css";
 import Cell from "./Cell";
 import { socket } from "../../client-socket.js";
+import { get, post } from "../../utilities";
 
 /*
 * PropTypes
@@ -62,8 +63,6 @@ const Board = (props) => {
     }
 
     const [cellState, setCellState] = useState(getInitState());
-
-    
     
     const revealCell = (i,j) => {
         if(cellState[i][j].flag){
@@ -121,9 +120,10 @@ const Board = (props) => {
 
         setCellState(uCellState);
         socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
-        if (currentProgress+props.progress >= 5) {
-            console.log("step1");
+        if (currentProgress+props.progress >= 381) {
             socket.emit("endGame", {room: props.room, socketid: socket.id});
+            const body = {userId: props.userId, room: props.room};
+            post("/api/addHighScore", body);
         }
         props.setProgress(currentProgress+props.progress);
     }

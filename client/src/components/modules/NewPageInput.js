@@ -36,8 +36,8 @@ const NewPageInput = (props) => {
   return (
     <>
       <div>
-        Private?
-        <input type = "checkbox" onChange={handleCheck} checked={props.roomPrivate}/>
+        Do you want your room to be private?
+        <input type = "checkbox" className="checkbox" onChange={handleCheck} checked={props.roomPrivate}/>
       </div>
       <div className="u-flex">
         <input
@@ -80,7 +80,7 @@ const NewRoom = (props) => {
 
   return (
     <>
-      <NewPageInput defaultText="Create Room" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} roomPrivate={roomPrivate} />
+      <NewPageInput defaultText="Enter room name" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} roomPrivate={roomPrivate} />
     </>
   );
   //What will the props be?

@@ -88,7 +88,6 @@ const PlayRoom = (props) => {
 
   const showGamecallback = () => {
     setGameState("during");
-    console.log("huh");
   };
   
   useEffect(() => {
@@ -175,7 +174,7 @@ const PlayRoom = (props) => {
       handleLogout={props.handleLogout}
       userId={props.userId}
     />
-    <h3>Please log in before using Multimine</h3>
+    <h3>Please navigate to the lobby and log in before using Multimine</h3>
 
     </>
     );
@@ -191,16 +190,12 @@ const PlayRoom = (props) => {
   const handleStart = (event) => {
     event.preventDefault();
     socket.emit('startGame', props._id);
-
   }
 
   return (
     <>
       <div>
-      <div className="u-flex u-flex-justifyCenter"> {/* for more styling eventually
-      also add an ID so that redirects will scroll here
-
-      */}
+      <div className="u-flex u-flex-justifyCenter">
         <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
         <Link to="/">
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
@@ -210,7 +205,7 @@ const PlayRoom = (props) => {
         
         </div>
       
-        <div className ="u-flex">
+        <div className ="gameRoom">
 
            { (gameState === "before") ? (<>
               <div className="game-board displayBlock">
@@ -241,15 +236,17 @@ const PlayRoom = (props) => {
                   setProgress={setProgress}
                   progress={progress}
                   mineList = {mineList}
-                  setGameState = {setGameState}/>
+                  setGameState = {setGameState}
+                  userId={props.userId}/>
               </div>
               </>
               )
               }
-        <div>
+        {/* <div>
           {(gameState == "during") && <Stopwatch />}
-        </div>
+        </div> */}
         <div className="progressBars"> {/* for more styling eventually*/}
+          {(gameState == "during") && <Stopwatch />}
           {/* This is our current progress: {progress} */}
             {YeetProgressList}
 

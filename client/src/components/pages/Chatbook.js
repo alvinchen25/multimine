@@ -75,7 +75,7 @@ const Chatbook = (props) => {
       handleLogout={props.handleLogout}
       userId={props.userId}
     />
-    <div> <h3>Please log in before using Multimine</h3></div>
+    <div> <h3>Please navigate to the lobby and log in before using Multimine</h3></div>
 
     </>
     )

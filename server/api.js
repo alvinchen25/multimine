@@ -73,6 +73,15 @@ router.get("/user", (req, res) => {
   }).catch(err => res.send({user: undefined}));
 });
 
+router.post("/addHighScore", (req, res) => { // pushes the score to the data for a particular user
+  const query = {_id: req.body.userId};
+  User.findOne(query).then((user) => {
+    const newTime = [{ score: gameUtils.getGameTimer()[room]}];
+    user.times = newTime.concat(user.times);
+    user.save();
+  });
+});
+
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
