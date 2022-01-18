@@ -49,6 +49,7 @@ const Profile = (props) => {
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
+        logStable={false}
         />
       <div> <h3 className="loadingPage"> Loading . . . </h3> </div>
     </>
@@ -60,6 +61,7 @@ const Profile = (props) => {
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
+        logStable={false}
         />
       <div>
         <h1 className="Profile-name u-textCenter">{user.name}</h1>

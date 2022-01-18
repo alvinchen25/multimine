@@ -44,7 +44,7 @@ const NavBar = (props) => {
           {/* <Link to="/game/" className="NavBar-link">
             Single-Player Game
           </Link> */}
-          {props.userId ? (
+          {(props.logStable) ? (props.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Logout"
@@ -60,6 +60,8 @@ const NavBar = (props) => {
               onFailure={(err) => console.log(err)}
               className="NavBar-link NavBar-login"
             />
+          )) : (
+            <></>
           )}
         </div>
       </nav>

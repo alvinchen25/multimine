@@ -75,6 +75,7 @@ const Skeleton = (props) => {
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
+        logStable={true}
         />
     <div className="lobbyBox">
     <h1>Welcome to the Multimine Lobby!</h1>

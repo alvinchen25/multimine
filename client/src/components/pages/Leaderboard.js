@@ -13,6 +13,7 @@ const Leaderboard = (props) => {
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
+        logStable={true}
         />
       <div>
         This will be the leaderboard.
