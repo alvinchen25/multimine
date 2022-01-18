@@ -5,26 +5,31 @@ import Cell from "./Cell";
 import { socket } from "../../client-socket.js";
 import { get, post } from "../../utilities";
 
-/*
+/**
 * PropTypes
+* @param {Number} height
+* @param {Number} width
+* @param {Number} mines
+* @param {String} room this is the room ID
+* @param {Array[Number]} mineList List of 0's and 1's where the 1's indicate mines
 * setProgress sets the state of progress
 */
 
 const Board = (props) => {
     let currentProgress = 0;
 
-    let data = Array(30*16).fill(0);
+    let data = Array(props.height*props.width).fill(0);
 
     const bounds = (x,y) => {
-        let ok = (0 <= x) && (x < 16) && (0 <= y) && (y < 30);
+        let ok = (0 <= x) && (x < props.height) && (0 <= y) && (y < props.width);
         return ok;
     }
     
     const getInitState = () => {
         let initState = [];
-        for(let i=0;i<16;++i){
+        for(let i=0;i<props.height;++i){
             let row = [];
-            for(let j=0;j<30;++j){
+            for(let j=0;j<props.width;++j){
                 row.push({
                     hidden: true,
                     mine: false, 
@@ -37,8 +42,8 @@ const Board = (props) => {
             initState.push(row);
         }
 
-        for(let i=0;i<16;++i){
-            for(let j=0;j<30;++j){
+        for(let i=0;i<props.height;++i){
+            for(let j=0;j<props.width;++j){
                 if(props.mineList[i][j] === 1){
                     initState[i][j].mine = true;
                 }
@@ -46,8 +51,8 @@ const Board = (props) => {
         }
         
         
-        for(let i=0;i<16;++i){
-            for(let j=0;j<30;++j){
+        for(let i=0;i<props.height;++i){
+            for(let j=0;j<props.width;++j){
                 let adjCount = 0;
                 for(let x=-1;x<=1;++x){
                     for(let y=-1;y<=1;++y){
@@ -120,7 +125,7 @@ const Board = (props) => {
 
         setCellState(uCellState);
         socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
-        if (currentProgress+props.progress >= 381) {
+        if (currentProgress+props.progress >= (props.width*props.height-props.mines)) {
             socket.emit("endGame", {room: props.room, socketid: socket.id});
             const body = {userId: props.userId, room: props.room};
             post("/api/addHighScore", body);
@@ -148,7 +153,7 @@ const Board = (props) => {
     return (
         <>
             {data.map((x, i) => (
-                <div key = {i} className = { 'cell '+ cellState[Math.floor(i/30)][i%30].status} onClick = {() => revealCell(Math.floor(i/30), i%30)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/30), i%30)}}>
+                <div key = {i} className = { 'cell '+ cellState[Math.floor(i/props.width)][i%props.width].status} onClick = {() => revealCell(Math.floor(i/props.width), i%props.width)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/props.width), i%props.width)}}>
                     <Cell />
                 </div>
                     

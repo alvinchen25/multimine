@@ -21,7 +21,7 @@ const Profile = (props) => {
            {(round.score)/1000} seconds
          </div>
          <div>
-          {round.gameTime}
+          Date: {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
           </div>
        </>
       ))) : (
@@ -67,6 +67,7 @@ const Profile = (props) => {
         />
       <div>
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
+        <h2> Number of games: {user.times.length}</h2>
         <h2>Your Scores</h2>
         <h3>{userScores}</h3>
       </div>
