@@ -1,4 +1,6 @@
 const roomCode = {};
+const gameStatus = {};
+const gameTimer = {};
 
 const initMines = () => {
     let mineArray = [];
@@ -30,5 +32,36 @@ const genRoomCode = (room) => {
     return code;
 }
 
+const setGameStatus = (room, status) => {
+    gameStatus[room] = status;
+};
 
-module.exports = {initMines: initMines, genRoomCode: genRoomCode};
+const getGameStatus = (room) => {
+    return gameStatus[room];
+};
+
+const updateGameTimer = () => {
+    for(game in gameTimer){
+        if(gameStatus[game] === "during"){
+            gameTimer[game] += 10;
+        }
+    }
+};
+
+const setGameTimer = (room, time) => {
+    gameTimer[room] = time;
+};
+
+const getGameTimer = () => {
+    return gameTimer;
+}
+
+module.exports = {
+    initMines: initMines, 
+    genRoomCode: genRoomCode, 
+    updateGameTimer: updateGameTimer,
+    getGameTimer: getGameTimer,
+    setGameStatus: setGameStatus, 
+    getGameStatus: getGameStatus,
+    setGameTimer: setGameTimer,
+};

@@ -9,7 +9,18 @@ import { socket } from "../../client-socket.js";
 
 const Stopwatch = (props) => {
     const [time, setTime] = useState(0);
-   
+
+    const timeCallback = (newTime) => {
+      setTime(newTime);
+    };
+    
+    useEffect(() => {
+        socket.on("timeUpdate", timeCallback);
+        return () => {
+          socket.off("timeUpdate", timeCallback);
+        }
+    }, [time]);
+
     return (
         <>
             <div>

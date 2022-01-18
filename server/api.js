@@ -39,6 +39,7 @@ router.post("/room", (req, res) => {
   newRoom.save().then((room) => {
     res.send(room);
   });
+  gameUtils.setGameStatus(newRoom._id, "before");
   socketManager.getIo().emit("activeRoom", newRoom);
 });
 
@@ -48,6 +49,11 @@ router.get("/roomcode", (req, res) => {
   Room.find(query).then((room) => {
     res.send({code: room[0].code});
   });
+});
+
+router.get("/roomstatus", (req, res) => {
+  const status = gameUtils.getGameStatus(req.query.room);
+  res.send({status: status});
 });
 
 router.post("/login", auth.login);

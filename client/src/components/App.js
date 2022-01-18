@@ -65,11 +65,7 @@ const App = () => {
 
   
   const activeRoomCallback = (data) => {
-    console.log("bruh");
-    console.log(roomList);
     setRoomList([data].concat(roomList));
-    // setRoomList(roomList);
-    console.log(`here is roomList: ${JSON.stringify(roomList)} and here is the new data: ${JSON.stringify(data)} and here is the concat: ${JSON.stringify(roomList.concat([data]))}`);
   };
   useEffect(() => { // socket updates rooms when rooms are created
     socket.on("activeRoom", activeRoomCallback);
