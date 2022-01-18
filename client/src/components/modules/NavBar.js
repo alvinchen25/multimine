@@ -35,8 +35,11 @@ const NavBar = (props) => {
               Profile
             </Link>
           )}
-          <Link to="/chat/" className="NavBar-link">
+          {/* <Link to="/chat/" className="NavBar-link">
             Chat
+          </Link> */}
+          <Link to="/howtoplay/" className="NavBar-link">
+            How to Play
           </Link>
           <Link to="/leaderboard/" className="NavBar-link">
             Leaderboard
