@@ -23,6 +23,8 @@ const router = express.Router();
 
 const socketManager = require("./server-socket");
 const gameUtils = require("./game-utils");
+const ObjectId = require('mongodb').ObjectId;
+
 
 router.get("/room", (req, res) => {
   // empty selector means get all documents
@@ -42,6 +44,21 @@ router.post("/room", (req, res) => {
   gameUtils.setGameStatus(newRoom._id, "before");
   socketManager.getIo().emit("activeRoom", newRoom);
 });
+
+router.post("/deleteroom", (req, res) => {
+  console.log(req.body);
+  if(socketManager.getUserFromRoom(req.body.room).length === 0){
+    const query = {code: req.body.code};
+ //   console.log(query);
+    Room.deleteOne(query).then( () => {
+      socketManager.getIo().emit("removeRoom", req.body.room);
+    }
+    );
+
+    
+  }
+});
+
 
 router.get("/roomcode", (req, res) => {
   const query = {_id: req.query.room};

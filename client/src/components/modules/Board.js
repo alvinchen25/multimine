@@ -119,12 +119,12 @@ const Board = (props) => {
         }
 
         setCellState(uCellState);
-        socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
-        if (currentProgress+props.progress >= 381) {
-            socket.emit("endGame", {room: props.room, socketid: socket.id});
-            const body = {userId: props.userId, room: props.room};
-            post("/api/addHighScore", body);
-        }
+        // socket.emit("progressUpdate",{progress: currentProgress+props.progress, room: props.room});
+        // if (currentProgress+props.progress >= 381) {
+        //     socket.emit("endGame", {room: props.room, socketid: socket.id});
+        //     const body = {userId: props.userId, room: props.room};
+        //     post("/api/addHighScore", body);
+        // }
         props.setProgress(currentProgress+props.progress);
     }
 

@@ -25,7 +25,7 @@ const getNamesFromRoom = (room) => {
 
 const addUser = (user, socket) => {
   const oldSocket = userToSocketMap[user._id];
-  if (oldSocket && oldSocket.id != socket.id) {
+  if (oldSocket && oldSocket.id !== socket.id) {
     // there was an old tab open for this user, force it to disconnect
     io.to(oldSocket).emit("forceDisconnect");
     delete socketToUserMap[oldSocket.id];
@@ -51,18 +51,21 @@ const addRoom = (user, room) => {
   if(oldRoom){
     getSocketFromUserID(user._id).leave(oldRoom);
 
-    roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing._id != user._id);
+    roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing._id !== user._id);
   }
   
   console.log(`${user.name} has joined room ${room}`);
   getSocketFromUserID(user._id).join(room);
   
   userToRoom[user._id] = room;
+ 
   if(roomToUser[room]){
     roomToUser[room].push(user);
   }else{
     roomToUser[room] = [user];
   }
+
+  console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
 }
 
 const leaveRoom = (user, room) => {
@@ -71,7 +74,9 @@ const leaveRoom = (user, room) => {
 
     console.log(`${user.name} has left room ${room}`);
 
-    roomToUser[room] = roomToUser[room].filter((thing) => thing._id != user._id);
+    roomToUser[room] = roomToUser[room].filter((thing) => thing._id !== user._id);
+    console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
+    
     delete userToRoom[user._id];
   
   }
@@ -86,7 +91,7 @@ module.exports = {
     //  console.log("asdf");
       gameUtils.updateGameTimer();
       const times = gameUtils.getGameTimer();
-      
+     // console.log(times);
       for(room in times){
         if(gameUtils.getGameStatus(room) === "during"){
           io.to(room).emit("timeUpdate", times[room]);
@@ -94,7 +99,7 @@ module.exports = {
       }
     };
 
-    setInterval(updateTimes, 10);
+    setInterval(updateTimes, 5000);
 
 
 
@@ -119,9 +124,12 @@ module.exports = {
 
 
       socket.on("joinroomSock", (room) => {
+      //  console.log(`asdfa ${room}`);
         const user = getUserFromSocketID(socket.id);
+      //  console.log(socketToUserMap);
         if(user){
           addRoom(user,room);
+         // console.log("joinROOMSOCK");
           io.to(room).emit("roomupdate", getNamesFromRoom(room));
         }
       });
@@ -130,12 +138,15 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         if(user){
           leaveRoom(user,room);
-          io.to(room).emit("roomupdate", getNamesFromRoom(room));
+          io.to(room).emit("roomupdate", getNamesFromRoom(room));         
         }
       });
 
       socket.on("startGame", (room) => {
         const mineList = gameUtils.initMines();
+        // console.log(userToRoom);
+        // console.log(room);
+       // console.log(io.sockets.adapter.rooms.get(room).size);
         io.to(room).emit("initmines", mineList);
         io.to(room).emit("showgame");
         gameUtils.setGameStatus(room, "during");
@@ -160,6 +171,7 @@ module.exports = {
     });
   },
 
+  roomToUser: roomToUser,
   addUser: addUser,
   removeUser: removeUser,
   addRoom: addRoom, 

@@ -35,7 +35,7 @@ const PlayRoom = (props) => {
   const [gameState, setGameState] = useState("before");
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
-  const [endStats, setEndStats] = useState({winner: {name: null}, winTime: 0});
+  const [endStats, setEndStats] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0,0);
@@ -73,8 +73,16 @@ const PlayRoom = (props) => {
     socket.emit("joinroomSock", props._id);
     return () => {
       socket.emit("leaveroomSock", props._id);
+      
     }
-  }, []);
+  },[]);
+
+  useEffect(() => {
+    return () => {
+      const body = {room: props._id, code: roomCode};
+      post("/api/deleteroom", body);
+    }
+  },[roomCode]);
 
   useEffect(() => {
     const callback = (newMineList) => {
@@ -87,6 +95,7 @@ const PlayRoom = (props) => {
   }, []);
 
   const showGamecallback = () => {
+    console.log("agdfg");
     setGameState("during");
   };
   
@@ -98,10 +107,12 @@ const PlayRoom = (props) => {
   }, []);
 
   const hideGamecallback = ({winner, winTime}) => {
-    console.log(winner.name);
-    console.log(`winTime: ${winTime}`);
-    setGameState("after");
-    setEndStats({winner: winner, winTime: winTime});
+  //  console.log(winner.name);
+   // console.log(`winTime: ${winTime}`);
+    //setGameState("after");
+
+    newEndStats = endStats.push({winner: winner, winTime: winTime});
+    setEndStats(newEndStats);
   };
   
   useEffect(() => {
@@ -110,6 +121,17 @@ const PlayRoom = (props) => {
       socket.off("hidegame", hideGamecallback);
     }
   }, [endStats]);
+
+
+  useEffect(() => {
+    socket.emit("progressUpdate",{progress: progress, room: props._id});
+    if (progress >= 381) {
+      setGameState("after");
+      socket.emit("endGame", {room: props._id, socketid: socket.id});
+      const body = {userId: props.userId, room: props._id};
+      post("/api/addHighScore", body);
+    }
+  },[progress]);
 
   const ProgressCallback = ({user, progress}) => {
     let newProgressList = {...progressList};
@@ -196,7 +218,7 @@ const PlayRoom = (props) => {
     <>
       <div>
       <div className="u-flex u-flex-justifyCenter">
-        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
+        <h1 className="Profile-name u-textCenter">Room {props._id}</h1>
         <Link to="/">
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
           Leave Room
@@ -260,9 +282,13 @@ const PlayRoom = (props) => {
         <div> {(gameState==="after") ? (
           <>
            <h1>You're done.</h1>
+           {endStats.map((stat, i) => {(
+             <>
+              <h1>{i+1}. {stat.winner.name}, time: {stat.winTime/1000}</h1>
 
-           <h1> Winner is {endStats.winner.name}</h1>
-           <h1>Final time is {(endStats.winTime)/1000}</h1>
+             </>
+           )
+           })}
            </>
            ) : (<></>) } </div>
         

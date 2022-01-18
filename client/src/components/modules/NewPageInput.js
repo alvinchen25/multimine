@@ -70,7 +70,6 @@ const NewRoom = (props) => {
   const [roomPrivate, setRoomPrivate] = useState(false);
 
   const AddRoom = (value) => {
-
     const body = { name: value, isPrivate: roomPrivate };
     post("/api/room", body).then((room) => {
         // display this story on the screen

@@ -23,7 +23,7 @@ const initMines = () => {
     return mineArray;
 }
 
-const genRoomCode = (room) => {
+const genRoomCode = () => {
     const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let code = "";
     for(let i=0;i<5;++i){
@@ -32,6 +32,9 @@ const genRoomCode = (room) => {
     return code;
 }
 
+const getRoomCode = (room) => {
+    return roomCode[room];
+}
 const setGameStatus = (room, status) => {
     gameStatus[room] = status;
 };
@@ -43,7 +46,7 @@ const getGameStatus = (room) => {
 const updateGameTimer = () => {
     for(game in gameTimer){
         if(gameStatus[game] === "during"){
-            gameTimer[game] += 10;
+            gameTimer[game] += 5000;
         }
     }
 };
@@ -64,4 +67,5 @@ module.exports = {
     setGameStatus: setGameStatus, 
     getGameStatus: getGameStatus,
     setGameTimer: setGameTimer,
+    getRoomCode: getRoomCode,
 };
