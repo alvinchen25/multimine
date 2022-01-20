@@ -166,7 +166,7 @@ module.exports = {
         const winner = getUserFromSocketID(socketid);
         const winTime = gameUtils.getGameTimer()[room];
         io.to(room).emit("hidegame", {winner: winner, winTime:winTime});
-        gameUtils.setGameStatus(room, "after");
+       // gameUtils.setGameStatus(room, "after");
       });
 
       socket.on("progressUpdate", ({progress, room}) => {
