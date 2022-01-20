@@ -35,8 +35,11 @@ const NavBar = (props) => {
               Profile
             </Link>
           )}
-          <Link to="/chat/" className="NavBar-link">
+          {/* <Link to="/chat/" className="NavBar-link">
             Chat
+          </Link> */}
+          <Link to="/howtoplay/" className="NavBar-link">
+            How to Play
           </Link>
           <Link to="/leaderboard/" className="NavBar-link">
             Leaderboard
@@ -44,7 +47,7 @@ const NavBar = (props) => {
           {/* <Link to="/game/" className="NavBar-link">
             Single-Player Game
           </Link> */}
-          {props.userId ? (
+          {(props.logStable) ? (props.userId ? (
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Logout"
@@ -60,6 +63,8 @@ const NavBar = (props) => {
               onFailure={(err) => console.log(err)}
               className="NavBar-link NavBar-login"
             />
+          )) : (
+            <></>
           )}
         </div>
       </nav>

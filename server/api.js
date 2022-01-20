@@ -15,6 +15,7 @@ const express = require("express");
 const User = require("./models/user");
 const Message = require("./models/message");
 const Room = require("./models/room");
+const Run = require("./models/run");
 // import authentication library
 const auth = require("./auth");
 
@@ -84,10 +85,16 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
+router.get("/leaderboard", (req, res) => {
+  Run.find().then((run) => {
+    res.send(run);
+  }).catch((error) => res.send(false));
+});
+
 router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
-  }).catch(err => res.send({user: undefined}));
+  }).catch((error) => res.send(false));
 });
 
 router.post("/addHighScore", (req, res) => { // pushes the score to the data for a particular user
@@ -96,6 +103,14 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
     const newTime = [{ score: gameUtils.getGameTimer()[room]}];
     user.times = newTime.concat(user.times);
     user.save();
+
+    const newRun = new Run({
+      userid: user._id,
+      username: user.name,
+      score: (gameUtils.getGameTimer()[room])/1000,
+    });
+  
+    newRun.save();
   });
 });
 

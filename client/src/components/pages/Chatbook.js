@@ -87,6 +87,7 @@ const Chatbook = (props) => {
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
+        logStable={true}
         />
       <div className="u-flex u-relative Chatbook-container">
         <div className="Chatbook-chatContainer u-relative">

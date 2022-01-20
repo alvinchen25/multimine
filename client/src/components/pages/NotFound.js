@@ -1,11 +1,22 @@
 import React from "react";
+import NavBar from "../modules/NavBar.js"
 
-const NotFound = () => {
+import "../../utilities.css";
+
+const NotFound = (props) => {
   return (
-    <div>
-      <h1>404 Not Found</h1>
-      <p>The page you requested couldn't be found.</p>
-    </div>
+    <>
+      <NavBar
+        handleLogin={props.handleLogin}
+        handleLogout={props.handleLogout}
+        userId={props.userId}
+        logStable={false}
+        />
+      <div>
+        <h1>404 Not Found</h1>
+        <p>The page you requested couldn't be found.</p>
+      </div>
+    </>
   );
 };
 

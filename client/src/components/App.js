@@ -8,6 +8,7 @@ import Profile from "./pages/Profile.js";
 import ProfileNoExist from "./pages/ProfileNoExist.js";
 import Chatbook from "./pages/Chatbook.js";
 import Leaderboard from "./pages/Leaderboard.js";
+import Howtoplay from "./pages/Howtoplay.js";
 import PlayRoom from "./pages/PlayRoom.js";
 import { Link } from "@reach/router";
 
@@ -165,6 +166,11 @@ const App = () => {
           userId={userId}
           userName={userName}/>
         <Leaderboard path="/leaderboard/"
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+          userId={userId}
+          userName={userName}/>
+        <Howtoplay path="/howtoplay/"
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           userId={userId}

@@ -19,6 +19,7 @@ body {
   font-size: 16px;
   border-radius: 50px;
   margin-top: var(--sper);
+  margin-bottom: var(--sper);
 }
 
 /*making lobby boxes */
@@ -31,12 +32,11 @@ body {
   margin: 10px;
 }
 
-
 .minesweeperButton > * {
   padding: none;
   margin: none;
   font-weight: 300;
-  overflow-wrap:break-word;
+  overflow-wrap: break-word;
 }
 
 .minesweeperButton h3 {
