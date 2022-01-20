@@ -33,30 +33,29 @@ router.get("/room", (req, res) => {
 }); //access room list
 
 router.post("/room", (req, res) => {
+  const code = gameUtils.genRoomCode();
+
   const newRoom = new Room({
     name: req.body.name,
-    code: gameUtils.genRoomCode(),
+    code: code,
     isPrivate: req.body.isPrivate, 
   });
 
   newRoom.save().then((room) => {
     res.send(room);
   });
+  gameUtils.setRoomCode(newRoom._id, code);
   gameUtils.setGameStatus(newRoom._id, "before");
   socketManager.getIo().emit("activeRoom", newRoom);
 });
 
 router.post("/deleteroom", (req, res) => {
-  console.log(req.body);
   if(socketManager.getUserFromRoom(req.body.room).length === 0){
     const query = {code: req.body.code};
  //   console.log(query);
     Room.deleteOne(query).then( () => {
       socketManager.getIo().emit("removeRoom", req.body.room);
-    }
-    );
-
-    
+    });
   }
 });
 
@@ -100,14 +99,14 @@ router.get("/user", (req, res) => {
 router.post("/addHighScore", (req, res) => { // pushes the score to the data for a particular user
   const query = {_id: req.body.userId};
   User.findOne(query).then((user) => {
-    const newTime = [{ score: gameUtils.getGameTimer()[room]}];
+    const newTime = [{ score: gameUtils.getGameTimer()[req.body.room]}];
     user.times = newTime.concat(user.times);
     user.save();
 
     const newRun = new Run({
       userid: user._id,
       username: user.name,
-      score: (gameUtils.getGameTimer()[room])/1000,
+      score: (gameUtils.getGameTimer()[req.body.room])/1000,
     });
   
     newRun.save();

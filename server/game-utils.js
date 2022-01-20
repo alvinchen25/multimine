@@ -32,6 +32,10 @@ const genRoomCode = () => {
     return code;
 }
 
+const setRoomCode = (room, code) => {
+    roomCode[room] = code;
+};
+
 const getRoomCode = (room) => {
     return roomCode[room];
 }
@@ -46,7 +50,7 @@ const getGameStatus = (room) => {
 const updateGameTimer = () => {
     for(game in gameTimer){
         if(gameStatus[game] === "during"){
-            gameTimer[game] += 5000;
+            gameTimer[game] += 100;
         }
     }
 };
@@ -68,4 +72,5 @@ module.exports = {
     getGameStatus: getGameStatus,
     setGameTimer: setGameTimer,
     getRoomCode: getRoomCode,
+    setRoomCode: setRoomCode,
 };

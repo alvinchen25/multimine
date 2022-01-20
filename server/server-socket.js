@@ -2,6 +2,7 @@ let io;
 
 const socket = require("socket.io-client/lib/socket");
 const gameUtils = require("./game-utils.js");
+const Room = require("./models/room");
 
 const userToSocketMap = {}; // maps user ID to socket ID
 const socketToUserMap = {}; // maps socket ID to userID
@@ -99,7 +100,7 @@ module.exports = {
       }
     };
 
-    setInterval(updateTimes, 5000);
+    setInterval(updateTimes, 100);
 
 
 
@@ -114,6 +115,14 @@ module.exports = {
             room = userToRoom[user._id];
             leaveRoom(user, room);
             io.to(room).emit("roomupdate", getNamesFromRoom(room));
+
+            if(getUserFromRoom(room).length === 0){
+              const query = {code: gameUtils.getRoomCode(room)};
+              console.log(gameUtils.getRoomCode(room));
+              Room.deleteOne(query).then(() => {
+                io.emit("removeRoom", room);
+              });
+            }
           }
 
           removeUser(user, socket.id);

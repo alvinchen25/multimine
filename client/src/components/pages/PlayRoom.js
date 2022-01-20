@@ -95,7 +95,6 @@ const PlayRoom = (props) => {
   }, []);
 
   const showGamecallback = () => {
-    console.log("agdfg");
     setGameState("during");
   };
   
@@ -107,12 +106,13 @@ const PlayRoom = (props) => {
   }, []);
 
   const hideGamecallback = ({winner, winTime}) => {
-  //  console.log(winner.name);
-   // console.log(`winTime: ${winTime}`);
-    //setGameState("after");
-
-    newEndStats = endStats.push({winner: winner, winTime: winTime});
+    let newEndStats = [...endStats];
+    newEndStats.push({winner: winner, winTime: winTime});
+    console.log(newEndStats);
     setEndStats(newEndStats);
+  //  setEndStats([{winner: {name: "nitu"}, winTime: 2}]);
+   // console.log(`endstats is ${endStats}`);
+   // console.log(endStats);
   };
   
   useEffect(() => {
@@ -160,7 +160,15 @@ const PlayRoom = (props) => {
       </>
     )
   });
+
+  const YeetLeaderboard = endStats.map((stat, i) => {
+      return (
+      <>
+       <h1>{i+1}. {stat.winner.name}, time: {stat.winTime/1000}</h1>
   
+      </>
+      )
+  });
   
   const [activeChat, setActiveChat] = useState({
     recipient: {
@@ -282,13 +290,7 @@ const PlayRoom = (props) => {
         <div> {(gameState==="after") ? (
           <>
            <h1>You're done.</h1>
-           {endStats.map((stat, i) => {(
-             <>
-              <h1>{i+1}. {stat.winner.name}, time: {stat.winTime/1000}</h1>
-
-             </>
-           )
-           })}
+           {YeetLeaderboard}
            </>
            ) : (<></>) } </div>
         
