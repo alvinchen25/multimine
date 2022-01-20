@@ -22,6 +22,9 @@ const Profile = (props) => {
         console.log(`round score: ${round.score} and avgscore ${avgScore}`);
       });
       setAvgScore(avgCounter/userObj.times.length);
+      userObj.times.sort((a,b) => {
+        return a.score-b.score;
+      });
       const newUserScores = (userObj.times.length>0) ? (userObj.times.map((round) => (
         <>
          <div>
@@ -44,7 +47,6 @@ const Profile = (props) => {
       //   );
       // }
       setUserScores(newUserScores);
-      // setUserScores(userObj.times)
 
     });
   }, []);
@@ -75,7 +77,8 @@ const Profile = (props) => {
       <div>
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
         <h2> Number of games: {user.times.length}</h2>
-        <h2> Average time: {avgScore}</h2>
+        <h2> Average time: {avgScore} seconds</h2>
+        <h2> Best time: {user.topscore.score/1000} seconds</h2>
         <h2>Your Scores</h2>
         <h3>{userScores}</h3>
       </div>

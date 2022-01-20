@@ -4,25 +4,32 @@ import NavBar from "../modules/NavBar.js"
 
 import "../../utilities.css";
 import "./Leaderboard.css";
+import { Link } from "@reach/router";
+
 
 const Leaderboard = (props) => {
   const [allRuns, setAllRuns] = useState([]);
 
   useEffect(() => {
     document.title = "Leaderboard";
-    let newRunScores = [];
-    get(`/api/leaderboard`, {}).then((runObjs) => {
-      let bestRunScores = runObjs.map((runObj) => (
+    
+    get(`/api/allUsers`, {}).then((userObjs) => {
+      userObjs.sort((a,b) => {
+        return a.topscore.score-b.topscore.score;
+      });
+      let bestRunScores = userObjs.map((userObj) => (
+        (userObj.topscore.score>0) ? (
         <>
           <div>
-            RUN: {runObj.username}, TIME {runObj.score} seconds, DATE: {runObj.gameTime}
+            RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
+            
+            TIME {userObj.topscore.score/1000} seconds with date {userObj.topscore.gameTime}
+            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
           </div>
-        </>
+        </> ) : (<></>)
       ));
       setAllRuns(bestRunScores);
-      // newRunScores.concat([runObj]);
     });
-    setAllRuns(newRunScores);
   }, []);
 
   return (

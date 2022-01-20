@@ -27,6 +27,7 @@ function getOrCreateUser(user) {
       name: user.name,
       googleid: user.sub,
       times: [],
+      topscore: { score: 0 },
     });
 
     return newUser.save();

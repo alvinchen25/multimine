@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     // `Date.now()` returns the current unix timestamp as a number
     default: Date.now
   } }],
+  topscore: { score: Number, gameTime: {
+    type: Date,
+    default: Date.now
+  }},
 });
 
 // compile model from schema
