@@ -7,25 +7,31 @@ import "./Profile.css";
 
 const Profile = (props) => {
   const [user, setUser] = useState();
-  const [userScores, setUserScores] = useState();
-  const [avgScore, setAvgScore] = useState(0);
+  const [userSmallScores, setUserSmallScores] = useState();
+  const [avgSmallScore, setAvgSmallScore] = useState(0);
+  const [userMediumScores, setUserMediumScores] = useState();
+  const [avgMediumScore, setAvgMediumScore] = useState(0);
+  const [userLargeScores, setUserLargeScores] = useState();
+  const [avgLargeScore, setAvgLargeScore] = useState(0);
 
   // const userScores = undefined
 
   useEffect(() => {
     document.title = "Profile Page";
-    let avgCounter = 0;
+    let avgSmallCounter = 0;
     get(`/api/user`, { userid: props.userId }).then((userObj) => {
       setUser(userObj);
-      userObj.times.map((round) => {
-        avgCounter=avgCounter+round.score/1000;
-        console.log(`round score: ${round.score} and avgscore ${avgScore}`);
+      userObj.smallTimes.map((round) => {
+        avgSmallCounter=avgSmallCounter+round.score/1000;
+        // console.log(`round score: ${round.score} and avgscore ${avgSmallScore}`);
       });
-      setAvgScore(avgCounter/userObj.times.length);
-      userObj.times.sort((a,b) => {
+      if (userObj.smallTimes.length>0) { // Checks to make sure length of the array is nonzero
+        setAvgSmallScore(avgSmallCounter/userObj.smallTimes.length);
+      }
+      userObj.smallTimes.sort((a,b) => {
         return a.score-b.score;
       });
-      const newUserScores = (userObj.times.length>0) ? (userObj.times.map((round) => (
+      const newUserSmallScores = (userObj.smallTimes.length>0) ? (userObj.smallTimes.map((round) => (
         <>
         <tr>
          <td>
@@ -54,8 +60,87 @@ const Profile = (props) => {
       //     </>
       //   );
       // }
-      setUserScores(newUserScores);
+      setUserSmallScores(newUserSmallScores);
 
+    });
+  }, []);
+
+  useEffect(() => {
+    let avgMediumCounter = 0;
+    get(`/api/user`, { userid: props.userId }).then((userObj) => {
+      setUser(userObj);
+      userObj.mediumTimes.map((round) => {
+        avgMediumCounter=avgMediumCounter+round.score/1000;
+        // console.log(`round score: ${round.score} and avgscore ${avgMediumScore}`);
+      });
+      if (userObj.mediumTimes.length>0) {
+        setAvgMediumScore(avgMediumCounter/userObj.mediumTimes.length);
+      }
+      userObj.mediumTimes.sort((a,b) => {
+        return a.score-b.score;
+      });
+      const newUserMediumScores = (userObj.mediumTimes.length>0) ? (userObj.mediumTimes.map((round) => (
+        <>
+        <tr>
+         <td>
+           {(round.score)/1000} seconds
+         </td>
+         <td>
+          {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
+          </td>
+        <td>
+         {round.boardSize}
+        </td>
+          </tr>
+       </>
+      ))) : (
+        <>
+          <tr>
+            <td>No games completed</td>
+          </tr>
+        </>
+      );
+      setUserMediumScores(newUserMediumScores);
+
+    });
+  }, []);
+
+  useEffect(() => {
+    let avgLargeCounter = 0;
+    get(`/api/user`, { userid: props.userId }).then((userObj) => {
+      setUser(userObj);
+      userObj.largeTimes.map((round) => {
+        avgLargeCounter=avgLargeCounter+round.score/1000;
+        // console.log(`round score: ${round.score} and avgscore ${avgLargeScore}`);
+      });
+      if (userObj.largeTimes.length>0) {
+        setAvgLargeScore(avgLargeCounter/userObj.largeTimes.length);
+      }
+      userObj.largeTimes.sort((a,b) => {
+        return a.score-b.score;
+      });
+      const newUserLargeScores = (userObj.largeTimes.length>0) ? (userObj.largeTimes.map((round) => (
+        <>
+        <tr>
+         <td>
+           {(round.score)/1000} seconds
+         </td>
+         <td>
+          {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
+          </td>
+        <td>
+         {round.boardSize}
+        </td>
+          </tr>
+       </>
+      ))) : (
+        <>
+          <tr>
+            <td>No games completed</td>
+          </tr>
+        </>
+      );
+      setUserLargeScores(newUserLargeScores);
     });
   }, []);
 
@@ -86,25 +171,58 @@ const Profile = (props) => {
         <div className="name">
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
         <h2 className="u-textCenter">Account Age: {user.name}</h2>
+        <h2 className="u-textCenter">Total number of games: {user.smallTimes.length+user.mediumTimes.length+user.largeTimes.length}</h2>
         </div>
+      </div>
+      <div className="u-flex">
+      <div className="statContainer">
         <div className="stats">
-        <h2> Number of games: {user.times.length}</h2>
-        <h2> Average time: {avgScore} seconds</h2>
-        {/* <h2> 5 most recent times: </h2> */}
-        <h2> Best Small time: {user.topscoreSmall.score/1000} seconds</h2>
-        <h2> Best Medium time: {user.topscoreMedium.score/1000} seconds</h2>
-        <h2> Best Large time: {user.topscoreLarge.score/1000} seconds</h2>
-
-        <h2 className="u-textCenter">Your Scores</h2>
-        <table>
-          <th>Time:</th>
-          <th>Date:</th>
-          <th>Board Size:</th>
-          {userScores}
-        </table>
-
-        
+          <h1>Small: 9x9, 10 mines</h1>
+          <h2> Number of games: {user.smallTimes.length}</h2>
+          <h2> Average Small time: {avgSmallScore} seconds</h2>
+          <h2> Best Small time: {user.topscoreSmall.score/1000} seconds</h2>
+          <table>
+            <tr>
+            <th>Time:</th>
+            <th>Date:</th>
+            <th>Board Size:</th>
+            {userSmallScores}
+            </tr>
+          </table>
         </div>
+      </div>
+      <div className="statContainer">
+        <div className="stats">
+          <h1> Medium: 16x16, 40 mines</h1>
+          <h2> Number of games: {user.mediumTimes.length}</h2>
+          <h2> Average time: {avgMediumScore} seconds</h2>
+          <h2> Best time: {user.topscoreMedium.score/1000} seconds</h2>
+          <table>
+            <tr>
+            <th>Time:</th>
+            <th>Date:</th>
+            <th>Board Size:</th>
+            {userMediumScores}
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div className="statContainer">
+        <div className="stats">
+          <h1> Large: 30x16, 99 mines</h1>
+          <h2> Number of games: {user.largeTimes.length}</h2>
+          <h2> Average time: {avgLargeScore} seconds</h2>
+          <h2> Best time: {user.topscoreLarge.score/1000} seconds</h2>
+          <table>
+            <tr>
+            <th>Time:</th>
+            <th>Date:</th>
+            <th>Board Size:</th>
+            {userLargeScores}
+            </tr>
+          </table>
+        </div>
+      </div>
       </div>
     </>
   );
