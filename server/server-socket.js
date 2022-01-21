@@ -3,6 +3,7 @@ let io;
 const socket = require("socket.io-client/lib/socket");
 const gameUtils = require("./game-utils.js");
 const Room = require("./models/room");
+const ObjectId = require('mongodb').ObjectId;
 
 const userToSocketMap = {}; // maps user ID to socket ID
 const socketToUserMap = {}; // maps socket ID to userID
@@ -119,6 +120,7 @@ module.exports = {
             if(getUserFromRoom(room).length === 0){
               const query = {code: gameUtils.getRoomCode(room)};
               console.log(gameUtils.getRoomCode(room));
+              gameUtils.setGameStatus(room, "after");
               Room.deleteOne(query).then(() => {
                 io.emit("removeRoom", room);
               });
@@ -133,12 +135,9 @@ module.exports = {
 
 
       socket.on("joinroomSock", (room) => {
-      //  console.log(`asdfa ${room}`);
         const user = getUserFromSocketID(socket.id);
-      //  console.log(socketToUserMap);
         if(user){
           addRoom(user,room);
-         // console.log("joinROOMSOCK");
           io.to(room).emit("roomupdate", getNamesFromRoom(room));
         }
       });
@@ -152,23 +151,24 @@ module.exports = {
       });
 
       socket.on("startGame", ({room, height, width, mines}) => {
-        console.log(`gets to socket`);
-        const mineList = gameUtils.initMines(height, width, mines);
-        // console.log(userToRoom);
-        // console.log(room);
-        console.log(`in socket: height ${height} width ${width} mines ${mines}`);
-       // console.log(io.sockets.adapter.rooms.get(room).size);
-        io.to(room).emit("initmines", mineList);
-        io.to(room).emit("showgame");
-        gameUtils.setGameStatus(room, "during");
-        gameUtils.setGameTimer(room, 0);
+        const query = {_id: ObjectId(room)};
+        Room.findOne(query).then((thing) => {
+          thing.status = "In progress";
+          thing.save();
+          const mineList = gameUtils.initMines(height, width, mines);
+          console.log(`in socket: height ${height} width ${width} mines ${mines}`);
+          io.to(room).emit("initmines", mineList);
+          io.to(room).emit("showgame");
+          io.emit("startstatus", room);
+          gameUtils.setGameStatus(room, "during");
+          gameUtils.setGameTimer(room, 0);
+        });  
       });
 
       socket.on("endGame", ({room, socketid}) => {
         const winner = getUserFromSocketID(socketid);
         const winTime = gameUtils.getGameTimer()[room];
         io.to(room).emit("hidegame", {winner: winner, winTime:winTime});
-       // gameUtils.setGameStatus(room, "after");
       });
 
       socket.on("progressUpdate", ({progress, room}) => {

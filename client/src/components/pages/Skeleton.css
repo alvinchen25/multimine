@@ -20,6 +20,7 @@ body {
   border-radius: 50px;
   margin-top: var(--sper);
   margin-bottom: var(--sper);
+  box-shadow: 0 0 15px 2px gray;
 }
 
 
@@ -44,6 +45,12 @@ body {
 .minesweeperButton h3 {
   font-size: 1.1em;
 }
+
+.minesweeperButton * {
+  margin: 0;
+}
+
+
 
 .minesweeperButtonContainer div a {
   text-decoration: none;

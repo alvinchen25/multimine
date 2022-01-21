@@ -6,26 +6,44 @@
   background-color: pink;
   padding: 30px;
   border-radius: 50px;
+  box-shadow: 0 0 15px 2px gray;
+}
+
+.boardSummary {
+  width: 100%;
+  justify-content: space-between;
 }
 
 .statContainer {
-  margin-top: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin: 30px;
 
   background-color: aquamarine;
   padding: 5px;
   border-radius: 50px;
+  width: 28%;
+
+  box-shadow: 0 0 15px 2px gray;
+
+}
+
+.statContainer h1, h3 {
+  text-align: center;
+  margin: 2px;
+}
+
+.statContainer h2 {
+  font-size: 1.2em;
 }
 
 .name {
-  flex-grow: 0.5;
+  align-self: center;
+  width: 100%;
+
 }
 
 .stats {
-  flex-grow: 3;
   margin: 30px;
-  padding-left: 80px;
+
 }
 .Profile-name {
   font-size: 40px;

@@ -265,12 +265,11 @@ const PlayRoom = (props) => {
     <>
       <div>
       <div className="u-flex u-flex-justifyCenter">
-        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
-        <Link to="/">
+        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>       
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
           Leave Room
         </button>
-        </Link>
+        
         
         </div>
       
@@ -278,7 +277,7 @@ const PlayRoom = (props) => {
 
            { (gameState === "before") ? (<>
               {/* <div className={`game-board ${props.boardSize} displayBlock`}> */}
-              <div className={`game-board displayBlock`}>
+              <div className={`game-board-${props.boardSize} displayBlock`}>
 
                <h1>Settings</h1>
                { (props.isPrivate === true) ? (
@@ -304,7 +303,7 @@ const PlayRoom = (props) => {
                </>
               ) : (
                 <>
-             <div className={`game-board-${props.boardSize}`}>
+             <div className={`game-board-${props.boardSize} ${props.boardSize}`}>
                 {(frozen > 0) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(frozen/1000)}</h1></div>) : (<> </>)}
                 <Board
                   height={height}
@@ -321,6 +320,8 @@ const PlayRoom = (props) => {
                   userId = {props.userId}
                   frozen = {frozen}
                   addFrozen = {addFrozen}/>
+
+                 
               </div>
               </>
               )

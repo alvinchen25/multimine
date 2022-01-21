@@ -27,8 +27,6 @@ const App = () => {
   const [userName, setUserName] = useState(undefined);
   const [roomList, setRoomList] = useState([]); // initializes a list of rooms
 
-  
-
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
@@ -76,14 +74,7 @@ const App = () => {
   }, [roomList]);
 
   const removeRoomCallback = (roomid) => {
-  //  console.log(roomList);
-  //  console.log(roomid);
-   // console.log(roomList);
     let newRoomList = [...roomList];
-    // newRoomList.filter((thing) => {
-    //   console.log(`thing: ${thing._id} room: ${roomid} and equal ${thing._id===roomid}`);
-    //   return (thing._id !== roomid);
-    // });
     let index = 0;
     for(let i=0;i<roomList.length;++i){
       if(roomList[i]._id === roomid){
@@ -92,11 +83,6 @@ const App = () => {
     }
     newRoomList.splice(index,1);
     setRoomList(newRoomList);
-  
-    
-  //  console.log(newRoomList);
-   // newRoomList.splice(0,1);
-    // setRoomList(newRoomList);
   };
   useEffect(() => { // socket updates rooms when rooms are created
     socket.on("removeRoom", removeRoomCallback);
@@ -104,6 +90,26 @@ const App = () => {
       socket.off("removeRoom", removeRoomCallback);
     };
   }, [roomList]);
+
+  const startstatusCallback = (roomid) => {
+    let newRoomList = [...roomList];
+    let index = 0;
+    for(let i=0;i<roomList.length;++i){
+      if(roomList[i]._id === roomid){
+        index = i;
+      }
+    }
+    newRoomList[index].status = "In progress";
+    setRoomList(newRoomList);
+  };
+
+  useEffect(() => { 
+    socket.on("startstatus", startstatusCallback);
+    return () => {
+      socket.off("startstatus", startstatusCallback);
+    };
+  }, [roomList]);
+
 
   const addNewRoom = (roomObj) => { // function for adding a room, this gets passed all the way down though
     setRoomList([roomObj].concat(roomList));

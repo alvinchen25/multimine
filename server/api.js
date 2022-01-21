@@ -40,7 +40,7 @@ router.post("/room", (req, res) => {
     code: code,
     isPrivate: req.body.isPrivate,
     boardSize: req.body.boardSize,
-    // boardSize: "large",
+    status: "open",
   });
 
   newRoom.save().then((room) => {
@@ -53,8 +53,8 @@ router.post("/room", (req, res) => {
 
 router.post("/deleteroom", (req, res) => {
   if(socketManager.getUserFromRoom(req.body.room).length === 0){
-    const query = {code: req.body.code};
- //   console.log(query);
+    gameUtils.setGameStatus(req.body.room, "after");
+    const query = {_id: ObjectId(req.body.room)};
     Room.deleteOne(query).then( () => {
       socketManager.getIo().emit("removeRoom", req.body.room);
     });
@@ -65,8 +65,8 @@ router.post("/deleteroom", (req, res) => {
 router.get("/roomcode", (req, res) => {
   const query = {_id: req.query.room};
 
-  Room.find(query).then((room) => {
-    res.send({code: room[0].code});
+  Room.findOne(query).then((room) => {
+    res.send({code: room.code});
   });
 });
 

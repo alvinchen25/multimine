@@ -37,6 +37,14 @@ const NewPageInput = (props) => {
     props.setRoomPrivate(!props.roomPrivate);
   };
 
+  const keyDown = (event) => {
+    console.log(event.key)
+    if (event.key === "Enter" ) {
+      props.onSubmit && props.onSubmit(value);
+      setValue("");
+    }
+  };
+
   return (
     <>
       <h2>Create a room</h2>
@@ -59,6 +67,7 @@ const NewPageInput = (props) => {
           placeholder={props.defaultText}
           value={value}
           onChange={handleChange}
+          onKeyDown={keyDown} 
           className="NewPostInput-input"
         />
         <button
@@ -88,7 +97,7 @@ const NewRoom = (props) => {
     const body = { name: value, isPrivate: roomPrivate, boardSize: boardSize };
     post("/api/room", body).then((room) => {
         // display this story on the screen
-      props.addNewRoomHost(room);
+      props.addNewRoomHost(room._id);
     });
   };
 
