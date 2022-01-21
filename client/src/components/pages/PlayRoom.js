@@ -42,7 +42,6 @@ const PlayRoom = (props) => {
   const [mines, setMines] = useState(99);
 
   const stylename = "game-board-"+props.boardSize;
-  console.log(`style: ${stylename}`);
 
   useEffect(() => {
     if (props.boardSize === "small") {

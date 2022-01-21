@@ -26,7 +26,9 @@ function getOrCreateUser(user) {
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
-      times: [],
+      smallTimes: [],
+      mediumTimes: [],
+      largeTimes: [],
       topscoreSmall: { score: 0 },
       topscoreMedium: { score: 0 },
       topscoreLarge: { score: 0 },

@@ -12,7 +12,7 @@ const Leaderboard = (props) => {
   const [allMediumRuns, setAllMediumRuns] = useState([]);
   const [allLargeRuns, setAllLargeRuns] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => { // gets the top small scores
     document.title = "Leaderboard";
     
     get(`/api/allUsers`, {}).then((userObjs) => {
@@ -35,7 +35,7 @@ const Leaderboard = (props) => {
     });
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { // top medium scores
     
     get(`/api/allUsers`, {}).then((userObjs) => {
       userObjs.sort((a,b) => {
@@ -57,7 +57,7 @@ const Leaderboard = (props) => {
     });
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { //top large scores
     document.title = "Leaderboard";
     
     get(`/api/allUsers`, {}).then((userObjs) => {
