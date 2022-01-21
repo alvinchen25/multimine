@@ -36,6 +36,30 @@ const PlayRoom = (props) => {
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
   const [endStats, setEndStats] = useState([]);
+  const [height, setHeight] = useState(16);
+  const [width, setWidth] = useState(30);
+  const [mines, setMines] = useState(99);
+
+  const stylename = "game-board-"+props.boardSize;
+  console.log(`style: ${stylename}`);
+
+  useEffect(() => {
+    if (props.boardSize === "small") {
+      setHeight(9);
+      setWidth(9);
+      setMines(10);
+    }
+    else if (props.boardSize === "medium") {
+      setHeight(16);
+      setWidth(16);
+      setMines(40);
+    }
+    else if (props.boardSize === "large") {
+      setHeight(16);
+      setWidth(30);
+      setMines(99);
+    }
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0,0);
@@ -125,10 +149,10 @@ const PlayRoom = (props) => {
 
   useEffect(() => {
     socket.emit("progressUpdate",{progress: progress, room: props._id});
-    if (progress >= 381) {
+    if (progress >= (height*width-mines)) {
       setGameState("after");
       socket.emit("endGame", {room: props._id, socketid: socket.id});
-      const body = {userId: props.userId, room: props._id};
+      const body = {userId: props.userId, room: props._id, boardSize: props.boardSize};
       post("/api/addHighScore", body);
     }
   },[progress]);
@@ -155,7 +179,7 @@ const PlayRoom = (props) => {
       <>
         <h3>{user}</h3>
         <div className="progressHolder">
-          <div style={{width: `${pro*100/381}%`}}></div>
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
       </>
     )
@@ -210,8 +234,6 @@ const PlayRoom = (props) => {
     );
   }
   
-  
-
   const handleLeave = (event) => {
     event.preventDefault();
     navigate("/");
@@ -219,7 +241,7 @@ const PlayRoom = (props) => {
 
   const handleStart = (event) => {
     event.preventDefault();
-    socket.emit('startGame', props._id);
+    socket.emit('startGame', {room: props._id, height: height, width: width, mines: mines});
   }
 
   return (
@@ -238,30 +260,35 @@ const PlayRoom = (props) => {
         <div className ="gameRoom">
 
            { (gameState === "before") ? (<>
-              <div className="game-board displayBlock">
+              {/* <div className={`game-board ${props.boardSize} displayBlock`}> */}
+              <div className={`game-board displayBlock`}>
+
                <h1>Settings</h1>
                <h3>
                  Room Code: {roomCode}
                </h3>
                <h3>
-                 Dimensions: 30 x 16
+                 Dimensions: {width} x {height}
                </h3>
                <h3>
-                 Number of Mines: 99
+                 Number of Mines: {mines}
                </h3>
                <h3>
-                 Mine Penalty: 5 seconds
+                 Mine Penalty: 10 seconds
                </h3>
                <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
                </div>
                </>
               ) : (
                 <>
-             <div className="game-board">
+             <div className={`game-board-${props.boardSize}`}>
                 <Board
-                  height={16}
-                  width={30}
-                  mines={99}
+                  height={height}
+                  width={width}
+                  mines={mines}
+                  // height={16}
+                  // width={32}
+                  // mines={99}
                   room = {props._id}
                   setProgress={setProgress}
                   progress={progress}

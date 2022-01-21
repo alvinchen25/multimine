@@ -17,7 +17,7 @@ const Howtoplay = (props) => {
         />
       <div className="rulesBox">
       {/* edit but include this somewhere */}
-      <h1> How To Play Minesweeper: *edit later* </h1>
+      <h1> How To Play Minesweeper! </h1>
       <h3> You will be presented with a rectangular board of square tiles! Some of the tiles cover mines (picture), 
         and your goal will be to deduce and uncover all the squares without mines! </h3>
       <h3> A left click on an uncovered tile will uncover the clicked tile. If this tile is empty, it will expose all of the adjacent empty 

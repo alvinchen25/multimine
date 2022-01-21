@@ -38,7 +38,9 @@ router.post("/room", (req, res) => {
   const newRoom = new Room({
     name: req.body.name,
     code: code,
-    isPrivate: req.body.isPrivate, 
+    isPrivate: req.body.isPrivate,
+    boardSize: req.body.boardSize,
+    // boardSize: "large",
   });
 
   newRoom.save().then((room) => {
@@ -105,7 +107,7 @@ router.get("/allUsers", (req, res) => {
 router.post("/addHighScore", (req, res) => { // pushes the score to the data for a particular user
   const query = {_id: req.body.userId};
   User.findOne(query).then((user) => {
-    const newTime = [{ score: gameUtils.getGameTimer()[req.body.room]}];
+    const newTime = [{ score: gameUtils.getGameTimer()[req.body.room], boardSize: req.body.boardSize }];
     // console.log(JSON.stringify(user));
     if (user.topscore.score === 0) {
       user.topscore = { score: newTime[0].score };

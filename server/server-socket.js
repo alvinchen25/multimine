@@ -151,10 +151,12 @@ module.exports = {
         }
       });
 
-      socket.on("startGame", (room) => {
-        const mineList = gameUtils.initMines();
+      socket.on("startGame", ({room, height, width, mines}) => {
+        console.log(`gets to socket`);
+        const mineList = gameUtils.initMines(height, width, mines);
         // console.log(userToRoom);
         // console.log(room);
+        console.log(`in socket: height ${height} width ${width} mines ${mines}`);
        // console.log(io.sockets.adapter.rooms.get(room).size);
         io.to(room).emit("initmines", mineList);
         io.to(room).emit("showgame");

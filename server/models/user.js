@@ -4,10 +4,10 @@ const UserSchema = new mongoose.Schema({
   name: String,
   googleid: String,
   // times: [Number],
-  times: [{ score: Number, gameTime: {
+  times: [{ score: Number, boardSize: String, gameTime: {
     type: Date,
     // `Date.now()` returns the current unix timestamp as a number
-    default: Date.now
+    default: Date.now,
   } }],
   topscore: { score: Number, gameTime: {
     type: Date,

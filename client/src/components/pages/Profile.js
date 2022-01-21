@@ -33,6 +33,9 @@ const Profile = (props) => {
          <div>
           Date: {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
           </div>
+          <div>
+            Board Size: {round.boardSize}
+          </div>
        </>
       ))) : (
         <>

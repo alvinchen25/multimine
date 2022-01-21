@@ -7,8 +7,8 @@ import { get, post } from "../../utilities";
 
 /**
 * PropTypes
-* @param {Number} height
-* @param {Number} width
+* @param {Number} height should be 16
+* @param {Number} width should be 30
 * @param {Number} mines
 * @param {String} room this is the room ID
 * @param {Array[Number]} mineList List of 0's and 1's where the 1's indicate mines
