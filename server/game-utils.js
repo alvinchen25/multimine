@@ -2,19 +2,19 @@ const roomCode = {};
 const gameStatus = {};
 const gameTimer = {};
 
-const initMines = () => {
+const initMines = (height, width, mines) => {
     let mineArray = [];
-    for(let i=0; i<16; i++) {
+    for(let i=0; i<height; i++) {
         let row = [];
-        for (let j=0; j<30; j++) {
+        for (let j=0; j<width; j++) {
             row.push(0);
         }
         mineArray.push(row);
     }
     let curMines = 0;
-    while(curMines < 99){
-        let x = Math.floor(16*Math.random());
-        let y = Math.floor(30*Math.random());
+    while(curMines < mines){
+        let x = Math.floor(height*Math.random());
+        let y = Math.floor(width*Math.random());
         if(mineArray[x][y] !== 1){
             curMines++;
             mineArray[x][y] = 1;

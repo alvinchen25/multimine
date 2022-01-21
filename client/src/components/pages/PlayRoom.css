@@ -6,9 +6,9 @@
 
 .leaveRoomButton {
   border: none;
-  background-color: var(--purple2);
+  background-color: pink;
   justify-content: end;
-  color: white;
+  /* color: white; */
 
   margin-right: 0;
   margin-left: auto;
@@ -52,11 +52,25 @@
 .coverUp {
   background-color: rgba(185,230,255,0.5);
   position: absolute;
-  width: 105vmin;
-  height: 56vmin;
+
   z-index: 999;
   color:white;
   font-size: 6em;
+}
+
+.small {
+  width: 31.5vmin;
+  height: 31.5vmin;
+}
+
+.medium {
+  width: 56vmin;
+  height: 56vmin;
+}
+
+.large {
+  width: 105vmin;
+  height: 56vmin;
 }
 
 .coverUp h1 {

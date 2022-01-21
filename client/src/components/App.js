@@ -115,6 +115,8 @@ const App = () => {
       path={"/room/" + roomObj._id}
       _id={roomObj._id}
       name={roomObj.name}
+      isPrivate = {roomObj.isPrivate}
+      boardSize={roomObj.boardSize}
       key="{roomObj._id}"
       userId={userId}
       userName={userName}/>

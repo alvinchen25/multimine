@@ -32,9 +32,7 @@
   .progressHolder div {
     background-color: var(--progress-green);
     height: 40px;
-    border-radius: 15px;
-    width: var(--progVal);
-  
+    border-radius: 15px;  
   }
   
   

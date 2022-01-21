@@ -64,7 +64,7 @@ const NavBar = (props) => {
               className="NavBar-link NavBar-login"
             />
           )) : (
-            <></>
+            <><div className="spacer"></div></>
           )}
         </div>
       </nav>

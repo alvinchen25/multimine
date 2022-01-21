@@ -66,6 +66,25 @@ const Skeleton = (props) => {
       </div>
     )
   ));
+  const roomLinksNotLoggedIn = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
+    (roomObj.isPrivate === true) ? (
+      <div>
+      <button className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+        <h5>Private Room:</h5>
+        <h3>{roomObj.name}</h3>
+      </button>
+        {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
+      </div>
+    ) : (
+      <div>
+       {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+        <button  className="u-link minesweeperButton">
+          <h5>Public Room:</h5>
+          <h3>{roomObj.name}</h3>
+        </button>
+      </div>
+    )
+  ));
 
   return (
     <>
@@ -76,18 +95,17 @@ const Skeleton = (props) => {
         logStable={true}
         />
     <div className="lobbyBox">
-    <h1>Welcome to the Multimine Lobby!</h1>
+    <h1>Multimine</h1>
       
       {(props.userId) ? (<div>
         <NewRoom addNewRoomHost = {addNewRoomHost} />
-      </div>) : (<div>
+      </div>) : (<h2>
         Log in to create and join a room!
-      </div>)}
+      </h2>)}
       <div className="roomCount">
-        <h2>Number of rooms open: {roomLinks.length}</h2>
-        <h3>Click below to enter a room!</h3>
+        <h3>Number of rooms open: {roomLinks.length}</h3>
         <div className="minesweeperButtonContainer">
-        {roomLinks}
+        {(props.userId) ? (<>{roomLinks}</>) : (<>{roomLinksNotLoggedIn}</>)}
         </div>
       </div>
 

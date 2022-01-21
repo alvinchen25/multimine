@@ -38,7 +38,9 @@ router.post("/room", (req, res) => {
   const newRoom = new Room({
     name: req.body.name,
     code: code,
-    isPrivate: req.body.isPrivate, 
+    isPrivate: req.body.isPrivate,
+    boardSize: req.body.boardSize,
+    // boardSize: "large",
   });
 
   newRoom.save().then((room) => {
@@ -56,7 +58,7 @@ router.post("/deleteroom", (req, res) => {
     Room.deleteOne(query).then( () => {
       socketManager.getIo().emit("removeRoom", req.body.room);
     });
-  }
+  };
 });
 
 
@@ -96,11 +98,31 @@ router.get("/user", (req, res) => {
   }).catch((error) => res.send(false));
 });
 
+router.get("/allUsers", (req, res) => {
+  User.find().then((user) => {
+    res.send(user);
+  }).catch((error) => res.send(false));
+});
+
 router.post("/addHighScore", (req, res) => { // pushes the score to the data for a particular user
   const query = {_id: req.body.userId};
   User.findOne(query).then((user) => {
-    const newTime = [{ score: gameUtils.getGameTimer()[req.body.room]}];
+    const newTime = [{ score: gameUtils.getGameTimer()[req.body.room], boardSize: req.body.boardSize }];
+    // console.log(JSON.stringify(user));
+    if (user.topscore.score === 0) {
+      user.topscore = { score: newTime[0].score };
+    }
+    else if (user.topscore.score > newTime[0].score) {
+      user.topscore = { score: newTime[0].score };
+    }
     user.times = newTime.concat(user.times);
+    // console.log(`here is user.times 1 ${user.times}`);
+    user.times = user.times.sort((a,b) => {
+      console.log(`${a.score} and then ${b.score}`);
+      a.score > b.score;
+    });
+    // console.log(`here is user.times 2 ${user.times}`);
+
     user.save();
 
     const newRun = new Run({
