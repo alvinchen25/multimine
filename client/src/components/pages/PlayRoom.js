@@ -77,7 +77,7 @@ const PlayRoom = (props) => {
   };
 
   const addFrozen = () => {
-    console.log(frozen);
+    // console.log(frozen);
     setFrozen(frozen+5000);
   };
 
@@ -152,7 +152,7 @@ const PlayRoom = (props) => {
   const hideGamecallback = ({winner, winTime}) => {
     let newEndStats = [...endStats];
     newEndStats.push({winner: winner, winTime: winTime});
-    console.log(newEndStats);
+    // console.log(newEndStats);
     setEndStats(newEndStats);
   };
   
