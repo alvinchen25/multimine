@@ -6,9 +6,9 @@
 
 .leaveRoomButton {
   border: none;
-  background-color: var(--purple2);
+  background-color: pink;
   justify-content: end;
-  color: white;
+  /* color: white; */
 
   margin-right: 0;
   margin-left: auto;

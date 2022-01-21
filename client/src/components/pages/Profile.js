@@ -27,16 +27,21 @@ const Profile = (props) => {
       });
       const newUserScores = (userObj.times.length>0) ? (userObj.times.map((round) => (
         <>
-         <div>
+        <tr>
+         <td>
            {(round.score)/1000} seconds
-         </div>
-         <div>
-          Date: {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
-          </div>
+         </td>
+         <td>
+          {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
+          </td>
+          </tr>
        </>
       ))) : (
         <>
-          <div>Complete a game to see your scores!</div>
+          <tr>
+            <td></td>
+            <td>Complete a game to see your scores!</td>
+          </tr>
         </>
       );
       // if (userObj.times.length === 0) {
@@ -74,13 +79,28 @@ const Profile = (props) => {
         userId={props.userId}
         logStable={false}
         />
-      <div>
+      <div className="u-flex profileContainer">
+        <div className="name">
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
+        <h2 className="u-textCenter">Account Age: {user.name}</h2>
+        </div>
+        <div className="stats">
         <h2> Number of games: {user.times.length}</h2>
         <h2> Average time: {avgScore} seconds</h2>
+        {/* <h2> 5 most recent times: </h2> */}
         <h2> Best time: {user.topscore.score/1000} seconds</h2>
-        <h2>Your Scores</h2>
-        <h3>{userScores}</h3>
+        
+
+
+        <h2 className="u-textCenter">Your Scores</h2>
+        <table>
+          <th>Time:</th>
+          <th>Date:</th>
+          {userScores}
+        </table>
+
+        
+        </div>
       </div>
     </>
   );

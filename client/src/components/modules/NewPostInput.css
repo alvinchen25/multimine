@@ -28,10 +28,10 @@
 
 .NewPostInput-button {
   color: white;
-  border: var(--purple2) 1px solid;
+  border: var(--grey) 1px solid;
   opacity: 0.8;
   border-radius: 0 var(--xs) var(--xs) 0;
-  background: var(--purple2);
+  background: var(--grey);
   transition: color 0.1s, background 0.1s;
   margin-right: var(--commonMargin);
   margin-top: 10px;

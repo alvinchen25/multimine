@@ -2,7 +2,7 @@
   padding: var(--s) var(--m);
   background-color: var(--primary);
   box-shadow: 0 0 12px 12px var(--primary);
-
+  height: 40px;
 }
 
 .NavBar-title,
@@ -28,4 +28,9 @@
 
 .NavBar-link + .NavBar-link {
   margin-left: var(--m);
+}
+
+.spacer {
+  height: 29px;
+  display: inline-block;
 }

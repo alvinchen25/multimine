@@ -95,16 +95,15 @@ const Skeleton = (props) => {
         logStable={true}
         />
     <div className="lobbyBox">
-    <h1>Welcome to the Multimine Lobby!</h1>
+    <h1>Multimine</h1>
       
       {(props.userId) ? (<div>
         <NewRoom addNewRoomHost = {addNewRoomHost} />
-      </div>) : (<div>
+      </div>) : (<h2>
         Log in to create and join a room!
-      </div>)}
+      </h2>)}
       <div className="roomCount">
-        <h2>Number of rooms open: {roomLinks.length}</h2>
-        <h3>Click below to enter a room!</h3>
+        <h3>Number of rooms open: {roomLinks.length}</h3>
         <div className="minesweeperButtonContainer">
         {(props.userId) ? (<>{roomLinks}</>) : (<>{roomLinksNotLoggedIn}</>)}
         </div>

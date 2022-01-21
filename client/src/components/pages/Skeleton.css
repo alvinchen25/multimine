@@ -7,9 +7,9 @@ body {
 }
 
 .lobbyBox {
-  background-color: var(--grey); /* Green */
+  background-color: pink; /* Green */
   border: none;
-  color: white;
+  /* color: white; */
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -22,6 +22,7 @@ body {
   margin-bottom: var(--sper);
 }
 
+
 /*making lobby boxes */
 .minesweeperButtonContainer {
   display: flex;
@@ -32,11 +33,12 @@ body {
   margin: 10px;
 }
 
+
 .minesweeperButton > * {
   padding: none;
   margin: none;
   font-weight: 300;
-  overflow-wrap: break-word;
+  overflow-wrap:break-word;
 }
 
 .minesweeperButton h3 {

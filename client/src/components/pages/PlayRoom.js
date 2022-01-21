@@ -240,9 +240,15 @@ const PlayRoom = (props) => {
            { (gameState === "before") ? (<>
               <div className="game-board displayBlock">
                <h1>Settings</h1>
-               <h3>
+               { (props.isPrivate === true) ? (
+                 <h3>
                  Room Code: {roomCode}
                </h3>
+               ) : (
+                <>
+                </>
+                )
+               }
                <h3>
                  Dimensions: 30 x 16
                </h3>
