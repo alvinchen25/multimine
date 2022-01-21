@@ -36,10 +36,32 @@ const PlayRoom = (props) => {
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
   const [endStats, setEndStats] = useState([]);
+  const [frozen, setFrozen] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0,0);
   }, []);
+
+
+  const updateFrozen = () => {
+    setFrozen(frozen => {
+      if(frozen > 0){
+        return frozen - 100;
+      }else{
+        return 0;
+      }
+    });
+  };
+
+  const addFrozen = () => {
+    console.log(frozen);
+    setFrozen(frozen+5000);
+  };
+
+  useEffect(() => {
+    setInterval(updateFrozen, 100);
+  }, []);
+
 
   useEffect(() => {
     get("/api/roomstatus", {room: props._id}).then((thing) => {
@@ -61,7 +83,6 @@ const PlayRoom = (props) => {
     }
     
   }
-
   useEffect(() => {
      socket.on("roomupdate", Userlistcallback);
      return () => {
@@ -110,9 +131,6 @@ const PlayRoom = (props) => {
     newEndStats.push({winner: winner, winTime: winTime});
     console.log(newEndStats);
     setEndStats(newEndStats);
-  //  setEndStats([{winner: {name: "nitu"}, winTime: 2}]);
-   // console.log(`endstats is ${endStats}`);
-   // console.log(endStats);
   };
   
   useEffect(() => {
@@ -226,7 +244,7 @@ const PlayRoom = (props) => {
     <>
       <div>
       <div className="u-flex u-flex-justifyCenter">
-        <h1 className="Profile-name u-textCenter">Room {props._id}</h1>
+        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
         <Link to="/">
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
           Leave Room
@@ -258,16 +276,19 @@ const PlayRoom = (props) => {
               ) : (
                 <>
              <div className="game-board">
+               {(frozen > 0) ? (<div className="coverUp u-flex u-flex-alignCenter"><h1>{Math.ceil(frozen/1000)}</h1></div>) : (<> </>)}
                 <Board
-                  height={16}
-                  width={30}
-                  mines={99}
+                  height = {16}
+                  width = {30}
+                  mines = {99}
                   room = {props._id}
-                  setProgress={setProgress}
-                  progress={progress}
+                  setProgress = {setProgress}
+                  progress = {progress}
                   mineList = {mineList}
                   setGameState = {setGameState}
-                  userId={props.userId}/>
+                  userId = {props.userId}
+                  frozen = {frozen}
+                  addFrozen = {addFrozen}/>
               </div>
               </>
               )

@@ -49,6 +49,21 @@
   flex-grow: 3;
 }
 
+.coverUp {
+  background-color: rgba(185,230,255,0.5);
+  position: absolute;
+  width: 105vmin;
+  height: 56vmin;
+  z-index: 999;
+  color:white;
+  font-size: 6em;
+}
+
+.coverUp h1 {
+  opacity: 0.8;
+}
+
+
 /* .gameRoom h1 {
   width: 105vmin;
 } */

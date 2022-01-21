@@ -69,6 +69,14 @@ const Board = (props) => {
 
     const [cellState, setCellState] = useState(getInitState());
     
+    const handleClick = (i,j) => {
+        if(props.frozen > 0){
+            return;
+        }else{
+            revealCell(i,j);
+        }
+    };
+
     const revealCell = (i,j) => {
         if(cellState[i][j].flag){
             return;
@@ -81,6 +89,7 @@ const Board = (props) => {
             uCellState[i][j].hidden = false;
             if(cellState[i][j].mine){
                 uCellState[i][j].status = 'mine';
+                props.addFrozen();
             }else{
                 currentProgress++;
 
@@ -147,7 +156,7 @@ const Board = (props) => {
     return (
         <>
             {data.map((x, i) => (
-                <div key = {i} className = { 'cell '+ cellState[Math.floor(i/props.width)][i%props.width].status} onClick = {() => revealCell(Math.floor(i/props.width), i%props.width)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/props.width), i%props.width)}}>
+                <div key = {i} className = { 'cell '+ cellState[Math.floor(i/props.width)][i%props.width].status} onClick = {() => handleClick(Math.floor(i/props.width), i%props.width)} onContextMenu = {(e) => {e.preventDefault(), flagCell(Math.floor(i/props.width), i%props.width)}}>
                     <Cell />
                 </div>
                     
