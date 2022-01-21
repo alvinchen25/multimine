@@ -45,7 +45,6 @@
 
   box-shadow: 0 0 15px 2px gray;
 
-
   }
 
 .game-board-small > * {
@@ -54,6 +53,7 @@
 
 small h1 {
   width:  31.5vmin;
+  align-self: center;
 }
 
 .game-board-medium {

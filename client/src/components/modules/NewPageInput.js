@@ -38,10 +38,12 @@ const NewPageInput = (props) => {
   };
 
   const keyDown = (event) => {
-    if (event.code === "Enter" ) {
-      handleSubmit()
+    console.log(event.key)
+    if (event.key === "Enter" ) {
+      props.onSubmit && props.onSubmit(value);
+      setValue("");
     }
-  }
+  };
 
   return (
     <>
@@ -101,7 +103,7 @@ const NewRoom = (props) => {
 
   return (
     <>
-      <NewPageInput defaultText="Enter room name to create room"  onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} setBoardSize={setBoardSize} roomPrivate={roomPrivate} />
+      <NewPageInput defaultText="Enter room name to create room" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} setBoardSize={setBoardSize} roomPrivate={roomPrivate} />
     </>
   );
   //What will the props be?

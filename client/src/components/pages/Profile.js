@@ -40,15 +40,13 @@ const Profile = (props) => {
          <td>
           {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
           </td>
-        <td>
-         {round.boardSize}
-        </td>
+
           </tr>
        </>
       ))) : (
         <>
           <tr>
-            <td></td>
+          <td></td>
             <td>Complete a game to see your scores!</td>
           </tr>
         </>
@@ -88,15 +86,14 @@ const Profile = (props) => {
          <td>
           {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
           </td>
-        <td>
-         {round.boardSize}
-        </td>
+
           </tr>
        </>
       ))) : (
         <>
           <tr>
-            <td>No games completed</td>
+          <td></td>
+          <td>Complete a game to see your scores!</td>
           </tr>
         </>
       );
@@ -128,15 +125,14 @@ const Profile = (props) => {
          <td>
           {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
           </td>
-        <td>
-         {round.boardSize}
-        </td>
+
           </tr>
        </>
       ))) : (
         <>
           <tr>
-            <td>No games completed</td>
+            <td></td>
+          <td>Complete a game to see your scores!</td>
           </tr>
         </>
       );
@@ -173,11 +169,18 @@ const Profile = (props) => {
         <h2 className="u-textCenter">Account Age: {user.name}</h2>
         <h2 className="u-textCenter">Total number of games: {user.smallTimes.length+user.mediumTimes.length+user.largeTimes.length}</h2>
         </div>
+
+
+
+
+
+        
       </div>
-      <div className="u-flex">
+      <div className="u-flex boardSummary">
       <div className="statContainer">
         <div className="stats">
-          <h1>Small: 9x9, 10 mines</h1>
+          <h1>Small</h1>
+          <h3>9x9, 10 mines</h3>
           <h2> Number of games: {user.smallTimes.length}</h2>
           <h2> Average Small time: {avgSmallScore} seconds</h2>
           <h2> Best Small time: {user.topscoreSmall.score/1000} seconds</h2>
@@ -185,15 +188,16 @@ const Profile = (props) => {
             <tr>
             <th>Time:</th>
             <th>Date:</th>
-            <th>Board Size:</th>
-            {userSmallScores}
             </tr>
+            {userSmallScores}
+            
           </table>
         </div>
       </div>
       <div className="statContainer">
         <div className="stats">
-          <h1> Medium: 16x16, 40 mines</h1>
+          <h1> Medium</h1>
+          <h3>16x16, 40 mines</h3>
           <h2> Number of games: {user.mediumTimes.length}</h2>
           <h2> Average time: {avgMediumScore} seconds</h2>
           <h2> Best time: {user.topscoreMedium.score/1000} seconds</h2>
@@ -201,15 +205,16 @@ const Profile = (props) => {
             <tr>
             <th>Time:</th>
             <th>Date:</th>
-            <th>Board Size:</th>
-            {userMediumScores}
             </tr>
+            {userMediumScores}
+            
           </table>
         </div>
       </div>
       <div className="statContainer">
         <div className="stats">
-          <h1> Large: 30x16, 99 mines</h1>
+          <h1> Large</h1>
+          <h3> 30x16, 99 mines</h3>
           <h2> Number of games: {user.largeTimes.length}</h2>
           <h2> Average time: {avgLargeScore} seconds</h2>
           <h2> Best time: {user.topscoreLarge.score/1000} seconds</h2>
@@ -217,9 +222,8 @@ const Profile = (props) => {
             <tr>
             <th>Time:</th>
             <th>Date:</th>
-            <th>Board Size:</th>
-            {userLargeScores}
             </tr>
+            {userLargeScores}
           </table>
         </div>
       </div>
