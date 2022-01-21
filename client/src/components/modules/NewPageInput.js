@@ -20,6 +20,10 @@ const NewPageInput = (props) => {
     setValue(event.target.value);
   };
 
+  const sizeChange = (event) => {
+    props.setBoardSize(event.target.value);
+  }
+
   // called when the user hits "Submit" for a new post
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,8 +42,16 @@ const NewPageInput = (props) => {
       <h2>Create a room</h2>
       
       <div>
-        Do you want your room to be private?
+        Private game?
         <input type = "checkbox" className="checkbox" onChange={handleCheck} checked={props.roomPrivate}/>
+      </div>
+      <div>
+        Game size?
+        <select onChange={sizeChange}>
+          <option value="large" defaultValue>Large: 16x30, 99 mines</option>
+          <option value="medium">Medium 16x16, 40 mines</option>
+          <option value="small">Small 9x9, 10 mines</option>
+        </select>
       </div>
       <div className="u-flex">
         <input
@@ -70,9 +82,10 @@ const NewPageInput = (props) => {
  */
 const NewRoom = (props) => {
   const [roomPrivate, setRoomPrivate] = useState(false);
+  const [boardSize, setBoardSize] = useState("large");
 
   const AddRoom = (value) => {
-    const body = { name: value, isPrivate: roomPrivate };
+    const body = { name: value, isPrivate: roomPrivate, boardSize: boardSize };
     post("/api/room", body).then((room) => {
         // display this story on the screen
       props.addNewRoomHost(room);
@@ -81,7 +94,7 @@ const NewRoom = (props) => {
 
   return (
     <>
-      <NewPageInput defaultText="Enter room name to create room" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} roomPrivate={roomPrivate} />
+      <NewPageInput defaultText="Enter room name to create room" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} setBoardSize={setBoardSize} roomPrivate={roomPrivate} />
     </>
   );
   //What will the props be?

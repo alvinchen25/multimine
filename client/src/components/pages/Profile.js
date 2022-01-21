@@ -34,6 +34,9 @@ const Profile = (props) => {
          <td>
           {round.gameTime.substring(0,10)} {round.gameTime.substring(11, 19)} UTC
           </td>
+        <td>
+         {round.boardSize}
+        </td>
           </tr>
        </>
       ))) : (
@@ -96,6 +99,7 @@ const Profile = (props) => {
         <table>
           <th>Time:</th>
           <th>Date:</th>
+          <th>Board Size:</th>
           {userScores}
         </table>
 
