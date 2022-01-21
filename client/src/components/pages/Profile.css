@@ -6,6 +6,8 @@
   background-color: pink;
   padding: 30px;
   border-radius: 50px;
+  box-shadow: 0 0 15px 2px gray;
+
 }
 
 .name {

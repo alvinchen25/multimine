@@ -37,6 +37,12 @@ const NewPageInput = (props) => {
     props.setRoomPrivate(!props.roomPrivate);
   };
 
+  const keyDown = (event) => {
+    if (event.code === "Enter" ) {
+      handleSubmit()
+    }
+  }
+
   return (
     <>
       <h2>Create a room</h2>
@@ -59,6 +65,7 @@ const NewPageInput = (props) => {
           placeholder={props.defaultText}
           value={value}
           onChange={handleChange}
+          onKeyDown={keyDown} 
           className="NewPostInput-input"
         />
         <button
@@ -94,7 +101,7 @@ const NewRoom = (props) => {
 
   return (
     <>
-      <NewPageInput defaultText="Enter room name to create room" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} setBoardSize={setBoardSize} roomPrivate={roomPrivate} />
+      <NewPageInput defaultText="Enter room name to create room"  onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} setBoardSize={setBoardSize} roomPrivate={roomPrivate} />
     </>
   );
   //What will the props be?

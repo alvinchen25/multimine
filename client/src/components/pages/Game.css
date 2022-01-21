@@ -2,8 +2,6 @@
   background-color: var(--primary);
   /* width: 120vmin;
     height: 64vmin; */
-  width: 105vmin;
-  height: 56vmin;
   margin-left: 5%;
   margin-right: 2%;
 
@@ -22,9 +20,9 @@
   word-break: break-all;
 }
 
-.game-board h1 {
+/* .game-board h1 {
   width: 105vmin;
-}
+} */
 
 .game-board-small {
   background-color: var(--primary);
@@ -44,14 +42,18 @@
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-}
+
+  box-shadow: 0 0 15px 2px gray;
+
+
+  }
 
 .game-board-small > * {
   word-break: break-all;
 }
 
-.game-board-small h1 {
-  width: 105vmin;
+small h1 {
+  width:  31.5vmin;
 }
 
 .game-board-medium {
@@ -72,14 +74,17 @@
   padding: 20px;
   border-radius: 15px;
   text-align: center;
+
+  box-shadow: 0 0 15px 2px gray;
+
 }
 
 .game-board-medium > * {
   word-break: break-all;
 }
 
-.game-board-medium h1 {
-  width: 105vmin;
+.medium h1 {
+  width: 56vmin;
 }
 
 .game-board-large {
@@ -100,12 +105,15 @@
   padding: 20px;
   border-radius: 15px;
   text-align: center;
+
+  box-shadow: 0 0 15px 2px gray;
+
 }
 
 .game-board-large > * {
   word-break: break-all;
 }
 
-.game-board-large h1 {
+.large h1 {
   width: 105vmin;
 }
