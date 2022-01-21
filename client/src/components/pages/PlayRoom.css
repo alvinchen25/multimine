@@ -73,8 +73,20 @@
   height: 56vmin;
 }
 
+.coverUp {
+  background-color: #b9e6ff80;
+  position: absolute;
+
+  z-index: 999;
+  color:white;
+  font-size: 6em;
+}
+
 .coverUp h1 {
   opacity: 0.8;
+  text-align: center;
+  align-self: center;
+  width: 100%;
 }
 
 

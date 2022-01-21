@@ -35,7 +35,7 @@ const Chat = (props) => {
         <div className="u-flexColumn Chat-container">
           <h2>Lobby {props.data.recipient.name}</h2>
           <div className="Chat-historyContainer">
-            {props.data.messages.map((m, i) => (
+            {[...props.data.messages].reverse().map((m, i) => (
               <SingleMessage message={m} key={i} />
             ))}
           </div>
@@ -54,7 +54,7 @@ const Chat = (props) => {
         <div className="u-flexColumn Chat-container">
           <h2>Chat with {props.data.recipient.name}</h2>
           <div className="Chat-historyContainer">
-            {props.data.messages.map((m, i) => (
+            {[...props.data.messages].reverse().map((m, i) => (
               <SingleMessage message={m} key={i} />
             ))}
           </div>

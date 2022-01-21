@@ -8,27 +8,75 @@ import { Link } from "@reach/router";
 
 
 const Leaderboard = (props) => {
-  const [allRuns, setAllRuns] = useState([]);
+  const [allSmallRuns, setAllSmallRuns] = useState([]);
+  const [allMediumRuns, setAllMediumRuns] = useState([]);
+  const [allLargeRuns, setAllLargeRuns] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => { // gets the top small scores
     document.title = "Leaderboard";
     
     get(`/api/allUsers`, {}).then((userObjs) => {
       userObjs.sort((a,b) => {
-        return a.topscore.score-b.topscore.score;
+        return a.topscoreSmall.score-b.topscoreSmall.score;
       });
-      let bestRunScores = userObjs.map((userObj) => (
-        (userObj.topscore.score>0) ? (
+      let bestSmallRunScores = userObjs.map((userObj) => (
+        (userObj.topscoreSmall.score>0) ? (
         <>
           <div>
             RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
             
-            TIME {userObj.topscore.score/1000} seconds with date {userObj.topscore.gameTime}
+            TIME {userObj.topscoreSmall.score/1000} seconds with date {userObj.topscoreSmall.gameTime}
+            Board Size: {userObj.topscoreSmall.boardSize}
             {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
           </div>
         </> ) : (<></>)
       ));
-      setAllRuns(bestRunScores);
+      setAllSmallRuns(bestSmallRunScores);
+    });
+  }, []);
+
+  useEffect(() => { // top medium scores
+    
+    get(`/api/allUsers`, {}).then((userObjs) => {
+      userObjs.sort((a,b) => {
+        return a.topscoreMedium.score-b.topscoreMedium.score;
+      });
+      let bestMediumRunScores = userObjs.map((userObj) => (
+        (userObj.topscoreMedium.score>0) ? (
+        <>
+          <div>
+            RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
+            
+            TIME {userObj.topscoreMedium.score/1000} seconds with date {userObj.topscoreMedium.gameTime}
+            Board Size: {userObj.topscoreMedium.boardSize}
+            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
+          </div>
+        </> ) : (<></>)
+      ));
+      setAllMediumRuns(bestMediumRunScores);
+    });
+  }, []);
+
+  useEffect(() => { //top large scores
+    document.title = "Leaderboard";
+    
+    get(`/api/allUsers`, {}).then((userObjs) => {
+      userObjs.sort((a,b) => {
+        return a.topscoreLarge.score-b.topscoreLarge.score;
+      });
+      let bestLargeRunScores = userObjs.map((userObj) => (
+        (userObj.topscoreLarge.score>0) ? (
+        <>
+          <div>
+            RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
+            
+            TIME {userObj.topscoreLarge.score/1000} seconds with date {userObj.topscoreLarge.gameTime}
+            Board Size: {userObj.topscoreLarge.boardSize}
+            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
+          </div>
+        </> ) : (<></>)
+      ));
+      setAllLargeRuns(bestLargeRunScores);
     });
   }, []);
 
@@ -44,8 +92,11 @@ const Leaderboard = (props) => {
         This will be the leaderboard. But right now, it's just a list of everybody's runs, not in order.
       </div>
       <div>
-        {allRuns}
+        SMALL: {allSmallRuns}
       </div>
+      <div>MEDIUM: {allMediumRuns}</div>
+      <div>LARGE: {allLargeRuns}</div>
+
     </>
   );
 };

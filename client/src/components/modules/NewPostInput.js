@@ -29,6 +29,15 @@ const NewPostInput = (props) => {
     }
     setValue("");
   };
+
+  const keyDown = (event) => {
+    if (event.key === "Enter" ) {
+      if (value !== "") {
+        props.onSubmit && props.onSubmit(value);
+      }
+      setValue("");
+    }
+  };
   
   return (
     <div className="u-flex">
@@ -37,6 +46,7 @@ const NewPostInput = (props) => {
         placeholder={props.defaultText}
         value={value}
         onChange={handleChange}
+        onKeyDown={keyDown} 
         className="NewPostInput-input"
       />
       <button
