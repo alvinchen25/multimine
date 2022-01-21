@@ -6,7 +6,7 @@ const RoomSchema = new mongoose.Schema({ // it still gets an _id in addition to 
     code: String,
     isPrivate: Boolean,
     boardSize: String, // can be small, medium, large
-    // eventually will have a lot more info about the room carried in this schema
+    status: String,
 });
 
 // compile model from schema

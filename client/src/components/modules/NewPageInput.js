@@ -88,7 +88,7 @@ const NewRoom = (props) => {
     const body = { name: value, isPrivate: roomPrivate, boardSize: boardSize };
     post("/api/room", body).then((room) => {
         // display this story on the screen
-      props.addNewRoomHost(room);
+      props.addNewRoomHost(room._id);
     });
   };
 

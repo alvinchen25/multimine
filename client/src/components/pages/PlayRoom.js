@@ -266,12 +266,11 @@ const PlayRoom = (props) => {
     <>
       <div>
       <div className="u-flex u-flex-justifyCenter">
-        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
-        <Link to="/">
+        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>       
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
           Leave Room
         </button>
-        </Link>
+        
         
         </div>
       
@@ -322,6 +321,8 @@ const PlayRoom = (props) => {
                   userId = {props.userId}
                   frozen = {frozen}
                   addFrozen = {addFrozen}/>
+
+                 
               </div>
               </>
               )

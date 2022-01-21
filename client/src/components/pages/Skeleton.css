@@ -45,6 +45,12 @@ body {
   font-size: 1.1em;
 }
 
+.minesweeperButton * {
+  margin: 0;
+}
+
+
+
 .minesweeperButtonContainer div a {
   text-decoration: none;
 }
