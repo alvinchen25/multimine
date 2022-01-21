@@ -109,18 +109,60 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
   User.findOne(query).then((user) => {
     const newTime = [{ score: gameUtils.getGameTimer()[req.body.room], boardSize: req.body.boardSize }];
     // console.log(JSON.stringify(user));
-    if (user.topscore.score === 0) {
-      user.topscore = { score: newTime[0].score };
+    if (req.body.boardSize === "small") {
+      if (user.topscoreSmall.score === 0) {
+        user.topscoreSmall = { score: newTime[0].score, boardSize: req.body.boardSize};
+      }
+      else if (user.topscoreSmall.score > newTime[0].score) {
+        user.topscoreSmall = { score: newTime[0].score, boardSize: req.body.boardSize };
+      }
+      user.times = newTime.concat(user.times);
+      // console.log(`here is user.times 1 ${user.times}`);
+      user.times = user.times.sort((a,b) => {
+        console.log(`${a.score} and then ${b.score}`);
+        a.score > b.score;
+      });
     }
-    else if (user.topscore.score > newTime[0].score) {
-      user.topscore = { score: newTime[0].score };
+    else if (req.body.boardSize === "medium") {
+      if (user.topscoreMedium.score === 0) {
+        user.topscoreMedium = { score: newTime[0].score, boardSize: req.body.boardSize};
+      }
+      else if (user.topscoreMedium.score > newTime[0].score) {
+        user.topscoreMedium = { score: newTime[0].score, boardSize: req.body.boardSize };
+      }
+      user.times = newTime.concat(user.times);
+      // console.log(`here is user.times 1 ${user.times}`);
+      user.times = user.times.sort((a,b) => {
+        console.log(`${a.score} and then ${b.score}`);
+        a.score > b.score;
+      });
     }
-    user.times = newTime.concat(user.times);
-    // console.log(`here is user.times 1 ${user.times}`);
-    user.times = user.times.sort((a,b) => {
-      console.log(`${a.score} and then ${b.score}`);
-      a.score > b.score;
-    });
+    else if (req.body.boardSize === "large") {
+      if (user.topscoreLarge.score === 0) {
+        user.topscoreLarge = { score: newTime[0].score, boardSize: req.body.boardSize};
+      }
+      else if (user.topscoreLarge.score > newTime[0].score) {
+        user.topscoreLarge = { score: newTime[0].score, boardSize: req.body.boardSize };
+      }
+      user.times = newTime.concat(user.times);
+      // console.log(`here is user.times 1 ${user.times}`);
+      user.times = user.times.sort((a,b) => {
+        console.log(`${a.score} and then ${b.score}`);
+        a.score > b.score;
+      });
+    }
+    // if (user.topscore.score === 0) {
+    //   user.topscore = { score: newTime[0].score, boardSize: req.body.boardSize};
+    // }
+    // else if (user.topscore.score > newTime[0].score) {
+    //   user.topscore = { score: newTime[0].score, boardSize: req.body.boardSize };
+    // }
+    // user.times = newTime.concat(user.times);
+    // // console.log(`here is user.times 1 ${user.times}`);
+    // user.times = user.times.sort((a,b) => {
+    //   console.log(`${a.score} and then ${b.score}`);
+    //   a.score > b.score;
+    // });
     // console.log(`here is user.times 2 ${user.times}`);
 
     user.save();

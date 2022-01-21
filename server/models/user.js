@@ -9,7 +9,15 @@ const UserSchema = new mongoose.Schema({
     // `Date.now()` returns the current unix timestamp as a number
     default: Date.now,
   } }],
-  topscore: { score: Number, gameTime: {
+  topscoreSmall: { score: Number, boardSize: String, gameTime: {
+    type: Date,
+    default: Date.now
+  }},
+  topscoreMedium: { score: Number, boardSize: String, gameTime: {
+    type: Date,
+    default: Date.now
+  }},
+  topscoreLarge: { score: Number, boardSize: String, gameTime: {
     type: Date,
     default: Date.now
   }},

@@ -91,9 +91,9 @@ const Profile = (props) => {
         <h2> Number of games: {user.times.length}</h2>
         <h2> Average time: {avgScore} seconds</h2>
         {/* <h2> 5 most recent times: </h2> */}
-        <h2> Best time: {user.topscore.score/1000} seconds</h2>
-        
-
+        <h2> Best Small time: {user.topscoreSmall.score/1000} seconds</h2>
+        <h2> Best Medium time: {user.topscoreMedium.score/1000} seconds</h2>
+        <h2> Best Large time: {user.topscoreLarge.score/1000} seconds</h2>
 
         <h2 className="u-textCenter">Your Scores</h2>
         <table>
