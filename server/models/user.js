@@ -31,6 +31,10 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }},
+  dateCreated: {
+    type: Date,
+    default: Date.now
+  },
 });
 
 // compile model from schema

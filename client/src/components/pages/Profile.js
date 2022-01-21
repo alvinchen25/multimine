@@ -170,7 +170,7 @@ const Profile = (props) => {
       <div className="u-flex profileContainer">
         <div className="name">
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
-        <h2 className="u-textCenter">Account Age: {user.name}</h2>
+        <h2 className="u-textCenter">Account created: {user.dateCreated.substring(5,7)}/{user.dateCreated.substring(8,10)}/{user.dateCreated.substring(0,4)}</h2>
         <h2 className="u-textCenter">Total number of games: {user.smallTimes.length+user.mediumTimes.length+user.largeTimes.length}</h2>
         </div>
       </div>
@@ -179,8 +179,8 @@ const Profile = (props) => {
         <div className="stats">
           <h1>Small: 9x9, 10 mines</h1>
           <h2> Number of games: {user.smallTimes.length}</h2>
-          <h2> Average Small time: {avgSmallScore} seconds</h2>
-          <h2> Best Small time: {user.topscoreSmall.score/1000} seconds</h2>
+          <h2> Average time: {avgSmallScore} seconds</h2>
+          <h2> Best time: {user.topscoreSmall.score/1000} seconds</h2>
           <table>
             <tr>
             <th>Time:</th>
