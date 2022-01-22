@@ -33,7 +33,7 @@ Added colors
 
 
 :root {
-  --primary: #B9E6FF;
+  --primary: #b9e6ff;
   --primary--dim: #3dbbff;
   --progress-green: aquamarine;
   --purple1: #AF90A9;
@@ -41,7 +41,7 @@ Added colors
   --primary3: #faecf2;
   --darkgrey: #575757;
   --medgrey: #acacac;
-  --grey: #8f898e;
+  --grey: #8f898c;
   --white: #fff;
 
   --xs: 4px;

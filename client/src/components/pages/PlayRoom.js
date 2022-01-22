@@ -265,12 +265,11 @@ const PlayRoom = (props) => {
     <>
       <div>
       <div className="u-flex u-flex-justifyCenter">
-        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
-        <Link to="/">
+        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>       
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
           Leave Room
         </button>
-        </Link>
+        
         
         </div>
       
@@ -279,8 +278,7 @@ const PlayRoom = (props) => {
            { (gameState === "before") ? (<>
               {/* <div className={`game-board ${props.boardSize} displayBlock`}> */}
               <div className={`game-board-${props.boardSize} displayBlock`}>
-
-               <h1>Settings</h1>
+               {/* <h1>Settings</h1> */}
                { (props.isPrivate === true) ? (
                  <h3>
                  Room Code: {roomCode}
@@ -321,6 +319,8 @@ const PlayRoom = (props) => {
                   userId = {props.userId}
                   frozen = {frozen}
                   addFrozen = {addFrozen}/>
+
+                 
               </div>
               </>
               )
@@ -330,8 +330,8 @@ const PlayRoom = (props) => {
         </div> */}
         <div className="progressBars"> {/* for more styling eventually*/}
           {(gameState == "during") && <Stopwatch />}
-          {/* This is our current progress: {progress} */}
-            {YeetProgressList}
+          Squares cleared: {}
+          {YeetProgressList}
 
         </div>
         {/* <div>

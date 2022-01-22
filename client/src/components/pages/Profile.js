@@ -178,7 +178,7 @@ const Profile = (props) => {
           <h1>Small</h1>
           <h3>9x9, 10 mines</h3>
           <h2> Number of games: {user.smallTimes.length}</h2>
-          <h2> Average time: {avgSmallScore} seconds</h2>
+          <h2> Average time: {Math.ceil(avgSmallScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreSmall.score/1000} seconds</h2>
           <table>
             <tr>
@@ -195,7 +195,7 @@ const Profile = (props) => {
           <h1> Medium</h1>
           <h3>16x16, 40 mines</h3>
           <h2> Number of games: {user.mediumTimes.length}</h2>
-          <h2> Average time: {avgMediumScore} seconds</h2>
+          <h2> Average time: {Math.ceil(avgMediumScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreMedium.score/1000} seconds</h2>
           <table>
             <tr>
@@ -212,7 +212,7 @@ const Profile = (props) => {
           <h1> Large</h1>
           <h3> 30x16, 99 mines</h3>
           <h2> Number of games: {user.largeTimes.length}</h2>
-          <h2> Average time: {avgLargeScore} seconds</h2>
+          <h2> Average time: {Math.ceil(avgLargeScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreLarge.score/1000} seconds</h2>
           <table>
             <tr>

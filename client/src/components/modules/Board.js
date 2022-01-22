@@ -24,6 +24,8 @@ const Board = (props) => {
         let ok = (0 <= x) && (x < props.height) && (0 <= y) && (y < props.width);
         return ok;
     }
+
+    const startsquare = [5,5];
     
     const getInitState = () => {
         let initState = [];
@@ -64,6 +66,8 @@ const Board = (props) => {
                 initState[i][j].adjMines = adjCount;
             }
         }
+
+        initState[startsquare[0]][startsquare[1]].status = "golden";
         return initState;
     }
 

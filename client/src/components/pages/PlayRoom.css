@@ -50,6 +50,14 @@
   flex-grow: 3;
 }
 
+.coverUp {
+  background-color: rgba(185,230,255,0.5);
+  position: absolute;
+
+  z-index: 999;
+  color:white;
+  font-size: 4em;
+}
 
 .small {
   width: 31.5vmin;

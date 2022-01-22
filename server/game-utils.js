@@ -2,6 +2,27 @@ const roomCode = {};
 const gameStatus = {};
 const gameTimer = {};
 
+// const initMines = (height, width, mines) => {
+//     let mineArray = [];
+//     for(let i=0; i<height; i++) {
+//         let row = [];
+//         for (let j=0; j<width; j++) {
+//             row.push(0);
+//         }
+//         mineArray.push(row);
+//     }
+//     let curMines = 0;
+//     while(curMines < mines){
+//         let x = Math.floor(height*Math.random());
+//         let y = Math.floor(width*Math.random());
+//         if(mineArray[x][y] !== 1){
+//             curMines++;
+//             mineArray[x][y] = 1;
+//         }
+//     }
+//     return mineArray;
+// }
+
 const initMines = (height, width, mines) => {
     let mineArray = [];
     for(let i=0; i<height; i++) {
@@ -15,7 +36,7 @@ const initMines = (height, width, mines) => {
     while(curMines < mines){
         let x = Math.floor(height*Math.random());
         let y = Math.floor(width*Math.random());
-        if(mineArray[x][y] !== 1){
+        if(mineArray[x][y] !== 1 && !(x==4 && y==4) && !(x==4 && y==5) && !(x==4 && y==6) && !(x==5 && y==4) && !(x==5 && y==5) && !(x==5 && y==6) && !(x==6 && y==4) && !(x==6 && y==5) && !(x==6 && y==6) ){
             curMines++;
             mineArray[x][y] = 1;
         }
