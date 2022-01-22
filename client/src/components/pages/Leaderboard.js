@@ -139,7 +139,7 @@ const Leaderboard = (props) => {
       <div id="large" className="scores" style={{display:"none"}}>
         LARGE: {allLargeRuns}
         </div> */}
-
+        <h1 className="u-textCenter">Leaderboard</h1>
 
         <div className="u-flex scoreHolder">
         <div id="small" className="scores">
