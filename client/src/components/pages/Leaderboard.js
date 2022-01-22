@@ -25,9 +25,7 @@ const Leaderboard = (props) => {
           <div>
             RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
             
-            TIME {userObj.topscoreSmall.score/1000} seconds with date {userObj.topscoreSmall.gameTime}
-            Board Size: {userObj.topscoreSmall.boardSize}
-            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
+            TIME {userObj.topscoreSmall.score/1000} seconds with date {userObj.topscoreSmall.gameTime.substring(0,10)} {userObj.topscoreSmall.gameTime.substring(11,19)} UTC
           </div>
         </> ) : (<></>)
       ));
@@ -47,10 +45,8 @@ const Leaderboard = (props) => {
           <div>
             RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
             
-            TIME {userObj.topscoreMedium.score/1000} seconds with date {userObj.topscoreMedium.gameTime}
-            Board Size: {userObj.topscoreMedium.boardSize}
-            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
-          </div>
+            TIME {userObj.topscoreMedium.score/1000} seconds with date {userObj.topscoreMedium.gameTime.substring(0,10)} {userObj.topscoreMedium.gameTime.substring(11,19)} UTC
+            </div>
         </> ) : (<></>)
       ));
       setAllMediumRuns(bestMediumRunScores);
@@ -70,10 +66,8 @@ const Leaderboard = (props) => {
           <div>
             RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
             
-            TIME {userObj.topscoreLarge.score/1000} seconds with date {userObj.topscoreLarge.gameTime}
-            Board Size: {userObj.topscoreLarge.boardSize}
-            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
-          </div>
+            TIME {userObj.topscoreLarge.score/1000} seconds with date {userObj.topscoreLarge.gameTime.substring(0,10)} {userObj.topscoreLarge.gameTime.substring(11,19)} UTC
+            </div>
         </> ) : (<></>)
       ));
       setAllLargeRuns(bestLargeRunScores);

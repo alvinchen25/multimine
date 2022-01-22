@@ -278,8 +278,7 @@ const PlayRoom = (props) => {
            { (gameState === "before") ? (<>
               {/* <div className={`game-board ${props.boardSize} displayBlock`}> */}
               <div className={`game-board-${props.boardSize} displayBlock`}>
-
-               <h1>Settings</h1>
+               {/* <h1>Settings</h1> */}
                { (props.isPrivate === true) ? (
                  <h3>
                  Room Code: {roomCode}
@@ -331,8 +330,8 @@ const PlayRoom = (props) => {
         </div> */}
         <div className="progressBars"> {/* for more styling eventually*/}
           {(gameState == "during") && <Stopwatch />}
-          {/* This is our current progress: {progress} */}
-            {YeetProgressList}
+          Squares cleared: {}
+          {YeetProgressList}
 
         </div>
         {/* <div>
