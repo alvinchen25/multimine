@@ -23,7 +23,7 @@ const CodePopup = (props) => {
         <div className = "popup-box"> 
             <div className = "box">
                 <span className = "close-icon" onClick = {props.handleClose}>x</span>
-                <h3> Enter Code Bro: </h3>
+                <h3> Enter Code: </h3>
                 <div class="u-flex">
                 <input type="text" className="NewPostInput-input" placeholder="Room Code"  onKeyDown={keyDown} value={value} onChange = {handleChange} />
                 <button

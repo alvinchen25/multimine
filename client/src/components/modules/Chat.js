@@ -29,6 +29,21 @@ import "./Chat.css";
  * @param {String} userId 
  */
 const Chat = (props) => {
+  const submitNewMessage = (!props.userId) ? (
+    <>
+      <div className="Chat-newContainer">
+        Log in to chat! (Please format this thankssss) 
+      </div>
+    </>
+  ) : (
+    <>
+      <div className="Chat-newContainer">
+        <NewMessage recipient={props.data.recipient}/>
+        {/* change it to something that doesn't store in database */}
+        {/* make this conditional later */}
+      </div>
+    </>
+  )
   if (props.data.recipient._id === "ALL_CHAT") {
     return (
       <>
@@ -39,11 +54,10 @@ const Chat = (props) => {
               <SingleMessage message={m} key={i} />
             ))}
           </div>
-          <div className="Chat-newContainer">
+          {/* <div className="Chat-newContainer">
             <NewMessage recipient={props.data.recipient}/>
-            {/* change it to something that doesn't store in database */}
-            {/* make this conditional later */}
-          </div>
+          </div> */}
+          {submitNewMessage}
         </div>
       </>
     );
