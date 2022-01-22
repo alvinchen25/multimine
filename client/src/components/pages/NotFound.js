@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../modules/NavBar.js"
-
 import "../../utilities.css";
+import { useNavigate } from "@reach/router"
+
 
 const NotFound = (props) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate("/");
+  }, []);
   return (
     <>
-      <NavBar
+      {/* <NavBar
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
@@ -15,7 +20,7 @@ const NotFound = (props) => {
       <div>
         <h1>404 Not Found</h1>
         <p>The page you requested couldn't be found.</p>
-      </div>
+      </div> */}
     </>
   );
 };

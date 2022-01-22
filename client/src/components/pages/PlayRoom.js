@@ -64,6 +64,10 @@ const PlayRoom = (props) => {
 
   useEffect(() => {
     window.scrollTo(0,0);
+    return () => {
+      console.log("hello");
+      navigate("/");
+    };
   }, []);
 
 
@@ -87,13 +91,13 @@ const PlayRoom = (props) => {
   }, []);
 
 
-  useEffect(() => {
-    get("/api/roomstatus", {room: props._id}).then((thing) => {
-      if(thing.status !== "before"){
-        navigate("/");
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   get("/api/roomstatus", {room: props._id}).then((thing) => {
+  //     if(thing.status !== "before"){
+  //       navigate("/");
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     get("/api/roomcode", {room: props._id}).then((thing) => {
