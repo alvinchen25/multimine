@@ -67,7 +67,7 @@ const Board = (props) => {
             }
         }
 
-        initState[startsquare[0]][startsquare[1]].status = "golden";
+        initState[startsquare[0]][startsquare[1]].status = "golden"; // this is the square that must be an interior square.
         return initState;
     }
 

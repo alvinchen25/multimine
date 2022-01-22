@@ -193,12 +193,21 @@ const PlayRoom = (props) => {
       pro = progressList[user];
     }
     return (
+      (pro === height*width-mines) ? (
+      <>
+        <h3>{user}</h3>
+        <div className="progressHolderDone">
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
+        </div>
+      </>
+      ) : (
       <>
         <h3>{user}</h3>
         <div className="progressHolder">
           <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
       </>
+      )
     )
   });
 
@@ -330,14 +339,10 @@ const PlayRoom = (props) => {
         </div> */}
         <div className="progressBars"> {/* for more styling eventually*/}
           {(gameState == "during") && <Stopwatch />}
-          Squares cleared: {}
+          Squares cleared: {/*add something here please*/}
           {YeetProgressList}
 
         </div>
-        {/* <div>
-          This is the user list:
-          {userList}
-        </div> */}
 
         </div>
         <div> {(gameState==="after") ? (

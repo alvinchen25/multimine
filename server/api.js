@@ -117,9 +117,7 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
         user.topscoreSmall = { score: newTime[0].score, boardSize: req.body.boardSize };
       }
       user.smallTimes = newTime.concat(user.smallTimes);
-      // console.log(`here is user.times 1 ${user.times}`);
       user.smallTtimes = user.smallTimes.sort((a,b) => {
-        console.log(`${a.score} and then ${b.score}`);
         a.score > b.score;
       });
     }
@@ -133,7 +131,6 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
       user.mediumTimes = newTime.concat(user.mediumTimes);
       // console.log(`here is user.times 1 ${user.times}`);
       user.mediumTimes = user.mediumTimes.sort((a,b) => {
-        console.log(`${a.score} and then ${b.score}`);
         a.score > b.score;
       });
     }
@@ -145,9 +142,7 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
         user.topscoreLarge = { score: newTime[0].score, boardSize: req.body.boardSize };
       }
       user.largeTimes = newTime.concat(user.largeTimes);
-      // console.log(`here is user.times 1 ${user.times}`);
       user.largeTimes = user.largeTimes.sort((a,b) => {
-        console.log(`${a.score} and then ${b.score}`);
         a.score > b.score;
       });
     }
