@@ -1,7 +1,10 @@
-
-
 .displayBlock {
   display: block;
+}
+
+.roomHeader {
+  display: flex;
+  justify-content: space-between;
 }
 
 .leaveRoomButton {
@@ -18,13 +21,14 @@
   text-align: center;
   font-size: 16px;
   transition-duration: 0.4s;
-  opacity: .8;
+  opacity: 0.8;
   border-radius: 20px;
 
   float: right;
   margin: 20px;
   z-index: 9999;
-
+  top: 0;
+  right: 0;
 }
 
 .leaveRoomButton:hover {
@@ -32,9 +36,8 @@
 }
 
 .leaveRoomButton:active {
-  opacity: .5;
+  opacity: 0.5;
 }
-
 
 .gameRoom {
   display: flex;
@@ -51,11 +54,11 @@
 }
 
 .coverUp {
-  background-color: rgba(185,230,255,0.5);
+  background-color: rgba(185, 230, 255, 0.5);
   position: absolute;
 
   z-index: 999;
-  color:white;
+  color: white;
   font-size: 4em;
 }
 
@@ -79,7 +82,7 @@
   position: absolute;
 
   z-index: 999;
-  color:white;
+  color: white;
   font-size: 6em;
 }
 
@@ -89,7 +92,6 @@
   align-self: center;
   width: 100%;
 }
-
 
 /* .gameRoom h1 {
   width: 105vmin;

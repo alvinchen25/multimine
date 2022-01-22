@@ -287,14 +287,14 @@ const PlayRoom = (props) => {
   return (
     <>
       <div>
-      <div className="u-flex u-flex-justifyCenter">
-        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>       
+      {/* <div className="u-flex u-flex-justifyCenter"> */}
+      <div className="roomHeader">
+        <h1></h1>
+        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
         <button type="button" className="leaveRoomButton" onClick={handleLeave}>
-          Leave Room
-        </button>
-        
-        
-        </div>
+        Leave Room
+        </button>  
+      </div>
       
         <div className ="gameRoom">
 
