@@ -1,7 +1,7 @@
 .profileContainer {
   margin-top: var(--sper);
-  margin-left: var(--mper);
-  margin-right: var(--mper);
+  margin-left: var(--sper);
+  margin-right: var(--sper);
 
   background-color: pink;
   padding: 30px;
@@ -9,19 +9,25 @@
   box-shadow: 0 0 15px 2px gray;
 }
 
+.profile {
+  width: 100%;
+  justify-content: space-between;
+}
+
 .boardSummary {
   width: 100%;
   justify-content: space-between;
+
+  flex-direction: column;
 }
 
 .statContainer {
   margin: 30px;
 
-  background-color: aquamarine;
+  background-color: var(--purple1);
   padding: 5px;
   border-radius: 50px;
-  width: 28%;
-
+  width: 80%;
   box-shadow: 0 0 15px 2px gray;
 
 }

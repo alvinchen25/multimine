@@ -11,13 +11,21 @@ const CodePopup = (props) => {
     const handleChange = (event) => {
         setValue(event.target.value);
     };
+
+    const keyDown = (event) => {
+        console.log(event.key)
+        if (event.key === "Enter" ) {
+            props.checkCode(value, props.room)
+        }
+      };
+
     return (
         <div className = "popup-box"> 
             <div className = "box">
                 <span className = "close-icon" onClick = {props.handleClose}>x</span>
                 <h3> Enter Code Bro: </h3>
                 <div class="u-flex">
-                <input type="text" className="NewPostInput-input" placeholder="Room Code" value={value} onChange = {handleChange} />
+                <input type="text" className="NewPostInput-input" placeholder="Room Code"  onKeyDown={keyDown} value={value} onChange = {handleChange} />
                 <button
                     type="submit"
                     value="Submit"

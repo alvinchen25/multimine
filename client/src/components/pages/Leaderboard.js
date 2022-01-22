@@ -22,11 +22,22 @@ const Leaderboard = (props) => {
       let bestSmallRunScores = userObjs.map((userObj) => (
         (userObj.topscoreSmall.score>0) ? (
         <>
-          <div>
-            RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
+          <tr>
+            <td>
+            <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
+            </td>
+            <td>
+            {userObj.topscoreSmall.score/1000} seconds
+            </td>
+            <td>
+            {userObj.topscoreSmall.gameTime.substring(5,7)}/{userObj.topscoreSmall.gameTime.substring(8,10)}/{userObj.topscoreSmall.gameTime.substring(0,4)}
+
             
-            TIME {userObj.topscoreSmall.score/1000} seconds with date {userObj.topscoreSmall.gameTime.substring(0,10)} {userObj.topscoreSmall.gameTime.substring(11,19)} UTC
-          </div>
+            </td>
+            {/* {userObj.topscoreSmall.gameTime.substring(0,10)} {userObj.topscoreSmall.gameTime.substring(11,19)} UTC */}
+            {/* Board Size: {userObj.topscoreSmall.boardSize} */}
+            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
+          </tr>
         </> ) : (<></>)
       ));
       setAllSmallRuns(bestSmallRunScores);
@@ -42,11 +53,18 @@ const Leaderboard = (props) => {
       let bestMediumRunScores = userObjs.map((userObj) => (
         (userObj.topscoreMedium.score>0) ? (
         <>
-          <div>
-            RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
-            
-            TIME {userObj.topscoreMedium.score/1000} seconds with date {userObj.topscoreMedium.gameTime.substring(0,10)} {userObj.topscoreMedium.gameTime.substring(11,19)} UTC
-            </div>
+          <tr>
+            <td>
+            <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
+            </td>
+            <td> {userObj.topscoreMedium.score/1000} seconds 
+            </td>
+            <td>{userObj.topscoreMedium.gameTime.substring(5,7)}/{userObj.topscoreMedium.gameTime.substring(8,10)}/{userObj.topscoreMedium.gameTime.substring(0,4)}
+            </td>
+            {/* {userObj.topscoreMedium.gameTime.substring(0,10)} {userObj.topscoreMedium.gameTime.substring(11,19)} UTC */}
+            {/* Board Size: {userObj.topscoreMedium.boardSize} */}
+            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
+          </tr>
         </> ) : (<></>)
       ));
       setAllMediumRuns(bestMediumRunScores);
@@ -63,16 +81,39 @@ const Leaderboard = (props) => {
       let bestLargeRunScores = userObjs.map((userObj) => (
         (userObj.topscoreLarge.score>0) ? (
         <>
-          <div>
-            RUN: <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
-            
-            TIME {userObj.topscoreLarge.score/1000} seconds with date {userObj.topscoreLarge.gameTime.substring(0,10)} {userObj.topscoreLarge.gameTime.substring(11,19)} UTC
-            </div>
+          <tr>
+            <td>
+            <Link to={"/profile/"+userObj._id}>{userObj.name}</Link>
+            </td>
+            <td> {userObj.topscoreLarge.score/1000} seconds 
+            </td>
+            <td> {userObj.topscoreLarge.gameTime.substring(5,7)}/{userObj.topscoreLarge.gameTime.substring(8,10)}/{userObj.topscoreLarge.gameTime.substring(0,4)}
+            </td>
+            {/* {userObj.topscoreLarge.gameTime.substring(0,10)} {userObj.topscoreLarge.gameTime.substring(11,19)} UTC */}
+            {/* Board Size: {userObj.topscoreLarge.boardSize} */}
+            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
+          </tr>
         </> ) : (<></>)
       ));
       setAllLargeRuns(bestLargeRunScores);
     });
   }, []);
+
+
+  // const openScores = (size) => {
+  //   if (document.getElementById(size) === null) {
+
+  //       }
+  //   else {
+  //   var i;
+  //   var x = document.getElementsByClassName("scores");
+  //   for (i = 0; i < x.length; i++) {
+  //     x[i].style.display = "none";
+  //   }
+  //   document.getElementById(size).style.display = "block";
+  // }
+  // }
+
 
   return (
     <>
@@ -82,14 +123,61 @@ const Leaderboard = (props) => {
         userId={props.userId}
         logStable={true}
         />
-      <div>
-        This will be the leaderboard. But right now, it's just a list of everybody's runs, not in order.
-      </div>
-      <div>
+      
+      {/* <div class="tabBar">
+        <button class="tabItem" onclick={openScores('small')}>Small</button>
+        <button class="tabItem" onclick={openScores('medium')}>Medium</button>
+        <button class="tabItem"  onclick={openScores('large')}>Large</button>
+      </div> */}
+
+      {/* <div id="small" className="scores" style={{display:"block;"}}>
         SMALL: {allSmallRuns}
       </div>
-      <div>MEDIUM: {allMediumRuns}</div>
-      <div>LARGE: {allLargeRuns}</div>
+      <div id="medium" className="scores" style={{display:"none"}}>
+        MEDIUM: {allMediumRuns}
+        </div>
+      <div id="large" className="scores" style={{display:"none"}}>
+        LARGE: {allLargeRuns}
+        </div> */}
+
+
+        <div className="u-flex scoreHolder">
+        <div id="small" className="scores">
+          <h1 className="u-textCenter">SMALL</h1>
+
+          <table>
+              <tr>
+              <td>RUN</td>
+              <td>TIME</td>
+              <td>DATE</td>
+              </tr>
+           {allSmallRuns}
+           </table>
+        </div>
+        <div id="medium" className="scores">
+        <h1 className="u-textCenter">MEDIUM</h1> 
+        <table>
+              <tr>
+              <td>RUN</td>
+              <td>TIME</td>
+              <td>DATE</td>
+              </tr>
+        {allMediumRuns}
+        </table>
+         </div>
+        <div id="large" className="scores">
+        <h1 className="u-textCenter">LARGE</h1> 
+        <table>
+              <tr>
+              <td>RUN</td>
+              <td>TIME</td>
+              <td>DATE</td>
+              </tr>
+            {allLargeRuns}
+        </table>
+        </div>
+
+        </div>
 
     </>
   );
