@@ -215,7 +215,6 @@ const PlayRoom = (props) => {
       ) : (
       <>
         <h3>{user}</h3>
-        <h3>{frozenList[user]}</h3>
         <div className="progressHolder">
           <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
