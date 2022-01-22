@@ -97,7 +97,7 @@ const Skeleton = (props) => {
     <div className="lobbyBox">
     <h1>Multimine</h1>
       
-      {(props.userId) ? (<div>
+      {(props.userId) ? (<div className="createRoom" >
         <NewRoom addNewRoomHost = {addNewRoomHost} />
       </div>) : (<h2>
         Log in to create and join a room!

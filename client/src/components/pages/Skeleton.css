@@ -34,6 +34,16 @@ body {
   margin: 10px;
 }
 
+.createRoom {
+  background-color: rgb(255, 158, 174);
+  border-radius: 30px;
+  padding-top: 5px;
+  padding-bottom: 25px;
+  opacity: .8;
+
+  box-shadow: 0 0 7px 2px gray;
+
+}
 
 .minesweeperButton > * {
   padding: none;
