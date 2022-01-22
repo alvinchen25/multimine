@@ -12,6 +12,7 @@ import { get, post } from "../../utilities";
 * @param {Number} mines
 * @param {String} room this is the room ID
 * @param {Array[Number]} mineList List of 0's and 1's where the 1's indicate mines
+* @param {Boolean} frozen tells you whether or not you are on a freeze.
 * setProgress sets the state of progress
 */
 

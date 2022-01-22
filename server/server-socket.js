@@ -171,8 +171,8 @@ module.exports = {
         io.to(room).emit("hidegame", {winner: winner, winTime:winTime});
       });
 
-      socket.on("progressUpdate", ({progress, room}) => {
-        io.to(room).emit("newProgressUpdate", {user: getUserFromSocketID(socket.id), progress: progress});
+      socket.on("progressUpdate", ({progress, room, frozen}) => {
+        io.to(room).emit("newProgressUpdate", {user: getUserFromSocketID(socket.id), progress: progress, userFrozen: frozen});
       });
 
       socket.on("roomMessage", ({message, room}) => {

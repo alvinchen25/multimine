@@ -30,6 +30,7 @@ const PlayRoom = (props) => {
   const navigate = useNavigate();
   const [userList, setUserList] = useState([]);
   const [progressList, setProgressList] = useState({});
+  const [frozenList, setFrozenList] = useState({});
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false);
   const [gameState, setGameState] = useState("before");
@@ -165,19 +166,23 @@ const PlayRoom = (props) => {
 
 
   useEffect(() => {
-    socket.emit("progressUpdate",{progress: progress, room: props._id});
+    socket.emit("progressUpdate",{progress: progress, room: props._id, frozen: frozen});
+    // console.log(`progress update! progress: ${progress} and frozen: ${frozen}`);
     if (progress >= (height*width-mines)) {
       setGameState("after");
       socket.emit("endGame", {room: props._id, socketid: socket.id});
       const body = {userId: props.userId, room: props._id, boardSize: props.boardSize};
       post("/api/addHighScore", body);
     }
-  },[progress]);
+  },[progress, frozen]);
 
-  const ProgressCallback = ({user, progress}) => {
+  const ProgressCallback = ({user, progress, userFrozen}) => {
     let newProgressList = {...progressList};
     newProgressList[user.name] = progress;
     setProgressList(newProgressList);
+    let newFrozenList = {...frozenList};
+    newFrozenList[user.name] = userFrozen;
+    setFrozenList(newFrozenList);
   };
 
   useEffect(() => {
@@ -200,13 +205,22 @@ const PlayRoom = (props) => {
           <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
       </>
+      ) : ( (frozenList[user]) ? (
+      <>
+        <h3>{user}</h3>
+        <div className="progressHolderFrozen">
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
+        </div>
+      </>
       ) : (
       <>
         <h3>{user}</h3>
+        <h3>{frozenList[user]}</h3>
         <div className="progressHolder">
           <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
       </>
+      )
       )
     )
   });
