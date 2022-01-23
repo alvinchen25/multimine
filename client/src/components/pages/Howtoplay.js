@@ -17,8 +17,8 @@ const Howtoplay = (props) => {
         />
       <div className="rulesBox">
       {/* edit but include this somewhere */}
-      <h1> How To Play MultiMine! </h1>
-      <h2> Q: How is MultiMine different from typical minesweeper?</h2>
+      <h1> How To Play Multimine! </h1>
+      <h2> Q: How is Multimine different from typical minesweeper?</h2>
       <h3> A: All players in the same room have the <i>same layout</i> of mines. If you click on a mine, the game is <i>not over</i>. Instead, your board freezes for a few seconds as a penalty.</h3>
       <h2> Q: I've never played minesweeper before. What are the basic rules and strategy for the game?</h2>
       <h3> A: <a href="https://minesweepergame.com/strategy.php">See this resource!</a></h3>

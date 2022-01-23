@@ -196,48 +196,7 @@ const PlayRoom = (props) => {
     return () => {
       socket.off("newProgressUpdate", ProgressCallback);
     }
-  }, [progressList]);
-
-  const YeetProgressList = userList.map((user) => {
-    let pro = 0;
-    if(progressList[user]){
-      pro = progressList[user];
-    }
-    return (
-      (pro === height*width-mines) ? (
-      <>
-        <h3>{user}</h3>
-        <div className="progressHolderDone">
-          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
-        </div>
-      </>
-      ) : ( (frozenList[user]) ? (
-      <>
-        <h3>{user}</h3>
-        <div className="progressHolderFrozen">
-          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
-        </div>
-      </>
-      ) : (
-      <>
-        <h3>{user}</h3>
-        <div className="progressHolder">
-          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
-        </div>
-      </>
-      )
-      )
-    )
-  });
-
-  const YeetLeaderboard = endStats.map((stat, i) => {
-      return (
-      <>
-       <h1>{i+1}. {stat.winner.name}, time: {stat.winTime/1000}</h1>
-  
-      </>
-      )
-  });
+  }, [progressList, frozenList]);
   
   const [activeChat, setActiveChat] = useState({
     recipient: {
@@ -264,6 +223,48 @@ const PlayRoom = (props) => {
       socket.off("newRoomMessage", addMessages);
     };
   }, []);
+
+  const YeetProgressList = userList.map((user) => {
+    let pro = 0;
+    if(progressList[user]){
+      pro = progressList[user];
+    }
+    console.log(`frozenlist is ${frozenList[user]}`);
+    return (
+      (pro === height*width-mines) ? (
+      <>
+        <h3>{user}</h3>
+        <div className="progressHolderDone">
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
+        </div>
+      </>
+      ) : ( (frozenList[user]>0) ? (
+      <>
+        <h3>{user}</h3>
+        <div className="progressHolderFrozen">
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
+        </div>
+      </>
+      ) : (
+      <>
+        <h3>{user}</h3>
+        <div className="progressHolder">
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
+        </div>
+      </>
+      )
+      )
+    )
+  });
+
+  const YeetLeaderboard = endStats.map((stat, i) => {
+      return (
+      <>
+       <h1>{i+1}. {stat.winner.name}, time: {stat.winTime/1000}</h1>
+  
+      </>
+      )
+  });
 
   if (!props.userId) {
     return (
