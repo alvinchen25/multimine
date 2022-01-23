@@ -21,6 +21,13 @@
   margin-top: 10px;
 }
 
+form {
+  flex-direction: column;
+  width: 80%;
+  text-align: left;
+  margin: auto;
+}
+
 .NewPostInput-input:focus-within {
   border-color: var(--primary--dim);
   box-shadow: none;
@@ -46,6 +53,6 @@
 }
 
 .checkbox {
-  width:inherit;
+  width: inherit;
   /* add styling to box soon */
 }

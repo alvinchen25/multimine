@@ -2,15 +2,24 @@
   display: block;
 }
 
-.roomHeader {
+/* .roomHeader {
   display: flex;
   justify-content: space-between;
+} */
+
+.roomTitle {
+  position: absolute;
+  top: 10px;
 }
 
 .leaveRoomButton {
+  position: absolute;
+  top: 10px;
+}
+
+.button {
   border: none;
   background-color: pink;
-  justify-content: end;
   /* color: white; */
 
   margin-right: 0;
@@ -31,11 +40,11 @@
   right: 0;
 }
 
-.leaveRoomButton:hover {
+.button:hover {
   opacity: 1;
 }
 
-.leaveRoomButton:active {
+.button:active {
   opacity: 0.5;
 }
 
@@ -43,8 +52,18 @@
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  font-size: 2vmin;
 }
 
+.gameRoom h1 button h3 {
+  margin: 0;
+  font-weight: 100;
+  font-size: 2vmin;
+}
+button {
+  font-size: 2vmin;
+  height: 8vmin;
+}
 .gameRoom.game-board {
   flex-grow: 1;
 }

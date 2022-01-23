@@ -54,11 +54,11 @@ const NewPageInput = (props) => {
       </div>
       <div>
         Game size?
-        <select onChange={sizeChange}>
-          <option value="large" defaultValue>Large: 16x30, 99 mines</option>
-          <option value="medium">Medium 16x16, 40 mines</option>
-          <option value="small">Small 9x9, 10 mines</option>
-        </select>
+        <form className="u-flex" onChange={sizeChange} method="post" action="">
+          <div><input type="radio" name="size" value="large" defaultChecked/>Large: 16x30, 99 mines</div>
+          <div><input type="radio" name="size" value="medium"/>Medium 16x16, 40 mines</div>
+          <div><input type="radio" name="size" value="small"/>Small 9x9, 10 mines</div>
+        </form>
       </div>
       <div className="u-flex">
         <input
@@ -68,6 +68,7 @@ const NewPageInput = (props) => {
           onChange={handleChange}
           onKeyDown={keyDown} 
           className="NewPostInput-input"
+          maxLength={20}
         />
         <button
           type="submit"

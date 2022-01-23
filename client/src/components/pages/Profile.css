@@ -1,18 +1,38 @@
-.profileContainer {
+/* Overall */
+
+
+.profile {
+  width: 100%;
+  height: 70vh;
+  justify-content: space-between;
   margin-top: var(--sper);
+  margin-bottom: var(--sper);
+}
+
+/* Left side */
+.profileContainer {
   margin-left: var(--sper);
   margin-right: var(--sper);
 
   background-color: pink;
   padding: 30px;
   border-radius: 50px;
+  
   box-shadow: 0 0 15px 2px gray;
 }
-
-.profile {
-  width: 100%;
-  justify-content: space-between;
+.Profile-name {
+  font-size: 6vh;
+  font-weight: 300;
 }
+
+.name {
+  align-self: center;
+  width: 100%;
+  font-size: 2vh;
+}
+
+
+/* Right side */
 
 .boardSummary {
   width: 100%;
@@ -22,39 +42,42 @@
 }
 
 .statContainer {
-  margin: 30px;
+  align-self: center;
+  margin: 10px;
+  margin-top: 20px;
 
   background-color: var(--purple1);
-  padding: 5px;
+  padding: none;
   border-radius: 50px;
-  width: 80%;
+  width: 90%;
+  height: 80%;
+
   box-shadow: 0 0 15px 2px gray;
 
 }
 
-.statContainer h1, h3 {
+.statContainer h1 {
   text-align: center;
   margin: 2px;
+  font-size: 4vh;
+}
+
+.statContainer h3 {
+  text-align: center;
+  margin: 2px;
+  font-size: 2.5vh;
 }
 
 .statContainer h2 {
-  font-size: 1.2em;
+  font-size: 3vh;
 }
 
-.name {
-  align-self: center;
-  width: 100%;
-
-}
 
 .stats {
   margin: 30px;
+  font-size: 2vh;
+}
 
-}
-.Profile-name {
-  font-size: 40px;
-  font-weight: 300;
-}
 
 table {
   width: 100%;
@@ -64,6 +87,36 @@ th {
   font-weight: bold;
   text-align: left;
 }
+
+.tabBar {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tabItem {
+  border: none;
+  background-color: pink;
+  /* color: white; */
+
+  padding: 20px 50px 20px 50px;
+
+  text-align: center;
+  font-size: 3vh;
+  transition-duration: 0.2s;
+  opacity: 0.8;
+  border-radius: 20px;
+
+  z-index: 9999;
+}
+
+.tabItem:hover {
+  opacity: 1;
+}
+
+.tabItem:active {
+  opacity: 0.5;
+}
+
 
 .loadingPage {
   /* could add animations */

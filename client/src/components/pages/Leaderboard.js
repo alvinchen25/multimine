@@ -100,20 +100,6 @@ const Leaderboard = (props) => {
   }, []);
 
 
-  // const openScores = (size) => {
-  //   if (document.getElementById(size) === null) {
-
-  //       }
-  //   else {
-  //   var i;
-  //   var x = document.getElementsByClassName("scores");
-  //   for (i = 0; i < x.length; i++) {
-  //     x[i].style.display = "none";
-  //   }
-  //   document.getElementById(size).style.display = "block";
-  // }
-  // }
-
 
   return (
     <>
@@ -124,27 +110,12 @@ const Leaderboard = (props) => {
         logStable={true}
         />
       
-      {/* <div class="tabBar">
-        <button class="tabItem" onclick={openScores('small')}>Small</button>
-        <button class="tabItem" onclick={openScores('medium')}>Medium</button>
-        <button class="tabItem"  onclick={openScores('large')}>Large</button>
-      </div> */}
-
-      {/* <div id="small" className="scores" style={{display:"block;"}}>
-        SMALL: {allSmallRuns}
-      </div>
-      <div id="medium" className="scores" style={{display:"none"}}>
-        MEDIUM: {allMediumRuns}
-        </div>
-      <div id="large" className="scores" style={{display:"none"}}>
-        LARGE: {allLargeRuns}
-        </div> */}
-
+        <h1 className="u-textCenter">Global Leaderboard</h1>
 
         <div className="u-flex scoreHolder">
         <div id="small" className="scores">
           <h1 className="u-textCenter">SMALL</h1>
-
+          <h3 className="u-textCenter">9x9, 10 mines</h3>
           <table>
               <tr>
               <td>RUN</td>
@@ -155,7 +126,8 @@ const Leaderboard = (props) => {
            </table>
         </div>
         <div id="medium" className="scores">
-        <h1 className="u-textCenter">MEDIUM</h1> 
+        <h1 className="u-textCenter">MEDIUM</h1>
+        <h3 className="u-textCenter">16x16, 40 mines</h3> 
         <table>
               <tr>
               <td>RUN</td>
@@ -167,6 +139,7 @@ const Leaderboard = (props) => {
          </div>
         <div id="large" className="scores">
         <h1 className="u-textCenter">LARGE</h1> 
+        <h3 className="u-textCenter"> 30x16, 99 mines</h3>
         <table>
               <tr>
               <td>RUN</td>
