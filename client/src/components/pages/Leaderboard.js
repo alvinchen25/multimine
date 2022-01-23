@@ -139,12 +139,12 @@ const Leaderboard = (props) => {
       <div id="large" className="scores" style={{display:"none"}}>
         LARGE: {allLargeRuns}
         </div> */}
-        <h1 className="u-textCenter">Leaderboard</h1>
+        <h1 className="u-textCenter">Global Leaderboard</h1>
 
         <div className="u-flex scoreHolder">
         <div id="small" className="scores">
           <h1 className="u-textCenter">SMALL</h1>
-
+          <h3>9x9, 10 mines</h3>
           <table>
               <tr>
               <td>RUN</td>
@@ -155,7 +155,8 @@ const Leaderboard = (props) => {
            </table>
         </div>
         <div id="medium" className="scores">
-        <h1 className="u-textCenter">MEDIUM</h1> 
+        <h1 className="u-textCenter">MEDIUM</h1>
+        <h3>16x16, 40 mines</h3> 
         <table>
               <tr>
               <td>RUN</td>
@@ -167,6 +168,7 @@ const Leaderboard = (props) => {
          </div>
         <div id="large" className="scores">
         <h1 className="u-textCenter">LARGE</h1> 
+        <h3> 30x16, 99 mines</h3>
         <table>
               <tr>
               <td>RUN</td>

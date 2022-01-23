@@ -65,7 +65,6 @@ const PlayRoom = (props) => {
   useEffect(() => {
     window.scrollTo(0,0);
     return () => {
-      console.log("hello");
       navigate("/");
     };
   }, []);
@@ -291,13 +290,13 @@ const PlayRoom = (props) => {
     <>
       <div>
       {/* <div className="u-flex u-flex-justifyCenter"> */}
-      <div className="roomHeader">
-        <h1></h1>
-        <h1 className="Profile-name u-textCenter">Room {props.name}</h1>
-        <button type="button" className="leaveRoomButton" onClick={handleLeave}>
+      {/* <div className="roomHeader"> */}
+        {/* <h1></h1> */}
+        <h1 className="RoomTitle u-textCenter">Room {props.name}</h1>
+        <button type="button" className="button leaveRoomButton" onClick={handleLeave}>
         Leave Room
         </button>  
-      </div>
+      {/* </div> */}
       
         <div className ="gameRoom">
 
@@ -323,7 +322,7 @@ const PlayRoom = (props) => {
                <h3>
                  Mine Penalty: 10 seconds
                </h3>
-               <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
+               <h1><button type="button" className="button" onClick = {handleStart}>Start Game</button></h1>
                </div>
                </>
               ) : (
