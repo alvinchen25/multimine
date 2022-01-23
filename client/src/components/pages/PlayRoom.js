@@ -292,7 +292,9 @@ const PlayRoom = (props) => {
       {/* <div className="u-flex u-flex-justifyCenter"> */}
       {/* <div className="roomHeader"> */}
         {/* <h1></h1> */}
-        <h1 className="RoomTitle u-textCenter">Room {props.name}</h1>
+        {/* <div className="roomTitle"> */}
+        <h1 className="u-textCenter">Room {props.name}</h1>
+        {/* </div> */}
         <button type="button" className="button leaveRoomButton" onClick={handleLeave}>
         Leave Room
         </button>  
