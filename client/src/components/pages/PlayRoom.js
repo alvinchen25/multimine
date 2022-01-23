@@ -319,7 +319,7 @@ const PlayRoom = (props) => {
                <h3>
                  Mine Penalty: 10 seconds
                </h3>
-               <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}>Start Game</button></h1>
+               <h1><button type="button" className="leaveRoomButton" onClick = {handleStart}><h3>Start Game</h3></button></h1>
                </div>
                </>
               ) : (

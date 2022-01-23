@@ -14,6 +14,29 @@ const Profile = (props) => {
   const [userLargeScores, setUserLargeScores] = useState();
   const [avgLargeScore, setAvgLargeScore] = useState(0);
 
+  const [smallDisplay, setSmallDisplay] = useState({display: 'block'});
+  const [mediumDisplay, setMediumDisplay] = useState({display: 'none'});
+  const [largeDisplay, setLargeDisplay] = useState({display: 'none'});
+
+  const openSmall = () => {
+    console.log("hello")
+    setSmallDisplay({display: 'block'});
+    setMediumDisplay({display: 'none'});
+    setLargeDisplay({display: 'none'});
+  }
+  
+  const openMedium = () => {
+    setSmallDisplay({display: 'none'});
+    setMediumDisplay({display: 'block'});
+    setLargeDisplay({display: 'none'});
+  }
+
+  const openLarge = () => {
+    setSmallDisplay({display: 'none'});
+    setMediumDisplay({display: 'none'});
+    setLargeDisplay({display: 'block'});
+  }
+
   // const userScores = undefined
 
   useEffect(() => {
@@ -142,6 +165,7 @@ const Profile = (props) => {
 
   // console.log(`times listed here ${user.times}`);
 
+
   if (!user) {
     return (
     <>
@@ -165,15 +189,26 @@ const Profile = (props) => {
         />
 
       <div className="u-flex profile">
+
       <div className="u-flex profileContainer">
-        <div className="name">
+      <div className="name">
         <h1 className="Profile-name u-textCenter">{user.name}</h1>
         <h2 className="u-textCenter">Account created: {user.dateCreated.substring(5,7)}/{user.dateCreated.substring(8,10)}/{user.dateCreated.substring(0,4)}</h2>
         <h2 className="u-textCenter">Total number of games: {user.smallTimes.length+user.mediumTimes.length+user.largeTimes.length}</h2>
         </div>        
       </div>
+
+
       <div className="u-flex boardSummary">
-      <div className="statContainer">
+
+      <div class="tabBar">
+        <button class="tabItem" onClick={openSmall}>Small Scores</button>
+        <button class="tabItem" onClick={openMedium}>Medium Scores</button>
+        <button class="tabItem"  onClick={openLarge}>Large Scores</button>
+      </div>
+
+      {/* <div id="small" className="statContainer" style={{display:"block;"}}> */}
+      <div className="smallScores statContainer" style={smallDisplay}>
         <div className="stats">
           <h1>Small</h1>
           <h3>9x9, 10 mines</h3>
@@ -190,7 +225,10 @@ const Profile = (props) => {
           </table>
         </div>
       </div>
-      <div className="statContainer">
+      
+      {/* <div id="medium" className="statContainer" style={{display:"none"}}> */}
+
+      <div className="mediumScores statContainer" style={mediumDisplay}>
         <div className="stats">
           <h1> Medium</h1>
           <h3>16x16, 40 mines</h3>
@@ -207,7 +245,8 @@ const Profile = (props) => {
           </table>
         </div>
       </div>
-      <div className="statContainer">
+      {/* <div id="large" className="statContainer" style={{display:"none"}}> */}
+      <div className="largeScores statContainer" style={largeDisplay}>
         <div className="stats">
           <h1> Large</h1>
           <h3> 30x16, 99 mines</h3>

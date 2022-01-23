@@ -100,20 +100,6 @@ const Leaderboard = (props) => {
   }, []);
 
 
-  // const openScores = (size) => {
-  //   if (document.getElementById(size) === null) {
-
-  //       }
-  //   else {
-  //   var i;
-  //   var x = document.getElementsByClassName("scores");
-  //   for (i = 0; i < x.length; i++) {
-  //     x[i].style.display = "none";
-  //   }
-  //   document.getElementById(size).style.display = "block";
-  // }
-  // }
-
 
   return (
     <>
@@ -124,21 +110,6 @@ const Leaderboard = (props) => {
         logStable={true}
         />
       
-      {/* <div class="tabBar">
-        <button class="tabItem" onclick={openScores('small')}>Small</button>
-        <button class="tabItem" onclick={openScores('medium')}>Medium</button>
-        <button class="tabItem"  onclick={openScores('large')}>Large</button>
-      </div> */}
-
-      {/* <div id="small" className="scores" style={{display:"block;"}}>
-        SMALL: {allSmallRuns}
-      </div>
-      <div id="medium" className="scores" style={{display:"none"}}>
-        MEDIUM: {allMediumRuns}
-        </div>
-      <div id="large" className="scores" style={{display:"none"}}>
-        LARGE: {allLargeRuns}
-        </div> */}
 
 
         <div className="u-flex scoreHolder">

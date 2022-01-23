@@ -14,3 +14,7 @@
 .scoreHolder {
     justify-content: space-between;
 }
+
+a {
+  color: black
+}
