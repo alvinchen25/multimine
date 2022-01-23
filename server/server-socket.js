@@ -109,6 +109,7 @@ module.exports = {
       console.log(`socket has connected ${socket.id}`);
       
       socket.on("disconnect", (reason) => {
+        console.log(`socket has disconnected ${socket.id}`);
         const user = getUserFromSocketID(socket.id);
         
         if(user){
