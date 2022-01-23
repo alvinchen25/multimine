@@ -30,6 +30,7 @@ const PlayRoom = (props) => {
   const navigate = useNavigate();
   const [userList, setUserList] = useState([]);
   const [progressList, setProgressList] = useState({});
+  const [myFrozen, setMyFrozen] = useState(0);
   const [frozenList, setFrozenList] = useState({});
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false);
@@ -37,11 +38,11 @@ const PlayRoom = (props) => {
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
   const [endStats, setEndStats] = useState([]);
-  const [frozen, setFrozen] = useState(0);
   const [height, setHeight] = useState(16);
   const [width, setWidth] = useState(30);
   const [mines, setMines] = useState(99);
   const [freezeTime, setFreezeTime] = useState(10);
+  const [countdown, setCountdown] = useState(3000);
   const stylename = "game-board-"+props.boardSize;
 
   useEffect(() => {
@@ -71,35 +72,6 @@ const PlayRoom = (props) => {
       navigate("/");
     };
   }, []);
-
-
-  const updateFrozen = () => {
-    setFrozen(frozen => {
-      if(frozen > 0){
-        return frozen - 100;
-      }else{
-        return 0;
-      }
-    });
-  };
-
-  const addFrozen = () => {
-    // console.log(frozen);
-    setFrozen(frozen+freezeTime);
-  };
-
-  useEffect(() => {
-    setInterval(updateFrozen, 100);
-  }, []);
-
-
-  // useEffect(() => {
-  //   get("/api/roomstatus", {room: props._id}).then((thing) => {
-  //     if(thing.status !== "before"){
-  //       navigate("/");
-  //     }
-  //   });
-  // }, []);
 
   useEffect(() => {
     get("/api/roomcode", {room: props._id}).then((thing) => {
@@ -172,23 +144,19 @@ const PlayRoom = (props) => {
 
 
   useEffect(() => {
-    socket.emit("progressUpdate",{progress: progress, room: props._id, frozen: frozen});
-    // console.log(`progress update! progress: ${progress} and frozen: ${frozen}`);
+    socket.emit("progressUpdate",{progress: progress, room: props._id});
     if (progress >= (height*width-mines)) {
       setGameState("after");
       socket.emit("endGame", {room: props._id, socketid: socket.id});
       const body = {userId: props.userId, room: props._id, boardSize: props.boardSize};
       post("/api/addHighScore", body);
     }
-  },[progress, frozen]);
+  },[progress]);
 
-  const ProgressCallback = ({user, progress, userFrozen}) => {
+  const ProgressCallback = ({user, progress}) => {
     let newProgressList = {...progressList};
-    newProgressList[user.name] = progress;
+    newProgressList[user] = progress;
     setProgressList(newProgressList);
-    let newFrozenList = {...frozenList};
-    newFrozenList[user.name] = userFrozen;
-    setFrozenList(newFrozenList);
   };
 
   useEffect(() => {
@@ -198,29 +166,56 @@ const PlayRoom = (props) => {
     }
   }, [progressList]);
 
+
+  const frozenUpdateCallback = (newList) => {
+    setFrozenList(newList);
+    if(newList && props.userId in newList){
+      setMyFrozen(newList[props.userId]);
+    }
+  };
+
+  useEffect(() => {
+    socket.on("roomFrozenUpdate", frozenUpdateCallback);
+    return () => {
+      socket.off("roomFrozenUpdate", frozenUpdateCallback);
+    };
+  }, [frozenList, myFrozen]);
+
+  const countdownUpdateCallback = (newTime) => {
+    setCountdown(newTime);
+  };
+
+  useEffect(() => {
+    socket.on("countdownUpdate", countdownUpdateCallback);
+    return () => {
+      socket.off("countdownUpdate", countdownUpdateCallback);
+    };
+  }, [countdown]);
+
+
   const YeetProgressList = userList.map((user) => {
     let pro = 0;
-    if(progressList[user]){
-      pro = progressList[user];
+    if(progressList[user._id]){
+      pro = progressList[user._id];
     }
     return (
       (pro === height*width-mines) ? (
       <>
-        <h3>{user}</h3>
+        <h3>{user.name}</h3>
         <div className="progressHolderDone">
           <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
       </>
-      ) : ( (frozenList[user]) ? (
+      ) : ( (frozenList && frozenList[user._id]) ? (
       <>
-        <h3>{user}</h3>
+        <h3>{user.name}</h3>
         <div className="progressHolderFrozen">
           <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
       </>
       ) : (
       <>
-        <h3>{user}</h3>
+        <h3>{user.name}</h3>
         <div className="progressHolder">
           <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
         </div>
@@ -292,23 +287,16 @@ const PlayRoom = (props) => {
   return (
     <>
       <div>
-      {/* <div className="u-flex u-flex-justifyCenter"> */}
-      {/* <div className="roomHeader"> */}
-        {/* <h1></h1> */}
-        {/* <div className="roomTitle"> */}
         <h1 className="u-textCenter">Room {props.name}</h1>
-        {/* </div> */}
         <button type="button" className="button leaveRoomButton" onClick={handleLeave}>
         Leave Room
         </button>  
-      {/* </div> */}
-      
         <div className ="gameRoom">
 
            { (gameState === "before") ? (<>
               {/* <div className={`game-board ${props.boardSize} displayBlock`}> */}
               <div className={`game-board-${props.boardSize} displayBlock`}>
-               {/* <h1>Settings</h1> */}
+  
                { (props.isPrivate === true) ? (
                  <h3>
                  Room Code: {roomCode}
@@ -333,32 +321,26 @@ const PlayRoom = (props) => {
               ) : (
                 <>
              <div className={`game-board-${props.boardSize} ${props.boardSize}`}>
-                {(frozen > 0) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(frozen/1000)}</h1></div>) : (<> </>)}
+                {(countdown) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(countdown/1000)}</h1></div>) : (<> </>)}
+                {(myFrozen) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(myFrozen/1000)}</h1></div>) : (<> </>)}
                 {(progress >= height*width-mines) ? (<><div className={`coverUpGameOver u-flex ${props.boardSize} u-flex-alignCenter`}><h1> </h1></div></>) : (<></>)}
                 <Board
-                  height={height}
-                  width={width}
-                  mines={mines}
-                  // height={16}
-                  // width={32}
-                  // mines={99}
+                  height = {height}
+                  width = {width}
+                  mines = {mines}
                   room = {props._id}
                   setProgress = {setProgress}
                   progress = {progress}
                   mineList = {mineList}
                   setGameState = {setGameState}
                   userId = {props.userId}
-                  frozen = {frozen}
-                  addFrozen = {addFrozen}/>
-
-                 
+                  freezeTime = {freezeTime}
+                  frozen = {myFrozen}
+                  countdown = {countdown}/>        
               </div>
               </>
               )
               }
-        {/* <div>
-          {(gameState == "during") && <Stopwatch />}
-        </div> */}
         <div className="progressBars"> {/* for more styling eventually*/}
           {(gameState == "during") && <Stopwatch />}
           Squares cleared: {progress}

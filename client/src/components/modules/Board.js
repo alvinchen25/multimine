@@ -75,7 +75,7 @@ const Board = (props) => {
     const [cellState, setCellState] = useState(getInitState());
     
     const handleClick = (i,j) => {
-        if(props.frozen > 0){
+        if(props.frozen > 0 || props.countdown > 0){
             return;
         }else{
             revealCell(i,j);
@@ -94,7 +94,8 @@ const Board = (props) => {
             uCellState[i][j].hidden = false;
             if(cellState[i][j].mine){
                 uCellState[i][j].status = 'mine';
-                props.addFrozen();
+                
+                socket.emit("frozenUpdate", {room: props.room, time: props.freezeTime});
             }else{
                 currentProgress++;
 

@@ -1,27 +1,8 @@
 const roomCode = {};
 const gameStatus = {};
 const gameTimer = {};
-
-// const initMines = (height, width, mines) => {
-//     let mineArray = [];
-//     for(let i=0; i<height; i++) {
-//         let row = [];
-//         for (let j=0; j<width; j++) {
-//             row.push(0);
-//         }
-//         mineArray.push(row);
-//     }
-//     let curMines = 0;
-//     while(curMines < mines){
-//         let x = Math.floor(height*Math.random());
-//         let y = Math.floor(width*Math.random());
-//         if(mineArray[x][y] !== 1){
-//             curMines++;
-//             mineArray[x][y] = 1;
-//         }
-//     }
-//     return mineArray;
-// }
+const frozenList = {};
+const countdown = {};
 
 const initMines = (height, width, mines) => {
     let mineArray = [];
@@ -72,6 +53,14 @@ const updateGameTimer = () => {
     for(game in gameTimer){
         if(gameStatus[game] === "during"){
             gameTimer[game] += 100;
+
+            for(user in frozenList[game]){
+                if(frozenList[game][user] > 0){
+                    frozenList[game][user] -= 100;
+                }
+            }
+        }else if(gameStatus[game] === "countdown"){
+            countdown[game] -= 100;
         }
     }
 };
@@ -80,9 +69,31 @@ const setGameTimer = (room, time) => {
     gameTimer[room] = time;
 };
 
+const setCountdown = (room, time) => {
+    countdown[room] = time;
+};
+
+const getCountdown = (room) => {
+    return countdown[room];
+};
+
 const getGameTimer = () => {
     return gameTimer;
 }
+
+const updateFrozen = (room, user, time) => {
+    if(!frozenList[room]){
+        frozenList[room] = {};
+    }
+    if(!frozenList[room][user]){
+        frozenList[room][user] = 0;
+    }
+    frozenList[room][user] += time;
+};
+
+const getFrozen = (room) => {
+    return frozenList[room];
+};
 
 module.exports = {
     initMines: initMines, 
@@ -94,4 +105,8 @@ module.exports = {
     setGameTimer: setGameTimer,
     getRoomCode: getRoomCode,
     setRoomCode: setRoomCode,
+    updateFrozen: updateFrozen,
+    getFrozen: getFrozen,
+    setCountdown: setCountdown, 
+    getCountdown: getCountdown,
 };

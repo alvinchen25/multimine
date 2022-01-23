@@ -18,11 +18,11 @@ const getRoomFromUser = (userid) => userToRoom[userid];
 const getUserFromRoom = (room) => roomToUser[room];
 
 const getNamesFromRoom = (room) => {
-  let names = [];
+  let users = [];
   getUserFromRoom(room).map((user) => {
-    names.push(user.name);
+    users.push(user);
   });
-  return names;
+  return users;
 }
 
 const addUser = (user, socket) => {
@@ -97,6 +97,13 @@ module.exports = {
       for(room in times){
         if(gameUtils.getGameStatus(room) === "during"){
           io.to(room).emit("timeUpdate", times[room]);
+          io.to(room).emit("roomFrozenUpdate", gameUtils.getFrozen(room));
+          console.log(gameUtils.getFrozen(room));
+        }else if(gameUtils.getGameStatus(room) === "countdown"){
+          io.to(room).emit("countdownUpdate", gameUtils.getCountdown(room));
+          if(gameUtils.getCountdown(room) === 0){
+            gameUtils.setGameStatus(room, "during");
+          }
         }
       }
     };
@@ -161,7 +168,8 @@ module.exports = {
           io.to(room).emit("initmines", mineList);
           io.to(room).emit("showgame");
           io.emit("startstatus", room);
-          gameUtils.setGameStatus(room, "during");
+          gameUtils.setGameStatus(room, "countdown");
+          gameUtils.setCountdown(room, 3000);
           gameUtils.setGameTimer(room, 0);
         });  
       });
@@ -172,8 +180,14 @@ module.exports = {
         io.to(room).emit("hidegame", {winner: winner, winTime:winTime});
       });
 
-      socket.on("progressUpdate", ({progress, room, frozen}) => {
-        io.to(room).emit("newProgressUpdate", {user: getUserFromSocketID(socket.id), progress: progress, userFrozen: frozen});
+      socket.on("progressUpdate", ({progress, room}) => {
+        const user = getUserFromSocketID(socket.id);
+        io.to(room).emit("newProgressUpdate", {user: user._id, progress: progress});
+      });
+
+      socket.on("frozenUpdate", ({room, time}) => {
+        const user = getUserFromSocketID(socket.id);
+        gameUtils.updateFrozen(room, user._id, time);
       });
 
       socket.on("roomMessage", ({message, room}) => {
