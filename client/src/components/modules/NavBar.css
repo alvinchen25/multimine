@@ -34,3 +34,18 @@
   height: 29px;
   display: inline-block;
 }
+
+.NavBar-login {
+  margin-top: none;
+  height: 100%;
+  margin-top: 5px;
+}
+
+.userStuff {
+  float: right;
+}
+
+.userStuff > * {
+  margin-right: 10px;
+  
+}

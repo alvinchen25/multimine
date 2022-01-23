@@ -110,44 +110,51 @@ const Leaderboard = (props) => {
         logStable={true}
         />
       
-        <h1 className="u-textCenter">Global Leaderboard</h1>
+        <h1 className="leaderTitle u-textCenter">Global Leaderboard</h1>
 
         <div className="u-flex scoreHolder">
         <div id="small" className="scores">
           <h1 className="u-textCenter">SMALL</h1>
           <h3 className="u-textCenter">9x9, 10 mines</h3>
+          <div className="scrollTable">
           <table>
-              <tr>
+              <tr className="header">
               <td>RUN</td>
-              <td>TIME</td>
+              <td>TOP TIME</td>
               <td>DATE</td>
               </tr>
            {allSmallRuns}
            </table>
         </div>
+        </div>
         <div id="medium" className="scores">
         <h1 className="u-textCenter">MEDIUM</h1>
         <h3 className="u-textCenter">16x16, 40 mines</h3> 
+        <div className="scrollTable">
         <table>
-              <tr>
+              <tr className="header">
               <td>RUN</td>
-              <td>TIME</td>
+              <td>TOP TIME</td>
               <td>DATE</td>
               </tr>
         {allMediumRuns}
         </table>
+        </div>
          </div>
+
         <div id="large" className="scores">
         <h1 className="u-textCenter">LARGE</h1> 
         <h3 className="u-textCenter"> 30x16, 99 mines</h3>
+        <div className="scrollTable">
         <table>
-              <tr>
+              <tr className="header">
               <td>RUN</td>
-              <td>TIME</td>
+              <td>TOP TIME</td>
               <td>DATE</td>
               </tr>
             {allLargeRuns}
         </table>
+        </div>
         </div>
 
         </div>

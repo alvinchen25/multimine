@@ -14,26 +14,41 @@ const Profile = (props) => {
   const [userLargeScores, setUserLargeScores] = useState();
   const [avgLargeScore, setAvgLargeScore] = useState(0);
 
+  
   const [smallDisplay, setSmallDisplay] = useState({display: 'block'});
   const [mediumDisplay, setMediumDisplay] = useState({display: 'none'});
   const [largeDisplay, setLargeDisplay] = useState({display: 'none'});
+  const [smallButton, setSmallButton] = useState({backgroundColor: 'var(--purple1)'})
+  const [mediumButton, setMediumButton] = useState({backgroundColor: 'pink'})
+  const [largeButton, setLargeButton] = useState({backgroundColor: 'pink'})
+
+  
 
   const openSmall = () => {
     setSmallDisplay({display: 'block'});
     setMediumDisplay({display: 'none'});
     setLargeDisplay({display: 'none'});
+    setSmallButton({backgroundColor: 'var(--purple1)'})
+    setMediumButton({backgroundColor: 'pink'})
+    setLargeButton({backgroundColor: 'pink'})
   }
   
   const openMedium = () => {
     setSmallDisplay({display: 'none'});
     setMediumDisplay({display: 'block'});
     setLargeDisplay({display: 'none'});
+    setSmallButton({backgroundColor: 'pink'})
+    setMediumButton({backgroundColor: 'var(--purple1)'})
+    setLargeButton({backgroundColor: 'pink'})
   }
 
   const openLarge = () => {
     setSmallDisplay({display: 'none'});
     setMediumDisplay({display: 'none'});
     setLargeDisplay({display: 'block'});
+    setSmallButton({backgroundColor: 'pink'})
+    setMediumButton({backgroundColor: 'pink'})
+    setLargeButton({backgroundColor: 'var(--purple1)'})
   }
 
   // const userScores = undefined
@@ -201,9 +216,9 @@ const Profile = (props) => {
       <div className="u-flex boardSummary">
 
       <div className="tabBar">
-        <button className="tabItem" onClick={openSmall}>Small Scores</button>
-        <button className="tabItem" onClick={openMedium}>Medium Scores</button>
-        <button className="tabItem"  onClick={openLarge}>Large Scores</button>
+        <button className="tabItem" style={smallButton} onClick={openSmall}>Small Scores</button>
+        <button className="tabItem" style={mediumButton} onClick={openMedium}>Medium Scores</button>
+        <button className="tabItem"  style={largeButton} onClick={openLarge}>Large Scores</button>
       </div>
 
       {/* <div id="small" className="statContainer" style={{display:"block;"}}> */}
@@ -214,14 +229,16 @@ const Profile = (props) => {
           <h2> Number of games: {user.smallTimes.length}</h2>
           <h2> Average time: {Math.ceil(avgSmallScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreSmall.score/1000} seconds</h2>
+          <div className="profileScrollTable">
           <table>
-            <thead>
+            <tr className="header">
             <th>Time:</th>
             <th>Date:</th>
-            </thead>
+            </tr>
             {userSmallScores}
             
           </table>
+          </div>
         </div>
       </div>
       
@@ -234,14 +251,16 @@ const Profile = (props) => {
           <h2> Number of games: {user.mediumTimes.length}</h2>
           <h2> Average time: {Math.ceil(avgMediumScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreMedium.score/1000} seconds</h2>
+          <div className="profileScrollTable">
           <table>
-            <tr>
+          <tr className="header">
             <th>Time:</th>
             <th>Date:</th>
             </tr>
             {userMediumScores}
             
           </table>
+          </div>
         </div>
       </div>
       {/* <div id="large" className="statContainer" style={{display:"none"}}> */}
@@ -252,13 +271,15 @@ const Profile = (props) => {
           <h2> Number of games: {user.largeTimes.length}</h2>
           <h2> Average time: {Math.ceil(avgLargeScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreLarge.score/1000} seconds</h2>
+          <div className="profileScrollTable">
           <table>
-            <tr>
+            <tr className="header">
             <th>Time:</th>
             <th>Date:</th>
             </tr>
             {userLargeScores}
           </table>
+          </div>
         </div>
       </div>
       </div>

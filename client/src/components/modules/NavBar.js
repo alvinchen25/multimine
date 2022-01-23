@@ -22,19 +22,6 @@ const NavBar = (props) => {
           </div>
         <div className="NavBar-linkContainer u-inlineBlock">
         
-            {/* 
-            <Link to="/" className="NavBar-link">
-            
-            Lobby
-          </Link>
-            
-            might want to keep multimine as the lobby link */}
-
-          {props.userId && (
-            <Link to={`/profile/${props.userId}`} className="NavBar-link">
-              Profile
-            </Link>
-          )}
           {/* <Link to="/chat/" className="NavBar-link">
             Chat
           </Link> */}
@@ -44,10 +31,18 @@ const NavBar = (props) => {
           <Link to="/leaderboard/" className="NavBar-link">
             Leaderboard
           </Link>
-          {/* <Link to="/game/" className="NavBar-link">
-            Single-Player Game
-          </Link> */}
+          <div className="spacer"></div>
+
+        </div>
+
+        <div className="userStuff NavBar-linkContainer u-inlineBlock">
+           {props.userId && (
+            <Link to={`/profile/${props.userId}`} className="NavBar-link">
+              Profile
+            </Link>
+          )}
           {(props.logStable) ? (props.userId ? (
+            <>
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Logout"
@@ -55,7 +50,10 @@ const NavBar = (props) => {
               onFailure={(err) => console.log(err)}
               className="NavBar-link NavBar-login"
             />
+            <div className="spacer"></div>
+            </>
           ) : (
+            <>
             <GoogleLogin
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Login"
@@ -63,10 +61,13 @@ const NavBar = (props) => {
               onFailure={(err) => console.log(err)}
               className="NavBar-link NavBar-login"
             />
+            <div className="spacer"></div>
+            </>
           )) : (
             <><div className="spacer"></div></>
           )}
-        </div>
+
+          </div>
       </nav>
     );
   };
