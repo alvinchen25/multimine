@@ -164,7 +164,33 @@ const PlayRoom = (props) => {
     return () => {
       socket.off("newProgressUpdate", ProgressCallback);
     }
-  }, [progressList]);
+  }, [progressList, frozenList]);
+  
+  const [activeChat, setActiveChat] = useState({
+    recipient: {
+      _id: props._id,
+      name: `Room ${props.name}`,
+    },
+    messages: [],
+  });
+
+  const addMessages = (data) => {
+    setActiveChat(prevActiveChat => ({
+      recipient: prevActiveChat.recipient,
+      messages: prevActiveChat.messages.concat(data),
+    }));
+  };
+
+  useEffect(() => {
+    document.title = "Multimine";
+  }, []);
+
+  useEffect(() => {
+    socket.on("newRoomMessage", addMessages); //just replace message
+    return () => {
+      socket.off("newRoomMessage", addMessages);
+    };
+  }, []);
 
 
   const frozenUpdateCallback = (newList) => {
@@ -198,6 +224,7 @@ const PlayRoom = (props) => {
     if(progressList[user._id]){
       pro = progressList[user._id];
     }
+    console.log(`frozenlist is ${frozenList[user]}`);
     return (
       (pro === height*width-mines) ? (
       <>
@@ -233,32 +260,6 @@ const PlayRoom = (props) => {
       </>
       )
   });
-  
-  const [activeChat, setActiveChat] = useState({
-    recipient: {
-      _id: props._id,
-      name: `Room ${props.name}`,
-    },
-    messages: [],
-  });
-
-  const addMessages = (data) => {
-    setActiveChat(prevActiveChat => ({
-      recipient: prevActiveChat.recipient,
-      messages: prevActiveChat.messages.concat(data),
-    }));
-  };
-
-  useEffect(() => {
-    document.title = "Multimine";
-  }, []);
-
-  useEffect(() => {
-    socket.on("newRoomMessage", addMessages); //just replace message
-    return () => {
-      socket.off("newRoomMessage", addMessages);
-    };
-  }, []);
 
   if (!props.userId) {
     return (
