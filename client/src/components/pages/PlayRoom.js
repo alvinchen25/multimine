@@ -334,6 +334,7 @@ const PlayRoom = (props) => {
                 <>
              <div className={`game-board-${props.boardSize} ${props.boardSize}`}>
                 {(frozen > 0) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(frozen/1000)}</h1></div>) : (<> </>)}
+                {(progress >= height*width-mines) ? (<><div className={`coverUpGameOver u-flex ${props.boardSize} u-flex-alignCenter`}><h1> </h1></div></>) : (<></>)}
                 <Board
                   height={height}
                   width={width}
