@@ -67,7 +67,7 @@ const addRoom = (user, room) => {
     roomToUser[room] = [user];
   }
 
-  console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
+ // console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
 }
 
 const leaveRoom = (user, room) => {
@@ -77,7 +77,7 @@ const leaveRoom = (user, room) => {
     console.log(`${user.name} has left room ${room}`);
 
     roomToUser[room] = roomToUser[room].filter((thing) => thing._id !== user._id);
-    console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
+   // console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
     
     delete userToRoom[user._id];
   

@@ -33,6 +33,7 @@ router.get("/room", (req, res) => {
 }); //access room list
 
 router.post("/room", (req, res) => {
+  console.log(`server recieved ${req.body.name}`);
   const code = gameUtils.genRoomCode();
 
   const newRoom = new Room({
@@ -59,6 +60,7 @@ router.post("/deleteroom", (req, res) => {
       socketManager.getIo().emit("removeRoom", req.body.room);
     });
   };
+  res.send({});
 });
 
 
@@ -145,20 +147,6 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
         a.score > b.score;
       });
     }
-    // if (user.topscore.score === 0) {
-    //   user.topscore = { score: newTime[0].score, boardSize: req.body.boardSize};
-    // }
-    // else if (user.topscore.score > newTime[0].score) {
-    //   user.topscore = { score: newTime[0].score, boardSize: req.body.boardSize };
-    // }
-    // user.times = newTime.concat(user.times);
-    // // console.log(`here is user.times 1 ${user.times}`);
-    // user.times = user.times.sort((a,b) => {
-    //   console.log(`${a.score} and then ${b.score}`);
-    //   a.score > b.score;
-    // });
-    // console.log(`here is user.times 2 ${user.times}`);
-
     user.save();
 
     const newRun = new Run({
@@ -169,6 +157,7 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
   
     newRun.save();
   });
+  res.send({});
 });
 
 router.post("/initsocket", (req, res) => {
@@ -196,6 +185,7 @@ router.post("/message", auth.ensureLoggedIn, (req, res) => {
   });
   message.save();
   socketManager.getIo().emit("message", message);
+  res.send({});
 });
 
 router.get("/activeUsers", (req, res) => {

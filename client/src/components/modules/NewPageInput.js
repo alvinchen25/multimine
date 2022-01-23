@@ -38,7 +38,6 @@ const NewPageInput = (props) => {
   };
 
   const keyDown = (event) => {
-    console.log(event.key)
     if (event.key === "Enter" ) {
       props.onSubmit && props.onSubmit(value);
       setValue("");
@@ -96,7 +95,6 @@ const NewRoom = (props) => {
   const AddRoom = (value) => {
     const body = { name: value, isPrivate: roomPrivate, boardSize: boardSize };
     post("/api/room", body).then((room) => {
-        // display this story on the screen
       props.addNewRoomHost(room._id);
     });
   };

@@ -65,7 +65,6 @@ const PlayRoom = (props) => {
   useEffect(() => {
     window.scrollTo(0,0);
     return () => {
-      console.log("hello");
       navigate("/");
     };
   }, []);
@@ -128,10 +127,10 @@ const PlayRoom = (props) => {
 
   useEffect(() => {
     return () => {
-      const body = {room: props._id, code: roomCode};
+      const body = {room: props._id};
       post("/api/deleteroom", body);
     }
-  },[roomCode]);
+  },[]);
 
   useEffect(() => {
     const callback = (newMineList) => {

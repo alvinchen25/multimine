@@ -127,27 +127,6 @@ const Skeleton = (props) => {
       </div>
     )
   ));
-  // const roomLinksNotLoggedIn = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
-  //   (roomObj.isPrivate === true) ? (
-  //     <div>
-  //     <button className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
-  //       <h3>{roomObj.status}</h3>
-  //       <h5>Private Room:</h5>
-  //       <h3>{roomObj.name}</h3>
-  //     </button>
-  //       {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj._id)} checkCode = {checkCode}/>}
-  //     </div>
-  //   ) : (
-  //     <div>
-  //      {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
-  //       <button  className="u-link minesweeperButton">
-  //         <h3>{roomObj.status}</h3>
-  //         <h5>Public Room:</h5>
-  //         <h3>{roomObj.name}</h3>
-  //       </button>
-  //     </div>
-  //   )
-  // ));
 
   return (
     <>
