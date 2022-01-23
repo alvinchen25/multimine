@@ -41,16 +41,18 @@
 
 .statContainer {
   align-self: center;
-  margin: 10px;
-  margin-top: 20px;
+  margin: 0 10px 10px 10px;
+  
 
   background-color: var(--purple1);
   padding: none;
-  border-radius: 50px;
+  border-radius: 0 50px 50px 50px;
   width: 90%;
-  height: 80%;
+  height: 90%;
 
   box-shadow: 0 0 15px 2px gray;
+
+  z-index: 0;
 }
 
 .statContainer h1 {
@@ -78,35 +80,32 @@ table {
   width: 100%;
 }
 
-th {
-  font-weight: bold;
-  text-align: left;
-}
-
 .tabBar {
-  display: flex;
-  justify-content: space-evenly;
+  margin: none;
+  width: 90%;
+  align-self: center;
+  z-index: 999;
+
+
 }
 
 .tabItem {
   border: none;
   background-color: pink;
-  /* color: white; */
+  z-index: 999;
 
-  /* padding: 20px 50px 20px 50px; */
   padding: 16px 32px;
 
   text-align: center;
   font-size: 3vh;
   transition-duration: 0.2s;
-  opacity: 0.8;
-  border-radius: 20px;
+  opacity: 1;
+  border-radius: 20px 20px 0 0;
 
-  z-index: 9999;
 }
 
 .tabItem:hover {
-  opacity: 1;
+  opacity: .8;
 }
 
 .tabItem:active {
@@ -115,4 +114,17 @@ th {
 
 .loadingPage {
   /* could add animations */
+}
+
+.profileScrollTable {
+  height: 18vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.header * {
+  font-weight: bolder;
+  text-decoration: underline;
+  font-size: 2.2vh;
+  text-align: left;
 }
