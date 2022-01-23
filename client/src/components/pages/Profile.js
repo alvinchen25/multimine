@@ -19,7 +19,6 @@ const Profile = (props) => {
   const [largeDisplay, setLargeDisplay] = useState({display: 'none'});
 
   const openSmall = () => {
-    console.log("hello")
     setSmallDisplay({display: 'block'});
     setMediumDisplay({display: 'none'});
     setLargeDisplay({display: 'none'});
@@ -201,10 +200,10 @@ const Profile = (props) => {
 
       <div className="u-flex boardSummary">
 
-      <div class="tabBar">
-        <button class="tabItem" onClick={openSmall}>Small Scores</button>
-        <button class="tabItem" onClick={openMedium}>Medium Scores</button>
-        <button class="tabItem"  onClick={openLarge}>Large Scores</button>
+      <div className="tabBar">
+        <button className="tabItem" onClick={openSmall}>Small Scores</button>
+        <button className="tabItem" onClick={openMedium}>Medium Scores</button>
+        <button className="tabItem"  onClick={openLarge}>Large Scores</button>
       </div>
 
       {/* <div id="small" className="statContainer" style={{display:"block;"}}> */}
@@ -216,10 +215,10 @@ const Profile = (props) => {
           <h2> Average time: {Math.ceil(avgSmallScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreSmall.score/1000} seconds</h2>
           <table>
-            <tr>
+            <thead>
             <th>Time:</th>
             <th>Date:</th>
-            </tr>
+            </thead>
             {userSmallScores}
             
           </table>
