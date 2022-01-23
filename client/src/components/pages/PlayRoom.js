@@ -41,7 +41,7 @@ const PlayRoom = (props) => {
   const [height, setHeight] = useState(16);
   const [width, setWidth] = useState(30);
   const [mines, setMines] = useState(99);
-
+  const [freezeTime, setFreezeTime] = useState(10);
   const stylename = "game-board-"+props.boardSize;
 
   useEffect(() => {
@@ -49,16 +49,19 @@ const PlayRoom = (props) => {
       setHeight(9);
       setWidth(9);
       setMines(10);
+      setFreezeTime(2000);
     }
     else if (props.boardSize === "medium") {
       setHeight(16);
       setWidth(16);
       setMines(40);
+      setFreezeTime(5000);
     }
     else if (props.boardSize === "large") {
       setHeight(16);
       setWidth(30);
       setMines(99);
+      setFreezeTime(10000);
     }
   }, []);
 
@@ -82,7 +85,7 @@ const PlayRoom = (props) => {
 
   const addFrozen = () => {
     // console.log(frozen);
-    setFrozen(frozen+5000);
+    setFrozen(frozen+freezeTime);
   };
 
   useEffect(() => {
@@ -320,7 +323,7 @@ const PlayRoom = (props) => {
                  Number of Mines: {mines}
                </h3>
                <h3>
-                 Mine Penalty: 10 seconds
+                 Mine Penalty: {freezeTime/1000} seconds
                </h3>
                <h1><button type="button" className="button" onClick = {handleStart}><h3>Start Game</h3></button></h1>
                </div>
@@ -355,7 +358,7 @@ const PlayRoom = (props) => {
         </div> */}
         <div className="progressBars"> {/* for more styling eventually*/}
           {(gameState == "during") && <Stopwatch />}
-          Squares cleared: {/*add something here please*/}
+          Squares cleared: {progress}
           {YeetProgressList}
 
         </div>
