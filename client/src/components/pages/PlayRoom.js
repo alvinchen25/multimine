@@ -224,7 +224,6 @@ const PlayRoom = (props) => {
     if(progressList[user._id]){
       pro = progressList[user._id];
     }
-    console.log(`frozenlist is ${frozenList[user]}`);
     return (
       (pro === height*width-mines) ? (
       <>
