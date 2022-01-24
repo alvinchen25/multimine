@@ -1,7 +1,7 @@
 .NavBar-container {
   padding: var(--s) var(--m);
-  background-color: var(--primary);
-  box-shadow: 0 0 12px 12px var(--primary);
+  background-color: white;
+  box-shadow: 0 0 12px 12px white;
   height: 50px;
 }
 
@@ -47,5 +47,4 @@
 
 .userStuff > * {
   margin-right: 10px;
-  
 }

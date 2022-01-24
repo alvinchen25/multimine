@@ -8,8 +8,6 @@
   flex-direction: column-reverse;
   width: 100%;
   margin-left: none;
-
-  
 }
 
 .Chat-newContainer h4 {
@@ -20,11 +18,17 @@
 
 .Chat-historyContainer {
   display: flex;
+  width: 100%;
   flex-direction: column-reverse;
   flex-grow: 1;
-
-
+  overflow-x: visible;
   overflow-y: auto;
   margin-left: 10%;
   margin-right: 10%;
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+
+.Chat-historyContainer::-webkit-scrollbar {
+  display: none;
 }
