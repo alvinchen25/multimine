@@ -90,15 +90,12 @@ module.exports = {
     io = require("socket.io")(http);
 
     const updateTimes = () => {
-    //  console.log("asdf");
       gameUtils.updateGameTimer();
       const times = gameUtils.getGameTimer();
-     // console.log(times);
       for(room in times){
         if(gameUtils.getGameStatus(room) === "during"){
           io.to(room).emit("timeUpdate", times[room]);
           io.to(room).emit("roomFrozenUpdate", gameUtils.getFrozen(room));
-          console.log(gameUtils.getFrozen(room));
         }else if(gameUtils.getGameStatus(room) === "countdown"){
           io.to(room).emit("countdownUpdate", gameUtils.getCountdown(room));
           if(gameUtils.getCountdown(room) === 0){

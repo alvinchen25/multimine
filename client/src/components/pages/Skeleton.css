@@ -6,43 +6,86 @@ body {
   background-color: var(--primary3);
 }
 
+.lobbyPage {
+  justify-content: space-around;
+  margin-left: 5%;
+  width: 90%;
+  margin-top: 25px;
+  height: calc(100vh - 120px);
+}
+
+/* .lobbyPage div {
+
+} */
+
+/* left */
+
+.createRoom {
+  background-color: var(--purple1);
+
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  flex-direction: column;
+
+  border-radius: 30px;
+  opacity: .8;
+
+  /* box-shadow: 0 0 7px 2px gray; */
+
+  flex-basis: 25%;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  margin: 10px;
+  /* margin-left: 35px; */
+  height: 100%
+}
+
+.createRoom > * {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.createRoom h2 {
+  margin: 20px;
+  text-align: center;
+}
+
+/* center */
 .lobbyBox {
   background-color: pink; /* Green */
   border: none;
   /* color: white; */
-  padding: 15px 32px;
+  padding: 0 32px;
   text-align: center;
   text-decoration: none;
   display: block;
-  margin-left: var(--mper);
-  margin-right: var(--mper); /* would be better as auto? */
+  margin: 10px 4% 2% 4%;
+  height: 100%;
+
   font-size: 16px;
-  border-radius: 50px;
-  margin-top: var(--sper);
-  margin-bottom: var(--sper);
+  border-radius: 30px;
+
+  flex-basis: 40%;
+  flex-grow: 0;
+  flex-shrink: 0;
+
   box-shadow: 0 0 15px 2px gray;
+
+}
+
+.lobbyBox h1 {
+  margin-top: 30px;
 }
 
 
 /*making lobby boxes */
 .minesweeperButtonContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-}
+  margin: none;
 
-.createRoom {
-  background-color: rgb(255, 158, 174);
-  border-radius: 30px;
-  padding-top: 5px;
-  padding-bottom: 25px;
-  opacity: .8;
-
-  box-shadow: 0 0 7px 2px gray;
-
+  height: calc(78vh - 120px);
+  overflow-y: scroll;
 }
 
 .minesweeperButton > * {
@@ -60,11 +103,15 @@ body {
   margin: 0;
 }
 
-
-
 .minesweeperButtonContainer div a {
   text-decoration: none;
 }
+
+.minesweeperButtonContainer div {
+  width: 20vmin;
+  display: inline-block;
+}
+
 
 .minesweeperButton {
   /* change to table cells later! */
@@ -121,4 +168,11 @@ body {
   text-decoration: none;
   display: block;
   border-radius: 50px;
+}
+
+.lobbyChat {
+  flex-basis: 25%;
+  flex-grow: 0;
+  flex-shrink: 0;
+
 }

@@ -3,29 +3,44 @@
   /* font-family: "Comic Sans"; */
   font-size: 18px;
   padding: var(--s) var(--m);
+  padding-top: none;
+  padding-bottom: none;
 }
 
 :root {
-  --commonMargin: 10%; /* common variable */
+  --commonMargin: none; /* common variable */
+}
+
+.inputBox {
+  padding: 10px
 }
 
 .NewPostInput-input {
   flex-grow: 1;
   border: var(--darkgrey) 1px solid;
-  border-radius: var(--xs) 0 0 var(--xs);
+  border-radius: var(--s);
   transition: box-shadow 0.1s;
   margin-left: var(--commonMargin);
   margin-right: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
   margin-top: 10px;
 }
 
 form {
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   text-align: left;
   margin: auto;
+}
+
+input[type=checkbox] {
+  margin: 10px;
+  height: 15px;
+  width: 15px;
+}
+
+div h3 {
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .NewPostInput-input:focus-within {
@@ -34,11 +49,11 @@ form {
 }
 
 .NewPostInput-button {
-  color: white;
-  border: var(--grey) 1px solid;
+  color: black;
+  border: pink 1px solid;
   opacity: 0.8;
-  border-radius: 0 var(--xs) var(--xs) 0;
-  background: var(--grey);
+  border-radius: var(--s);
+  background: pink;
   transition: color 0.1s, background 0.1s;
   margin-right: var(--commonMargin);
   margin-top: 10px;

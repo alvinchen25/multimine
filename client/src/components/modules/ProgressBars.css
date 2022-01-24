@@ -27,10 +27,17 @@
   border-radius: 20px;
 }
 
+
 .progressHolder div {
+  display: flex;
+  align-items: center;
   background-color: var(--progress-green);
   height: 40px;
   border-radius: 15px;
+}
+
+.progressHolder div h4 {
+  padding-left: 10px;
 }
 
 .progressHolderDone {
@@ -46,9 +53,14 @@
 }
 
 .progressHolderDone div {
+  display: flex;
+  align-items: center;
   background-color: var(--purple2);
   height: 40px;
   border-radius: 15px;
+}
+.progressHolderDone div h4 {
+  padding-left: 10px;
 }
 
 .progressHolderFrozen {
@@ -64,7 +76,15 @@
 }
 
 .progressHolderFrozen div {
+  display: flex;
+  align-items: center;
   background-color: aqua;
   height: 40px;
   border-radius: 15px;
+}
+
+.progressHolderFrozen div h4 {
+  font-size: 2em;
+  width:100%;
+  padding-left: 10px;
 }

@@ -32,7 +32,7 @@ const Chat = (props) => {
   const submitNewMessage = (!props.userId) ? (
     <>
       <div className="Chat-newContainer">
-        Log in to chat! (Please format this thankssss) 
+        <h3 className="u-textCenter">Log in to chat!</h3>
       </div>
     </>
   ) : (
