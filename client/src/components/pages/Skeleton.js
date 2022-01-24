@@ -105,8 +105,6 @@ const Skeleton = (props) => {
     navigate("/room/"+room);
   };
 
-
-
   const roomLinks = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
     (roomObj.isPrivate === true) ? (
       <div>

@@ -231,7 +231,7 @@ const PlayRoom = (props) => {
       endTime = endStats[user._id].time;
       place = endStats[user._id].place;
     }
-    console.log(endStats);
+    // console.log(endStats);
     return (
       (pro === height*width-mines) ? (
       <>
