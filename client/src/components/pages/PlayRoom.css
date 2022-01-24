@@ -2,21 +2,17 @@
   display: block;
 }
 
-/* .roomHeader {
-  display: flex;
-  justify-content: space-between;
-} */
-
 .roomTitle {
   position: absolute;
   top: 10px;
 }
 
+/* leave room and start buttons */
+
 .leaveRoomButton {
   position: absolute;
   top: 10px;
 }
-
 
 .button {
   border: none;
@@ -49,29 +45,56 @@
   opacity: 0.5;
 }
 
-.gameRoom {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+button {
   font-size: 2vmin;
+  height: 8vmin;
 }
-
 .gameRoom h1 button h3 {
   margin: 0;
   font-weight: 100;
   font-size: 2vmin;
 }
-button {
+
+/* overall structure */
+
+.gameRoom {
+  display: flex;
+  width: 100%;
+  height: 80vh;
+  align-items: center;
+  justify-content: space-evenly;
   font-size: 2vmin;
-  height: 8vmin;
 }
+
+
 .gameRoom.game-board {
   flex-grow: 1;
 }
 
-.gameRoom.progressBars {
-  flex-grow: 3;
+.progressBars {
+  flex-basis: 20%;
+  flex-grow: 0;
+  flex-shrink: 0;  
+
+  /* background-color: var(--purple1); */
+  /* border-radius: 30px; */
+  height: 100%;
+
+  /* margin-right: 5%; */
 }
+
+/* game chat (left side) */
+.gameChat {
+  flex-basis: 20%;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  /* margin-left: 5%; */
+
+  height: 100%
+}
+
+/* game */
 
 .coverUp {
   background-color: rgba(185, 230, 255, 0.5);
@@ -109,17 +132,8 @@ button {
 }
 
 .large {
-  width: 105vmin;
-  height: 56vmin;
-}
-
-.coverUp {
-  background-color: #b9e6ff80;
-  position: absolute;
-
-  z-index: 999;
-  color: white;
-  font-size: 6em;
+  width: 90vmin;
+  height: 48vmin;
 }
 
 .coverUp h1 {
@@ -129,6 +143,8 @@ button {
   width: 100%;
 }
 
-/* .gameRoom h1 {
-  width: 105vmin;
-} */
+
+.settings {
+  align-content: center;
+  justify-content: space-between;
+}

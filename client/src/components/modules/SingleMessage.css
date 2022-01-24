@@ -14,9 +14,17 @@
   color: var(--white);
 }
 
-.messageyeet {
+.Chatbook-container .messageyeet {
   border-radius: var(--s);
   width: 18vw;
   overflow-wrap: break-word;
   hyphens: auto;
 }
+
+.Chatbook-container-2 .messageyeet {
+  border-radius: var(--s);
+  width: 14vw;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+

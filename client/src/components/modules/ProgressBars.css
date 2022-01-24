@@ -1,14 +1,17 @@
 .progressBars {
-  padding: none;
+  margin-top: 15px;
+
   text-align: center;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
-  padding-right: 40px;
-  padding-left: 2%;
-  width: 50vmin;
+
+  width: 52vmin;
+
+
+  height: 80vh;
+  overflow-y: scroll;
 }
 
 .progressBars h3 {
@@ -22,9 +25,12 @@
   border-color: gray;
   border-style: solid;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
 
   border-radius: 20px;
+
+
+
 }
 
 .progressHolder div {
@@ -40,7 +46,7 @@
   border-color: gray;
   border-style: solid;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
 
   border-radius: 20px;
 }
@@ -58,7 +64,7 @@
   border-color: gray;
   border-style: solid;
   margin-top: 15px;
-  width: 100%;
+  width: 90%;
 
   border-radius: 20px;
 }

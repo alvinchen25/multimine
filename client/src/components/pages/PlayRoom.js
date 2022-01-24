@@ -293,7 +293,7 @@ const PlayRoom = (props) => {
         </button>  
         <div className ="gameRoom">
 
-            <div className="u-flex u-relative Chatbook-container-2">
+            <div className="gameChat u-flex u-relative Chatbook-container-2">
               <div className="Chatbook-chatContainer u-relative">
                 <Chat data={activeChat} userId={props.userId} userName={props.userName}/>
               </div>
@@ -312,6 +312,8 @@ const PlayRoom = (props) => {
                 </>
                 )
                }
+               <div className={`u-flex ${props.boardSize} settings`}>
+                <div className="info">
                <h3>
                  Dimensions: {width} x {height}
                </h3>
@@ -322,6 +324,8 @@ const PlayRoom = (props) => {
                  Mine Penalty: {freezeTime/1000} seconds
                </h3>
                <h1><button type="button" className="button" onClick = {handleStart}><h3>Start Game</h3></button></h1>
+               </div>
+               </div>
                </div>
                </>
               ) : (
