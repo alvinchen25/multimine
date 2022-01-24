@@ -20,3 +20,7 @@
   background: var(--primary--dim);
   color: var(--white);
 }
+
+.messageyeet {
+  overflow-wrap: break-word;
+}
