@@ -161,7 +161,6 @@ module.exports = {
           thing.status = "In progress";
           thing.save();
           const mineList = gameUtils.initMines(height, width, mines);
-          console.log(`in socket: height ${height} width ${width} mines ${mines}`);
           io.to(room).emit("initmines", mineList);
           io.to(room).emit("showgame");
           io.emit("startstatus", room);

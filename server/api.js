@@ -33,7 +33,7 @@ router.get("/room", (req, res) => {
 }); //access room list
 
 router.post("/room", (req, res) => {
-  console.log(`server recieved ${req.body.name}`);
+  // console.log(`server recieved ${req.body.name}`);
   const code = gameUtils.genRoomCode();
 
   const newRoom = new Room({
@@ -172,7 +172,7 @@ router.get("/chat", (req, res) => {
 });
 
 router.post("/message", auth.ensureLoggedIn, (req, res) => {
-  console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
+  // console.log(`Received a chat message from ${req.user.name}: ${req.body.content}`);
 
   // insert this message into the database
   const message = new Message({
