@@ -343,7 +343,7 @@ const PlayRoom = (props) => {
                   userId = {props.userId}
                   freezeTime = {freezeTime}
                   frozen = {myFrozen}
-                  countdown = {countdown}/>        
+                  countdown = {countdown}/>    
               </div>
               </>
               )
