@@ -187,7 +187,7 @@ const Profile = (props) => {
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
-        logStable={true}
+        logStable={false}
         />
       <div> <h3 className="loadingPage"> Loading . . . </h3> </div>
     </>
@@ -199,7 +199,7 @@ const Profile = (props) => {
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
-        logStable={true}
+        logStable={false}
         />
 
       <div className="u-flex profile">

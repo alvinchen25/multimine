@@ -4,7 +4,6 @@ import Board from "../modules/Board.js";
 import { socket } from "../../client-socket.js";
 import { post } from "../../utilities";
 import ProgressBars from "../modules/ProgressBars.js";
-import Stopwatch from "../modules/Stopwatch.js";
 import { Link } from "@reach/router";
 import Chat from "../modules/Chat.js";
 import NavBar from "../modules/NavBar.js"
@@ -35,6 +34,7 @@ const PlayRoom = (props) => {
   const [progress, setProgress] = useState(0);
   const [ongoing, setOngoing] = useState(false);
   const [gameState, setGameState] = useState("before");
+  const [gameTime, setGameTime] = useState(0);
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
   const [endStats, setEndStats] = useState({});
@@ -78,6 +78,17 @@ const PlayRoom = (props) => {
       setRoomCode(thing.code);
     });
   }, []);
+
+  const gameTimeCallback = (newTime) => {
+    setGameTime(newTime);
+  };
+  
+  useEffect(() => {
+      socket.on("timeUpdate", gameTimeCallback);
+      return () => {
+        socket.off("timeUpdate", gameTimeCallback);
+      }
+  }, [gameTime]);
 
   const Userlistcallback = (userList) => {
     if(gameState === "before"){
@@ -327,6 +338,7 @@ const PlayRoom = (props) => {
                </>
               ) : (
                 <>
+            <div className = "board-and-stats">
              <div className={`game-board-${props.boardSize} ${props.boardSize}`}>
                 {(countdown) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(countdown/1000)}</h1></div>) : (<> </>)}
                 {(myFrozen) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(myFrozen/1000)}</h1></div>) : (<> </>)}
@@ -343,16 +355,17 @@ const PlayRoom = (props) => {
                   userId = {props.userId}
                   freezeTime = {freezeTime}
                   frozen = {myFrozen}
-                  countdown = {countdown}/>    
+                  countdown = {countdown}/>   
+                  
               </div>
+              <h1>Time: {Math.ceil(gameTime/1000)}s Progress: {progress}/{height*width-mines}</h1>
+            </div>
+           
               </>
               )
               }
         <div className="progressBars"> {/* for more styling eventually*/}
-          {(gameState == "during") && <Stopwatch />}
-          Squares cleared: {progress}
           {YeetProgressList}
-
         </div>
 
         </div>
