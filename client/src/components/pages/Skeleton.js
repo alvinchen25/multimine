@@ -136,14 +136,21 @@ const Skeleton = (props) => {
         userId={props.userId}
         logStable={true}
         />
+    <div className="lobbyPage u-flex">
+
+      {(props.userId) ? (<div className="createRoom" >
+        <NewRoom addNewRoomHost = {addNewRoomHost} />
+      </div>) : (
+      <div className="createRoom" >
+      <h2>
+        Log in to create and join a room!
+      </h2>
+      </div>)}
+
     <div className="lobbyBox">
     <h1>Multimine</h1>
       
-      {(props.userId) ? (<div className="createRoom" >
-        <NewRoom addNewRoomHost = {addNewRoomHost} />
-      </div>) : (<h2>
-        Log in to create and join a room!
-      </h2>)}
+      
 
       <div className="roomCount">
         <h3>Number of rooms open: {roomLinks.length}</h3>
@@ -153,10 +160,12 @@ const Skeleton = (props) => {
       </div>
     </div>
 
-    <div className="u-flex u-relative Chatbook-container">
+    <div className="lobbyChat u-flex u-relative Chatbook-container">
       <div className="Chatbook-chatContainer u-relative">
         <Chat data={activeChat} userId={props.userId}/>
       </div>
+    </div>
+
     </div>
     </>
   );

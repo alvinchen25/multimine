@@ -8,13 +8,15 @@
   flex-shrink: 0;
 }
 
-.SingleMessage-content {
-  /* padding: var(--s) var(--m); */
-  /* background: var(--black); */
-  border-radius: var(--s);
-}
 
 .SingleMessage-mine .SingleMessage-content {
   background: var(--primary--dim);
   color: var(--white);
+}
+
+.messageyeet {
+  border-radius: var(--s);
+  width: 18vw;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }

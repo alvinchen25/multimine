@@ -294,6 +294,12 @@ const PlayRoom = (props) => {
         </button>  
         <div className ="gameRoom">
 
+            <div className="u-flex u-relative Chatbook-container-2">
+              <div className="Chatbook-chatContainer u-relative">
+                <Chat data={activeChat} userId={props.userId} userName={props.userName}/>
+              </div>
+            </div>
+
            { (gameState === "before") ? (<>
               {/* <div className={`game-board ${props.boardSize} displayBlock`}> */}
               <div className={`game-board-${props.boardSize} displayBlock`}>
@@ -352,11 +358,6 @@ const PlayRoom = (props) => {
         </div>
         
         
-        <div className="u-flex u-relative Chatbook-container">
-        <div className="Chatbook-chatContainer u-relative">
-          <Chat data={activeChat} userId={props.userId} userName={props.userName}/>
-        </div>
-      </div>
 
       </div>
     </>

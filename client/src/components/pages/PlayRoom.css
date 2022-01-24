@@ -17,6 +17,7 @@
   top: 10px;
 }
 
+
 .button {
   border: none;
   background-color: pink;
@@ -73,7 +74,7 @@ button {
 }
 
 .coverUp {
-  background-color: #b9e6ff80;
+  background-color: rgba(185, 230, 255, 0.5);
   position: absolute;
 
   z-index: 999;
