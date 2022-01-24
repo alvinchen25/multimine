@@ -144,7 +144,7 @@ const PlayRoom = (props) => {
   //  newEndStats[winner._id] = {time: winTime, place: Object.keys(newEndStats).length + 1};
     newEndStats[winner._id] = {time: winTime, place: Object.keys(endStats).length+1};
     setEndStats(newEndStats);
-    console.log(endStats);
+    // console.log(endStats);
   };
   
   useEffect(() => {

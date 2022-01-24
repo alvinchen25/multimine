@@ -28,8 +28,8 @@ body {
   align-items: center;
   flex-direction: column;
 
-  border-radius: 30px;
-  opacity: .8;
+  border-radius: 20px;
+  opacity: 0.8;
 
   /* box-shadow: 0 0 7px 2px gray; */
 
@@ -39,7 +39,7 @@ body {
 
   margin: 10px;
   /* margin-left: 35px; */
-  height: 100%
+  height: 100%;
 }
 
 .createRoom > * {
@@ -65,20 +65,18 @@ body {
   height: 100%;
 
   font-size: 16px;
-  border-radius: 30px;
+  border-radius: 20px;
 
   flex-basis: 40%;
   flex-grow: 0;
   flex-shrink: 0;
 
   box-shadow: 0 0 15px 2px gray;
-
 }
 
 .lobbyBox h1 {
   margin-top: 30px;
 }
-
 
 /*making lobby boxes */
 .minesweeperButtonContainer {
@@ -97,7 +95,7 @@ body {
   padding: none;
   margin: none;
   font-weight: 300;
-  overflow-wrap:break-word;
+  overflow-wrap: break-word;
 }
 
 .minesweeperButton h3 {
@@ -116,7 +114,6 @@ body {
   width: 20vmin;
   display: inline-block;
 }
-
 
 .minesweeperButton {
   /* change to table cells later! */
@@ -179,5 +176,8 @@ body {
   flex-basis: 25%;
   flex-grow: 0;
   flex-shrink: 0;
+}
 
+.roomTitle {
+  color: black;
 }
