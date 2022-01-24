@@ -49,14 +49,14 @@ const NewPostInput = (props) => {
         onKeyDown={keyDown} 
         className="NewPostInput-input"
       />
-      <button
+      {/* <button
         type="submit"
         className="NewPostInput-button u-pointer"
         value="Submit"
         onClick={handleSubmit}
       >
         Submit
-      </button>
+      </button> */}
     </div>
   );
 };
