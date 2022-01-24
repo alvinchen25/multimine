@@ -40,7 +40,7 @@ const NewPostInput = (props) => {
   };
   
   return (
-    <div className="u-flex">
+    <div className="inputBox u-flex">
       <input
         type="text"
         placeholder={props.defaultText}
@@ -49,14 +49,6 @@ const NewPostInput = (props) => {
         onKeyDown={keyDown} 
         className="NewPostInput-input"
       />
-      <button
-        type="submit"
-        className="NewPostInput-button u-pointer"
-        value="Submit"
-        onClick={handleSubmit}
-      >
-        Submit
-      </button>
     </div>
   );
 };

@@ -49,18 +49,18 @@ const NewPageInput = (props) => {
       <h2>Create a room</h2>
       
       <div>
-        Private game?
-        <input type = "checkbox" className="checkbox" onChange={handleCheck} checked={props.roomPrivate}/>
+        <h3>Private game
+        <input type = "checkbox" className="checkbox" onChange={handleCheck} checked={props.roomPrivate}/></h3>
       </div>
       <div>
-        Game size?
+        <h3 className="u-textCenter">Game size</h3>
         <form className="u-flex" onChange={sizeChange} method="post" action="">
           <div><input type="radio" name="size" value="large" defaultChecked/>Large: 16x30, 99 mines</div>
           <div><input type="radio" name="size" value="medium"/>Medium 16x16, 40 mines</div>
           <div><input type="radio" name="size" value="small"/>Small 9x9, 10 mines</div>
         </form>
       </div>
-      <div className="u-flex">
+      <div className="inputBox u-flex">
         <input
           type="text"
           placeholder={props.defaultText}
@@ -70,7 +70,10 @@ const NewPageInput = (props) => {
           className="NewPostInput-input"
           maxLength={20}
         />
-        <button
+        
+      </div>
+
+      <button
           type="submit"
           className="NewPostInput-button u-pointer"
           value="Submit"
@@ -78,7 +81,6 @@ const NewPageInput = (props) => {
         >
           Submit
         </button>
-      </div>
     </>
   );
 };
@@ -102,7 +104,7 @@ const NewRoom = (props) => {
 
   return (
     <>
-      <NewPageInput defaultText="Enter room name to create room" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} setBoardSize={setBoardSize} roomPrivate={roomPrivate} />
+      <NewPageInput defaultText="Enter room name" onSubmit={AddRoom} setRoomPrivate={setRoomPrivate} setBoardSize={setBoardSize} roomPrivate={roomPrivate} />
     </>
   );
   //What will the props be?

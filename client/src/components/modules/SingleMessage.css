@@ -12,6 +12,8 @@
   /* padding: var(--s) var(--m); */
   /* background: var(--black); */
   border-radius: var(--s);
+  width: 10vw;
+  overflow-wrap: break-word;
 }
 
 .SingleMessage-mine .SingleMessage-content {

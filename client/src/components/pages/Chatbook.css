@@ -1,5 +1,24 @@
 .Chatbook-container {
+  /* for lobby */
   height: calc(100vh - 120px);
+
+  background-color: var(--purple1);
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.Chatbook-container-2 {
+  /* for lobby */
+  height: 56vmin;
+
+  background-color: var(--purple1);
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.Chatbook-container-2 h2 {
+  text-align: center;
+  margin-top: var(--sper);
 }
 
 .Chatbook-container h2 {
@@ -15,4 +34,5 @@
 
 .Chatbook-chatContainer {
   flex-grow: 1;
+
 }

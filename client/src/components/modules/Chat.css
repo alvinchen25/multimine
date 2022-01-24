@@ -1,5 +1,5 @@
 .Chat-container {
-  height: 40vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -8,12 +8,16 @@
   flex-direction: column-reverse;
   width: 100%;
   margin-left: none;
+
+  
 }
 
 .Chat-historyContainer {
   display: flex;
   flex-direction: column-reverse;
   flex-grow: 1;
+
+
   overflow-y: auto;
   margin-left: 10%;
   margin-right: 10%;
