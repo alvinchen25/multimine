@@ -32,14 +32,14 @@ const Skeleton = (props) => {
     messages: [],
   });
 
-  const loadMessageHistory = (recipient) => {
-    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
-      setActiveChat({
-        recipient: recipient,
-        messages: messages,
-      });
-    });
-  };
+  // const loadMessageHistory = (recipient) => {
+  //   get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+  //     setActiveChat({
+  //       recipient: recipient,
+  //       messages: messages,
+  //     });
+  //   });
+  // };
 
   const addMessages = (data) => {
     setActiveChat(prevActiveChat => ({
@@ -52,9 +52,9 @@ const Skeleton = (props) => {
     document.title = "Multimine";
   }, []);
 
-  useEffect(() => {
-    loadMessageHistory(ALL_CHAT);
-  }, []);
+  // useEffect(() => {
+  //   loadMessageHistory(ALL_CHAT);
+  // }, []);
 
   useEffect(() => {
     socket.on("message", addMessages);
@@ -104,8 +104,6 @@ const Skeleton = (props) => {
    // props.addNewRoom(room);
     navigate("/room/"+room);
   };
-
-
 
   const roomLinks = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
     (roomObj.isPrivate === true) ? (

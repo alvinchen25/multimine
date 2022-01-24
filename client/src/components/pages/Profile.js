@@ -216,9 +216,9 @@ const Profile = (props) => {
       <div className="u-flex boardSummary">
 
       <div className="tabBar">
-        <button className="tabItem" style={smallButton} onClick={openSmall}>Small Scores</button>
-        <button className="tabItem" style={mediumButton} onClick={openMedium}>Medium Scores</button>
-        <button className="tabItem"  style={largeButton} onClick={openLarge}>Large Scores</button>
+        <button className="tabItem" style={smallButton} onClick={openSmall}>Small</button>
+        <button className="tabItem" style={mediumButton} onClick={openMedium}>Medium</button>
+        <button className="tabItem"  style={largeButton} onClick={openLarge}>Large</button>
       </div>
 
       {/* <div id="small" className="statContainer" style={{display:"block;"}}> */}
