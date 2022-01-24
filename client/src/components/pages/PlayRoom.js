@@ -37,7 +37,7 @@ const PlayRoom = (props) => {
   const [gameState, setGameState] = useState("before");
   const [mineList, setMineList] = useState([]);
   const [roomCode, setRoomCode] = useState("");
-  const [endStats, setEndStats] = useState([]);
+  const [endStats, setEndStats] = useState({});
   const [height, setHeight] = useState(16);
   const [width, setWidth] = useState(30);
   const [mines, setMines] = useState(99);
@@ -129,10 +129,11 @@ const PlayRoom = (props) => {
   }, []);
 
   const hideGamecallback = ({winner, winTime}) => {
-    let newEndStats = [...endStats];
-    newEndStats.push({winner: winner, winTime: winTime});
-    // console.log(newEndStats);
+    let newEndStats = {...endStats};
+  //  newEndStats[winner._id] = {time: winTime, place: Object.keys(newEndStats).length + 1};
+    newEndStats[winner._id] = {time: winTime, place: Object.keys(endStats).length+1};
     setEndStats(newEndStats);
+    console.log(endStats);
   };
   
   useEffect(() => {
@@ -224,12 +225,19 @@ const PlayRoom = (props) => {
     if(progressList[user._id]){
       pro = progressList[user._id];
     }
+    let endTime = 0;
+    let place = 0;
+    if(user._id in endStats){
+      endTime = endStats[user._id].time;
+      place = endStats[user._id].place;
+    }
+    console.log(endStats);
     return (
       (pro === height*width-mines) ? (
       <>
         <h3>{user.name}</h3>
         <div className="progressHolderDone">
-          <div style={{width: `${pro*100/(height*width-mines)}%`}}></div>
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}><h4>{place}. Finished in {Math.ceil(endTime/1000)}s</h4></div>
         </div>
       </>
       ) : ( (frozenList && frozenList[user._id]) ? (
@@ -251,14 +259,7 @@ const PlayRoom = (props) => {
     )
   });
 
-  const YeetLeaderboard = endStats.map((stat, i) => {
-      return (
-      <>
-       <h1>{i+1}. {stat.winner.name}, time: {stat.winTime/1000}</h1>
-  
-      </>
-      )
-  });
+ 
 
   if (!props.userId) {
     return (
@@ -359,12 +360,7 @@ const PlayRoom = (props) => {
         </div>
 
         </div>
-        <div> {(gameState==="after") ? (
-          <>
-           <h1>You're done.</h1>
-           {YeetLeaderboard}
-           </>
-           ) : (<></>) } </div>
+        
         
 
       </div>
