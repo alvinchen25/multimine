@@ -60,7 +60,7 @@ const NewPageInput = (props) => {
           <div><input type="radio" name="size" value="small"/>Small 9x9, 10 mines</div>
         </form>
       </div>
-      <div className="inputBox u-flex">
+      {/* <div className="inputBox u-flex">
         <input
           type="text"
           placeholder={props.defaultText}
@@ -71,7 +71,7 @@ const NewPageInput = (props) => {
           maxLength={20}
         />
         
-      </div>
+      </div> */}
 
       <button
           type="submit"

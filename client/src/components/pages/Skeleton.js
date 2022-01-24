@@ -83,7 +83,7 @@ const Skeleton = (props) => {
 
   const checkCode = (code, room) => {
     get("/api/roomcode", {room: room}).then((trueCode) => {
-      console.log(`True code is ${trueCode.code}`);
+      // console.log(`True code is ${trueCode.code}`);
       if(code === trueCode.code){
         navigate("/room/"+room);
       }

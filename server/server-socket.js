@@ -56,7 +56,7 @@ const addRoom = (user, room) => {
     roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing._id !== user._id);
   }
   
-  console.log(`${user.name} has joined room ${room}`);
+  // console.log(`${user.name} has joined room ${room}`);
   getSocketFromUserID(user._id).join(room);
   
   userToRoom[user._id] = room;
@@ -74,7 +74,7 @@ const leaveRoom = (user, room) => {
   if(userToRoom[user._id]){
     getSocketFromUserID(user._id).leave(room);
 
-    console.log(`${user.name} has left room ${room}`);
+    // console.log(`${user.name} has left room ${room}`);
 
     roomToUser[room] = roomToUser[room].filter((thing) => thing._id !== user._id);
    // console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
