@@ -1,10 +1,14 @@
-.NewPostInput-input,
-.NewPostInput-button {
-  /* font-family: "Comic Sans"; */
+.NewPostInput-input {
   font-size: 18px;
   padding: var(--s) var(--m);
   padding-top: none;
   padding-bottom: none;
+}
+
+.NewPostInput-button {
+  height: 40px;
+  padding: var(--s) var(--m) var(--s) var(--m);
+
 }
 
 :root {
@@ -59,6 +63,8 @@ div h3 {
   transition: color 0.1s, background 0.1s;
   margin-right: var(--commonMargin);
   margin-top: 10px;
+
+  font-family: "Montserrat", sans-serif;
 }
 
 .NewPostInput-button:hover {

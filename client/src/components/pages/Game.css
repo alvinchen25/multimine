@@ -2,8 +2,8 @@
   background-color: var(--primary);
   /* width: 120vmin;
     height: 64vmin; */
-  margin-left: 2%;
-  margin-right: 2%;
+  /* margin-left: 2%;
+  margin-right: 2%; */
 
   display: grid;
   grid-template-rows: repeat(16, 3.5vmin);
@@ -30,8 +30,8 @@
     height: 64vmin; */
   width: 31.5vmin;
   height: 31.5vmin;
-  margin-left: 2%;
-  margin-right: 2%;
+  /* margin-left: 2%;
+  margin-right: 2%; */
 
   display: grid;
   grid-template-rows: repeat(9, 3.5vmin);
@@ -64,8 +64,8 @@ small h1 {
     height: 64vmin; */
   width: 56vmin;
   height: 56vmin;
-  margin-left: 2%;
-  margin-right: 2%;
+  /* margin-left: 2%;
+  margin-right: 2%; */
 
   display: grid;
   grid-template-rows: repeat(16, 3.5vmin);
@@ -97,8 +97,8 @@ small h1 {
     height: 64vmin; */
   width: 90vmin;
   height: 48vmin;
-  margin-left: 2%;
-  margin-right: 2%;
+  /* margin-left: 2%;
+  margin-right: 2%; */
 
   display: grid;
   grid-template-rows: repeat(16, 3vmin);

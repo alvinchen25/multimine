@@ -35,6 +35,9 @@
   z-index: 9999;
   top: 0;
   right: 0;
+
+
+  font-family: "Montserrat", sans-serif;
 }
 
 .button:hover {
@@ -94,6 +97,11 @@ button {
   height: 100%
 }
 
+.gameChat h2 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 /* game */
 
 .coverUp {
@@ -106,7 +114,8 @@ button {
 }
 
 .coverUpGameOver {
-  background-color: #fdb9ff80;
+  background-color: rgba(255, 192, 203, 0.541);
+  /* rgba(128, 255, 213, 0.418) */
   position: absolute;
 
   z-index: 999;
@@ -147,4 +156,34 @@ button {
 .settings {
   align-content: center;
   justify-content: space-between;
+  margin: auto;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.settings .info {
+  width: 100%;
+  padding-top: 3%;
+}
+
+.settings .button {
+  margin: none;
+  font-weight: normal;
+  font-family: "Montserrat", sans-serif;
+}
+
+.timeAndProgress {
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  height: 0;
+}
+
+.timeAndProgress h1 {
+  margin: none;
 }

@@ -23,10 +23,9 @@
   flex-grow: 1;
   overflow-x: visible;
   overflow-y: auto;
-  margin-left: 10%;
-  margin-right: 10%;
   -ms-overflow-style: none; 
   scrollbar-width: none;
+  padding-left: 5%;
 }
 
 .Chat-historyContainer::-webkit-scrollbar {
