@@ -10,6 +10,12 @@
   margin-left: none;
 }
 
+.Chat-newContainer h4 {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 1.1em;
+}
+
 .Chat-historyContainer {
   display: flex;
   width: 100%;
@@ -17,10 +23,9 @@
   flex-grow: 1;
   overflow-x: visible;
   overflow-y: auto;
-  margin-left: 10%;
-  margin-right: 10%;
   -ms-overflow-style: none; 
   scrollbar-width: none;
+  padding-left: 5%;
 }
 
 .Chat-historyContainer::-webkit-scrollbar {

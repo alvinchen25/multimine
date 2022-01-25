@@ -305,14 +305,13 @@ const PlayRoom = (props) => {
         </button>  
         <div className ="gameRoom">
 
-            <div className="u-flex u-relative Chatbook-container-2">
+            <div className="gameChat u-flex u-relative Chatbook-container-2">
               <div className="Chatbook-chatContainer u-relative">
                 <Chat data={activeChat} userId={props.userId} userName={props.userName}/>
               </div>
             </div>
 
            { (gameState === "before") ? (<>
-              {/* <div className={`game-board ${props.boardSize} displayBlock`}> */}
               <div className={`game-board-${props.boardSize} displayBlock`}>
   
                { (props.isPrivate === true) ? (
@@ -324,6 +323,9 @@ const PlayRoom = (props) => {
                 </>
                 )
                }
+               <div className = "board-and-stats">
+               <div className={`u-flex ${props.boardSize} settings`}>
+                <div className="info">
                <h3>
                  Dimensions: {width} x {height}
                </h3>
@@ -333,11 +335,16 @@ const PlayRoom = (props) => {
                <h3>
                  Mine Penalty: {freezeTime/1000} seconds
                </h3>
-               <h1><button type="button" className="button" onClick = {handleStart}><h3>Start Game</h3></button></h1>
+               </div>
+               <button type="button" className="button" onClick = {handleStart}><h3>Start Game</h3></button>
+               
+               </div>
+               </div>
                </div>
                </>
               ) : (
                 <>
+
             <div className = "board-and-stats">
              <div className={`game-board-${props.boardSize} ${props.boardSize}`}>
                 {(countdown) ? (<div className={`coverUp u-flex ${props.boardSize} u-flex-alignCenter`}><h1>{Math.ceil(countdown/1000)}</h1></div>) : (<> </>)}
@@ -358,13 +365,15 @@ const PlayRoom = (props) => {
                   countdown = {countdown}/>   
                   
               </div>
-              <h1>Time: {Math.ceil(gameTime/1000)}s Progress: {progress}/{height*width-mines}</h1>
-            </div>
+              <div className="u-flex timeAndProgress">
+                <h1>{Math.ceil(gameTime/1000)}s</h1> <h1> {progress}/{height*width-mines}</h1>
+              </div>
+              </div>
            
               </>
               )
               }
-        <div className="progressBars"> {/* for more styling eventually*/}
+        <div className="progressBars">
           {YeetProgressList}
         </div>
 
