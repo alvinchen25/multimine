@@ -25,7 +25,7 @@
 
 .progressHolder {
   padding: 4px;
-  height: 40px;
+  height: 4vh;
   border: 3px;
   border-color: gray;
   border-style: solid;
@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   background-color: var(--progress-green);
-  height: 40px;
+  height: 4vh;
   border-radius: 15px;
 }
 
@@ -54,7 +54,7 @@
 
 .progressHolderDone {
   padding: 4px;
-  height: 40px;
+  height: 4vh;
   border: 3px;
   border-color: gray;
   border-style: solid;
@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   background-color: pink;
-  height: 40px;
+  height: 4vh;
   border-radius: 15px;
 }
 .progressHolderDone div h4 {
@@ -77,7 +77,7 @@
 
 .progressHolderFrozen {
   padding: 4px;
-  height: 40px;
+  height: 4vh;
   border: 3px;
   border-color: gray;
   border-style: solid;
@@ -91,7 +91,7 @@
   display: flex;
   align-items: center;
   background-color: aqua;
-  height: 40px;
+  height: 4vh;
   border-radius: 15px;
 }
 

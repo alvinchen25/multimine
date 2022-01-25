@@ -22,7 +22,8 @@
   margin-right: 0;
   margin-left: auto;
 
-  padding: 16px 32px;
+  height: 50px;
+  padding: 0 32px 0 32px;
 
   text-align: center;
   font-size: 16px;
@@ -55,7 +56,10 @@ button {
 .gameRoom h1 button h3 {
   margin: 0;
   font-weight: 100;
-  font-size: 2vmin;
+}
+
+.button {
+  font-size: 100%;
 }
 
 /* overall structure */
@@ -94,7 +98,10 @@ button {
 
   /* margin-left: 5%; */
 
-  height: 100%
+  height: 100%;
+
+  box-shadow: 0 0 7px 2px gray;
+
 }
 
 .gameChat h2 {

@@ -28,9 +28,9 @@
 
 .Chatbook-userList {
   width: 260px;
-  margin-right: var(--l);
 }
 
 .Chatbook-chatContainer {
+  width: 20vw;
   flex-grow: 1;
 }

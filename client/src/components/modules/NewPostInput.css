@@ -3,6 +3,8 @@
   padding: var(--s) var(--m);
   padding-top: none;
   padding-bottom: none;
+
+  width: 80%;
 }
 
 .NewPostInput-button {
