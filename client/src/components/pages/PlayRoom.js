@@ -8,6 +8,7 @@ import { Link } from "@reach/router";
 import Chat from "../modules/Chat.js";
 import NavBar from "../modules/NavBar.js"
 import { useNavigate } from "@reach/router"
+import Confetti from 'react-confetti'
 
 import "../../utilities.css";
 import "./PlayRoom.css";
@@ -373,7 +374,7 @@ const PlayRoom = (props) => {
 
         </div>
         
-        
+        {(progress >= height*width-mines) ? (<Confetti numberOfPieces={500} recycle={false}/>) : (<></>)}
 
       </div>
     </>
