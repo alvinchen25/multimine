@@ -1,12 +1,15 @@
 .Chat-container {
   height: 100%;
   width: 100%;
+
+  align-items: center;
+  margin: none;
 }
 
 .Chat-newContainer {
   display: flex;
   flex-direction: column-reverse;
-  width: 100%;
+  width: 20vw;
   margin-left: none;
 }
 

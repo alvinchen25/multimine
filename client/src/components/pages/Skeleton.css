@@ -10,13 +10,10 @@ body {
   justify-content: space-around;
   margin-left: 5%;
   width: 90%;
-  margin-top: 25px;
+  margin-top: 13px;
   height: calc(100vh - 120px);
 }
 
-/* .lobbyPage div {
-
-} */
 
 /* left */
 
@@ -31,7 +28,7 @@ body {
   border-radius: 20px;
   opacity: 0.8;
 
-  /* box-shadow: 0 0 7px 2px gray; */
+  box-shadow: 0 0 7px 2px gray;
 
   flex-basis: 25%;
   flex-grow: 0;
@@ -71,7 +68,7 @@ body {
   flex-grow: 0;
   flex-shrink: 0;
 
-  box-shadow: 0 0 15px 2px gray;
+  box-shadow: 0 0 7px 2px gray;
 }
 
 .lobbyBox h1 {
@@ -180,6 +177,9 @@ body {
   flex-basis: 25%;
   flex-grow: 0;
   flex-shrink: 0;
+
+  box-shadow: 0 0 7px 2px gray;
+
 }
 
 .roomTitle {
