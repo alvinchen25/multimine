@@ -36,13 +36,16 @@ const NavBar = (props) => {
         </div>
 
         <div className="userStuff NavBar-linkContainer u-inlineBlock">
-           {props.userId && (
+           {/* {props.userId && (
             <Link to={`/profile/${props.userId}`} className="NavBar-link">
               Profile
             </Link>
-          )}
+          )} */}
           {(props.logStable) ? (props.userId ? (
             <>
+            <Link to={`/profile/${props.userId}`} className="NavBar-link">
+              Profile
+            </Link>
             <GoogleLogout
               clientId={GOOGLE_CLIENT_ID}
               buttonText="Logout"

@@ -80,8 +80,8 @@ body {
   margin: none;
   height: calc(78vh - 120px);
   overflow-y: scroll;
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .minesweeperButtonContainer::-webkit-scrollbar {
@@ -184,4 +184,8 @@ body {
 
 .roomTitle {
   color: black;
+}
+
+h5 {
+  font-size: 0.8em;
 }
