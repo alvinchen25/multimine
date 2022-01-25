@@ -26,25 +26,33 @@ const getNamesFromRoom = (room) => {
 }
 
 const addUser = (user, socket) => {
+  console.log(`new socket is ${socket.id}`);
   const oldSocket = userToSocketMap[user._id];
+ // console.log(userToSocketMap);
+  if(oldSocket){
+    console.log(`old socket is ${oldSocket.id}`);
+  }
   if (oldSocket && oldSocket.id !== socket.id) {
     // there was an old tab open for this user, force it to disconnect
-    io.to(oldSocket).emit("forceDisconnect");
+    console.log(`uh oh: ${oldSocket.id}`);
+    io.to(oldSocket.id).emit("userDisconnect");
+  //  io.to(oldSocket).emit("forceDisconnect");
     delete socketToUserMap[oldSocket.id];
   }
 
   userToSocketMap[user._id] = socket;
+//  console.log(`array update ${user._id} to ${socket.id}`);
   socketToUserMap[socket.id] = user;
-  io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
-  
- // console.log("1234");
- // console.log(socketid);
- // console.log(user);
+  //console.log(userToSocketMap);
 };
 
 const removeUser = (user, socket) => {
-  if (user) delete userToSocketMap[user._id];
-  delete socketToUserMap[socket.id];
+  if (user){
+    if(socket === userToSocketMap[user._id]){
+      delete userToSocketMap[user._id];
+      delete socketToUserMap[socket.id];
+    } 
+  }
   io.emit("activeUsers", { activeUsers: getAllConnectedUsers() });
 };
 

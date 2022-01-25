@@ -52,7 +52,8 @@ const App = () => {
     console.log("Logged out successfully!");
     setUserId(null);
     setUserName(null);
-    post("/api/logout");
+    const body = {socket: socket};
+    post("/api/logout", body);
   };
 
   useEffect(() => { // gets the Room ID's from the API
@@ -63,6 +64,19 @@ const App = () => {
   }, []);
 
   
+  const disconnectCallback = () => {
+    console.log("sad");
+    handleLogout();
+  };
+
+  useEffect(() => {
+    socket.on("userDisconnect", disconnectCallback);
+    return () => {
+      socket.off("userDisconnect", disconnectCallback);
+    };
+  }, []);
+
+
   const activeRoomCallback = (data) => {
     setRoomList([data].concat(roomList));
   };

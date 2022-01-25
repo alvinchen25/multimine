@@ -162,8 +162,11 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
-  if (req.user) socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
-  res.send({});
+  let result = null;
+  if (req.user){
+    result = socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+  }
+  res.send(result);
 });
 
 router.get("/chat", (req, res) => {
