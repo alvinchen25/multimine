@@ -107,17 +107,11 @@ const PlayRoom = (props) => {
     socket.emit("joinroomSock", props._id);
     return () => {
       socket.emit("leaveroomSock", props._id);
-      
+
     }
   },[]);
 
-  useEffect(() => {
-    return () => {
-      const body = {room: props._id};
-      post("/api/deleteroom", body);
-    }
-  },[]);
-
+  
   useEffect(() => {
     const callback = (newMineList) => {
       setMineList(newMineList);
@@ -248,7 +242,7 @@ const PlayRoom = (props) => {
       <>
         <h3>{user.name}</h3>
         <div className="progressHolderDone">
-          <div style={{width: `${pro*100/(height*width-mines)}%`}}><h4>{place}. Finished in {Math.ceil(endTime/1000)}s</h4></div>
+          <div style={{width: `${pro*100/(height*width-mines)}%`}}><h4>{place}. Finished in {endTime/1000}s</h4></div>
         </div>
       </>
       ) : ( (frozenList && frozenList[user._id]) ? (

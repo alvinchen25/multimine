@@ -12,7 +12,6 @@ import Howtoplay from "./pages/Howtoplay.js";
 import PlayRoom from "./pages/PlayRoom.js";
 import { Link } from "@reach/router";
 
-
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
@@ -52,7 +51,7 @@ const App = () => {
     console.log("Logged out successfully!");
     setUserId(null);
     setUserName(null);
-    const body = {socket: socket};
+    const body = {usersocket: socket.id};
     post("/api/logout", body);
   };
 
@@ -65,7 +64,6 @@ const App = () => {
 
   
   const disconnectCallback = () => {
-    console.log("sad");
     handleLogout();
   };
 

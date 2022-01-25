@@ -26,29 +26,24 @@ const getNamesFromRoom = (room) => {
 }
 
 const addUser = (user, socket) => {
-  console.log(`new socket is ${socket.id}`);
   const oldSocket = userToSocketMap[user._id];
- // console.log(userToSocketMap);
-  if(oldSocket){
-    console.log(`old socket is ${oldSocket.id}`);
-  }
+
   if (oldSocket && oldSocket.id !== socket.id) {
     // there was an old tab open for this user, force it to disconnect
+    leaveRoom(user);
     console.log(`uh oh: ${oldSocket.id}`);
     io.to(oldSocket.id).emit("userDisconnect");
-  //  io.to(oldSocket).emit("forceDisconnect");
     delete socketToUserMap[oldSocket.id];
   }
 
   userToSocketMap[user._id] = socket;
-//  console.log(`array update ${user._id} to ${socket.id}`);
   socketToUserMap[socket.id] = user;
-  //console.log(userToSocketMap);
 };
 
 const removeUser = (user, socket) => {
   if (user){
     if(socket === userToSocketMap[user._id]){
+      console.log("weeeee");
       delete userToSocketMap[user._id];
       delete socketToUserMap[socket.id];
     } 
@@ -60,7 +55,6 @@ const addRoom = (user, room) => {
   let oldRoom = getRoomFromUser(user._id);
   if(oldRoom){
     getSocketFromUserID(user._id).leave(oldRoom);
-
     roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing._id !== user._id);
   }
   
@@ -74,12 +68,12 @@ const addRoom = (user, room) => {
   }else{
     roomToUser[room] = [user];
   }
-
- // console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
+  io.to(room).emit("roomupdate", getNamesFromRoom(room));
 }
 
-const leaveRoom = (user, room) => {
+const leaveRoom = (user) => {
   if(userToRoom[user._id]){
+    const room = userToRoom[user._id];
     getSocketFromUserID(user._id).leave(room);
 
     // console.log(`${user.name} has left room ${room}`);
@@ -88,7 +82,15 @@ const leaveRoom = (user, room) => {
    // console.log(`${room} array is now ${roomToUser[room]} with size ${roomToUser[room].length}`);
     
     delete userToRoom[user._id];
-  
+    io.to(room).emit("roomupdate", getNamesFromRoom(room));
+
+    if(getUserFromRoom(room).length === 0){
+      const query = {code: gameUtils.getRoomCode(room)};
+      gameUtils.setGameStatus(room, "after");
+      Room.deleteOne(query).then(() => {
+        io.emit("removeRoom", room);
+      });
+    }
   }
 }
 
@@ -125,25 +127,10 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         
         if(user){
-          if(userToRoom[user._id]){
-            room = userToRoom[user._id];
-            leaveRoom(user, room);
-            io.to(room).emit("roomupdate", getNamesFromRoom(room));
-
-            if(getUserFromRoom(room).length === 0){
-              const query = {code: gameUtils.getRoomCode(room)};
-              console.log(gameUtils.getRoomCode(room));
-              gameUtils.setGameStatus(room, "after");
-              Room.deleteOne(query).then(() => {
-                io.emit("removeRoom", room);
-              });
-            }
-          }
-
+          leaveRoom(user);
           removeUser(user, socket.id);
           console.log(`goodbye ${user.name}`);
         }
-        
       });
 
 
@@ -151,15 +138,13 @@ module.exports = {
         const user = getUserFromSocketID(socket.id);
         if(user){
           addRoom(user,room);
-          io.to(room).emit("roomupdate", getNamesFromRoom(room));
         }
       });
 
       socket.on("leaveroomSock", (room) => {
         const user = getUserFromSocketID(socket.id);
         if(user){
-          leaveRoom(user,room);
-          io.to(room).emit("roomupdate", getNamesFromRoom(room));         
+          leaveRoom(user);        
         }
       });
 

@@ -54,7 +54,7 @@ function login(req, res) {
 
 function logout(req, res) {
   //const userSocket = socketManager.getSocketFromUserID(req.user._id);
-  const userSocket = req.body.socket;
+  const userSocket = socketManager.getSocketFromSocketID(req.body.usersocket);
   if (userSocket) {
     // delete user's socket if they logged out
     socketManager.removeUser(req.user, userSocket);

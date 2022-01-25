@@ -52,17 +52,6 @@ router.post("/room", (req, res) => {
   socketManager.getIo().emit("activeRoom", newRoom);
 });
 
-router.post("/deleteroom", (req, res) => {
-  if(socketManager.getUserFromRoom(req.body.room).length === 0){
-    gameUtils.setGameStatus(req.body.room, "after");
-    const query = {_id: ObjectId(req.body.room)};
-    Room.deleteOne(query).then( () => {
-      socketManager.getIo().emit("removeRoom", req.body.room);
-    });
-  };
-  res.send({});
-});
-
 
 router.get("/roomcode", (req, res) => {
   const query = {_id: req.query.room};
