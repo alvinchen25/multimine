@@ -31,7 +31,6 @@ const addUser = (user, socket) => {
   if (oldSocket && oldSocket.id !== socket.id) {
     // there was an old tab open for this user, force it to disconnect
     leaveRoom(user);
-    console.log(`uh oh: ${oldSocket.id}`);
     io.to(oldSocket.id).emit("userDisconnect");
     delete socketToUserMap[oldSocket.id];
   }
@@ -56,7 +55,6 @@ const addRoom = (user, room) => {
     getSocketFromUserID(user._id).leave(oldRoom);
     roomToUser[oldRoom] = roomToUser[oldRoom].filter((thing) => thing._id !== user._id);
   }
-  
   // console.log(`${user.name} has joined room ${room}`);
   getSocketFromUserID(user._id).join(room);
   

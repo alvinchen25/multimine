@@ -49,29 +49,17 @@ const NewPageInput = (props) => {
       <h2>Create a Room</h2>
       
       <div>
-        <h3>Private game
-        <input type = "checkbox" className="checkbox" onChange={handleCheck} checked={props.roomPrivate}/></h3>
+        <label for="private"><h3>Private game
+        <input type = "checkbox" className="checkbox" id="private" onChange={handleCheck} checked={props.roomPrivate}/></h3></label>
       </div>
       <div>
         <h3 className="u-textCenter">Game size</h3>
         <form className="u-flex" onChange={sizeChange} method="post" action="">
-          <div><input type="radio" name="size" value="large" defaultChecked/>Large: 16x30, 99 mines</div>
-          <div><input type="radio" name="size" value="medium"/>Medium: 16x16, 40 mines</div>
-          <div><input type="radio" name="size" value="small"/>Small: 9x9, 10 mines</div>
+          <div><label for="large"><input type="radio" name="size" id="large" value="large" defaultChecked/>Large: 16x30, 99 mines</label></div>
+          <div><label for="medium"><input type="radio" name="size" id="medium" value="medium"/>Medium: 16x16, 40 mines</label></div>
+          <div><label for="small"><input type="radio" name="size" id="small" value="small"/>Small: 9x9, 10 mines</label></div>
         </form>
       </div>
-      {/* <div className="inputBox u-flex">
-        <input
-          type="text"
-          placeholder={props.defaultText}
-          value={value}
-          onChange={handleChange}
-          onKeyDown={keyDown} 
-          className="NewPostInput-input"
-          maxLength={20}
-        />
-        
-      </div> */}
 
       <button
           type="submit"
