@@ -19,8 +19,8 @@ const Profile = (props) => {
   const [mediumDisplay, setMediumDisplay] = useState({display: 'none'});
   const [largeDisplay, setLargeDisplay] = useState({display: 'none'});
   const [smallButton, setSmallButton] = useState({backgroundColor: 'var(--purple1)'})
-  const [mediumButton, setMediumButton] = useState({backgroundColor: 'pink'})
-  const [largeButton, setLargeButton] = useState({backgroundColor: 'pink'})
+  const [mediumButton, setMediumButton] = useState({backgroundColor: 'var(--pink)'})
+  const [largeButton, setLargeButton] = useState({backgroundColor: 'var(--pink)'})
 
   
 
@@ -29,25 +29,25 @@ const Profile = (props) => {
     setMediumDisplay({display: 'none'});
     setLargeDisplay({display: 'none'});
     setSmallButton({backgroundColor: 'var(--purple1)'})
-    setMediumButton({backgroundColor: 'pink'})
-    setLargeButton({backgroundColor: 'pink'})
+    setMediumButton({backgroundColor: 'var(--pink)'})
+    setLargeButton({backgroundColor: 'var(--pink)'})
   }
   
   const openMedium = () => {
     setSmallDisplay({display: 'none'});
     setMediumDisplay({display: 'block'});
     setLargeDisplay({display: 'none'});
-    setSmallButton({backgroundColor: 'pink'})
+    setSmallButton({backgroundColor: 'var(--pink)'})
     setMediumButton({backgroundColor: 'var(--purple1)'})
-    setLargeButton({backgroundColor: 'pink'})
+    setLargeButton({backgroundColor: 'var(--pink)'})
   }
 
   const openLarge = () => {
     setSmallDisplay({display: 'none'});
     setMediumDisplay({display: 'none'});
     setLargeDisplay({display: 'block'});
-    setSmallButton({backgroundColor: 'pink'})
-    setMediumButton({backgroundColor: 'pink'})
+    setSmallButton({backgroundColor: 'var(--pink)'})
+    setMediumButton({backgroundColor: 'var(--pink)'})
     setLargeButton({backgroundColor: 'var(--purple1)'})
   }
 

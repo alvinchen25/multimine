@@ -68,7 +68,7 @@
 .progressHolderDone div {
   display: flex;
   align-items: center;
-  background-color: pink;
+  background-color: var(--pink);
   height: 4vh;
   border-radius: 15px;
 }
@@ -88,7 +88,31 @@
   width: 90%;
 
   border-radius: 20px;
+
+
+  animation: shake .2s;
+  animation-iteration-count: 3;
 }
+
+
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px)}
+  10% { transform: translate(-1px, -2px)}
+  20% { transform: translate(-3px, 0px)}
+  30% { transform: translate(3px, 2px)}
+  40% { transform: translate(1px, -1px)}
+  50% { transform: translate(-1px, 2px)}
+  60% { transform: translate(-3px, 1px)}
+  70% { transform: translate(3px, 1px)}
+  80% { transform: translate(-1px, -1px)}
+  90% { transform: translate(1px, 2px)}
+  100% { transform: translate(1px, -2px)}
+}
+
+
+
+
 
 .progressHolderFrozen div {
   display: flex;

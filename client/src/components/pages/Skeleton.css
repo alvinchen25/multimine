@@ -51,7 +51,7 @@ body {
 
 /* center */
 .lobbyBox {
-  background-color: pink; /* Green */
+  background-color: var(--pink); /* Green */
   border: none;
   /* color: white; */
   padding: 0 32px;
@@ -90,7 +90,7 @@ body {
 
 .minesweeperButton > * {
   padding: none;
-  margin: none;
+  margin: 10px;
   font-weight: 300;
   overflow-wrap: break-word;
 }
@@ -110,13 +110,17 @@ body {
 .minesweeperButtonContainer div {
   width: 20vmin;
   display: inline-block;
+  margin: 5px;
 }
 
 .minesweeperButton {
   /* change to table cells later! */
-  background-image: url("../../public/images/blocktemp.png");
+  /* background-image: url("../../public/images/blocktemp.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: contain; */
+
+  background-color: var(--purple1);
+  border-radius: 20px;
 
   margin: none;
 
@@ -124,7 +128,7 @@ body {
   width: 20vmin;
 
   border: none;
-  color: var(--darkgrey);
+  color: black;
 
   padding: 2vmin 2vmin;
 
@@ -146,11 +150,15 @@ body {
 
 .minesweeperButton:hover {
   opacity: 1;
-  color: var(--grey);
+  color: black;
 }
 
 .minesweeperButton:active {
   opacity: 0.5;
+
+  /* background-image: url("../../public/images/minetemp.png");
+  background-repeat: no-repeat;
+  background-size: contain; */
 }
 
 .roomCount {

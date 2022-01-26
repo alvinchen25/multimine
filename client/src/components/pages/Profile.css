@@ -13,7 +13,7 @@
   margin-left: var(--sper);
   margin-right: var(--sper);
 
-  background-color: pink;
+  background-color: var(--pink);
   padding: 30px;
   border-radius: 50px;
 
@@ -86,12 +86,13 @@ table {
   align-self: center;
   z-index: 999;
 
+  font-family: "Montserrat", sans-serif;
 
 }
 
 .tabItem {
   border: none;
-  background-color: pink;
+  background-color: var(--pink);
   z-index: 999;
 
   padding: 16px 32px;
@@ -102,11 +103,14 @@ table {
   opacity: 1;
   border-radius: 20px 20px 0 0;
 
+
+  font-family: "Montserrat", sans-serif;
+
 }
 
-.tabItem:hover {
+/* .tabItem:hover {
   opacity: .8;
-}
+} */
 
 .tabItem:active {
   opacity: 0.5;
