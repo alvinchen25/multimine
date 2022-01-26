@@ -1,5 +1,5 @@
 .scores {
-    background-color: pink;
+    background-color: var(--pink);
     margin: 25px;
     margin-top: 15px;
     padding: 20px;

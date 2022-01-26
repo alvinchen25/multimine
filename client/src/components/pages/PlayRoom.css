@@ -16,7 +16,7 @@
 
 .button {
   border: none;
-  background-color: pink;
+  background-color: var(--pink);
   /* color: white; */
 
   margin-right: 0;

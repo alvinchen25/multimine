@@ -58,10 +58,10 @@ div h3 {
 
 .NewPostInput-button {
   color: black;
-  border: pink 1px solid;
+  border: var(--pink) 1px solid;
   opacity: 0.8;
   border-radius: var(--s);
-  background: pink;
+  background: var(--pink);
   transition: color 0.1s, background 0.1s;
   margin-right: var(--commonMargin);
   margin-top: 10px;
