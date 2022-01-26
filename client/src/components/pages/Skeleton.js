@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { NewRoom } from "../modules/NewPageInput";
 import NavBar from "../modules/NavBar.js"
 import { useNavigate } from "@reach/router";
@@ -128,26 +127,24 @@ const Skeleton = (props) => {
         userId={props.userId}
         logStable={true}
         />
-    <div className="lobbyPage u-flex">
+      <div className="lobbyPage u-flex">
+        {(props.userId) ? (<div className="createRoom" >
+          <NewRoom addNewRoomHost = {addNewRoomHost} />
+        </div>) : (
+        <div className="createRoom" >
+        <h2>
+          Log in to create and join a room!
+        </h2>
+        </div>)}
 
-      {(props.userId) ? (<div className="createRoom" >
-        <NewRoom addNewRoomHost = {addNewRoomHost} />
-      </div>) : (
-      <div className="createRoom" >
-      <h2>
-        Log in to create and join a room!
-      </h2>
-      </div>)}
-
-    <div className="lobbyBox">
-    {askCode && <CodePopup room = {askRoom._id} handleClose = {() => togglePopup(askRoom)} checkCode = {checkCode}/>}
-    {/* <h1>Lobby</h1> */}
-      <div className="roomCount">
-        <h2>Number of active rooms: {roomLinks.length}</h2>
-        <div className="minesweeperButtonContainer">
-        {roomLinks}
-        </div>
-      </div>
+        <div className="lobbyBox">
+          {askCode && <CodePopup room = {askRoom._id} handleClose = {() => togglePopup(askRoom)} checkCode = {checkCode}/>}
+          <div className="roomCount">
+            <h2>Number of active rooms: {roomLinks.length}</h2>
+            <div className="minesweeperButtonContainer">
+              {roomLinks}
+            </div>
+          </div>
         </div>
 
         <div className="lobbyChat u-flex u-relative Chatbook-container">
@@ -155,7 +152,6 @@ const Skeleton = (props) => {
             <Chat data={activeChat} userId={props.userId}/>
           </div>
         </div>
-
       </div>
     </>
   );
