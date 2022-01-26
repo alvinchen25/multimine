@@ -6,8 +6,21 @@
   justify-content: space-between;
   margin-top: var(--sper);
   margin-bottom: var(--sper);
+
+  animation: fadeInAnimation 2s forwards;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
+
 }
 
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+   }
+}
 /* Left side */
 .profileContainer {
   margin-left: var(--sper);
@@ -83,13 +96,17 @@ table {
   margin: none;
   width: 90%;
   align-self: center;
-  z-index: 999;
+  z-index: 99999;
 
-  font-family: "Montserrat", sans-serif;
 }
 
 .tabItem {
   border: none;
+
+  /* box-shadow: 0 0 8px 2px gray;
+  clip-path: inset(-15px -15px .1px -15px);
+  margin-right: 10px; */
+
   background-color: var(--pink);
   z-index: 999;
 
@@ -104,9 +121,7 @@ table {
   font-family: "Montserrat", sans-serif;
 }
 
-/* .tabItem:hover {
-  opacity: .8;
-} */
+
 
 .tabItem:active {
   opacity: 0.5;
@@ -114,12 +129,21 @@ table {
 
 .loadingPage {
   font-size: large;
+  margin-left: 30px;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+.scoresBox {
+  justify-content: space-between;
 }
 
 .profileScrollTable {
-  height: 18vh;
+  margin: 20px;
+  height: 36vh;
   overflow-x: hidden;
   overflow-y: auto;
+  width: 50%;
 }
 
 .header * {

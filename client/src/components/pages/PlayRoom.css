@@ -98,7 +98,7 @@ button {
 
   height: 100%;
 
-  box-shadow: 0 0 7px 2px gray;
+  box-shadow: 0 0 8px 1px gray;
 }
 
 .gameChat h2 {
@@ -118,7 +118,7 @@ button {
 }
 
 .coverUpGameOver {
-  background-color: rgba(255, 192, 203, 0.541);
+  background-color: rgba(225, 255, 252, 0.424);
   /* rgba(128, 255, 213, 0.418) */
   position: absolute;
 

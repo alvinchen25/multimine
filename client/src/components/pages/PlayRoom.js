@@ -328,7 +328,6 @@ const PlayRoom = (props) => {
                 </>
                 )
                }
-
                <h3>
                  Dimensions: {width} x {height}
                </h3>
