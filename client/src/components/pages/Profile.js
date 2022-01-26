@@ -189,7 +189,7 @@ const Profile = (props) => {
         userId={props.userId}
         logStable={false}
         />
-      <div> <h3 className="loadingPage"> Loading . . . </h3> </div>
+      <div> <h3 className="loadingPage"> User not found! </h3> </div>
     </>
     );
   }

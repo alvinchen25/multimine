@@ -3,7 +3,6 @@ import { get } from "../../utilities";
 import Board from "../modules/Board.js";
 import { socket } from "../../client-socket.js";
 import { post } from "../../utilities";
-import ProgressBars from "../modules/ProgressBars.js";
 import { Link } from "@reach/router";
 import Chat from "../modules/Chat.js";
 import NavBar from "../modules/NavBar.js"

@@ -42,7 +42,6 @@
 .statContainer {
   align-self: center;
   margin: 0 10px 10px 10px;
-  
 
   background-color: var(--purple1);
   padding: none;
@@ -87,7 +86,6 @@ table {
   z-index: 999;
 
   font-family: "Montserrat", sans-serif;
-
 }
 
 .tabItem {
@@ -103,9 +101,7 @@ table {
   opacity: 1;
   border-radius: 20px 20px 0 0;
 
-
   font-family: "Montserrat", sans-serif;
-
 }
 
 /* .tabItem:hover {
@@ -117,7 +113,7 @@ table {
 }
 
 .loadingPage {
-  /* could add animations */
+  font-size: large;
 }
 
 .profileScrollTable {

@@ -13,9 +13,6 @@ import "../modules/Chat.css";
 import "../../utilities.css";
 import "./Skeleton.css";
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID --> DONE
-// const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.googleusercontent.com";
-
 /* propTypes
 * @param addNewRoom
 */
@@ -53,6 +50,9 @@ const Skeleton = (props) => {
     document.title = "Multimine";
   }, []);
 
+  useEffect(() => {
+    loadMessageHistory(ALL_CHAT);
+  }, []);
 
   useEffect(() => {
     socket.on("message", addMessages);
@@ -81,7 +81,6 @@ const Skeleton = (props) => {
 
   const checkCode = (code, room) => {
     get("/api/roomcode", {room: room}).then((trueCode) => {
-      // console.log(`True code is ${trueCode.code}`);
       if(code === trueCode.code){
         navigate("/room/"+room);
       }
@@ -99,7 +98,6 @@ const Skeleton = (props) => {
   }
 
   const addNewRoomHost = (room) => {
-   // props.addNewRoom(room);
     navigate("/room/"+room);
   };
 
@@ -128,7 +126,7 @@ const Skeleton = (props) => {
 
   return (
     <>
-    <NavBar
+      <NavBar
         handleLogin={props.handleLogin}
         handleLogout={props.handleLogout}
         userId={props.userId}
@@ -153,15 +151,15 @@ const Skeleton = (props) => {
         {roomLinks}
         </div>
       </div>
-    </div>
+        </div>
 
-    <div className="lobbyChat u-flex u-relative Chatbook-container">
-      <div className="Chatbook-chatContainer u-relative">
-        <Chat data={activeChat} userId={props.userId}/>
+        <div className="lobbyChat u-flex u-relative Chatbook-container">
+          <div className="Chatbook-chatContainer u-relative">
+            <Chat data={activeChat} userId={props.userId}/>
+          </div>
+        </div>
+
       </div>
-    </div>
-
-    </div>
     </>
   );
 };
