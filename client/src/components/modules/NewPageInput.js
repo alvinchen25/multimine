@@ -296,6 +296,7 @@ const NewRoom = (props) => {
       "Turkey",
       "Turtle",
       "Viper",
+      "Vishaal",
       "Vulture",
       "Wallaby",
       "Walrus",

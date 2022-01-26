@@ -44,17 +44,14 @@
   text-align: center;
 
   box-shadow: 0 0 15px 2px gray;
-
-  }
+}
 
 .game-board-small > * {
   word-break: break-all;
 }
 
-
-
 small h1 {
-  width:  31.5vmin;
+  width: 31.5vmin;
   align-self: center;
 }
 
@@ -78,14 +75,11 @@ small h1 {
   text-align: center;
 
   box-shadow: 0 0 15px 2px gray;
-
 }
 
 .game-board-medium > * {
   word-break: break-all;
 }
-
-
 
 .medium h1 {
   width: 56vmin;
@@ -111,13 +105,11 @@ small h1 {
   text-align: center;
 
   box-shadow: 0 0 15px 2px gray;
-
 }
 
 .game-board-large > * {
   word-break: break-all;
 }
-
 
 .large h1 {
   width: 90vmin;

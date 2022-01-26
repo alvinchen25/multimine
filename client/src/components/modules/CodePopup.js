@@ -4,9 +4,6 @@ import "./CodePopup.css";
 import "./NewPostInput.css"
 
 const CodePopup = (props) => {
-    useEffect(() => {
-        // console.log(props.room);
-    }, []);
     const [value, setValue] = useState("");
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -17,7 +14,7 @@ const CodePopup = (props) => {
         if (event.key === "Enter" ) {
             props.checkCode(value, props.room)
         }
-      };
+    };
 
     return (
         <div className = "popup-box"> 
@@ -26,15 +23,14 @@ const CodePopup = (props) => {
                 <h3 className="u-textCenter"> Enter Code: </h3>
                 <div class="u-flex">
                 <input type="text" className="NewPostInput-input" placeholder="Room Code"  onKeyDown={keyDown} value={value} onChange = {handleChange} />
-                <button
-                    type="submit"
-                    value="Submit"
-                    className="NewPostInput-button"
-                    onClick={() => props.checkCode(value, props.room)}
-                >
-                Submit
-                </button>
-
+                    <button
+                        type="submit"
+                        value="Submit"
+                        className="NewPostInput-button"
+                        onClick={() => props.checkCode(value, props.room)}
+                    >
+                    Submit
+                    </button>
                 </div>
             </div>
         </div>

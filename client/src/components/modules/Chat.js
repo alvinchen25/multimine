@@ -39,8 +39,6 @@ const Chat = (props) => {
     <>
       <div className="Chat-newContainer">
         <NewMessage recipient={props.data.recipient}/>
-        {/* change it to something that doesn't store in database */}
-        {/* make this conditional later */}
       </div>
     </>
   )
@@ -50,7 +48,7 @@ const Chat = (props) => {
         <div className="u-flexColumn Chat-container">
           <h2>Lobby {props.data.recipient.name}</h2>
           <div className="Chat-historyContainer">
-            {[...props.data.messages].reverse().map((m, i) => (
+            {[...props.data.messages].slice(-50,).reverse().map((m, i) => (
               <SingleMessage message={m} key={i} />
             ))}
           </div>

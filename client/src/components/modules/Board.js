@@ -158,7 +158,6 @@ const Board = (props) => {
         setCellState(uCellState);
     }
     
-    
     return (
         <>
             {data.map((x, i) => (
@@ -167,11 +166,8 @@ const Board = (props) => {
                 </div>
                     
             ))}
-            
         </>
     );
-    
-
 };
 
 export default Board;
