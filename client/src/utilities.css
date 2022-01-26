@@ -16,8 +16,8 @@
 
 /* TODO: REPLACE WITH YOUR OWN FONT! */
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300;500&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Open+Sans:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300&family=Tajawal:wght@200&display=swap");
 
 /*
 Potential scheme
@@ -30,7 +30,6 @@ b7b7b7ff
 
 Added colors
 */
-
 
 :root {
   --primary--dim: #3dbbff;
@@ -60,11 +59,13 @@ Added colors
 body {
   margin: 0;
   padding: 0;
+  /* font-family: "Hind", sans-serif; */
   font-family: "Montserrat", sans-serif;
+  /* font-family: "Tajawal", sans-serif; */
+
   font-weight: 300;
 
   color: var(--black);
-
 }
 
 form {
@@ -118,7 +119,6 @@ form {
   color: var(--primary--dim);
 }
 
-
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -131,11 +131,11 @@ form {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #555;
+  background: rgb(165, 165, 165);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgb(179, 179, 179);
 }

@@ -18,54 +18,44 @@
   transform: translateX(-50%);
   color: var(--black);
   font-size: 40px;
-  margin-top: 15px ;
+  margin-top: 15px;
 
-  font-style:italic;
+  font-family: "Montserrat", sans-serif;
+  font-style: italic;
   font-weight: bold;
 
-	letter-spacing:0.1em;
+  letter-spacing: 0.1em;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: white;
 
-
-  text-shadow: 
-						0 1 30px var(--primary),
-						0 0 10px var(--purple2),
-            0 0 10px var(--pink);
+  text-shadow: 0 1 30px var(--primary), 0 0 10px var(--purple2), 0 0 10px var(--pink);
   animation-duration: 1s;
-  animation-iteration-count: 1 ;
+  animation-iteration-count: 1;
 }
 
 .titleAnime:hover {
   animation-name: squeeze;
 }
 @keyframes squeeze {
-0%   {   text-shadow: 
-  0px 0px 3px var(--primary),
-  0px 0px 3px var(--purple2),
-  0 0 3px var(--pink); }
-20%  { text-shadow: 
-  1px 1px 3px var(--primary),
-  3px 3px 3px var(--purple2),
-  -2px -2px 3px var(--pink); }
+  0% {
+    text-shadow: 0px 0px 3px var(--primary), 0px 0px 3px var(--purple2), 0 0 3px var(--pink);
+  }
+  20% {
+    text-shadow: 1px 1px 3px var(--primary), 3px 3px 3px var(--purple2), -2px -2px 3px var(--pink);
+  }
 
-50% { text-shadow: 
-  5px 5px 3px var(--primary),
-  15px 15px 3px var(--purple2),
-  -10px -10px 3px var(--pink); }
-80%  { text-shadow: 
-  1px 1px 3px var(--primary),
-  3px 3px 3px var(--purple2),
-  -2px -2px 3px var(--pink); }
-100%   {   text-shadow: 
-  0px 0px 3px var(--primary),
-  0px 0px 3px var(--purple2),
-  0 0 3px var(--pink); }
+  50% {
+    text-shadow: 5px 5px 3px var(--primary), 15px 15px 3px var(--purple2),
+      -10px -10px 3px var(--pink);
+  }
+  80% {
+    text-shadow: 1px 1px 3px var(--primary), 3px 3px 3px var(--purple2), -2px -2px 3px var(--pink);
+  }
+  100% {
+    text-shadow: 0px 0px 3px var(--primary), 0px 0px 3px var(--purple2), 0 0 3px var(--pink);
+  }
 }
-
-
-
 
 .NavBar-linkContainer {
   position: absolute;
@@ -74,12 +64,12 @@
 }
 
 .linkAnimation {
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   font-weight: bold;
 }
 
 .linkAnimation:hover {
- text-shadow: 0 0 10px var(--purple1);
+  text-shadow: 0 0 10px var(--purple1);
 }
 
 .NavBar-link,
@@ -92,7 +82,6 @@
 
 .NavBar-link:hover {
   opacity: 0.8;
- 
 }
 
 .NavBar-link + .NavBar-link {
@@ -110,13 +99,13 @@
   margin-top: 5px;
 
   box-shadow: 0 0 10px 2px gray;
-
 }
 
 .userStuff {
   position: absolute;
   top: 20px;
-  right: 20px;}
+  right: 20px;
+}
 
 .userStuff > * {
   margin-right: 10px;
