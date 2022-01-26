@@ -114,7 +114,7 @@ button {
 }
 
 .coverUpGameOver {
-  background-color: rgba(225, 255, 252, 0.424);
+  background-color: rgba(203, 227, 255, 0.555);
   position: absolute;
 
   z-index: 999;
