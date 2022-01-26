@@ -17,6 +17,15 @@ const Leaderboard = (props) => {
     
     get(`/api/allUsers`, {}).then((userObjs) => {
       userObjs.sort((a,b) => {
+        if (a.topscoreSmall.score === 0 && b.topscoreSmall.score === 0) {
+          return 0;
+        }
+        else if (a.topscoreSmall.score === 0) {
+          return 1;
+        }
+        else if (b.topscoreSmall.score === 0) {
+          return -1;
+        }
         return a.topscoreSmall.score-b.topscoreSmall.score;
       });
       let bestSmallRunScores = userObjs.map((userObj) => (
@@ -31,13 +40,13 @@ const Leaderboard = (props) => {
             </td>
             <td>
             {userObj.topscoreSmall.gameTime.substring(5,7)}/{userObj.topscoreSmall.gameTime.substring(8,10)}/{userObj.topscoreSmall.gameTime.substring(0,4)}
-
-            
             </td>
           </tr>
         </> ) : (<></>)
       ));
-      setAllSmallRuns(bestSmallRunScores);
+      setAllSmallRuns(bestSmallRunScores.slice(0,20));
+      // console.log(bestSmallRunScores.length);
+      // console.log(`best small runs: ${JSON.stringify(bestSmallRunScores)} and ${JSON.stringify(bestSmallRunScores.slice(0,4))}`);
     });
   }, []);
 
@@ -45,6 +54,15 @@ const Leaderboard = (props) => {
     
     get(`/api/allUsers`, {}).then((userObjs) => {
       userObjs.sort((a,b) => {
+        if (a.topscoreMedium.score === 0 && b.topscoreMedium.score === 0) {
+          return 0;
+        }
+        else if (a.topscoreMedium.score === 0) {
+          return 1;
+        }
+        else if (b.topscoreMedium.score === 0) {
+          return -1;
+        }
         return a.topscoreMedium.score-b.topscoreMedium.score;
       });
       let bestMediumRunScores = userObjs.map((userObj) => (
@@ -61,7 +79,7 @@ const Leaderboard = (props) => {
           </tr>
         </> ) : (<></>)
       ));
-      setAllMediumRuns(bestMediumRunScores);
+      setAllMediumRuns(bestMediumRunScores.slice(0,20));
     });
   }, []);
 
@@ -70,6 +88,15 @@ const Leaderboard = (props) => {
     
     get(`/api/allUsers`, {}).then((userObjs) => {
       userObjs.sort((a,b) => {
+        if (a.topscoreLarge.score === 0 && b.topscoreLarge.score === 0) {
+          return 0;
+        }
+        else if (a.topscoreLarge.score === 0) {
+          return 1;
+        }
+        else if (b.topscoreLarge.score === 0) {
+          return -1;
+        }
         return a.topscoreLarge.score-b.topscoreLarge.score;
       });
       let bestLargeRunScores = userObjs.map((userObj) => (
@@ -86,7 +113,8 @@ const Leaderboard = (props) => {
           </tr>
         </> ) : (<></>)
       ));
-      setAllLargeRuns(bestLargeRunScores);
+      // console.log(`best large run ${JSON.stringify(bestLargeRunScores.slice(0,10))}`)
+      setAllLargeRuns(bestLargeRunScores.slice(0,20));
     });
   }, []);
 
@@ -114,7 +142,7 @@ const Leaderboard = (props) => {
               <td>TOP TIME</td>
               <td>DATE</td>
               </tr>
-           {allSmallRuns}
+              {allSmallRuns}
            </table>
         </div>
         </div>
@@ -122,14 +150,14 @@ const Leaderboard = (props) => {
         <h1 className="u-textCenter">MEDIUM</h1>
         <h3 className="u-textCenter">16x16, 40 mines</h3> 
         <div className="scrollTable">
-        <table>
-              <tr className="header">
-              <td>RUN</td>
-              <td>TOP TIME</td>
-              <td>DATE</td>
-              </tr>
-        {allMediumRuns}
-        </table>
+          <table>
+            <tr className="header">
+            <td>RUN</td>
+            <td>TOP TIME</td>
+            <td>DATE</td>
+            </tr>
+            {allMediumRuns}
+          </table>
         </div>
          </div>
 
