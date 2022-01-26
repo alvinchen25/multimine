@@ -26,7 +26,7 @@ const initMines = (height, width, mines) => {
 }
 
 const genRoomCode = () => {
-    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let code = "";
     for(let i=0;i<5;++i){
         code += characters.charAt(Math.floor(Math.random() * characters.length));

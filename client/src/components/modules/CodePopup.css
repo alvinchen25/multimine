@@ -1,16 +1,15 @@
 .popup-box {
-    position: fixed;
-    padding-left: 50%;
-    padding-right: 50%;
-    background: #00000070;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 9999;
+  position: fixed;
+  padding-left: 50%;
+  padding-right: 50%;
+  background: #00000070;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
 
-  }
-   
 .box {
   position: fixed;
   left: 30%;
@@ -19,14 +18,12 @@
 
   width: 80%;
 
-
   display: flex;
 
   max-height: 70vh;
   background: var(--primary);
   border-radius: 20px;
   padding: 20px 25vw 40px 25vw;
-
 
   border: none;
 
@@ -36,21 +33,25 @@
 .box input {
   width: 15vmin;
   text-align: center;
+
   margin-bottom: 10px;
+
+  float: center;
+
+  font-size: 1em;
 }
-   
-  .close-icon {
-    content: 'x';
-    cursor: pointer;
-    position: fixed;
-    right: calc(20% - 30px);
-    top: calc(100vh - 85vh - 33px);
-    background: var(--purple2);
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    line-height: 20px;
-    text-align: center;
-    border: none;
-    font-size: 20px;
-  }
+
+.close-icon {
+  content: "x";
+  cursor: pointer;
+  right: calc(20% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: var(--purple2);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: none;
+  font-size: 20px;
+}

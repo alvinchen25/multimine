@@ -40,6 +40,15 @@ const Skeleton = (props) => {
     }));
   };
 
+  const loadMessageHistory = (recipient) => {
+    get("/api/chat", { recipient_id: recipient._id }).then((messages) => {
+      setActiveChat({
+        recipient: recipient,
+        messages: messages,
+      });
+    });
+  };
+
   useEffect(() => {
     document.title = "Multimine";
   }, []);
@@ -51,8 +60,6 @@ const Skeleton = (props) => {
       socket.off("message", addMessages);
     };
   }, []);
-
-  
 
   const navigate = useNavigate();
 
@@ -140,9 +147,6 @@ const Skeleton = (props) => {
 
     <div className="lobbyBox">
     <h1>Multimine</h1>
-      
-      
-
       <div className="roomCount">
         <h3>Number of rooms open: {roomLinks.length}</h3>
         <div className="minesweeperButtonContainer">
