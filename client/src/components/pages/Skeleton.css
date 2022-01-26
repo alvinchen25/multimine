@@ -1,4 +1,3 @@
-/* Fill me in :) */
 
 /* enclosing container */
 
@@ -35,7 +34,6 @@ body {
   flex-shrink: 0;
 
   margin: 10px;
-  /* margin-left: 35px; */
   height: 100%;
 }
 
@@ -58,7 +56,6 @@ body {
 .lobbyBox {
   background-color: var(--pink); /* Green */
   border: none;
-  /* color: white; */
   padding: 0 32px;
   text-align: center;
   text-decoration: none;
@@ -83,7 +80,6 @@ body {
 /*making lobby boxes */
 .minesweeperButtonContainer {
   margin: none;
-  /* background-color: aquamarine; */
   height: calc(85vh - 120px);
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -96,7 +92,6 @@ body {
 
 .minesweeperButton > * {
   padding: none;
-  /* margin: 10px; */
   font-weight: 300;
   overflow-wrap: break-word;
 }
@@ -116,15 +111,10 @@ body {
 .minesweeperButtonContainer div {
   width: 20vmin;
   display: inline-block;
-  /* margin: 5px; */
 }
 
 .minesweeperButton {
-  /* change to table cells later! */
-
- 
-
-  /* background-color: var(--purple1); */
+  background-color: lightgray;
 
   margin: none;
 
@@ -145,10 +135,7 @@ body {
 
   text-align: center;
 
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between; */
+
 
   cursor: pointer;
 
@@ -159,19 +146,30 @@ body {
   background-image: url("../../public/images/blocktemp.png");
   background-repeat: no-repeat;
   background-size: contain;
+
+  opacity: 0.8;
 } 
-.progress {
-  background-image: url("../../public/images/emptytemp.png");
+.ongoing {
+  background-image: url("../../public/images/emptytemp2.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.minesweeperButton:hover {
+.open:hover {
   opacity: 1; 
   color: var(--black);
 }
 
-.minesweeperButton:active {
+.open:active {
+  opacity: 0.5;
+}
+
+.ongoing:hover {
+  opacity: 1; 
+  color: var(--black);
+}
+
+.ongoing:active {
   opacity: 0.5;
 }
 
@@ -185,9 +183,7 @@ body {
 }
 
 .rulesBox {
-  /* edit!! */
   margin: var(--sper) var(--mper) var(--sper) var(--mper);
-  /* background-color: var(--grey); */
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
