@@ -17,6 +17,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .progressBars::-webkit-scrollbar {
   display: none;
 }
@@ -57,6 +58,8 @@
   border-color: gray;
   border-style: solid;
   margin-top: 15px;
+  margin-bottom: 15px;
+
   width: 90%;
 
   border-radius: 20px;
@@ -80,6 +83,8 @@
   border-color: gray;
   border-style: solid;
   margin-top: 15px;
+  margin-bottom: 15px;
+
   width: 90%;
 
   border-radius: 20px;
