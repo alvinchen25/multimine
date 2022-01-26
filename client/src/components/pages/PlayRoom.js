@@ -157,7 +157,6 @@ const PlayRoom = (props) => {
       socket.emit("endGame", {room: props._id, socketid: socket.id});
       const body = {userId: props.userId, room: props._id, boardSize: props.boardSize};
       post("/api/addHighScore", body).then((newRecord) => {
-        // console.log(`new record: ${newRecord}`);
         setIsNewRecord(newRecord);
       });
     }
@@ -231,16 +230,15 @@ const PlayRoom = (props) => {
 
   const YeetProgressList = userList.map((user) => {
     let pro = 0;
+    let endTime = 0;
+    let place = 0;
     if(progressList[user._id]){
       pro = progressList[user._id];
     }
-    let endTime = 0;
-    let place = 0;
     if(user._id in endStats){
       endTime = endStats[user._id].time;
       place = endStats[user._id].place;
     }
-    // console.log(endStats);
     return (
       (pro === height*width-mines) ? (
       <>
