@@ -386,7 +386,7 @@ const PlayRoom = (props) => {
         
         {(progress >= height*width-mines) ? (<Confetti numberOfPieces={500} recycle={false}/>) : (<></>)}
         
-        {(isNewRecord) ? (<><div className="best"><h1>PERSONAL RECORD!!!!</h1></div></>) : (<></>)}
+        {(isNewRecord) ? (<><div className="best"><h1>PERSONAL RECORD!!!!</h1></div></>) : (<><div className="best"><h1>PERSONAL RECORD!!!!</h1></div></>)}
         
       </div>
     </>
