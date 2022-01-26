@@ -44,6 +44,11 @@ body {
   margin-bottom: 10px;
 }
 
+.createRoom .NewPostInput-button {
+  width: 50%;
+  font-size: 1em;
+}
+
 .createRoom h2 {
   margin: 20px;
   text-align: center;

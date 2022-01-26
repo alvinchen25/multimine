@@ -104,7 +104,7 @@ const Skeleton = (props) => {
   const roomLinks = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
     (roomObj.isPrivate === true) ? (
       <div>
-        <button onClick = {() => togglePopup(roomObj)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+        <button onClick = {() => togglePopup(roomObj)}  className="u-link minesweeperButton" > {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
           <h3>{roomObj.name}</h3>
           <h5>{roomObj.status}</h5>
           <h5>{roomObj.boardSize}</h5>

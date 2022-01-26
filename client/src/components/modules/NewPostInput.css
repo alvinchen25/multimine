@@ -10,8 +10,10 @@
 .NewPostInput-button {
   height: 40px;
   padding: var(--s) var(--m) var(--s) var(--m);
-
+  
 }
+
+
 
 :root {
   --commonMargin: none; /* common variable */

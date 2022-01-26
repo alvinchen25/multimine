@@ -75,6 +75,14 @@ const PlayRoom = (props) => {
   }, []);
 
   useEffect(() => {
+    get("/api/roomstatus", {room: props._id}).then((thing) => {
+      if(thing.status !== "before"){
+        navigate("/");
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     get("/api/roomcode", {room: props._id}).then((thing) => {
       setRoomCode(thing.code);
     });
@@ -311,7 +319,9 @@ const PlayRoom = (props) => {
 
            { (gameState === "before") ? (<>
               <div className={`game-board-${props.boardSize} displayBlock`}>
-  
+              <div className = "board-and-stats">
+               <div className={`u-flex ${props.boardSize} settings`}>
+                <div className="info">
                { (props.isPrivate === true) ? (
                  <h3>
                  Room Code: {roomCode}
@@ -321,9 +331,7 @@ const PlayRoom = (props) => {
                 </>
                 )
                }
-               <div className = "board-and-stats">
-               <div className={`u-flex ${props.boardSize} settings`}>
-                <div className="info">
+
                <h3>
                  Dimensions: {width} x {height}
                </h3>
