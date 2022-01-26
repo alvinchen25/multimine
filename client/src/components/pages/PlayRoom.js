@@ -241,6 +241,11 @@ const PlayRoom = (props) => {
       place = endStats[user._id].place;
     }
     // console.log(endStats);
+
+
+    const animate = () => {
+      console.log('click!')
+    }
     return (
       (pro === height*width-mines) ? (
       <>
@@ -312,7 +317,11 @@ const PlayRoom = (props) => {
            { (gameState === "before") ? (<>
               <div className={`game-board-${props.boardSize} displayBlock`}>
   
-               { (props.isPrivate === true) ? (
+              
+               <div className = "board-and-stats">
+               <div className={`u-flex ${props.boardSize} settings`}>
+                <div className="info">
+                { (props.isPrivate === true) ? (
                  <h3>
                  Room Code: {roomCode}
                </h3>
@@ -321,9 +330,6 @@ const PlayRoom = (props) => {
                 </>
                 )
                }
-               <div className = "board-and-stats">
-               <div className={`u-flex ${props.boardSize} settings`}>
-                <div className="info">
                <h3>
                  Dimensions: {width} x {height}
                </h3>

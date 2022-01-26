@@ -88,13 +88,7 @@ const Profile = (props) => {
           </tr>
         </>
       );
-      // if (userObj.times.length === 0) {
-      //   newUserScores = (
-      //     <>
-      //       <div>Complete a game to see your scores!</div>
-      //     </>
-      //   );
-      // }
+
       setUserSmallScores(newUserSmallScores);
 
     });
@@ -106,7 +100,6 @@ const Profile = (props) => {
       setUser(userObj);
       userObj.mediumTimes.map((round) => {
         avgMediumCounter=avgMediumCounter+round.score/1000;
-        // console.log(`round score: ${round.score} and avgscore ${avgMediumScore}`);
       });
       if (userObj.mediumTimes.length>0) {
         setAvgMediumScore(avgMediumCounter/userObj.mediumTimes.length);
@@ -130,7 +123,7 @@ const Profile = (props) => {
         <>
           <tr>
           <td></td>
-          <td>Complete a game to see your scores!</td>
+          <td>No completed games :(</td>
           </tr>
         </>
       );
@@ -189,7 +182,7 @@ const Profile = (props) => {
         userId={props.userId}
         logStable={false}
         />
-      <div> <h3 className="loadingPage"> User not found! </h3> </div>
+      <div> <h3 className="loadingPage"> Loading... </h3> </div>
     </>
     );
   }
@@ -222,13 +215,18 @@ const Profile = (props) => {
       </div>
 
       {/* <div id="small" className="statContainer" style={{display:"block;"}}> */}
-      <div className="smallScores statContainer" style={smallDisplay}>
+      <div className="statContainer" style={smallDisplay}>
         <div className="stats">
           <h1>Small</h1>
           <h3>9x9, 10 mines</h3>
+          <div className="scoresBox u-flex">
+
+          <div>
           <h2> Number of games: {user.smallTimes.length}</h2>
           <h2> Average time: {Math.ceil(avgSmallScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreSmall.score/1000} seconds</h2>
+          </div>
+         
           <div className="profileScrollTable">
           <table>
             <tr className="header">
@@ -236,8 +234,9 @@ const Profile = (props) => {
             <th>Date:</th>
             </tr>
             {userSmallScores}
-            
           </table>
+          </div>
+
           </div>
         </div>
       </div>
@@ -248,9 +247,14 @@ const Profile = (props) => {
         <div className="stats">
           <h1> Medium</h1>
           <h3>16x16, 40 mines</h3>
+
+          <div className="scoresBox u-flex">
+          <div>
           <h2> Number of games: {user.mediumTimes.length}</h2>
           <h2> Average time: {Math.ceil(avgMediumScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreMedium.score/1000} seconds</h2>
+
+          </div>
           <div className="profileScrollTable">
           <table>
           <tr className="header">
@@ -261,6 +265,7 @@ const Profile = (props) => {
             
           </table>
           </div>
+          </div>
         </div>
       </div>
       {/* <div id="large" className="statContainer" style={{display:"none"}}> */}
@@ -268,9 +273,13 @@ const Profile = (props) => {
         <div className="stats">
           <h1> Large</h1>
           <h3> 30x16, 99 mines</h3>
+
+          <div className="scoresBox u-flex">
+          <div>
           <h2> Number of games: {user.largeTimes.length}</h2>
           <h2> Average time: {Math.ceil(avgLargeScore*1000)/1000} seconds</h2>
           <h2> Best time: {user.topscoreLarge.score/1000} seconds</h2>
+          </div>
           <div className="profileScrollTable">
           <table>
             <tr className="header">
@@ -279,6 +288,7 @@ const Profile = (props) => {
             </tr>
             {userLargeScores}
           </table>
+          </div>
           </div>
         </div>
       </div>

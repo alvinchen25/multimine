@@ -28,7 +28,7 @@ body {
   border-radius: 20px;
   opacity: 0.8;
 
-  box-shadow: 0 0 7px 2px gray;
+  box-shadow: 0 0 8px 1px gray;
 
   flex-basis: 25%;
   flex-grow: 0;
@@ -68,7 +68,7 @@ body {
   flex-grow: 0;
   flex-shrink: 0;
 
-  box-shadow: 0 0 7px 2px gray;
+  box-shadow: 0 0 8px 1px gray;
 }
 
 .lobbyBox h2 {
@@ -189,7 +189,7 @@ body {
   flex-grow: 0;
   flex-shrink: 0;
 
-  box-shadow: 0 0 7px 2px gray;
+  box-shadow: 0 0 8px 1px gray;
 
 }
 
