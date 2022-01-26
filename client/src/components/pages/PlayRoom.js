@@ -102,7 +102,7 @@ const PlayRoom = (props) => {
      return () => {
        socket.off("roomupdate", Userlistcallback);
      };
-   }, [userList]);
+   }, [userList, gameState]);
 
   useEffect(() => {
     socket.emit("joinroomSock", props._id);
