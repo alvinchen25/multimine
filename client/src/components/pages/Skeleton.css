@@ -121,11 +121,10 @@ body {
 
 .minesweeperButton {
   /* change to table cells later! */
-  background-image: url("../../public/images/blocktemp.png");
-  background-repeat: no-repeat;
-  background-size: contain;
 
-  background-color: var(--purple1);
+ 
+
+  /* background-color: var(--purple1); */
 
   margin: none;
 
@@ -154,6 +153,17 @@ body {
   cursor: pointer;
 
   opacity: 0.8;
+}
+
+.open {
+  background-image: url("../../public/images/blocktemp.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+} 
+.ongoing {
+  background-image: url("../../public/images/emptytemp.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .minesweeperButton:hover {

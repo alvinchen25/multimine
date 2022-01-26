@@ -107,7 +107,7 @@ const App = () => {
         index = i;
       }
     }
-    newRoomList[index].status = "In progress";
+    newRoomList[index].status = "ongoing";
     setRoomList(newRoomList);
   };
 

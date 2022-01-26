@@ -32,7 +32,6 @@ const PlayRoom = (props) => {
   const [myFrozen, setMyFrozen] = useState(0);
   const [frozenList, setFrozenList] = useState({});
   const [progress, setProgress] = useState(0);
-  const [ongoing, setOngoing] = useState(false);
   const [gameState, setGameState] = useState("before");
   const [gameTime, setGameTime] = useState(0);
   const [mineList, setMineList] = useState([]);

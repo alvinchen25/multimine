@@ -21,7 +21,6 @@ const CodePopup = (props) => {
             <div className = "box">
                 <span className = "close-icon" onClick = {props.handleClose}>x</span>
                 <h3 className="u-textCenter"> Enter Code: </h3>
-                <div class="u-flex">
                 <input type="text" className="NewPostInput-input" placeholder="Room Code"  onKeyDown={keyDown} value={value} onChange = {handleChange} />
                     <button
                         type="submit"
@@ -31,7 +30,6 @@ const CodePopup = (props) => {
                     >
                     Submit
                     </button>
-                </div>
             </div>
         </div>
     );
