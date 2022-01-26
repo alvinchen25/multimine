@@ -1,5 +1,4 @@
 .rulesBox {
-  /* edit!! */
   margin: var(--sper) var(--mper) var(--sper) var(--mper);
   background-color: var(--pink);
   padding: 15px 32px 40px 32px;
@@ -10,7 +9,6 @@
 
   box-shadow: 0 0 15px 2px gray;
 
-  /* color: white; */
 
   animation: fadeInAnimation 2s forwards;
   animation-iteration-count: 1;

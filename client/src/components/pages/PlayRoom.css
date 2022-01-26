@@ -16,8 +16,7 @@
 
 .button {
   border: none;
-  background-color: var(--pink);
-  /* color: white; */
+  background-color: var(--primary);
 
   margin-right: 0;
   margin-left: auto;
@@ -81,11 +80,9 @@ button {
   flex-grow: 0;
   flex-shrink: 0;
 
-  /* background-color: var(--purple1); */
-  /* border-radius: 30px; */
+
   height: 100%;
 
-  /* margin-right: 5%; */
 }
 
 /* game chat (left side) */
@@ -94,7 +91,6 @@ button {
   flex-grow: 0;
   flex-shrink: 0;
 
-  /* margin-left: 5%; */
 
   height: 100%;
 
@@ -118,8 +114,7 @@ button {
 }
 
 .coverUpGameOver {
-  background-color: rgba(225, 255, 252, 0.424);
-  /* rgba(128, 255, 213, 0.418) */
+  background-color: rgba(203, 227, 255, 0.555);
   position: absolute;
 
   z-index: 999;

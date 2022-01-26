@@ -93,12 +93,7 @@
   animation: shake .2s;
   animation-iteration-count: 3;
 }
-/* 
-.progressHolderFrozen:focus {
-  animation: shake .2s;
-  animation-iteration-count: 3;
 
-} */
 
 @keyframes shake {
   0% { transform: translate(1px, 1px)}

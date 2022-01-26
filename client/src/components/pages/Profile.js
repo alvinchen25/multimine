@@ -205,7 +205,6 @@ const Profile = (props) => {
         <button className="tabItem"  style={largeButton} onClick={openLarge}>Large</button>
       </div>
 
-      {/* <div id="small" className="statContainer" style={{display:"block;"}}> */}
       <div className="statContainer" style={smallDisplay}>
         <div className="stats">
           <h1>Small</h1>
@@ -232,7 +231,6 @@ const Profile = (props) => {
         </div>
       </div>
       
-      {/* <div id="medium" className="statContainer" style={{display:"none"}}> */}
 
       <div className="mediumScores statContainer" style={mediumDisplay}>
         <div className="stats">
@@ -259,7 +257,6 @@ const Profile = (props) => {
           </div>
         </div>
       </div>
-      {/* <div id="large" className="statContainer" style={{display:"none"}}> */}
       <div className="largeScores statContainer" style={largeDisplay}>
         <div className="stats">
           <h1> Large</h1>

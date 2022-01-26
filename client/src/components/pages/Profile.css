@@ -103,9 +103,6 @@ table {
 .tabItem {
   border: none;
 
-  /* box-shadow: 0 0 8px 2px gray;
-  clip-path: inset(-15px -15px .1px -15px);
-  margin-right: 10px; */
 
   background-color: var(--pink);
   z-index: 999;
