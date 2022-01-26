@@ -80,7 +80,7 @@ const Chat = (props) => {
         </div>
       </>
     );
-          }
+  }
 }
 
 export default Chat;
