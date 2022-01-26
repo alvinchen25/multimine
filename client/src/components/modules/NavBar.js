@@ -8,10 +8,6 @@ import "./NavBar.css";
 // This identifies your application to Google's authentication service
 const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.googleusercontent.com";
 
-/**
- * The navigation bar at the top of all pages. Takes no props.
- */
-
 const NavBar = (props) => {
     return (
       <nav className="NavBar-container">

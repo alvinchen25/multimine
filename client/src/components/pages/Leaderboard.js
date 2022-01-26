@@ -34,9 +34,6 @@ const Leaderboard = (props) => {
 
             
             </td>
-            {/* {userObj.topscoreSmall.gameTime.substring(0,10)} {userObj.topscoreSmall.gameTime.substring(11,19)} UTC */}
-            {/* Board Size: {userObj.topscoreSmall.boardSize} */}
-            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
           </tr>
         </> ) : (<></>)
       ));
@@ -61,9 +58,6 @@ const Leaderboard = (props) => {
             </td>
             <td>{userObj.topscoreMedium.gameTime.substring(5,7)}/{userObj.topscoreMedium.gameTime.substring(8,10)}/{userObj.topscoreMedium.gameTime.substring(0,4)}
             </td>
-            {/* {userObj.topscoreMedium.gameTime.substring(0,10)} {userObj.topscoreMedium.gameTime.substring(11,19)} UTC */}
-            {/* Board Size: {userObj.topscoreMedium.boardSize} */}
-            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
           </tr>
         </> ) : (<></>)
       ));
@@ -89,9 +83,6 @@ const Leaderboard = (props) => {
             </td>
             <td> {userObj.topscoreLarge.gameTime.substring(5,7)}/{userObj.topscoreLarge.gameTime.substring(8,10)}/{userObj.topscoreLarge.gameTime.substring(0,4)}
             </td>
-            {/* {userObj.topscoreLarge.gameTime.substring(0,10)} {userObj.topscoreLarge.gameTime.substring(11,19)} UTC */}
-            {/* Board Size: {userObj.topscoreLarge.boardSize} */}
-            {/* RUN: {userObj.name}, TIME {userObj.topscore} seconds, DATE: {runObj.gameTime.substring(0,10)} {runObj.gameTime.substring(11, 19)} UTC */}
           </tr>
         </> ) : (<></>)
       ));

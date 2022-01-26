@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
-import Game from "./pages/Game.js";
 import NavBar from "./modules/NavBar.js";
 import Profile from "./pages/Profile.js";
-import ProfileNoExist from "./pages/ProfileNoExist.js";
-import Chatbook from "./pages/Chatbook.js";
 import Leaderboard from "./pages/Leaderboard.js";
 import Howtoplay from "./pages/Howtoplay.js";
 import PlayRoom from "./pages/PlayRoom.js";
-import { Link } from "@reach/router";
 
 import "../utilities.css";
 
@@ -128,7 +124,6 @@ const App = () => {
   };
 
   const roomsList = roomList.map((roomObj) => ( // Creates the list of rooms that we can put into our router
-    // <Room _id={roomObj._id} /> 
     <PlayRoom
       path={"/room/" + roomObj._id}
       _id={roomObj._id}
@@ -138,49 +133,21 @@ const App = () => {
       key="{roomObj._id}"
       userId={userId}
       userName={userName}/>
-    // routes to a page with ending = _id     "/room/:roomObj.roomId"
-    // eventually the room should have some data passed into it
-    // do we need an await here so that the page is loaded before you can go?
   ));
 
   return (
     <>
-      {/* <NavBar
-        handleLogin={handleLogin}
-        handleLogout={handleLogout}
-        userId={userId}
-        /> */}
       <Router> 
         <Skeleton 
           path="/"
-    //      roomLinks={roomLinks}
           roomList = {roomList}
           addNewRoom={addNewRoom}
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           userId={userId}
           userName={userName}/>
-        {/* <Game 
-          path="/game"
-          handleLogin={handleLogin}
-          handleLogout={handleLogout}
-          userId={userId}
-          userName={userName}
-          /> */}
         <Profile
           path="/profile/:userId"
-          handleLogin={handleLogin}
-          handleLogout={handleLogout}
-          userId={userId}
-          userName={userName}/>
-        <ProfileNoExist
-          path="/profile"
-          handleLogin={handleLogin}
-          handleLogout={handleLogout}
-          userId={userId}
-          userName={userName}/>
-        
-        <Chatbook path="/chat/" userId={userId}
           handleLogin={handleLogin}
           handleLogout={handleLogout}
           userId={userId}
