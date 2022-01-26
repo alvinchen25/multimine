@@ -33,8 +33,8 @@ Added colors
 
 :root {
   --primary--dim: #3dbbff;
-  --progress-green: aquamarine;
-  --purple2: #ffa2ca;
+  --progress-green: rgb(195, 255, 234);
+  --purple2: #c2bbf0;
   --primary3: #ffffff;
   --darkgrey: #575757;
   --medgrey: #acacac;
@@ -42,6 +42,7 @@ Added colors
   --white: #fff;
 
   --purple1: #cdc1ff;
+  --purple3: #9084c2;
   --primary: #e5d9f2;
   --pink: rgb(245, 239, 255);
   --pinkeu: 245, 239, 255;

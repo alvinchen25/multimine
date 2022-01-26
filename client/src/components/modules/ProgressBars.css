@@ -68,7 +68,7 @@
 .progressHolderDone div {
   display: flex;
   align-items: center;
-  background-color: var(--pink);
+  background-color: var(--purple1);
   height: 4vh;
   border-radius: 15px;
 }
@@ -93,8 +93,12 @@
   animation: shake .2s;
   animation-iteration-count: 3;
 }
+/* 
+.progressHolderFrozen:focus {
+  animation: shake .2s;
+  animation-iteration-count: 3;
 
-
+} */
 
 @keyframes shake {
   0% { transform: translate(1px, 1px)}
@@ -117,7 +121,7 @@
 .progressHolderFrozen div {
   display: flex;
   align-items: center;
-  background-color: aqua;
+  background-color: rgb(167, 255, 255);
   height: 4vh;
   border-radius: 15px;
 }

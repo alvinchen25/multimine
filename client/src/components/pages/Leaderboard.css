@@ -1,15 +1,14 @@
 .scores {
-    background-color: var(--pink);
-    margin: 25px;
-    margin-top: 15px;
-    padding: 20px;
-    width: 28%;
-    height: 68vh;
-    border-radius: 30px;
+  background-color: var(--pink);
+  margin: 25px;
+  margin-top: 15px;
+  padding: 20px;
+  width: 28%;
+  height: 68vh;
+  border-radius: 30px;
 
-    box-shadow: 0 0 7px 2px gray;
+  box-shadow: 0 0 8px 1px gray;
 
-  box-shadow: 0 0 7px 2px gray;
 }
 
 .scores h1 {
@@ -45,6 +44,20 @@ table * {
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  animation: fadeInAnimation 2s forwards;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
+
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+   }
 }
 
 a {
@@ -55,4 +68,5 @@ a {
   height: 50vh;
   overflow-x: hidden;
   overflow-y: auto;
+
 }
