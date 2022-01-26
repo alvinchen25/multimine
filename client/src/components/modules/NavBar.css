@@ -17,12 +17,12 @@
   left: 50vw;
   transform: translateX(-50%);
   color: var(--black);
-  font-size: 40px;
-  margin-top: 15px;
+  font-size: 45px;
+  margin-top: 10px;
 
   font-family: "Montserrat", sans-serif;
-  font-style: italic;
-  font-weight: bold;
+  /* font-style: italic; */
+  font-weight: bolder;
 
   letter-spacing: 0.1em;
   -webkit-text-fill-color: transparent;
@@ -62,6 +62,9 @@
   top: 20px;
   left: 30px;
 }
+.NavBar-linkContainer * {
+  margin-right: 15px;
+}
 
 .linkAnimation {
   transition-duration: 0.5s;
@@ -77,7 +80,6 @@
   color: var(--black);
   opacity: 0.6;
   text-decoration: none;
-  margin-right: 20px;
 }
 
 .NavBar-link:hover {
