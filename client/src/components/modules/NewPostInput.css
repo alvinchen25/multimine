@@ -44,6 +44,8 @@ input[type=checkbox] {
   margin: 10px;
   height: 15px;
   width: 15px;
+
+  color: var(--primary);
 }
 
 div h3 {
@@ -57,7 +59,7 @@ div h3 {
 }
 
 .NewPostInput-button {
-  color: black;
+  color: var(--black);
   border: var(--pink) 1px solid;
   opacity: 0.8;
   border-radius: var(--s);

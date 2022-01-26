@@ -71,14 +71,15 @@ body {
   box-shadow: 0 0 7px 2px gray;
 }
 
-.lobbyBox h1 {
+.lobbyBox h2 {
   margin-top: 30px;
 }
 
 /*making lobby boxes */
 .minesweeperButtonContainer {
   margin: none;
-  height: calc(78vh - 120px);
+  /* background-color: aquamarine; */
+  height: calc(85vh - 120px);
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -90,7 +91,7 @@ body {
 
 .minesweeperButton > * {
   padding: none;
-  margin: 10px;
+  /* margin: 10px; */
   font-weight: 300;
   overflow-wrap: break-word;
 }
@@ -110,17 +111,16 @@ body {
 .minesweeperButtonContainer div {
   width: 20vmin;
   display: inline-block;
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 .minesweeperButton {
   /* change to table cells later! */
-  /* background-image: url("../../public/images/blocktemp.png");
+  background-image: url("../../public/images/blocktemp.png");
   background-repeat: no-repeat;
-  background-size: contain; */
+  background-size: contain;
 
   background-color: var(--purple1);
-  border-radius: 20px;
 
   margin: none;
 
@@ -133,6 +133,9 @@ body {
   padding: 2vmin 2vmin;
 
   font-size: 1.2vw;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+
 
   border: 15px;
 
@@ -150,7 +153,7 @@ body {
 
 .minesweeperButton:hover {
   opacity: 1;
-  color: black;
+  color: var(--black);
 }
 
 .minesweeperButton:active {
@@ -191,7 +194,7 @@ body {
 }
 
 .roomTitle {
-  color: black;
+  color: var(--black);
 }
 
 h5 {

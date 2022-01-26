@@ -44,6 +44,7 @@
 .close-icon {
   content: "x";
   cursor: pointer;
+  position: fixed;
   right: calc(20% - 30px);
   top: calc(100vh - 85vh - 33px);
   background: var(--purple2);

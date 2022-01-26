@@ -9,7 +9,7 @@
 
 .Chatbook-container-2 {
   /* for lobby */
-  height: 56vmin;
+  height: 80vh;
 
   background-color: var(--purple1);
   border-radius: 20px;
@@ -33,4 +33,5 @@
 .Chatbook-chatContainer {
   width: 20vw;
   flex-grow: 1;
+  
 }

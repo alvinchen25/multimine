@@ -46,7 +46,7 @@ const NewPageInput = (props) => {
 
   return (
     <>
-      <h2>Create a room</h2>
+      <h2>Create a Room</h2>
       
       <div>
         <h3>Private game
