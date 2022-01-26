@@ -146,9 +146,9 @@ const Skeleton = (props) => {
       </div>)}
 
     <div className="lobbyBox">
-    <h1>Multimine</h1>
+    {/* <h1>Lobby</h1> */}
       <div className="roomCount">
-        <h3>Number of rooms open: {roomLinks.length}</h3>
+        <h2>Number of active rooms: {roomLinks.length}</h2>
         <div className="minesweeperButtonContainer">
         {roomLinks}
         </div>

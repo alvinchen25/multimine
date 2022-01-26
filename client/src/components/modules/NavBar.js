@@ -15,27 +15,28 @@ const GOOGLE_CLIENT_ID = "476771463106-5p85qlaqfetmh67l5bmn4394k0nl9aoi.apps.goo
 const NavBar = (props) => {
     return (
       <nav className="NavBar-container">
-        <div className="NavBar-title u-inlineBlock">
-        <Link to="/" className="NavBar-link">
-            Multimine
-          </Link>
-          </div>
-        <div className="NavBar-linkContainer u-inlineBlock">
+        <div className="NavBar-linkContainer">
         
           {/* <Link to="/chat/" className="NavBar-link">
             Chat
           </Link> */}
-          <Link to="/howtoplay/" className="NavBar-link">
+          <Link to="/howtoplay/" className="NavBar-link linkAnimation">
             How to Play
           </Link>
-          <Link to="/leaderboard/" className="NavBar-link">
+          <Link to="/leaderboard/" className="NavBar-link linkAnimation">
             Leaderboard
           </Link>
           <div className="spacer"></div>
 
         </div>
 
-        <div className="userStuff NavBar-linkContainer u-inlineBlock">
+        <span className="NavBar-title titleAnime">
+        <Link to="/" className="NavBar-link">
+            MULTIMINE
+          </Link>
+          </span>
+
+        <div className="userStuff">
            {/* {props.userId && (
             <Link to={`/profile/${props.userId}`} className="NavBar-link">
               Profile
@@ -43,7 +44,7 @@ const NavBar = (props) => {
           )} */}
           {(props.logStable) ? (props.userId ? (
             <>
-            <Link to={`/profile/${props.userId}`} className="NavBar-link">
+            <Link to={`/profile/${props.userId}`} className="NavBar-link linkAnimation">
               Profile
             </Link>
             <GoogleLogout
