@@ -109,14 +109,12 @@ const Skeleton = (props) => {
         </button>
       </div>
     ) : (
-      <div className = {roomObj.status}>
-        <button  className="u-link minesweeperButton" onClick = {() => enterRoom(roomObj)}>
+        <button  className={`u-link minesweeperButton ${roomObj.status}`} onClick = {() => enterRoom(roomObj)}>
           <h3>{roomObj.name}</h3>
           <h5>{roomObj.status}</h5>
           <h5>{roomObj.boardSize}</h5>
           <h5>public</h5>
         </button>
-      </div>
     )
   ));
 
