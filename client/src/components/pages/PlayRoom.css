@@ -109,7 +109,7 @@ button {
 /* game */
 
 .coverUp {
-  background-color: rgba(185, 230, 255, 0.5);
+  background-color: rgba(var(--pinkeu),0.6);
   position: absolute;
 
   z-index: 999;

@@ -127,7 +127,7 @@ body {
   height: 20vmin;
   width: 20vmin;
 
-  border: none;
+  border: 2px solid black;
   color: black;
 
   padding: 2vmin 2vmin;

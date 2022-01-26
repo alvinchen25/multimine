@@ -42,9 +42,10 @@ Added colors
   --grey: #8f898c;
   --white: #fff;
 
-  --purple1: #AF90A9;
-  --primary: #b9e6ff;
-  --pink: #f391a0;
+  --purple1: #cdc1ff;
+  --primary: #e5d9f2;
+  --pink: rgb(245, 239, 255);
+  --pinkeu: 245, 239, 255;
 
   --xs: 4px;
   --s: 8px;
