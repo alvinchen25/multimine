@@ -150,7 +150,7 @@ module.exports = {
       socket.on("startGame", ({room, height, width, mines}) => {
         const query = {_id: ObjectId(room)};
         Room.findOne(query).then((thing) => {
-          thing.status = "In progress";
+          thing.status = "ongoing";
           thing.save();
           const mineList = gameUtils.initMines(height, width, mines);
           io.to(room).emit("initmines", mineList);

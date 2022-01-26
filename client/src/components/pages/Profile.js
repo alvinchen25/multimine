@@ -13,16 +13,12 @@ const Profile = (props) => {
   const [avgMediumScore, setAvgMediumScore] = useState(0);
   const [userLargeScores, setUserLargeScores] = useState();
   const [avgLargeScore, setAvgLargeScore] = useState(0);
-
-  
   const [smallDisplay, setSmallDisplay] = useState({display: 'block'});
   const [mediumDisplay, setMediumDisplay] = useState({display: 'none'});
   const [largeDisplay, setLargeDisplay] = useState({display: 'none'});
   const [smallButton, setSmallButton] = useState({backgroundColor: 'var(--purple1)'})
   const [mediumButton, setMediumButton] = useState({backgroundColor: 'var(--pink)'})
   const [largeButton, setLargeButton] = useState({backgroundColor: 'var(--pink)'})
-
-  
 
   const openSmall = () => {
     setSmallDisplay({display: 'block'});
@@ -51,8 +47,6 @@ const Profile = (props) => {
     setLargeButton({backgroundColor: 'var(--purple1)'})
   }
 
-  // const userScores = undefined
-
   useEffect(() => {
     document.title = "Profile Page";
     let avgSmallCounter = 0;
@@ -60,7 +54,6 @@ const Profile = (props) => {
       setUser(userObj);
       userObj.smallTimes.map((round) => {
         avgSmallCounter=avgSmallCounter+round.score/1000;
-        // console.log(`round score: ${round.score} and avgscore ${avgSmallScore}`);
       });
       if (userObj.smallTimes.length>0) { // Checks to make sure length of the array is nonzero
         setAvgSmallScore(avgSmallCounter/userObj.smallTimes.length);
@@ -88,7 +81,6 @@ const Profile = (props) => {
           </tr>
         </>
       );
-
       setUserSmallScores(newUserSmallScores);
 
     });
@@ -138,7 +130,6 @@ const Profile = (props) => {
       setUser(userObj);
       userObj.largeTimes.map((round) => {
         avgLargeCounter=avgLargeCounter+round.score/1000;
-        // console.log(`round score: ${round.score} and avgscore ${avgLargeScore}`);
       });
       if (userObj.largeTimes.length>0) {
         setAvgLargeScore(avgLargeCounter/userObj.largeTimes.length);

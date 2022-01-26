@@ -56,8 +56,8 @@ const NewPageInput = (props) => {
         <h3 className="u-textCenter">Game size</h3>
         <form className="u-flex" onChange={sizeChange} method="post" action="">
           <div><input type="radio" name="size" value="large" defaultChecked/>Large: 16x30, 99 mines</div>
-          <div><input type="radio" name="size" value="medium"/>Medium 16x16, 40 mines</div>
-          <div><input type="radio" name="size" value="small"/>Small 9x9, 10 mines</div>
+          <div><input type="radio" name="size" value="medium"/>Medium: 16x16, 40 mines</div>
+          <div><input type="radio" name="size" value="small"/>Small: 9x9, 10 mines</div>
         </form>
       </div>
       {/* <div className="inputBox u-flex">

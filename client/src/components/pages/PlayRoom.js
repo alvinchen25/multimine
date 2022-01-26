@@ -32,7 +32,6 @@ const PlayRoom = (props) => {
   const [myFrozen, setMyFrozen] = useState(0);
   const [frozenList, setFrozenList] = useState({});
   const [progress, setProgress] = useState(0);
-  const [ongoing, setOngoing] = useState(false);
   const [gameState, setGameState] = useState("before");
   const [gameTime, setGameTime] = useState(0);
   const [mineList, setMineList] = useState([]);
@@ -72,6 +71,14 @@ const PlayRoom = (props) => {
     return () => {
       navigate("/");
     };
+  }, []);
+
+  useEffect(() => {
+    get("/api/roomstatus", {room: props._id}).then((thing) => {
+      if(thing.status !== "before"){
+        navigate("/");
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -157,7 +164,6 @@ const PlayRoom = (props) => {
       socket.emit("endGame", {room: props._id, socketid: socket.id});
       const body = {userId: props.userId, room: props._id, boardSize: props.boardSize};
       post("/api/addHighScore", body).then((newRecord) => {
-        // console.log(`new record: ${newRecord}`);
         setIsNewRecord(newRecord);
       });
     }
@@ -231,20 +237,14 @@ const PlayRoom = (props) => {
 
   const YeetProgressList = userList.map((user) => {
     let pro = 0;
+    let endTime = 0;
+    let place = 0;
     if(progressList[user._id]){
       pro = progressList[user._id];
     }
-    let endTime = 0;
-    let place = 0;
     if(user._id in endStats){
       endTime = endStats[user._id].time;
       place = endStats[user._id].place;
-    }
-    // console.log(endStats);
-
-
-    const animate = () => {
-      console.log('click!')
     }
     return (
       (pro === height*width-mines) ? (
@@ -316,12 +316,10 @@ const PlayRoom = (props) => {
 
            { (gameState === "before") ? (<>
               <div className={`game-board-${props.boardSize} displayBlock`}>
-  
-              
-               <div className = "board-and-stats">
+              <div className = "board-and-stats">
                <div className={`u-flex ${props.boardSize} settings`}>
                 <div className="info">
-                { (props.isPrivate === true) ? (
+               { (props.isPrivate === true) ? (
                  <h3>
                  Room Code: {roomCode}
                </h3>

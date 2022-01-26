@@ -33,7 +33,7 @@
 
   float: right;
   margin: 20px;
-  z-index: 9999;
+  z-index: 99;
   top: 0;
   right: 0;
 
@@ -109,7 +109,7 @@ button {
 /* game */
 
 .coverUp {
-  background-color: rgba(var(--pinkeu),0.6);
+  background-color: rgba(var(--pinkeu), 0.6);
   position: absolute;
 
   z-index: 999;
