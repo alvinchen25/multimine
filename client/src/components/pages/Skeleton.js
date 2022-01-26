@@ -23,7 +23,8 @@ const ALL_CHAT = {
 };
 
 const Skeleton = (props) => {
-  const [askCode, setAskCode] = useState({});
+  const [askCode, setAskCode] = useState(false);
+  const [askRoom, setAskRoom] = useState({});
   const [activeChat, setActiveChat] = useState({
     recipient: ALL_CHAT,
     messages: [],
@@ -67,16 +68,12 @@ const Skeleton = (props) => {
     if(!props.userId){
       return;
     }
-    if (room.status === "In progress") {
+    if (room.status === "ongoing") {
       return;
     }
-    const newAskCode = {...askCode};
-    if(askCode[room._id]){
-      newAskCode[room._id] = false;
-    }else{
-      newAskCode[room._id] = true;
-    }
-    setAskCode(newAskCode);
+    
+    setAskRoom(room);
+    setAskCode(!askCode);
   }
 
   const checkCode = (code, room) => {
@@ -91,7 +88,7 @@ const Skeleton = (props) => {
     if(!props.userId){
       return;
     }
-    if (room.status === "In progress") {
+    if (room.status === "ongoing") {
       return;
     }
     navigate("/room/"+room._id);
@@ -103,17 +100,16 @@ const Skeleton = (props) => {
 
   const roomLinks = props.roomList.map((roomObj) => ( // maps the ID liist into links with the ids
     (roomObj.isPrivate === true) ? (
-      <div>
-        <button onClick = {() => togglePopup(roomObj)}  className="u-link minesweeperButton"> {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
+      <div className = {roomObj.status}>
+        <button onClick = {() => togglePopup(roomObj)}  className="u-link minesweeperButton" > {/* So if we want the link to be the roomId, we would just replace _id with roomId. I won't do that yet because it would cause duplicates */}
           <h3>{roomObj.name}</h3>
           <h5>{roomObj.status}</h5>
           <h5>{roomObj.boardSize}</h5>
           <h5>private</h5>
         </button>
-        {askCode[roomObj._id] && <CodePopup room = {roomObj._id} handleClose = {() => togglePopup(roomObj)} checkCode = {checkCode}/>}
       </div>
     ) : (
-      <div>
+      <div className = {roomObj.status}>
         <button  className="u-link minesweeperButton" onClick = {() => enterRoom(roomObj)}>
           <h3>{roomObj.name}</h3>
           <h5>{roomObj.status}</h5>
@@ -144,6 +140,7 @@ const Skeleton = (props) => {
       </div>)}
 
     <div className="lobbyBox">
+    {askCode && <CodePopup room = {askRoom._id} handleClose = {() => togglePopup(askRoom)} checkCode = {checkCode}/>}
     {/* <h1>Lobby</h1> */}
       <div className="roomCount">
         <h2>Number of active rooms: {roomLinks.length}</h2>
