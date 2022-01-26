@@ -5,7 +5,7 @@ import "./NewPostInput.css"
 
 const CodePopup = (props) => {
     useEffect(() => {
-        console.log(props.room);
+        // console.log(props.room);
     }, []);
     const [value, setValue] = useState("");
     const handleChange = (event) => {
@@ -13,7 +13,7 @@ const CodePopup = (props) => {
     };
 
     const keyDown = (event) => {
-        console.log(event.key)
+        // console.log(event.key)
         if (event.key === "Enter" ) {
             props.checkCode(value, props.room)
         }

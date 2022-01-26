@@ -99,12 +99,15 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
   User.findOne(query).then((user) => {
     const newTime = [{ score: gameUtils.getGameTimer()[req.body.room], boardSize: req.body.boardSize }];
     // console.log(JSON.stringify(user));
+    let newRecord = false;
     if (req.body.boardSize === "small") {
       if (user.topscoreSmall.score === 0) {
         user.topscoreSmall = { score: newTime[0].score, boardSize: req.body.boardSize};
+        newRecord = true;
       }
       else if (user.topscoreSmall.score > newTime[0].score) {
         user.topscoreSmall = { score: newTime[0].score, boardSize: req.body.boardSize };
+        newRecord = true;
       }
       user.smallTimes = newTime.concat(user.smallTimes);
       user.smallTtimes = user.smallTimes.sort((a,b) => {
@@ -114,9 +117,11 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
     else if (req.body.boardSize === "medium") {
       if (user.topscoreMedium.score === 0) {
         user.topscoreMedium = { score: newTime[0].score, boardSize: req.body.boardSize};
+        newRecord = true;
       }
       else if (user.topscoreMedium.score > newTime[0].score) {
         user.topscoreMedium = { score: newTime[0].score, boardSize: req.body.boardSize };
+        newRecord = true;
       }
       user.mediumTimes = newTime.concat(user.mediumTimes);
       // console.log(`here is user.times 1 ${user.times}`);
@@ -127,9 +132,11 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
     else if (req.body.boardSize === "large") {
       if (user.topscoreLarge.score === 0) {
         user.topscoreLarge = { score: newTime[0].score, boardSize: req.body.boardSize};
+        newRecord = true;
       }
       else if (user.topscoreLarge.score > newTime[0].score) {
         user.topscoreLarge = { score: newTime[0].score, boardSize: req.body.boardSize };
+        newRecord = true;
       }
       user.largeTimes = newTime.concat(user.largeTimes);
       user.largeTimes = user.largeTimes.sort((a,b) => {
@@ -145,8 +152,9 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
     });
   
     newRun.save();
+    // console.log(`new record in api: ${newRecord}`);
+    res.send(newRecord);
   });
-  res.send({});
 });
 
 router.post("/initsocket", (req, res) => {

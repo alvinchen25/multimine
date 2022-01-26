@@ -43,7 +43,6 @@ const addUser = (user, socket) => {
 const removeUser = (user, socket) => {
   if (user){
     if(socket === userToSocketMap[user._id]){
-      console.log("weeeee");
       delete userToSocketMap[user._id];
       delete socketToUserMap[socket.id];
     } 

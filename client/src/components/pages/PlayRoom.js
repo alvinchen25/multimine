@@ -44,6 +44,7 @@ const PlayRoom = (props) => {
   const [mines, setMines] = useState(99);
   const [freezeTime, setFreezeTime] = useState(10);
   const [countdown, setCountdown] = useState(3000);
+  const [isNewRecord, setIsNewRecord] = useState(false);
   const stylename = "game-board-"+props.boardSize;
 
   useEffect(() => {
@@ -156,7 +157,10 @@ const PlayRoom = (props) => {
       setGameState("after");
       socket.emit("endGame", {room: props._id, socketid: socket.id});
       const body = {userId: props.userId, room: props._id, boardSize: props.boardSize};
-      post("/api/addHighScore", body);
+      post("/api/addHighScore", body).then((newRecord) => {
+        // console.log(`new record: ${newRecord}`);
+        setIsNewRecord(newRecord);
+      });
     }
   },[progress]);
 
@@ -369,13 +373,18 @@ const PlayRoom = (props) => {
               )
               }
         <div className="progressBars">
+              
           {YeetProgressList}
+
+          
         </div>
 
         </div>
         
         {(progress >= height*width-mines) ? (<Confetti numberOfPieces={500} recycle={false}/>) : (<></>)}
-
+        
+        {(isNewRecord) ? (<><div className="best"><h1>PERSONAL RECORD!!!!</h1></div></>) : (<></>)}
+        
       </div>
     </>
   );
