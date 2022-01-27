@@ -77,7 +77,7 @@ const Profile = (props) => {
         <>
           <tr>
           <td></td>
-            <td>Complete a game to see your scores!</td>
+            <td>No completed games :(</td>
           </tr>
         </>
       );
@@ -153,7 +153,7 @@ const Profile = (props) => {
         <>
           <tr>
             <td></td>
-          <td>Complete a game to see your scores!</td>
+          <td>No completed games :(</td>
           </tr>
         </>
       );
