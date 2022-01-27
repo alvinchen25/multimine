@@ -25,6 +25,20 @@ table * {
   font-size: 2vh;
 }
 
+td:nth-child(1) {
+  width: 40%;
+  }
+
+/* the second */
+td:nth-child(2) {
+  width: 35%;
+}
+
+/* the third */
+td:nth-child(3) {
+  width: 25%;
+ }
+
 .header * {
   font-size: 2.2vh;
   font-weight: bold;
@@ -59,6 +73,8 @@ table * {
     opacity: 1;
    }
 }
+
+
 
 a {
     color: var(--black);
