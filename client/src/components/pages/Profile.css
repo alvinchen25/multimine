@@ -31,6 +31,8 @@
   border-radius: 50px;
 
   box-shadow: 0 0 15px 2px gray;
+
+  max-width: 30%;
 }
 .Profile-name {
   font-size: 6vh;
