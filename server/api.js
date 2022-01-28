@@ -162,6 +162,7 @@ router.post("/initsocket", (req, res) => {
   let result = null;
   if (req.user){
     result = socketManager.addUser(req.user, socketManager.getSocketFromSocketID(req.body.socketid));
+    socketManager.getIo.to(socketManager.getSocketFromSocketID(req.body.socketid)).emit("kick");
   }
   res.send(result);
 });

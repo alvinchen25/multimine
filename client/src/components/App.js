@@ -21,7 +21,8 @@ const App = () => {
   const [userId, setUserId] = useState(undefined);
   const [userName, setUserName] = useState(undefined);
   const [roomList, setRoomList] = useState([]); // initializes a list of rooms
-
+  const [reload, setReload] = useState(0);
+  
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
@@ -123,6 +124,10 @@ const App = () => {
     setRoomList([roomObj].concat(roomList));
   };
 
+  const refresh = () => {
+    setReload(0);
+  };
+
   const roomsList = roomList.map((roomObj) => ( // Creates the list of rooms that we can put into our router
     <PlayRoom
       path={"/room/" + roomObj._id}
@@ -132,7 +137,8 @@ const App = () => {
       boardSize={roomObj.boardSize}
       key="{roomObj._id}"
       userId={userId}
-      userName={userName}/>
+      userName={userName}
+      refresh={refresh}/>
   ));
 
   return (
