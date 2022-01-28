@@ -73,9 +73,22 @@ const PlayRoom = (props) => {
     };
   }, []);
 
+  const kickCallback = () => {
+    props.refresh();
+    navigate("/");
+  };
+
+  useEffect(() => {
+    socket.on("kick", kickCallback);
+    return () => {
+      socket.off("kick", kickCallback);
+    }
+  });
+
   useEffect(() => {
     get("/api/roomstatus", {room: props._id}).then((thing) => {
       if(thing.status !== "before"){
+        props.refresh();
         navigate("/");
       }
     });
@@ -290,6 +303,7 @@ const PlayRoom = (props) => {
   
   const handleLeave = (event) => {
     event.preventDefault();
+    props.refresh();
     navigate("/");
   }
 
