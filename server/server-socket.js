@@ -148,15 +148,17 @@ module.exports = {
       socket.on("startGame", ({room, height, width, mines}) => {
         const query = {_id: ObjectId(room)};
         Room.findOne(query).then((thing) => {
-          thing.status = "ongoing";
-          thing.save();
-          const mineList = gameUtils.initMines(height, width, mines);
-          io.to(room).emit("initmines", mineList);
-          io.to(room).emit("showgame");
-          io.emit("startstatus", room);
-          gameUtils.setGameStatus(room, "countdown");
-          gameUtils.setCountdown(room, 3000);
-          gameUtils.setGameTimer(room, 0);
+          if (thing !== null) {
+            thing.status = "ongoing";
+            thing.save();
+            const mineList = gameUtils.initMines(height, width, mines);
+            io.to(room).emit("initmines", mineList);
+            io.to(room).emit("showgame");
+            io.emit("startstatus", room);
+            gameUtils.setGameStatus(room, "countdown");
+            gameUtils.setCountdown(room, 3000);
+            gameUtils.setGameTimer(room, 0);
+          }
         });  
       });
 

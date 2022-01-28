@@ -57,7 +57,8 @@ const App = () => {
       let reversedRoomObjs = roomObjs.reverse();
       setRoomList(reversedRoomObjs);
     });
-  }, []);
+    console.log("finding room list");
+  }, [reload]);
 
   
   const disconnectCallback = () => {
@@ -125,7 +126,8 @@ const App = () => {
   };
 
   const refresh = () => {
-    setReload(0);
+    setReload(reload+1);
+    console.log(`refreshing`);
   };
 
   const roomsList = roomList.map((roomObj) => ( // Creates the list of rooms that we can put into our router

@@ -87,7 +87,12 @@ const PlayRoom = (props) => {
 
   useEffect(() => {
     get("/api/roomstatus", {room: props._id}).then((thing) => {
-      if(thing.status !== "before"){
+      if (thing.status) {
+        if(thing.status !== "before"){
+          props.refresh();
+          navigate("/");
+        }
+      } else {
         props.refresh();
         navigate("/");
       }
