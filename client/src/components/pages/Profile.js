@@ -161,9 +161,6 @@ const Profile = (props) => {
     });
   }, []);
 
-  // console.log(`times listed here ${user.times}`);
-
-
   if (!user) {
     return (
     <>

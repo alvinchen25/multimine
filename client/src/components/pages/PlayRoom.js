@@ -118,15 +118,14 @@ const PlayRoom = (props) => {
 
     }
   },[]);
-
+  const mineListCallback = (newMineList) => {
+    setMineList(newMineList);
+  };
   
   useEffect(() => {
-    const callback = (newMineList) => {
-      setMineList(newMineList);
-    };
-    socket.on("initmines", callback);
+    socket.on("initmines", mineListCallback);
     return () => {
-      socket.off("initmines", callback);
+      socket.off("initmines", mineListCallback);
     }
   }, []);
 
