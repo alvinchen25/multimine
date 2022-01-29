@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { Link } from "@reach/router";
+import { Link } from "@reach/router";
 
 import "./SingleMessage.css";
 
@@ -9,14 +9,14 @@ import "./SingleMessage.css";
  * Proptypes
  * @param {MessageObject} message
  */
-const SingleMessage = (props) => {
+const SingleMessageAllChat = (props) => {
   return (
     <>
       <div className="messageyeet">
-      <b>{props.message.sender.name}</b>: {props.message.content}
+      <b><Link to={"/profile/"+props.message.sender._id}>{props.message.sender.name}</Link></b>: {props.message.content}
       </div>
     </>
   );
 }
 
-export default SingleMessage;
+export default SingleMessageAllChat;

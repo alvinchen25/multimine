@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SingleMessage from "./SingleMessage.js";
+import SingleMessageAllChat from "./SingleMessageAllChat.js";
 import { NewMessage, NewRoomMessage } from "./NewPostInput.js";
 
 import "./Chat.css";
@@ -49,12 +50,9 @@ const Chat = (props) => {
           <h2>Lobby {props.data.recipient.name}</h2>
           <div className="Chat-historyContainer">
             {[...props.data.messages].slice(-50,).reverse().map((m, i) => (
-              <SingleMessage message={m} key={i} />
+              <SingleMessageAllChat message={m} key={i} />
             ))}
           </div>
-          {/* <div className="Chat-newContainer">
-            <NewMessage recipient={props.data.recipient}/>
-          </div> */}
           {submitNewMessage}
         </div>
       </>
