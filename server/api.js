@@ -33,7 +33,6 @@ router.get("/room", (req, res) => {
 }); //access room list
 
 router.post("/room", (req, res) => {
-  // console.log(`server recieved ${req.body.name}`);
   const code = gameUtils.genRoomCode();
 
   const newRoom = new Room({
@@ -98,7 +97,6 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
   const query = {_id: req.body.userId};
   User.findOne(query).then((user) => {
     const newTime = [{ score: gameUtils.getGameTimer()[req.body.room], boardSize: req.body.boardSize }];
-    // console.log(JSON.stringify(user));
     let newRecord = false;
     if (req.body.boardSize === "small") {
       if (user.topscoreSmall.score === 0) {
@@ -124,7 +122,6 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
         newRecord = true;
       }
       user.mediumTimes = newTime.concat(user.mediumTimes);
-      // console.log(`here is user.times 1 ${user.times}`);
       user.mediumTimes = user.mediumTimes.sort((a,b) => {
         a.score > b.score;
       });
@@ -152,7 +149,6 @@ router.post("/addHighScore", (req, res) => { // pushes the score to the data for
     });
   
     newRun.save();
-    // console.log(`new record in api: ${newRecord}`);
     res.send(newRecord);
   });
 });
